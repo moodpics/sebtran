@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seb Trân — Cinematographer & Director</title>
+  <meta name="description" content="Seb Trân — Paris-based cinematographer and director. Luxury, beauty, fashion, music videos and short films.">
+  <meta property="og:title" content="Seb Trân — Cinematographer & Director">
+  <meta property="og:description" content="Paris-based cinematographer and director.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://player.vimeo.com">
+  <link rel="preconnect" href="https://i.vimeocdn.com">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+  <!-- Intro / letterbox -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__count mono">000</div>
+    <div class="intro__name">Seb Trân</div>
+  </div>
+  <div class="bars" aria-hidden="true"><i class="bars__top"></i><i class="bars__bottom"></i></div>
+  <div class="shutter" aria-hidden="true"><i></i><i></i></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Cursor -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><em class="cursor__label mono"></em></span></div>
+
+  <!-- Header -->
+  <header class="top">
+    <a href="#" class="top__name" data-scroll="hero">Seb Trân</a>
+
+    <div class="switch" role="tablist" aria-label="Discipline">
+      <button role="tab" class="switch__btn" data-mode="cinematography">Cinematography</button>
+      <button role="tab" class="switch__btn" data-mode="direction">Direction</button>
+      <span class="switch__pill" aria-hidden="true"></span>
+    </div>
+
+    <nav class="top__nav">
+      <a href="#work" data-scroll="work">Work</a>
+      <a href="#about" data-scroll="about">About</a>
+      <a href="#contact" data-scroll="contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HUD -->
+  <div class="hud mono" aria-hidden="true">
+    <div class="hud__l"><span class="hud__rec"></span><span class="hud__tc">00:00:00:00</span></div>
+    <div class="hud__r"><span class="hud__meta"></span></div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <img class="hero__poster" alt="">
+        <div class="hero__video"></div>
+        <div class="hero__vignette"></div>
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__title">
+          <span class="line"><span>Seb Trân</span></span>
+        </h1>
+        <p class="hero__role"><span class="scramble" data-role></span></p>
+        <button class="hero__play" data-hero-play>
+          <span class="hero__play-ico"></span>
+          <span class="hero__play-txt"><em class="mono">Now playing</em><strong data-hero-title></strong></span>
+        </button>
+      </div>
+      <div class="hero__scroll mono">Scroll</div>
+    </section>
+
+    <!-- Work -->
+    <section class="work" id="work">
+      <div class="work__head">
+        <h2 class="work__title"><span data-work-title>Selected Cinematography</span> <sup class="mono" data-count></sup></h2>
+        <div class="work__tools">
+          <div class="filters" data-filters></div>
+          <div class="views">
+            <button class="views__btn is-active" data-view="grid" aria-label="Grid view">Grid</button>
+            <button class="views__btn" data-view="index" aria-label="Index view">Index</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" data-grid></div>
+      <ol class="index" data-index hidden></ol>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="about__label mono">About</div>
+      <p class="about__text" data-about></p>
+      <div class="marquee" aria-label="Selected clients">
+        <div class="marquee__track" data-marquee></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="about__label mono">Contact</div>
+      <a class="contact__mail" data-mail href="#"><span data-mail-txt></span></a>
+      <ul class="contact__links">
+        <li><a href="https://www.instagram.com/_sebtran_/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://vimeo.com/user83221295" target="_blank" rel="noopener">Vimeo</a></li>
+        <li><span class="mono">Based in Paris — available worldwide</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot mono">
+    <span>© <span data-year></span> Seb Trân</span>
+    <span>Paris, France</span>
+  </footer>
+
+  <!-- Floating preview for Index view -->
+  <div class="float" aria-hidden="true"><div class="float__in"><img alt=""><div class="float__video"></div></div></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Film player" hidden>
+    <div class="lightbox__ghost"></div>
+    <div class="lightbox__stage"><div class="lightbox__player"></div></div>
+    <div class="lightbox__info">
+      <div class="lightbox__meta">
+        <span class="mono lightbox__cat"></span>
+        <h3 class="lightbox__title"></h3>
+        <p class="lightbox__credits mono"></p>
+      </div>
+      <div class="lightbox__nav">
+        <button data-lb="prev" aria-label="Previous film">←</button>
+        <button data-lb="next" aria-label="Next film">→</button>
+        <button data-lb="close" aria-label="Close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script src="js/films.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
