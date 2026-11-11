@@ -6,9 +6,9 @@ Portfolio site. Static HTML/CSS/JS, hosted on GitHub Pages. No build step.
 
 ```
 index.html      page skeleton
-css/style.css   all styles (dark theme, accent changes per discipline)
-js/films.js     ← the film catalogue (edit this)
-js/app.js       interactions + CONFIG (email, clients, bio texts)
+style.css       all styles (dark theme, accent changes per discipline)
+films.js        ← the film catalogue (edit this)
+app.js          interactions + CONFIG (email, clients, bio texts)
 ```
 
 ## Two disciplines, one site
@@ -23,7 +23,7 @@ The accent colour, hero film, bio text, HUD and film list all change with the mo
 
 ## Adding / removing a film
 
-Open `js/films.js`. Each film looks like this:
+Open `films.js`. Each film looks like this:
 
 ```js
 {
@@ -48,7 +48,7 @@ Hover previews use Vimeo's background player, which needs a paid Vimeo plan (Plu
 
 ## Settings
 
-In `js/app.js`, the `CONFIG` block at the top holds the contact email, the client marquee and the bio texts for both modes.
+In `app.js`, the `CONFIG` block at the top holds the contact email, the client marquee and the bio texts for both modes.
 
 ## Custom domain
 
