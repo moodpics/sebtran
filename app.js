@@ -16,7 +16,7 @@
         role: "Cinematographer",
         workTitle: "Selected Cinematography",
         hud: "ISO 800 · 3200K · T1.4 · 25 FPS",
-        about: "Twenty years behind the camera, lighting *luxury*, *beauty* and *fashion* for houses like Cartier, Yves Saint Laurent, Chanel and Lancôme — and music videos and short films when the story calls for it. Based in Paris, I work closely with directors to build images where light feels like *skin* and every frame holds a breath longer than expected."
+        about: "More than ten years behind the camera, lighting *luxury*, *beauty* and *fashion* for houses like Cartier, Yves Saint Laurent, Chanel and Lancôme — and music videos and short films when the story calls for it. Based in Paris, I work closely with directors to build images where light feels like *skin* and every frame holds a breath longer than expected."
       },
       direction: {
         role: "Director",
