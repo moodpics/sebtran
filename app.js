@@ -6,7 +6,7 @@
 
   /* ---------- Config: edit these ---------- */
   const CONFIG = {
-    email: "contact@sebastien-tran.com",   // TODO: confirm the public contact address
+    email: "sebastientran@gmail.com",
     defaultMode: "cinematography",
     clients: ["Cartier", "Yves Saint Laurent", "Miu Miu", "Lancôme", "Chanel", "Balmain", "L'Oréal Paris",
       "Armani Beauty", "Maison Margiela", "Off-White", "Chaumet", "Kérastase", "AMI Paris", "Salomon",
