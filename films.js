@@ -320,6 +320,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/828711926-fbb898b40605352bfc1932b90259426f29ab956e98abae03d141ff4c6ee11604-d"
     },
     {
+      "id": "1156276479",
+      "h": null,
+      "client": "Zara Home",
+      "title": "Campaign",
+      "category": "Commercial",
+      "director": "Joachin Laguinge",
+      "production": "Town",
+      "year": null,
+      "duration": 40,
+      "thumb": "https://i.vimeocdn.com/video/2109377748-ad667afeb3a9692ac33721538cc5031bdc61454c6ea8aae947c345a76f23eff9-d"
+    },
+    {
       "id": "1246448214",
       "h": null,
       "client": "Lancôme",
@@ -380,6 +392,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1678518795-043ab85aac0d046801e4a4a57e4d8551a6f00aa40a0ad13a0eefb2140f55a350-d"
     },
     {
+      "id": "1050195877",
+      "h": null,
+      "client": "L'Oréal Paris",
+      "title": "Cats Eyes — Camille Lou",
+      "category": "Beauty",
+      "director": "Arthur Lacomblez",
+      "production": "TF1 Factory",
+      "year": null,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/1974715406-f6efde841f216d78523e166423ee40dd45b17c2bb52ae1963db6e247f020fe36-d"
+    },
+    {
       "id": "1050183582",
       "h": "2c11f7605b",
       "client": "ELLE",
@@ -438,6 +462,18 @@ window.FILMS = {
       "year": null,
       "duration": 30,
       "thumb": "https://i.vimeocdn.com/video/2169914461-55db8a5d3e9cb83fd85c773941c290aead20ebb6ee39dad3ea5aca0db59c13f3-d"
+    },
+    {
+      "id": "832597646",
+      "h": null,
+      "client": "AMI Paris",
+      "title": "New York — Deon",
+      "category": "Fashion",
+      "director": "Hugo Lopez",
+      "production": "Storm",
+      "year": null,
+      "duration": 35,
+      "thumb": "https://i.vimeocdn.com/video/1678528553-d9143b55448caf42de517a6b37dd9258260a5c28cad6b25e4ce90196f80dc2b9-d"
     },
     {
       "id": "728807710",
@@ -536,6 +572,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1678554859-3a9f7cd9bf5d6197b16414acb625fbf59672d20c9dd438784e7b9f53e7aa8ef8-d"
     },
     {
+      "id": "832599360",
+      "h": null,
+      "client": "AMI Paris",
+      "title": "New York — Parker",
+      "category": "Fashion",
+      "director": "Hugo Lopez",
+      "production": "Storm",
+      "year": null,
+      "duration": 32,
+      "thumb": "https://i.vimeocdn.com/video/1678531334-b9c99b11bd69c02a5a48c8c35c0961ab39af8d714712dd825563c697c3c3ab6a-d"
+    },
+    {
       "id": "728802689",
       "h": "22fc669ccb",
       "client": "Cartier",
@@ -594,6 +642,18 @@ window.FILMS = {
       "year": "2021",
       "duration": 30,
       "thumb": "https://i.vimeocdn.com/video/1108187563-96e616e4fab28e336872803b2d3d9ca1ef22adc15bbff7815151a96984d1b78f-d"
+    },
+    {
+      "id": "1131122161",
+      "h": "84a4f2fe62",
+      "client": "Clarins",
+      "title": "Camille Lou",
+      "category": "Beauty",
+      "director": "Hugo Lopez",
+      "production": "LGD",
+      "year": "2025",
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/2074985829-3a3da795f8539a84d10294e9fc69efda94ae1e48157b00da03c387bc429e844f-d"
     },
     {
       "id": "332774174",
@@ -668,18 +728,6 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2225860417-2cfc15f4137c06375f716ddb36b2952a908b897309dd4c257bb755d2b5e7287f-d"
     },
     {
-      "id": "1131122161",
-      "h": "84a4f2fe62",
-      "client": "Clarins",
-      "title": "Camille Lou",
-      "category": "Beauty",
-      "director": "Hugo Lopez",
-      "production": "LGD",
-      "year": "2025",
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/2074985829-3a3da795f8539a84d10294e9fc69efda94ae1e48157b00da03c387bc429e844f-d"
-    },
-    {
       "id": "832601217",
       "h": "191f64e4d6",
       "client": "AMI Paris",
@@ -738,6 +786,18 @@ window.FILMS = {
       "year": "2019",
       "duration": 60,
       "thumb": "https://i.vimeocdn.com/video/793141284-cc0854b9073fd89188969b06bcf4051fce8198a1279b7b70534fd35ca1ab1124-d"
+    },
+    {
+      "id": "1156271956",
+      "h": null,
+      "client": "AMI Paris",
+      "title": "New York — Tanner",
+      "category": "Fashion",
+      "director": "Hugo Lopez",
+      "production": "Storm",
+      "year": null,
+      "duration": 35,
+      "thumb": "https://i.vimeocdn.com/video/2109376675-5864e55d71650567a6ef622265169b4eb70664c2878bf156394eb9b6d1eb6938-d"
     },
     {
       "id": "832619424",
