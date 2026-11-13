@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T15:47:11.640Z",
+ "updated": "2026-11-13T17:29:55.348Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -55,7 +55,9 @@
    {
     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
     "b": 1,
-    "sub": [],
+    "sub": [
+     "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. "
+    ],
     "img": "refs/mugler-angel-elixir-plan1.gif",
     "imgNote": "Référence : Mugler Angel Elixir"
    },
@@ -64,6 +66,13 @@
     "b": 1,
     "sub": [],
     "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
+    "imgNote": ""
+   },
+   {
+    "t": "Grosse lumière en douche accrochée sur le grill ",
+    "b": 1,
+    "sub": [],
+    "img": "",
     "imgNote": ""
    }
   ],
