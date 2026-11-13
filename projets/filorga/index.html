@@ -261,10 +261,10 @@ let NODES=[],EDGES=[];const el={};
 function makeNodes(){
  NODES=[{id:"root",kind:"Projet",x:470,y:60,w:620},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
   ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,ci:i})),
-  {id:"plan",kind:"Planning provisoire",x:90,y:1420,w:440},{id:"loc",kind:"Location",x:600,y:1420,w:620},
+  {id:"plan",kind:"Planning provisoire",x:215,y:1420,w:440},{id:"loc",kind:"Location",x:725,y:1420,w:620},
   {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
-  ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1920,w:225,cls:"dept",did:d.id})),
-  {id:"team",kind:"Équipe",x:120,y:2400,w:560}];
+  ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:Math.round(780-(DATA.depts.length*330+(DATA.depts.length-1)*40)/2)+i*370,y:1920,w:330,cls:"dept",did:d.id})),
+  {id:"team",kind:"Équipe",x:500,y:2400,w:560}];
  EDGES=[["root","brief"],["root","mood"],...DATA.camps.map(c=>["root","c_"+c.id]),...DATA.camps.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DATA.depts.map(d=>["hub","d_"+d.id])];
 }
 function body(n){
