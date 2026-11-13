@@ -268,7 +268,7 @@ const RULES=[
  {re:/(mouvement|bras neutron|neutron|dolly|jib|ronin|travelling|steadicam|\brail\b|grue|robotique|camera (avance|monte|recule|tourne))/,to:["cam","mach"]},
  {re:/(optique|filtre|focale|\bfps\b|objectif|alexa|master prime)/,to:["cam"]},
  {re:/(lumiere|eclairage|projecteur|gobo|lumen|skypanel|keylight|borniol|floppy)/,to:["lum"],from:["brief","camp"]},
- {re:/(\brig\b|rigs|rigging|\bgril|grill|\btop\b|truss|structure|perche|accroche|fixer|suspen)/,to:["mach"],from:["lum"]}
+ {re:/(\brig\b|rigs|rigging|\bgril|grill|\btop\b|truss|structure|perche|accroche|fixer|suspen)/,to:["mach"],from:["lum","brief","camp"]}
 ];
 function units(){
  const u=[],add=(text,src,srcId)=>{if(text&&String(text).trim())u.push({text:String(text),src,srcId})};
