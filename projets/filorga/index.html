@@ -70,6 +70,8 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .rimg{display:block;width:100%;height:auto;border-radius:3px;margin-top:10px;border:1px solid var(--line);cursor:zoom-in;background:#000}
 .refs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
 .refs img{width:100%;height:112px;object-fit:cover;border-radius:3px;border:1px solid var(--line);cursor:zoom-in;display:block}
+.kn.lk small{display:block;margin-top:2px}
+.kn.lk small a{color:inherit}
 .refs.one{grid-template-columns:1fr}
 .refs.one img{height:auto;object-fit:contain;background:#fff}
 .refs.three{grid-template-columns:1fr 1fr 1fr}
@@ -257,7 +259,39 @@ const di=id=>DATA.depts.findIndex(d=>d.id===id);
 const isDone=t=>!!((t.lines&&t.lines.length)||(t.fix&&t.fix.length)||(t.ctl&&t.ctl.length));
 
 /* champs éditables : en lecture seule ce sont de simples textes */
-const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(txt)}</${tag}>`;
+const norm=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const TAGRE=/\s*#(cam|camera|lum|lumiere|mach|machinerie)\b/gi;
+const TAGMAP={cam:"cam",camera:"cam",lum:"lum",lumiere:"lum",mach:"mach",machinerie:"mach"};
+const clean=s=>String(s==null?"":s).replace(TAGRE,"").trim();
+const clip=(s,n=230)=>s.length>n?s.slice(0,n).replace(/\s+\S*$/,"")+"…":s;
+const RULES=[
+ {re:/(mouvement|bras neutron|neutron|dolly|jib|ronin|travelling|steadicam|\brail\b|grue|robotique|camera (avance|monte|recule|tourne))/,to:["cam","mach"]},
+ {re:/(optique|filtre|focale|\bfps\b|objectif|alexa|master prime)/,to:["cam"]},
+ {re:/(lumiere|eclairage|projecteur|gobo|lumen|skypanel|keylight|borniol|floppy)/,to:["lum"],from:["brief","camp"]},
+ {re:/(\brig\b|rigs|rigging|\bgril|grill|\btop\b|truss|structure|perche|accroche|fixer|suspen)/,to:["mach"],from:["lum"]}
+];
+function units(){
+ const u=[],add=(text,src,srcId)=>{if(text&&String(text).trim())u.push({text:String(text),src,srcId})};
+ DATA.brief.items.forEach(it=>{add(it.t,"Brief","brief");(it.sub||[]).forEach(x=>add(x,"Brief","brief"))});
+ DATA.camps.forEach(c=>add(c.txt,c.name,"camp"));
+ DATA.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id)));if(d.notes)add(d.notes,d.name+" · notes",d.id);(d.reco||[]).forEach(r=>add(r.t,d.name+" · liste recommandée",d.id))});
+ return u;
+}
+function linked(id){
+ const key=x=>norm(clean(x)).replace(/[^a-z0-9]+/g," ").trim().slice(0,28);
+ const d=D(id),own=new Set([...d.known.map(k=>k.t),...d.todo.flatMap(t=>t.lines||[]),d.notes||""].filter(Boolean).map(key));
+ const seen=new Set(),out=[];
+ units().forEach(u=>{
+  if(u.srcId===id)return;
+  let to=new Set();const tags=[...u.text.matchAll(/#(cam|camera|lum|lumiere|mach|machinerie)\b/gi)].map(m=>TAGMAP[norm(m[1])]);
+  if(tags.length)tags.forEach(x=>to.add(x));
+  else{const n=norm(u.text);RULES.forEach(r=>{if(r.from&&!r.from.includes(u.srcId))return;if(r.re.test(n))r.to.forEach(x=>to.add(x))})}
+  if(!to.has(id))return;
+  const k=key(u.text);if(!k||own.has(k)||seen.has(k))return;seen.add(k);out.push(u);
+ });
+ return out;
+}
+const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(clean(txt))}</${tag}>`;
 const edj=(p,tag,cls,arr,sep,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-t="${sep==="\n"?"lines":"semi"}" data-ph="${esc(ph||"…")}">${esc((arr||[]).join(sep))}</${tag}>`:"";
 const del=(p,i)=>EDIT?`<button class="xdel" data-del="${p}" data-i="${i}" title="Supprimer" aria-label="Supprimer">×</button>`:"";
 const add=(p,tpl,label)=>EDIT?`<button class="xadd" data-add="${p}" data-tpl="${tpl}">+ ${esc(label)}</button>`:"";
@@ -398,10 +432,11 @@ const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Ferme
 
 function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
- const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}</span>`:(t.lines.length?`<span class="det bl">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
-  :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
+ const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}</span>`:(t.lines.length?`<span class="det bl">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
+  :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
  openDrawer(head(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name))+`
   <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
+  ${(()=>{const lk=linked(id);return (lk.length||EDIT)?`<div class="ds"><h4>Lié depuis d'autres parties</h4>${lk.length?`<ul class="kn lk">${lk.map(u=>`<li><span>${esc(clip(clean(u.text)))}</span><small>${u.srcId!=="brief"&&u.srcId!=="camp"?`<a href="#" data-link="${u.srcId}">${esc(u.src)}</a>`:esc(u.src)}</small></li>`).join("")}</ul>`:`<p class="sub">Rien pour l'instant.</p>`}${EDIT?`<p class="sub">Astuce : écris #cam, #lum ou #mach dans une ligne (brief, point, note…) pour l'envoyer dans ce département. Sans #, la liaison se fait automatiquement par mots-clés.</p>`:""}</div>`:""})()}
   ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
@@ -423,7 +458,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Rôle (navigation) =========== */
 function renderPills(){
