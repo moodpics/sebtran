@@ -174,9 +174,9 @@ body.m .bar small{display:none}
 /* =========== Contenu : note de job Evernote, état au 13/11/2026 =========== */
 const SHOOT_DATE="2026-11-19";
 const CAMPS=[
- {id:"regen",name:"Regen Peptide",sub:"Réparer la barrière cutanée",tags:["N&B pas toujours linéaire"],pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)",g:"linear-gradient(180deg,#000,#fff)"},
- {id:"time",name:"Time Filler",sub:"40 ans et +, anti-rides",tags:["N&B toujours droit"],g:"linear-gradient(180deg,#fff,#000)"},
- {id:"ncef",name:"NCEF Revitalize",sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow",tags:["N&B toujours droit"],g:"linear-gradient(90deg,#000,#fff)"},
+ {id:"regen",name:"Regen Peptide",sub:"Réparer la barrière cutanée",tags:["Dégradé N&B : la ligne peut se casser"],pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)",g:"linear-gradient(180deg,#000,#fff)"},
+ {id:"time",name:"Time Filler",sub:"40 ans et +, anti-rides",tags:["Dégradé N&B : ligne droite"],g:"linear-gradient(180deg,#fff,#000)"},
+ {id:"ncef",name:"NCEF Revitalize",sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow",tags:["Dégradé N&B : ligne droite"],g:"linear-gradient(90deg,#000,#fff)"},
  {id:"uv",name:"UV Cellular",sub:"Solaire",tags:[],g:"radial-gradient(circle at 50% 120%,#fff,#000 75%)"}
 ];
 const SLOTS=["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
@@ -205,7 +205,8 @@ const DEPTS=[
    ["Grip : Nicolas Sommermeyer"],
    ["Plateau 480 : plan et dimensions à préciser"],
    ["Pour mémoire, relevé lors du shoot La Roche-Posay dans ce même plateau : hauteur du cyclo avec retour 4,35 m ; barre à 4,6 m au-dessus du retour","À revérifier pour Filorga",1]],
-  todo:["Support caméra et mouvements","Rigging et fixations","Rigs spéciaux","Obtenir le plan du plateau 480"]},
+  todo:["Support caméra et mouvements","Rigging et fixations","Rigs spéciaux","Obtenir le plan du plateau 480"],
+  ref:{src:"refs/mugler-angel-elixir-plan1.gif",title:"Plan de référence spécial · Regen Peptide",cap:"Mugler Angel Elixir (Hunter Schafer) : la caméra s’approche d’elle en travelling, passe au-dessus de sa tête et se retourne. Référence de mouvement pour le film Regen Peptide, à étudier côté machinerie (rig, trajectoire, faisabilité).",link:"https://www.youtube.com/watch?v=OE999ilxDNk"}},
  {id:"photo",name:"Photo",known:[
    ["Ben Fourmi, photographe, travaille régulièrement avec Filorga"],
    ["Tournage photo et vidéo en binôme sur chaque campagne"]],
@@ -376,6 +377,7 @@ function openDept(id){
  const qs=QS.filter(q=>q.d.includes(id));
  openDrawer(head(d.name)+`
   <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map(k=>`<li class="${k[2]?"w":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
+  ${d.ref?`<div class="ds"><h4>${esc(d.ref.title)}</h4><img src="${d.ref.src}" alt="${esc(d.ref.title)}" style="width:100%;border-radius:8px;display:block;background:#000"><p class="sub" style="margin:8px 0 0">${esc(d.ref.cap)} <a href="${d.ref.link}" target="_blank" rel="noopener">Voir la pub complète</a></p></div>`:""}
   <div class="ds"><h4>À préparer</h4><ul class="ck">${fixedTodo(d).map(i=>item(i,0)).join("")}${(S.custom[id]||[]).map(i=>item(i,1)).join("")}</ul>
    <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…"><button class="btn" type="submit">Ajouter</button></form></div>
   <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>
