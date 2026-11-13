@@ -172,12 +172,42 @@ body.m .nh{cursor:default}
 body.m .zoom{display:none}
 body.m .pills{max-width:62vw}
 body.m .bar small{display:none}
+
+/* lecture seule / édition */
+.ck input[type=checkbox]:disabled{opacity:1;cursor:default}
+.slots b{font-weight:500}.slots b.tbc{color:#9a9a9a;font-weight:400;font-style:italic}
+.pl{white-space:pre-line}
+.team .rt{display:inline-flex;align-items:center}
+.q .ans{margin-top:8px;padding:10px 12px;background:var(--soft);border-radius:3px;white-space:pre-wrap}
+.rw{position:relative}
+.ed{outline:none;border-radius:2px;min-width:2ch}
+.ed:empty::before{content:attr(data-ph);color:#aaa;font-weight:400}
+body.edit .ed{box-shadow:inset 0 -1px 0 rgba(0,0,0,.28)}
+body.edit .ed:hover{background:rgba(0,0,0,.05)}
+body.edit .ed:focus{background:#fff;box-shadow:0 0 0 2px #000}
+.xdel{color:#999;font-size:17px;line-height:1;margin-left:6px;padding:0 4px;vertical-align:middle}
+.xdel:hover{color:#000}
+.rw .xdel{position:absolute;top:4px;right:4px;background:#fff;border-radius:99px;width:20px;height:20px;padding:0;margin:0;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.xadd{display:inline-block;font-size:12px;border:1px dashed #8a8a8a;border-radius:99px;padding:2px 11px;margin:8px 6px 0 0;color:#333;background:#fff}
+.xadd:hover{border-style:solid;border-color:#000}
+.wk{display:inline-flex;gap:5px;align-items:center;font-size:12px;color:var(--mute);margin-top:2px}
+.dt{width:auto;margin-left:auto;padding:3px 6px;font-size:12px}
+#ebar{display:flex;align-items:center;gap:8px;margin-left:12px}
+#ebar .elab{border:1px solid #fff;border-radius:99px;padding:3px 11px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+#estat{font-size:12px;color:#bbb;white-space:nowrap}
+#ebar .btn{padding:5px 12px;border-color:#fff;background:transparent;color:#fff}
+#ebar .btn.p{background:#fff;color:#000}
+#ebar .btn:disabled{opacity:.35;cursor:default}
+#ebar .btn:not(:disabled):hover{background:#fff;color:#000}
+body.edit .nh{cursor:grab}body:not(.edit) .nh{cursor:default}
+body.edit .pills{max-width:42vw}
+
 </style>
 </head>
 <body>
 
 <div class="bar">
-  <b>Filorga</b><small>Je suis…</small>
+  <b>Filorga</b><small id="stamp"></small><small>Je suis…</small>
   <div class="pills" id="pills"></div>
 </div>
 
@@ -191,193 +221,125 @@ body.m .bar small{display:none}
 <div id="lb"><img alt=""></div>
 
 <script>
-/* =========== Contenu : note de job Evernote, reprise telle qu'écrite (état au 13/11/2026) =========== */
-const SHOOT_DATE="2026-11-19";
-const CAMPS=[
- {id:"regen",name:"Regen Peptide",txt:"REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé, pas toujours, pas forcément linéaire",
-  imgs:[["refs/regen-ref.jpg","Regen Peptide : référence (Reveal vidéo)"],["refs/effet-file.jpg","Effet filé sur film Peptide"]],
-  pist:"Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps"},
- {id:"time",name:"Time Filler",txt:"TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé, toujours droit, horizontal",
-  imgs:[["refs/time-ncef-gradient.jpg","Dégradé N&B de référence"],["refs/time-ref.jpg","Time Filler : références"]]},
- {id:"ncef",name:"NCEF Revitalize",txt:"NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé, toujours droit, horizontal",
-  imgs:[["refs/time-ncef-gradient.jpg","Dégradé N&B de référence"],["refs/ncef-ref.jpg","NCEF Revitalize : références"]]},
- {id:"uv",name:"UV Cellular",txt:"UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
-  imgs:[["refs/uv-ref.jpg","UV Cellular : références"]]}
-];
-const SLOTS=["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
-const MUGLER={src:"refs/mugler-angel-elixir-plan1.gif",title:"Plan machinerie spécial · référence",
- cap:"Référence de mouvement : pub Mugler Angel Elixir. La caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus d'elle.",link:"https://www.youtube.com/watch?v=OE999ilxDNk",linkText:"Voir la pub complète"};
-const PLAN={src:"refs/plan-plateau-480.jpg",title:"Plan du plateau 480",cap:"Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",link:"refs/plan-plateau-480.pdf",linkText:"Plan en PDF"};
-const DEPTS=[
- {id:"prod",name:"Production",known:[
-   ["Type : Pub – tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
-   ["Dates : 19+20/11/2026 – 1 campagne par demi-journée de tournage (4 demi-journées)"],
-   ["Location : Studio de la Montjoie"],
-   ["Prod : Boner Boner · Director : Eve Vitré"],
-   ["Talent : 1 mannequin par campagne"],
-   ["Chaque campagne : 1 mannequin, avec des plans d'attitude et d'application des produits"],
-   ["Prises de vues essentiellement sur les mannequins et les produits"],
-   ["Briefs : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE 261105 »","Dans la note Evernote, non publiés ici",1]],
-  todo:[],refs:[PLAN]},
- {id:"cam",name:"Caméra",known:[
-   ["Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
-   ["Plans principalement serrés, peu de mouvements à ce stade"],
-   ["Utilisation possible du bras Neutron, comme sur LRP","À confirmer",1],
-   ["1st AC : Lucas Bidard"],
-   ["Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps"]],
-  todo:["Camera body","Lenses","Special Equipment","Monitoring","Luts","Technical Specs"],
-  refs:[{src:"refs/effet-file.jpg",title:"Réflexions & intuitions de DOP · effet filé sur film Peptide",cap:"Optiquement : filtres spécifiques. FPS : low fps."}]},
- {id:"lum",name:"Lumière",known:[
-   ["General Mood : 2 moods"],
-   ["mood B&W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)"],
-   ["mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight"],
-   ["On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable."],
-   ["Gaffer : Nathan Jean-François"]],
-  todo:[
-   {t:"Keylight",def:1,lines:["mood B&W : Beauty light, 2400 + Parabolic softbox 140","mood incrust : (solaire) 1 mole Richardson 10K + 2400 Daylight dans cadre diff 1/2 4x4"],fix:["1 x Evoke 2400 B + 1 Mole Richardson 10K"],ctl:["mamas, cadres 120 de diff"]},
-   {t:"Fill in / Negativ fill",def:1,lines:["Negativ fill : floppy, pendrillons"],ctl:["borniol, floppys"]},
-   {t:"Backlight",def:1,lines:["mood B&W : non","mood incrust : (solaire) oui pour le plan spray du produit pour mettre le produit en valeur"],fix:["1 LED 1200, option spotligth"]},
-   {t:"Background",def:1,lines:["mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril","mood incrust : à voir, mais quelque chose d'étal"],fix:["10 skypanel X Hyperoptics"]},
-   "Special lighting effect"],
-  refs:[{src:"refs/time-ncef-gradient.jpg",title:"Dégradé N&B de référence",cap:"Time Filler et NCEF Revitalize : toujours droit, horizontal. Regen Peptide : pas toujours, pas forcément linéaire."}]},
- {id:"mach",name:"Machinerie",known:[
-   ["1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot"],
-   ["Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)","Bras Neutron : à confirmer",1],
-   ["Grip : Nicolas Sommermeyer"],
-   ["On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable."]],
-  todo:[{t:"Camera Support & Movement",lines:["Bras Neutron (à confirmer)"]},"Rigging & mounting","Special Rigs"],
-  refs:[MUGLER,PLAN]},
- {id:"photo",name:"Photo",known:[
-   ["Ben Fourmi, photographe"],
-   ["Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
-   ["Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo"]],
-  todo:[]},
- {id:"post",name:"Post / IA-3D",known:[
-   ["Plans produits seuls : IA ou 3D (non tournés)"],
-   ["UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris"]],
-  todo:[],refs:[{src:"refs/uv-ref.jpg",title:"UV Cellular · références",cap:"Mood incrust : background gris ou chroma key, TBD."}]}
-];
-const TEAM=[
- ["Prod","Boner Boner"],["Director","Eve Vitré"],["Photographe","Ben Fourmi"],["DOP","Seb Trân"],
- ["1st AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin par campagne"],
- ["Producer",""],["Line Producer",""],["Régisseur Gé",""],["Prod exe",""],["Agence",""],["DA",""],["Hotel",""],["1st AD",""],["2nd AC",""],["DIT",""],["Loueur matos",""]
-];
-const QS=[
- {id:"q1",t:"Ordre des 4 campagnes sur les 19 et 20 novembre",d:["prod"]},
- {id:"q2",t:"Agence / loueur matos",d:["prod"]},
- {id:"q3",t:"Mouvements prévus et usage du bras Neutron",d:["mach","cam"]},
- {id:"q4",t:"Qui produit les plans produits IA / 3D, et à quelle étape",d:["post"]},
- {id:"q5",t:"Partage de la lumière et de la caméra entre photo (Ben Fourmi) et vidéo",d:["photo","cam","lum"]}
-];
+/* =========== Configuration =========== */
+const REPO={owner:"moodpics",repo:"sebtran",dir:"projets/filorga",branch:"main"};
+const TOKEN_KEY="filorga-gh-token",DRAFT_KEY="filorga-draft-v1",VIEW_KEY="filorga-view-v1";
+const API=`https://api.github.com/repos/${REPO.owner}/${REPO.repo}/contents/${REPO.dir}`;
+const EDIT_REQ=location.hash==="#edit";
+let EDIT=false,TOKEN="",DATA=null,PENDING={},dirty=false,serverStamp="";
+let V={role:"",z:0};try{V=Object.assign(V,JSON.parse(localStorage.getItem(VIEW_KEY)||"{}"))}catch(e){}
+const saveView=()=>{try{localStorage.setItem(VIEW_KEY,JSON.stringify(V))}catch(e){}};
 
-/* =========== Mise en page des nodes (coordonnées du plan) =========== */
-const WORLD_W=1560;
-const NODES=[
- {id:"root",kind:"Projet",x:520,y:60,w:520},
- {id:"brief",kind:"Brief",x:90,y:70,w:350},
- {id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
- ...CAMPS.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,camp:c})),
- {id:"plan",kind:"Planning provisoire",x:90,y:1420,w:440},
- {id:"loc",kind:"Location",x:600,y:1420,w:620},
- {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
- ...DEPTS.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1920,w:225,cls:"dept",dept:d})),
- {id:"team",kind:"Équipe",x:120,y:2400,w:560},
- {id:"qs",kind:"Questions ouvertes",x:740,y:2400,w:420},
- {id:"me",kind:"Mes notes",x:1220,y:2400,w:260}
-];
-const EDGES=[["root","brief"],["root","mood"],...CAMPS.map(c=>["root","c_"+c.id]),...CAMPS.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DEPTS.map(d=>["hub","d_"+d.id])];
-
-/* =========== État local =========== */
-const KEY="filorga-2026-11:v3";
-const blank=()=>({role:"",author:"",checks:{},custom:{},notes:{},qs:{},plan:{},camp:{},pos:{},z:0});
-let S;
-try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){S=blank()}
-let saveT;const save=()=>{clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150)};
+/* =========== Utilitaires =========== */
 const $=s=>document.querySelector(s);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)};
-const uid=()=>Math.random().toString(36).slice(2,9);
-const D=id=>DEPTS.find(d=>d.id===id);
-const fixedTodo=d=>d.todo.map((t,i)=>typeof t==="string"?{id:d.id+":"+i,text:t}:{id:d.id+":"+i,text:t.t,def:t.def,lines:t.lines,fix:t.fix,ctl:t.ctl});
-const isDone=i=>(i.id in S.checks)?!!S.checks[i.id]:!!i.def;
-const allTodo=d=>[...fixedTodo(d),...(S.custom[d.id]||[])];
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2600)};
+const get=p=>p.split(".").reduce((o,k)=>o==null?o:o[k],DATA);
+const set=(p,v)=>{const a=p.split("."),k=a.pop();a.reduce((o,x)=>o[x],DATA)[k]=v};
+const imgSrc=s=>PENDING[s]?PENDING[s].url:s;
 const mobile=()=>innerWidth<820;
+const uid=()=>Math.random().toString(36).slice(2,8);
+const D=id=>DATA.depts.find(d=>d.id===id);
+const di=id=>DATA.depts.findIndex(d=>d.id===id);
+const isDone=t=>!!t.done;
 
-/* =========== Construction des nodes =========== */
+/* champs éditables : en lecture seule ce sont de simples textes */
+const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(txt)}</${tag}>`;
+const edj=(p,tag,cls,arr,sep,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-t="${sep==="\n"?"lines":"semi"}" data-ph="${esc(ph||"…")}">${esc((arr||[]).join(sep))}</${tag}>`:"";
+const del=(p,i)=>EDIT?`<button class="xdel" data-del="${p}" data-i="${i}" title="Supprimer" aria-label="Supprimer">×</button>`:"";
+const add=(p,tpl,label)=>EDIT?`<button class="xadd" data-add="${p}" data-tpl="${tpl}">+ ${esc(label)}</button>`:"";
+const addimg=(p,label)=>EDIT?`<button class="xadd" data-addimg="${p}">+ ${esc(label||"image")}</button>`:"";
+const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
+const TPL={known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
+ brief:()=>({t:"",b:0,sub:[],img:"",imgNote:""}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
+const imgs=(p,list,cls)=>`<div class="refs ${cls||""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
+
+/* =========== Corps des nodes =========== */
 const world=$("#world"),svg=$("#edges"),stage=$("#stage");
-const el={};
+let NODES=[],EDGES=[];const el={};
+function makeNodes(){
+ NODES=[{id:"root",kind:"Projet",x:520,y:60,w:520},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
+  ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,ci:i})),
+  {id:"plan",kind:"Planning provisoire",x:90,y:1420,w:440},{id:"loc",kind:"Location",x:600,y:1420,w:620},
+  {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
+  ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1920,w:225,cls:"dept",did:d.id})),
+  {id:"team",kind:"Équipe",x:120,y:2400,w:560},{id:"qs",kind:"Questions ouvertes",x:740,y:2400,w:420}];
+ EDGES=[["root","brief"],["root","mood"],...DATA.camps.map(c=>["root","c_"+c.id]),...DATA.camps.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DATA.depts.map(d=>["hub","d_"+d.id])];
+}
 function body(n){
- if(n.id==="root")return `<h2>Filorga<br>4 campagnes</h2>
-  <p class="sub" style="margin-top:8px">Boner Boner · Director Eve Vitré · Photographe Ben Fourmi · DOP Seb Trân</p>
-  <div class="facts"><div><span>Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div><div><span>Lieu</span><b>Studio de la Montjoie</b></div><div><span>Type</span><b>Pub – photo + vidéo, en binôme avec Ben Fourmi</b></div><div><span>Rythme</span><b>1 campagne par demi-journée (4)</b></div></div>
-  <div class="cd"><strong id="days">—</strong><span class="sub" id="daysLabel"></span></div>`;
- if(n.id==="brief")return `<ul class="v">
-  <li><b>Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo</b>
-   <ul class="s"><li>1 campagne par demi-journée : REGEN PEPTIDE, UV CELLULAR, TIME FILLER, NCEF REVITALIZE</li><li>1 mannequin par campagne : plans d'attitude + application des produits</li></ul></li>
-  <li><b>Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)</b></li>
-  <li><b>1 plan machinerie spécial &gt; la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot</b>
-   <img class="rimg" data-zoom src="${MUGLER.src}" alt="Référence Mugler Angel Elixir"><span class="sub">Référence : Mugler Angel Elixir</span></li>
-  <li>Plans produits seuls : IA ou 3D (non tournés)</li></ul>
-  <p class="sub" style="margin:10px 0 0">Source : note de job Evernote, 13 nov.</p>`;
- if(n.id==="mood")return `<ol class="v"><li>mood B&amp;W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)</li>
-  <li>mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight</li></ol>
-  <p style="margin-top:10px">On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.</p>
-  <img class="rimg" data-zoom src="refs/time-ncef-gradient.jpg" alt="Dégradé N&B de référence">`;
- if(n.camp){const c=n.camp;return `<h3>${esc(c.name)}</h3><p class="v">${esc(c.txt)}</p>
-  ${c.pist?`<span class="tag k">${esc(c.pist)}</span>`:""}
-  <div class="refs">${c.imgs.map(i=>`<img data-zoom src="${i[0]}" alt="${esc(i[1])}" loading="lazy">`).join("")}</div>
-  <textarea data-camp="${c.id}" placeholder="Ma note sur cette campagne…" aria-label="Note ${esc(c.name)}" style="margin-top:10px">${esc(S.camp[c.id]||"")}</textarea>`;}
- if(n.id==="loc")return `<h3>Studio de la Montjoie</h3><p class="sub"><a href="https://studiosdelamontjoie.com" target="_blank" rel="noopener">studiosdelamontjoie.com</a></p>
-  <div class="refs three"><img data-zoom src="refs/montjoie-1.jpg" alt="Studio de la Montjoie, plateau 480" loading="lazy"><img data-zoom src="refs/montjoie-2.jpg" alt="Studio de la Montjoie, plateau 480" loading="lazy"><img data-zoom src="${PLAN.src}" alt="Plan plateau 480" loading="lazy"></div>
-  <p class="sub" style="margin:8px 0 0">Plateau 480 · <a href="${PLAN.link}" target="_blank" rel="noopener">${PLAN.linkText}</a></p>`;
- if(n.id==="plan")return `<p class="sub" style="margin-bottom:12px">Ordre des 4 campagnes : question ouverte. Teste un ordre, il reste sur ton appareil.</p>
-  <div class="slots">${SLOTS.map((s,i)=>`<div><label>${esc(s)}</label><select data-slot="${i}"><option value="">À définir</option>${CAMPS.map(c=>`<option value="${c.id}"${S.plan[i]===c.id?" selected":""}>${esc(c.name)}</option>`).join("")}</select></div>`).join("")}</div>`;
+ if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
+  ${ed("root.sub","p","sub",r.sub)}
+  <div class="facts">${r.facts.map((f,i)=>`<div>${ed(`root.facts.${i}.0`,"span","",f[0])}${ed(`root.facts.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
+  <div class="cd"><strong id="days">—</strong><span class="sub" id="daysLabel"></span>${EDIT?`<input type="date" class="dt" data-p="shootDate" value="${esc(DATA.shootDate)}" title="Date du tournage">`:""}</div>`;}
+ if(n.id==="brief"){const B=DATA.brief;return `<ul class="v">${B.items.map((it,i)=>`<li>${ed(`brief.items.${i}.t`,it.b?"b":"span","",it.t,"Point du brief")}
+   ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((s,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",s)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
+   ${it.img?`<img class="rimg" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point du brief")}
+  ${ed("brief.source","p","sub",B.source)}`;}
+ if(n.id==="mood"){const M=DATA.mood;return `<ol class="v">${M.items.map((t,i)=>`<li>${ed(`mood.items.${i}`,"span","",t)}${del("mood.items",i)}</li>`).join("")}</ol>${add("mood.items","str","mood")}
+  ${ed("mood.p","p","",M.p)}${M.img?`<img class="rimg" data-zoom src="${esc(imgSrc(M.img))}" alt="Dégradé N&B de référence">`:""}${setimg("mood.img",M.img?"Changer l'image":"+ image")}`;}
+ if(n.ci!==undefined){const c=DATA.camps[n.ci],p="camps."+n.ci;return `${ed(p+".name","h3","",c.name)}${ed(p+".txt","p","v",c.txt)}
+  ${(c.pist||EDIT)?ed(p+".pist","span","tag k",c.pist,"piste DoP"):""}${imgs(p+".imgs",c.imgs)}`;}
+ if(n.id==="plan"){const P=DATA.plan;return `${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div>`;}
+ if(n.id==="loc"){const L=DATA.loc;return `${ed("loc.name","h3","",L.name)}<p class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}</p>
+  ${imgs("loc.imgs",L.imgs,"three")}${L.pdf?`<p class="sub" style="margin:8px 0 0"><a href="${esc(L.pdf)}" target="_blank" rel="noopener">Plan du plateau en PDF</a></p>`:""}`;}
  if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
- if(n.dept){const d=n.dept,all=allTodo(d),done=all.filter(isDone).length;
-  return `<h3>${esc(d.name)}</h3><div class="sub">${done} / ${all.length} points</div><div class="bardone"><i style="width:${all.length?done/all.length*100:0}%"></i></div>
-  <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k[0])}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
- if(n.id==="team")return `<ul class="team">${TEAM.map(m=>`<li class="${m[1]?"":"tbc"}"><span>${esc(m[0])}</span><b style="font-weight:500">${m[1]?esc(m[1]):"à confirmer"}</b></li>`).join("")}</ul>
+ if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
+  return `<h3>${esc(d.name)}</h3>${tot?`<div class="sub">${done} / ${tot} points</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
+  <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k.t)}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
+ if(n.id==="team")return `<ul class="team">${DATA.team.map((m,i)=>`<li class="${m.name||EDIT?"":"tbc"}">${ed(`team.${i}.role`,"span","",m.role,"Rôle")}<span class="rt">${EDIT?ed(`team.${i}.name`,"b","",m.name,"à confirmer"):`<b style="font-weight:500">${m.name?esc(m.name):"à confirmer"}</b>`}${del("team",i)}</span></li>`).join("")}</ul>${add("team","team","membre")}
   <p class="sub" style="margin:10px 0 0">Téléphones et mails : dans la note Evernote, non publiés ici.</p>`;
- if(n.id==="qs"){const open=QS.filter(q=>!(S.qs[q.id]&&S.qs[q.id].done)).length;
-  return `<div class="sub" style="margin-bottom:6px">${open} ouvertes sur ${QS.length}</div><ul class="ql">${QS.map(q=>{const r=S.qs[q.id]&&S.qs[q.id].done;return `<li data-openq="${q.id}"><i class="dot${r?" ok":""}"></i><span>${esc(q.t)}</span></li>`}).join("")}</ul>`;}
- if(n.id==="me")return `<p class="sub">Ce que tu écris ici reste <b>sur ton appareil</b>. Pour le partager, copie ou exporte tes notes et envoie-les à Seb.</p>
-  <input type="text" id="author" placeholder="Ton nom" value="${esc(S.author)}" style="margin:8px 0 0">
-  <div class="row"><button class="btn p" id="copy">Copier</button><button class="btn" id="export">Exporter</button><label class="btn">Importer<input type="file" id="import" accept="application/json" hidden></label><button class="btn" id="reset">Effacer</button></div>`;
+ if(n.id==="qs"){const open=DATA.qs.filter(q=>!q.done).length;
+  return `<div class="sub" style="margin-bottom:6px">${open} ouvertes sur ${DATA.qs.length}</div><ul class="ql">${DATA.qs.map(q=>`<li data-openq="${q.id}"><i class="dot${q.done?" ok":""}"></i><span>${esc(q.t)}</span></li>`).join("")}</ul>`;}
  return "";
 }
-function refresh(id){const n=NODES.find(x=>x.id===id);el[id].querySelector(".nb").innerHTML=body(n);wire(el[id]);if(id==="root")countdown();if(id==="me")wireMe();requestAnimationFrame(drawEdges)}
 function build(){
+ world.querySelectorAll(".node").forEach(n=>n.remove());
  NODES.forEach(n=>{
   const a=document.createElement("article");a.className="node "+(n.cls||"");a.id="n_"+n.id;a.style.width=n.w+"px";
   a.innerHTML=`<header class="nh"><span>${esc(n.kind)}</span></header><div class="nb">${body(n)}</div>`;
-  world.appendChild(a);el[n.id]=a;
-  place(n);drag(n,a);wire(a);
-  if(n.dept)a.onclick=e=>{if(e.target.closest(".nh"))return;openDept(n.dept.id)};
+  world.appendChild(a);el[n.id]=a;place(n);drag(n,a);
+  if(n.did)a.onclick=e=>{if(e.target.closest(".nh"))return;openDept(n.did)};
  });
- countdown();wireMe();
+ countdown();
 }
-const pos=n=>S.pos[n.id]||{x:n.x,y:n.y};
+function renderAll(){
+ NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});
+ countdown();autoLayout();
+ if(drawerCtx)reopen();renderPills();stamp();
+}
+const pos=n=>(DATA.pos&&DATA.pos[n.id])||{x:n.x,y:n.y};
+let lay=0;
+function autoLayout(){
+ if(mobile())return;cancelAnimationFrame(lay);
+ lay=requestAnimationFrame(()=>{
+  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined).map(n=>n.id),90],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team","qs"],90]];
+  let y=60;
+  rows.forEach(([ids,gap],ri)=>{
+   if(ri>0)y+=gap;
+   let bot=y;
+   ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=ri===0&&id!=="root"?y+10:y;place(n);bot=Math.max(bot,n.y+el[id].offsetHeight)});
+   y=bot;
+  });
+  fitStage();drawEdges();
+ });
+}
+document.addEventListener("load",e=>{if(e.target.tagName==="IMG")autoLayout()},true);
 function place(n){const p=pos(n);el[n.id].style.left=p.x+"px";el[n.id].style.top=p.y+"px"}
-function wire(root){
- root.querySelectorAll("[data-camp]").forEach(t=>t.oninput=()=>{S.camp[t.dataset.camp]=t.value;save()});
- root.querySelectorAll("[data-slot]").forEach(s=>s.onchange=()=>{S.plan[s.dataset.slot]=s.value;save()});
- root.querySelectorAll("[data-openq]").forEach(li=>li.onclick=()=>openQs(li.dataset.openq));
- root.querySelectorAll("textarea,select,input").forEach(i=>i.addEventListener("pointerdown",e=>e.stopPropagation()));
-}
 function countdown(){
- const d=Math.ceil((new Date(SHOOT_DATE+"T09:00:00")-new Date())/864e5),a=$("#days"),b=$("#daysLabel");if(!a)return;
+ const a=$("#days"),b=$("#daysLabel");if(!a)return;
+ const d=Math.ceil((new Date(DATA.shootDate+"T09:00:00")-new Date())/864e5);
  if(d>1){a.textContent="J-"+d;b.textContent="jours avant le tournage"}else if(d===1){a.textContent="J-1";b.textContent="demain"}else if(d===0){a.textContent="J";b.textContent="c'est aujourd'hui"}else{a.textContent="—";b.textContent="tournage passé ou en cours"}
 }
 
-/* =========== Glisser les nodes + câbles =========== */
+/* =========== Glisser les nodes (mode édition) + câbles =========== */
 let z=1;
 function drag(n,a){
  a.querySelector(".nh").addEventListener("pointerdown",e=>{
-  if(mobile()||e.button>0)return;e.preventDefault();
+  if(!EDIT||mobile()||e.button>0)return;e.preventDefault();
   const sx=e.clientX,sy=e.clientY,p0={...pos(n)};a.classList.add("drag");
-  const mv=ev=>{S.pos[n.id]={x:Math.max(0,Math.round(p0.x+(ev.clientX-sx)/z)),y:Math.max(0,Math.round(p0.y+(ev.clientY-sy)/z))};place(n);drawEdges()};
-  const up=()=>{window.removeEventListener("pointermove",mv);a.classList.remove("drag");save();fitStage()};
-  window.addEventListener("pointermove",mv);window.addEventListener("pointerup",up,{once:true});
+  const mv=ev=>{DATA.pos=DATA.pos||{};DATA.pos[n.id]={x:Math.max(0,Math.round(p0.x+(ev.clientX-sx)/z)),y:Math.max(0,Math.round(p0.y+(ev.clientY-sy)/z))};place(n);drawEdges()};
+  const up=()=>{removeEventListener("pointermove",mv);a.classList.remove("drag");changed();fitStage()};
+  addEventListener("pointermove",mv);addEventListener("pointerup",up,{once:true});
  });
 }
 const rect=id=>{const n=NODES.find(x=>x.id===id),p=pos(n),e=el[id];return{x:p.x,y:p.y,w:e.offsetWidth,h:e.offsetHeight}};
@@ -394,103 +356,167 @@ function drawEdges(){
  });
  svg.innerHTML=out;
 }
-function worldH(){return Math.max(...NODES.map(n=>{const r=rect(n.id);return r.y+r.h}))+90}
+const WORLD_W=1560;
 function fitStage(){
  if(mobile()){stage.style.width=stage.style.height="";world.style.transform="";return}
- const W=Math.max(WORLD_W,...NODES.map(n=>{const r=rect(n.id);return r.x+r.w+40})),H=worldH();
+ const W=Math.max(WORLD_W,...NODES.map(n=>{const r=rect(n.id);return r.x+r.w+40})),H=Math.max(...NODES.map(n=>{const r=rect(n.id);return r.y+r.h}))+90;
  svg.setAttribute("width",W);svg.setAttribute("height",H);
  world.style.width=W+"px";world.style.height=H+"px";world.style.transform=`scale(${z})`;
  stage.style.width=W*z+"px";stage.style.height=H*z+"px";
 }
-function zoomTo(v){z=Math.min(1.4,Math.max(.4,v));S.z=z;save();fitStage()}
+function zoomTo(v){z=Math.min(1.4,Math.max(.4,v));V.z=z;saveView();fitStage()}
 const fitZ=()=>Math.min(1,Math.max(.5,(innerWidth-20)/WORLD_W));
 $("#zoom").onclick=e=>{const b=e.target.closest("[data-z]");if(!b)return;const k=b.dataset.z;
  if(k==="+")zoomTo(z+.1);else if(k==="-")zoomTo(z-.1);else if(k==="fit")zoomTo(fitZ());
- else if(confirm("Remettre tous les blocs à leur place d'origine ?")){S.pos={};NODES.forEach(place2);save();fitStage();drawEdges()}};
-function place2(n){place(n)}
+ else if(EDIT&&confirm("Remettre tous les blocs à leur place d'origine ?")){DATA.pos={};NODES.forEach(place);changed();fitStage();drawEdges()}};
 
 /* =========== Tiroir =========== */
-const drawer=$("#drawer"),shade=$("#shade");
-function openDrawer(html){drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.scrollTop=0;drawer.querySelector("[data-close]").onclick=closeDrawer}
-function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true")}
-shade.onclick=closeDrawer;addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();closeDrawer()}});
+const drawer=$("#drawer"),shade=$("#shade");let drawerCtx=null;
+function openDrawer(html){drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.querySelector("[data-close]").onclick=closeDrawer}
+function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true");const had=drawerCtx;drawerCtx=null;if(had&&EDIT)renderAll()}
+function reopen(){const c=drawerCtx;if(!c)return;const y=drawer.scrollTop;if(c.t==="d")openDept(c.id,1);else openQs(c.id,1);drawer.scrollTop=y}
+shade.onclick=closeDrawer;
 const lb=$("#lb");function closeLb(){lb.classList.remove("on")}
-lb.onclick=closeLb;
+lb.onclick=closeLb;addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();closeDrawer()}});
 document.addEventListener("click",e=>{const i=e.target.closest&&e.target.closest("img[data-zoom]");if(!i)return;e.stopPropagation();lb.querySelector("img").src=i.currentSrc||i.src;lb.classList.add("on")},true);
-const head=t=>`<div class="dh"><h2>${esc(t)}</h2><button data-close aria-label="Fermer">×</button></div>`;
+const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Fermer">×</button></div>`;
 
-function openDept(id){
- const d=D(id);
- const det=it=>(it.lines||it.fix||it.ctl)?`<span class="det">${(it.lines||[]).map(l=>`<span>${esc(l)}</span>`).join("")}${it.fix?`<span><em>Fixtures :</em> ${esc(it.fix.join(" ; "))}</span>`:""}${it.ctl?`<span><em>Light Control :</em> ${esc(it.ctl.join(" ; "))}</span>`:""}</span>`:"";
- const item=(it,c)=>{const dn=isDone(it);return `<li class="${dn?"done":""}"><input type="checkbox" data-chk="${it.id}"${dn?" checked":""}><span><b class="t">${esc(it.text)}</b>${det(it)}</span>${c?`<button class="x" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`};
- const qs=QS.filter(q=>q.d.includes(id));
- openDrawer(head(d.name)+`
-  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map(k=>`<li class="${k[2]?"w":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
-  ${(d.refs||[]).map(r=>`<div class="ds"><h4>${esc(r.title)}</h4><img class="rimg" data-zoom src="${r.src}" alt="${esc(r.title)}">${r.cap?`<p class="sub" style="margin:8px 0 0">${esc(r.cap)}${r.link?` <a href="${r.link}" target="_blank" rel="noopener">${esc(r.linkText)}</a>`:""}</p>`:""}</div>`).join("")}
-  <div class="ds"><h4>${d.todo.length?"À préparer":"Mes points à ajouter"}</h4><ul class="ck">${fixedTodo(d).map(i=>item(i,0)).join("")}${(S.custom[id]||[]).map(i=>item(i,1)).join("")}</ul>
-   <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…"><button class="btn" type="submit">Ajouter</button></form></div>
-  <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>
-  <div class="ds"><h4>Mes notes ${esc(d.name)}</h4><textarea id="dnote" style="min-height:150px" placeholder="Besoins, remarques, matériel, contraintes…">${esc(S.notes[id]||"")}</textarea></div>`);
- drawer.querySelectorAll("[data-chk]").forEach(c=>c.onchange=()=>{S.checks[c.dataset.chk]=c.checked;c.closest("li").classList.toggle("done",c.checked);save();refresh("d_"+id)});
- drawer.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{S.custom[id]=(S.custom[id]||[]).filter(i=>i.id!==b.dataset.rm);save();refresh("d_"+id);openDept(id)});
+function openDept(id,keep){
+ const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
+ const det=(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
+  :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
+ const qs=DATA.qs.filter(q=>q.d.includes(id));
+ openDrawer(head(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name))+`
+  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small><label class="wk"><input type="checkbox" data-p="${P}.known.${i}.w" ${it.w?"checked":""}> à confirmer</label>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
+  ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
+   ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
+   ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
+  ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
+  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>
+  <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${q.done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>`);
+ if(!keep)drawer.scrollTop=0;
  drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
- $("#addForm").onsubmit=e=>{e.preventDefault();const v=$("#addText").value.trim();if(!v)return;(S.custom[id]=S.custom[id]||[]).push({id:"x"+uid(),text:v});save();refresh("d_"+id);openDept(id)};
- $("#dnote").oninput=e=>{S.notes[id]=e.target.value;save()};
 }
 let qFilter="all";
-function openQs(focus){
- const list=QS.filter(q=>qFilter==="all"||q.d.includes(qFilter));
- openDrawer(head("Questions ouvertes")+`<div class="ds"><div class="fl">${[["all","Toutes"],...DEPTS.map(d=>[d.id,d.name])].map(([i,n])=>`<button class="${qFilter===i?"on":""}" data-f="${i}">${esc(n)}</button>`).join("")}</div></div>
-  <div class="ds">${list.map(q=>{const s=S.qs[q.id]||{};return `<div class="q${s.done?" done":""}" id="q_${q.id}"><header><h5>${esc(q.t)}</h5><button class="st${s.done?" r":""}" data-q="${q.id}">${s.done?"Résolu":"Ouvert"}</button></header>
-   <div class="tags">${q.d.map(d=>`<span class="tag">${esc(D(d).name)}</span>`).join("")}</div>
-   <textarea data-qa="${q.id}" placeholder="Réponse, décision, précision…">${esc(s.answer||"")}</textarea></div>`}).join("")}</div>`);
+function openQs(focus,keep){
+ drawerCtx={t:"q",id:focus};
+ const list=DATA.qs.filter(q=>qFilter==="all"||q.d.includes(qFilter));
+ openDrawer(head("Questions ouvertes")+`<div class="ds"><div class="fl">${[["all","Toutes"],...DATA.depts.map(d=>[d.id,d.name])].map(([i,n])=>`<button class="${qFilter===i?"on":""}" data-f="${i}">${esc(n)}</button>`).join("")}</div></div>
+  <div class="ds">${list.map(q=>{const i=DATA.qs.indexOf(q);return `<div class="q${q.done?" done":""}" id="q_${q.id}"><header><h5>${ed(`qs.${i}.t`,"span","",q.t,"Question")}</h5>${EDIT?`<label class="st${q.done?" r":""}"><input type="checkbox" data-p="qs.${i}.done" ${q.done?"checked":""} hidden>${q.done?"Résolu":"Ouvert"}</label>`:`<span class="st${q.done?" r":""}">${q.done?"Résolu":"Ouvert"}</span>`}</header>
+   <div class="tags">${EDIT?`<span class="sub">Départements (ids) :</span> ${edj(`qs.${i}.d`,"span","tag",q.d,", ","prod, cam, lum…")}`:q.d.map(d=>`<span class="tag">${esc(D(d)?D(d).name:d)}</span>`).join("")}</div>
+   ${(q.answer||EDIT)?`<div class="ans">${ed(`qs.${i}.answer`,"div","",q.answer,"Réponse, décision, précision…")}</div>`:""}${del("qs",i)}</div>`}).join("")}${add("qs","qs","question")}</div>`);
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
- drawer.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const s=S.qs[b.dataset.q]=S.qs[b.dataset.q]||{};s.done=!s.done;save();refresh("qs");const y=drawer.scrollTop;openQs();drawer.scrollTop=y});
- drawer.querySelectorAll("[data-qa]").forEach(t=>t.oninput=()=>{(S.qs[t.dataset.qa]=S.qs[t.dataset.qa]||{}).answer=t.value;save()});
- if(focus){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
+ if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
+document.addEventListener("click",e=>{const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
-/* =========== Rôle =========== */
+/* =========== Rôle (navigation) =========== */
 function renderPills(){
  const p=$("#pills");p.innerHTML="";
- DEPTS.forEach(d=>{const b=document.createElement("button");b.className="pill"+(S.role===d.id?" on":"");b.textContent=d.name;
-  b.onclick=()=>{S.role=S.role===d.id?"":d.id;save();renderPills();markRole();if(S.role){openDept(S.role)}};p.appendChild(b)});
+ DATA.depts.forEach(d=>{const b=document.createElement("button");b.className="pill"+(V.role===d.id?" on":"");b.textContent=d.name;
+  b.onclick=()=>{V.role=V.role===d.id?"":d.id;saveView();renderPills();markRole();if(V.role)openDept(V.role)};p.appendChild(b)});
+ markRole();
 }
-function markRole(){DEPTS.forEach(d=>el["d_"+d.id].classList.toggle("me",S.role===d.id))}
+function markRole(){DATA.depts.forEach(d=>{const n=el["d_"+d.id];if(n)n.classList.toggle("me",V.role===d.id)})}
+function stamp(){const t=$("#stamp");if(!t)return;const d=new Date(DATA.updated);t.textContent=isNaN(d)?"":"Mis à jour le "+d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" à "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}
 
-/* =========== Notes : copier / export / import =========== */
-function summary(){
- const L=["FILORGA — 4 campagnes — 19+20/11/2026"+(S.author?" — notes de "+S.author:"")];
- DEPTS.forEach(d=>{const items=allTodo(d).map(i=>`  [${isDone(i)?"x":" "}] ${i.text}`),note=(S.notes[d.id]||"").trim();
-  L.push("","## "+d.name,...items);if(note)L.push("  Notes : "+note.replace(/\n/g,"\n  "))});
- const camps=CAMPS.filter(c=>(S.camp[c.id]||"").trim()).map(c=>`  ${c.name} : ${S.camp[c.id].trim()}`);if(camps.length)L.push("","## Campagnes",...camps);
- const plan=SLOTS.map((s,i)=>S.plan[i]?`  ${s} : ${CAMPS.find(c=>c.id===S.plan[i]).name}`:null).filter(Boolean);if(plan.length)L.push("","## Ordre testé",...plan);
- const qs=QS.filter(q=>S.qs[q.id]&&(S.qs[q.id].answer||S.qs[q.id].done)).map(q=>`  ${S.qs[q.id].done?"[résolu]":"[ouvert]"} ${q.t}${S.qs[q.id].answer?"\n    → "+S.qs[q.id].answer.trim():""}`);if(qs.length)L.push("","## Questions",...qs);
- return L.join("\n");
-}
-function wireMe(){
- const g=id=>document.getElementById(id);if(!g("copy"))return;
- g("author").oninput=e=>{S.author=e.target.value;save()};
- g("copy").onclick=async()=>{try{await navigator.clipboard.writeText(summary());toast("Notes copiées")}catch(e){const w=window.open("","_blank");if(w)w.document.write("<pre>"+esc(summary())+"</pre>")}};
- g("export").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:"application/json"}));a.download="filorga-"+(S.author||"notes").toLowerCase().replace(/\W+/g,"-")+".json";a.click();URL.revokeObjectURL(a.href);toast("Export prêt")};
- g("import").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{
-   const o=JSON.parse(r.result),who=o.author||"import",add=(a,t)=>t&&t!==a?((a||"")+`\n— ${who} —\n${t}`).trim():a;
-   Object.entries(o.checks||{}).forEach(([k,v])=>{if(v)S.checks[k]=true});
-   Object.entries(o.custom||{}).forEach(([d,a])=>{S.custom[d]=S.custom[d]||[];a.forEach(i=>{if(!S.custom[d].some(x=>x.id===i.id))S.custom[d].push(i)})});
-   Object.entries(o.notes||{}).forEach(([d,t])=>{S.notes[d]=add(S.notes[d],t)});
-   Object.entries(o.camp||{}).forEach(([d,t])=>{S.camp[d]=add(S.camp[d],t)});
-   Object.entries(o.qs||{}).forEach(([q,v])=>{const s=S.qs[q]=S.qs[q]||{};if(v.done)s.done=true;s.answer=add(s.answer,v.answer)});
-   save();NODES.forEach(n=>{if(n.id!=="me")refresh(n.id)});toast("Import fusionné")}catch(err){toast("Fichier non lisible")}};r.readAsText(f);e.target.value=""};
- g("reset").onclick=()=>{if(confirm("Effacer toutes tes notes et coches sur cet appareil ?")){S=blank();try{localStorage.removeItem(KEY)}catch(e){}NODES.forEach(n=>{place(n);refresh(n.id)});renderPills();markRole();zoomTo(fitZ());toast("Effacé")}};
+/* =========== Édition : saisie, listes, images =========== */
+const draftSave=()=>{try{localStorage.setItem(DRAFT_KEY,JSON.stringify({data:DATA,pending:Object.fromEntries(Object.entries(PENDING).map(([k,v])=>[k,{b64:v.b64,url:v.url}]))}))}catch(e){}};
+function changed(){dirty=true;draftSave();ebar()}
+function ebar(){const b=$("#ebar");if(!b)return;b.querySelector("[data-pub]").disabled=!dirty;b.querySelector("[data-disc]").disabled=!dirty;b.querySelector("#estat").textContent=dirty?"Modifications non publiées":"À jour"}
+document.addEventListener("input",e=>{
+ if(!EDIT)return;const t=e.target.closest&&e.target.closest("[data-p]");if(!t)return;
+ const p=t.dataset.p;let v;
+ if(t.type==="checkbox")v=t.checked?1:0;
+ else if(t.tagName==="INPUT"||t.tagName==="SELECT")v=t.value;
+ else{v=t.innerText.replace(/ /g," ").replace(/\n+$/,"");if(t.dataset.t==="lines")v=v.split("\n").map(s=>s.trim()).filter(Boolean);else if(t.dataset.t==="semi")v=v.split(/[;,]/).map(s=>s.trim()).filter(Boolean)}
+ set(p,v);changed();
+ if(t.type==="checkbox"){
+  if(/\.todo\.\d+\.done$/.test(p)){const li=t.closest("li");if(li)li.classList.toggle("done",t.checked)}
+  else if(/^qs\.\d+\.done$/.test(p))renderAll();
+ }
+ if(p==="shootDate")countdown();
+});
+document.addEventListener("paste",e=>{const t=e.target.closest&&e.target.closest("[contenteditable]");if(!t)return;e.preventDefault();document.execCommand("insertText",false,(e.clipboardData||window.clipboardData).getData("text/plain"))});
+document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Enter"&&t.isContentEditable&&!t.dataset.t&&t.tagName!=="DIV")e.preventDefault()});
+document.addEventListener("click",e=>{
+ if(!EDIT)return;
+ const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]");
+ if(a){e.stopPropagation();get(a.dataset.add).push(TPL[a.dataset.tpl]());changed();renderAll()}
+ else if(d){e.stopPropagation();if(confirm("Supprimer cet élément ?")){get(d.dataset.del).splice(+d.dataset.i,1);changed();renderAll()}}
+ else if(ai){e.stopPropagation();pickImage(src=>{get(ai.dataset.addimg).push({src,alt:""});changed();renderAll()})}
+ else if(si){e.stopPropagation();pickImage(src=>{set(si.dataset.setimg,src);changed();renderAll()})}
+ else if(e.target.closest("label.st")){const c=e.target.closest("label.st").querySelector("input");e.preventDefault();c.checked=!c.checked;c.dispatchEvent(new Event("input",{bubbles:true}));renderAll()}
+},true);
+function pickImage(cb){
+ const f=document.createElement("input");f.type="file";f.accept="image/*";
+ f.onchange=async()=>{const file=f.files[0];if(!file)return;
+  try{
+   const base=file.name.replace(/\.[^.]+$/,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"image",stampN=Date.now().toString(36);
+   let b64,url,ext;
+   if(file.type==="image/gif"){if(file.size>4e6){toast("GIF trop lourd (4 Mo max)");return}url=await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result);fr.readAsDataURL(file)});ext="gif"}
+   else{const bmp=await createImageBitmap(file),w=Math.min(1600,bmp.width),h=Math.round(bmp.height*w/bmp.width),c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(bmp,0,0,w,h);url=c.toDataURL("image/jpeg",.85);ext="jpg"}
+   b64=url.split(",")[1];const path=`refs/${base}-${stampN}.${ext}`;PENDING[path]={b64,url};cb(path);
+  }catch(err){toast("Image illisible")}};
+ f.click();
 }
 
-/* =========== Démarrage =========== */
+/* =========== Publication sur GitHub =========== */
+const b64u=s=>btoa(unescape(encodeURIComponent(s)));
+const gh=(path,opt={})=>fetch(API+path,Object.assign({},opt,{headers:Object.assign({Authorization:"Bearer "+TOKEN,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},opt.headers||{})}));
+async function publish(){
+ const btn=$("#ebar [data-pub]");btn.disabled=true;$("#estat").textContent="Publication…";
+ try{
+  const used=JSON.stringify(DATA);
+  for(const [path,v] of Object.entries(PENDING)){
+   if(!used.includes(path))continue;
+   const r=await gh("/"+path,{method:"PUT",body:JSON.stringify({message:"Filorga : ajout image "+path,content:v.b64,branch:REPO.branch})});
+   if(!r.ok)throw new Error("image "+r.status)}
+  DATA.updated=new Date().toISOString();
+  const cur=await gh(`/data.json?ref=${REPO.branch}`);if(!cur.ok)throw new Error("lecture "+cur.status);const sha=(await cur.json()).sha;
+  const put=await gh("/data.json",{method:"PUT",body:JSON.stringify({message:"Filorga : mise à jour du contenu",content:b64u(JSON.stringify(DATA,null,1)+"\n"),sha,branch:REPO.branch})});
+  if(!put.ok)throw new Error("écriture "+put.status);
+  PENDING={};dirty=false;try{localStorage.removeItem(DRAFT_KEY)}catch(e){}
+  toast("Publié. Visible par tous d'ici ~1 minute.");stamp();ebar();
+ }catch(err){toast("Échec de la publication ("+err.message+")");dirty=true;ebar()}
+}
+async function discard(){
+ if(!confirm("Annuler toutes les modifications non publiées ?"))return;
+ try{localStorage.removeItem(DRAFT_KEY)}catch(e){}PENDING={};dirty=false;await loadData();makeNodes();build();renderAll();fitStage();drawEdges();ebar();
+}
+function mountEditBar(){
+ document.body.classList.add("edit");
+ const b=document.createElement("div");b.id="ebar";b.innerHTML=`<span class="elab">Édition</span><span id="estat"></span><button class="btn" data-disc>Annuler</button><button class="btn p" data-pub>Publier</button><button class="btn" data-tok title="Changer de jeton GitHub">Jeton</button>`;
+ $(".bar").appendChild(b);
+ b.querySelector("[data-pub]").onclick=publish;b.querySelector("[data-disc]").onclick=discard;
+ b.querySelector("[data-tok]").onclick=()=>{const t=prompt("Nouveau jeton GitHub (reste dans ce navigateur)");if(t){TOKEN=t.trim();try{localStorage.setItem(TOKEN_KEY,TOKEN)}catch(e){}toast("Jeton enregistré")}};
+ ebar();
+}
+
+/* =========== Chargement =========== */
+async function loadData(){
+ let src;
+ if(EDIT){try{const r=await gh(`/data.json?ref=${REPO.branch}`,{headers:{Accept:"application/vnd.github.raw+json"}});if(r.ok)src=await r.json()}catch(e){}}
+ if(!src){const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});src=await r.json()}
+ DATA=src;serverStamp=DATA.updated;
+}
+async function poll(){
+ if(EDIT||document.hidden)return;
+ try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const n=await r.json();if(n.updated&&n.updated!==serverStamp){DATA=n;serverStamp=n.updated;makeNodes();build();renderAll();fitStage();drawEdges()}}catch(e){}
+}
 function layoutMode(){document.body.classList.toggle("m",mobile());fitStage();drawEdges()}
-build();renderPills();markRole();
-z=S.z||fitZ();layoutMode();
-addEventListener("resize",layoutMode);
-if(window.ResizeObserver){const ro=new ResizeObserver(()=>{fitStage();drawEdges()});Object.values(el).forEach(e=>ro.observe(e))}
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitStage();drawEdges()});
+async function start(){
+ if(EDIT_REQ){TOKEN=localStorage.getItem(TOKEN_KEY)||"";if(!TOKEN){TOKEN=(prompt("Mode édition : colle ton jeton GitHub (il reste dans ce navigateur)")||"").trim();if(TOKEN)try{localStorage.setItem(TOKEN_KEY,TOKEN)}catch(e){}}EDIT=!!TOKEN}
+ try{await loadData()}catch(e){document.body.innerHTML='<p style="color:#fff;padding:40px;font:15px system-ui">Contenu indisponible pour le moment. Réessaie dans un instant.</p>';return}
+ if(EDIT){try{const d=JSON.parse(localStorage.getItem(DRAFT_KEY)||"null");if(d&&d.data){DATA=d.data;PENDING=d.pending||{};dirty=true}}catch(e){}}
+ makeNodes();build();renderPills();stamp();
+ if(EDIT)mountEditBar();
+ z=V.z||fitZ();layoutMode();autoLayout();addEventListener("resize",()=>{layoutMode();autoLayout()});
+ setInterval(poll,90000);
+ if(EDIT&&dirty)toast("Brouillon non publié restauré");
+}
+start();
+
 </script>
 </body>
 </html>

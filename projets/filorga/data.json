@@ -1,0 +1,658 @@
+{
+ "v": 1,
+ "updated": "2026-11-13T12:20:00Z",
+ "shootDate": "2026-11-19",
+ "root": {
+  "title": "Filorga\n4 campagnes",
+  "sub": "Boner Boner · Director Eve Vitré · Photographe Ben Fourmi · DOP Seb Trân",
+  "facts": [
+   [
+    "Dates",
+    "Jeu. 19 + ven. 20 nov. 2026"
+   ],
+   [
+    "Lieu",
+    "Studio de la Montjoie"
+   ],
+   [
+    "Type",
+    "Pub – photo + vidéo, en binôme avec Ben Fourmi"
+   ],
+   [
+    "Rythme",
+    "1 campagne par demi-journée (4)"
+   ]
+  ]
+ },
+ "brief": {
+  "items": [
+   {
+    "t": "Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo",
+    "b": 1,
+    "sub": [
+     "1 campagne par demi-journée : REGEN PEPTIDE, UV CELLULAR, TIME FILLER, NCEF REVITALIZE",
+     "1 mannequin par campagne : plans d'attitude + application des produits"
+    ],
+    "img": "",
+    "imgNote": ""
+   },
+   {
+    "t": "Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)",
+    "b": 1,
+    "sub": [],
+    "img": "",
+    "imgNote": ""
+   },
+   {
+    "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
+    "b": 1,
+    "sub": [],
+    "img": "refs/mugler-angel-elixir-plan1.gif",
+    "imgNote": "Référence : Mugler Angel Elixir"
+   },
+   {
+    "t": "Plans produits seuls : IA ou 3D (non tournés)",
+    "b": 0,
+    "sub": [],
+    "img": "",
+    "imgNote": ""
+   }
+  ],
+  "source": "Source : note de job Evernote, 13 nov."
+ },
+ "mood": {
+  "items": [
+   "mood B&W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)",
+   "mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight"
+  ],
+  "p": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
+  "img": "refs/time-ncef-gradient.jpg"
+ },
+ "camps": [
+  {
+   "id": "regen",
+   "name": "Regen Peptide",
+   "txt": "REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé, pas toujours, pas forcément linéaire",
+   "pist": "Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps",
+   "imgs": [
+    {
+     "src": "refs/regen-ref.jpg",
+     "alt": "Regen Peptide : référence (Reveal vidéo)"
+    },
+    {
+     "src": "refs/effet-file.jpg",
+     "alt": "Effet filé sur film Peptide"
+    }
+   ]
+  },
+  {
+   "id": "time",
+   "name": "Time Filler",
+   "txt": "TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé, toujours droit, horizontal",
+   "pist": "",
+   "imgs": [
+    {
+     "src": "refs/time-ncef-gradient.jpg",
+     "alt": "Dégradé N&B de référence"
+    },
+    {
+     "src": "refs/time-ref.jpg",
+     "alt": "Time Filler : références"
+    }
+   ]
+  },
+  {
+   "id": "ncef",
+   "name": "NCEF Revitalize",
+   "txt": "NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé, toujours droit, horizontal",
+   "pist": "",
+   "imgs": [
+    {
+     "src": "refs/time-ncef-gradient.jpg",
+     "alt": "Dégradé N&B de référence"
+    },
+    {
+     "src": "refs/ncef-ref.jpg",
+     "alt": "NCEF Revitalize : références"
+    }
+   ]
+  },
+  {
+   "id": "uv",
+   "name": "UV Cellular",
+   "txt": "UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
+   "pist": "",
+   "imgs": [
+    {
+     "src": "refs/uv-ref.jpg",
+     "alt": "UV Cellular : références"
+    }
+   ]
+  }
+ ],
+ "plan": {
+  "intro": "Ordre des 4 campagnes : question ouverte.",
+  "slots": [
+   {
+    "label": "Jeu. 19 nov — matin",
+    "camp": ""
+   },
+   {
+    "label": "Jeu. 19 nov — après-midi",
+    "camp": ""
+   },
+   {
+    "label": "Ven. 20 nov — matin",
+    "camp": ""
+   },
+   {
+    "label": "Ven. 20 nov — après-midi",
+    "camp": ""
+   }
+  ]
+ },
+ "loc": {
+  "name": "Studio de la Montjoie",
+  "link": "https://studiosdelamontjoie.com",
+  "pdf": "refs/plan-plateau-480.pdf",
+  "imgs": [
+   {
+    "src": "refs/montjoie-1.jpg",
+    "alt": "Studio de la Montjoie, plateau 480"
+   },
+   {
+    "src": "refs/montjoie-2.jpg",
+    "alt": "Studio de la Montjoie, plateau 480"
+   },
+   {
+    "src": "refs/plan-plateau-480.jpg",
+    "alt": "Plan plateau 480"
+   }
+  ]
+ },
+ "depts": [
+  {
+   "id": "prod",
+   "name": "Production",
+   "known": [
+    {
+     "t": "Type : Pub – tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Dates : 19+20/11/2026 – 1 campagne par demi-journée de tournage (4 demi-journées)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Location : Studio de la Montjoie",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Prod : Boner Boner · Director : Eve Vitré",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Talent : 1 mannequin par campagne",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Chaque campagne : 1 mannequin, avec des plans d'attitude et d'application des produits",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Prises de vues essentiellement sur les mannequins et les produits",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Briefs : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE 261105 »",
+     "sub": "Dans la note Evernote, non publiés ici",
+     "w": 1
+    }
+   ],
+   "todo": [],
+   "refs": [
+    {
+     "src": "refs/plan-plateau-480.jpg",
+     "title": "Plan du plateau 480",
+     "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
+     "link": "refs/plan-plateau-480.pdf",
+     "linkText": "Plan en PDF"
+    }
+   ]
+  },
+  {
+   "id": "cam",
+   "name": "Caméra",
+   "known": [
+    {
+     "t": "Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Plans principalement serrés, peu de mouvements à ce stade",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Utilisation possible du bras Neutron, comme sur LRP",
+     "sub": "À confirmer",
+     "w": 1
+    },
+    {
+     "t": "1st AC : Lucas Bidard",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [
+    {
+     "t": "Camera body",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Lenses",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Special Equipment",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Monitoring",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Luts",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Technical Specs",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    }
+   ],
+   "refs": [
+    {
+     "src": "refs/effet-file.jpg",
+     "title": "Réflexions & intuitions de DOP · effet filé sur film Peptide",
+     "cap": "Optiquement : filtres spécifiques. FPS : low fps.",
+     "link": "",
+     "linkText": ""
+    }
+   ]
+  },
+  {
+   "id": "lum",
+   "name": "Lumière",
+   "known": [
+    {
+     "t": "General Mood : 2 moods",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "mood B&W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Gaffer : Nathan Jean-François",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [
+    {
+     "t": "Keylight",
+     "done": 1,
+     "lines": [
+      "mood B&W : Beauty light, 2400 + Parabolic softbox 140",
+      "mood incrust : (solaire) 1 mole Richardson 10K + 2400 Daylight dans cadre diff 1/2 4x4"
+     ],
+     "fix": [
+      "1 x Evoke 2400 B + 1 Mole Richardson 10K"
+     ],
+     "ctl": [
+      "mamas, cadres 120 de diff"
+     ]
+    },
+    {
+     "t": "Fill in / Negativ fill",
+     "done": 1,
+     "lines": [
+      "Negativ fill : floppy, pendrillons"
+     ],
+     "fix": [],
+     "ctl": [
+      "borniol, floppys"
+     ]
+    },
+    {
+     "t": "Backlight",
+     "done": 1,
+     "lines": [
+      "mood B&W : non",
+      "mood incrust : (solaire) oui pour le plan spray du produit pour mettre le produit en valeur"
+     ],
+     "fix": [
+      "1 LED 1200, option spotligth"
+     ],
+     "ctl": []
+    },
+    {
+     "t": "Background",
+     "done": 1,
+     "lines": [
+      "mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril",
+      "mood incrust : à voir, mais quelque chose d'étal"
+     ],
+     "fix": [
+      "10 skypanel X Hyperoptics"
+     ],
+     "ctl": []
+    },
+    {
+     "t": "Special lighting effect",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    }
+   ],
+   "refs": [
+    {
+     "src": "refs/time-ncef-gradient.jpg",
+     "title": "Dégradé N&B de référence",
+     "cap": "Time Filler et NCEF Revitalize : toujours droit, horizontal. Regen Peptide : pas toujours, pas forcément linéaire.",
+     "link": "",
+     "linkText": ""
+    }
+   ]
+  },
+  {
+   "id": "mach",
+   "name": "Machinerie",
+   "known": [
+    {
+     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)",
+     "sub": "Bras Neutron : à confirmer",
+     "w": 1
+    },
+    {
+     "t": "Grip : Nicolas Sommermeyer",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [
+    {
+     "t": "Camera Support & Movement",
+     "done": 0,
+     "lines": [
+      "Bras Neutron (à confirmer)"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Rigging & mounting",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Special Rigs",
+     "done": 0,
+     "lines": [],
+     "fix": [],
+     "ctl": []
+    }
+   ],
+   "refs": [
+    {
+     "src": "refs/mugler-angel-elixir-plan1.gif",
+     "title": "Plan machinerie spécial · référence",
+     "cap": "Référence de mouvement : pub Mugler Angel Elixir. La caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus d'elle.",
+     "link": "https://www.youtube.com/watch?v=OE999ilxDNk",
+     "linkText": "Voir la pub complète"
+    },
+    {
+     "src": "refs/plan-plateau-480.jpg",
+     "title": "Plan du plateau 480",
+     "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
+     "link": "refs/plan-plateau-480.pdf",
+     "linkText": "Plan en PDF"
+    }
+   ]
+  },
+  {
+   "id": "photo",
+   "name": "Photo",
+   "known": [
+    {
+     "t": "Ben Fourmi, photographe",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [],
+   "refs": []
+  },
+  {
+   "id": "post",
+   "name": "Post / IA-3D",
+   "known": [
+    {
+     "t": "Plans produits seuls : IA ou 3D (non tournés)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [],
+   "refs": [
+    {
+     "src": "refs/uv-ref.jpg",
+     "title": "UV Cellular · références",
+     "cap": "Mood incrust : background gris ou chroma key, TBD.",
+     "link": "",
+     "linkText": ""
+    }
+   ]
+  }
+ ],
+ "team": [
+  {
+   "role": "Prod",
+   "name": "Boner Boner"
+  },
+  {
+   "role": "Director",
+   "name": "Eve Vitré"
+  },
+  {
+   "role": "Photographe",
+   "name": "Ben Fourmi"
+  },
+  {
+   "role": "DOP",
+   "name": "Seb Trân"
+  },
+  {
+   "role": "1st AC",
+   "name": "Lucas Bidard"
+  },
+  {
+   "role": "Gaffer",
+   "name": "Nathan Jean-François"
+  },
+  {
+   "role": "Grip",
+   "name": "Nicolas Sommermeyer"
+  },
+  {
+   "role": "Talent",
+   "name": "1 mannequin par campagne"
+  },
+  {
+   "role": "Producer",
+   "name": ""
+  },
+  {
+   "role": "Line Producer",
+   "name": ""
+  },
+  {
+   "role": "Régisseur Gé",
+   "name": ""
+  },
+  {
+   "role": "Prod exe",
+   "name": ""
+  },
+  {
+   "role": "Agence",
+   "name": ""
+  },
+  {
+   "role": "DA",
+   "name": ""
+  },
+  {
+   "role": "Hotel",
+   "name": ""
+  },
+  {
+   "role": "1st AD",
+   "name": ""
+  },
+  {
+   "role": "2nd AC",
+   "name": ""
+  },
+  {
+   "role": "DIT",
+   "name": ""
+  },
+  {
+   "role": "Loueur matos",
+   "name": ""
+  }
+ ],
+ "qs": [
+  {
+   "id": "q1",
+   "t": "Ordre des 4 campagnes sur les 19 et 20 novembre",
+   "d": [
+    "prod"
+   ],
+   "done": 0,
+   "answer": ""
+  },
+  {
+   "id": "q2",
+   "t": "Agence / loueur matos",
+   "d": [
+    "prod"
+   ],
+   "done": 0,
+   "answer": ""
+  },
+  {
+   "id": "q3",
+   "t": "Mouvements prévus et usage du bras Neutron",
+   "d": [
+    "mach",
+    "cam"
+   ],
+   "done": 0,
+   "answer": ""
+  },
+  {
+   "id": "q4",
+   "t": "Qui produit les plans produits IA / 3D, et à quelle étape",
+   "d": [
+    "post"
+   ],
+   "done": 0,
+   "answer": ""
+  },
+  {
+   "id": "q5",
+   "t": "Partage de la lumière et de la caméra entre photo (Ben Fourmi) et vidéo",
+   "d": [
+    "photo",
+    "cam",
+    "lum"
+   ],
+   "done": 0,
+   "answer": ""
+  }
+ ],
+ "pos": {}
+}
