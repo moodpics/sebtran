@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T15:33:48.119Z",
+ "updated": "2026-11-13T15:42:16.956Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -357,9 +357,12 @@
      "ctl": []
     },
     {
-     "t": "Special lighting effect",
+     "t": "Special lighting effect \" battery loading\" au sol ",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "automatique/gobo",
+      "Video projecteur au minimum 14 lm, à fixer en top shot, un peu back"
+     ],
      "fix": [],
      "ctl": []
     }
@@ -369,6 +372,13 @@
      "src": "refs/time-ncef-gradient.jpg",
      "title": "Dégradé N&B de référence",
      "cap": "Time Filler et NCEF Revitalize : toujours droit, horizontal. Regen Peptide : pas toujours, pas forcément linéaire.",
+     "link": "",
+     "linkText": ""
+    },
+    {
+     "src": "refs/886dda32-772e-498a-8eb6-9247ab552eaa-mwf52z3i.jpg",
+     "title": "Nouvelle référence",
+     "cap": "Un effet de \"battery loading\" au sol,  un chargement de batterie à pouvoir faire évoluer. CF deniere section",
      "link": "",
      "linkText": ""
     }
@@ -406,7 +416,8 @@
      "t": "Camera Support & Movement",
      "done": 0,
      "lines": [
-      "Bras Neutron (à confirmer)"
+      "Setup 1 (Plan spécial ) jib sur Dolly avec Ronin 2 manivelles rail",
+      "Setup 2 jibs sur Dolly avec Tête 3D Lambda 25"
      ],
      "fix": [],
      "ctl": []
@@ -414,7 +425,10 @@
     {
      "t": "Rigging & mounting",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "Rangée de Skypanel X Hyperoptics sur grill, sûrement top noir en cadre.",
+      "Accroche de vidéo projecteur en top shot pour projection lumineuse au sol."
+     ],
      "fix": [],
      "ctl": []
     },
@@ -442,7 +456,7 @@
      "linkText": "Plan en PDF"
     }
    ],
-   "notes": "??",
+   "notes": "",
    "reco": []
   }
  ],
