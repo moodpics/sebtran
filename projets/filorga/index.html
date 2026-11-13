@@ -260,9 +260,10 @@ const edj=(p,tag,cls,arr,sep,ph)=>EDIT?`<${tag} class="${cls||""} ed" contentedi
 const del=(p,i)=>EDIT?`<button class="xdel" data-del="${p}" data-i="${i}" title="Supprimer" aria-label="Supprimer">×</button>`:"";
 const add=(p,tpl,label)=>EDIT?`<button class="xadd" data-add="${p}" data-tpl="${tpl}">+ ${esc(label)}</button>`:"";
 const addimg=(p,label)=>EDIT?`<button class="xadd" data-addimg="${p}">+ ${esc(label||"image")}</button>`:"";
+const tog=(p,on)=>EDIT?`<button class="xadd" data-tog="${p}" title="Met la ligne en gras dans le brief">${on?"Retirer la mise en avant":"Mettre en avant"}</button>`:"";
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
 const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
- brief:()=>({t:"",b:0,sub:[],img:"",imgNote:""}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
+ brief:()=>({t:"",b:1,sub:[],img:"",imgNote:""}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
 const imgs=(p,list,cls)=>`<div class="refs ${cls||""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
 /* =========== Corps des nodes =========== */
@@ -283,7 +284,7 @@ function body(n){
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
  if(n.id==="brief"){const B=DATA.brief;return `<ul class="v">${B.items.map((it,i)=>`<li>${ed(`brief.items.${i}.t`,it.b?"b":"span","",it.t,"Point du brief")}
    ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((s,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",s)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
-   ${it.img?`<img class="rimg" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point du brief")}
+   ${it.img?`<img class="rimg" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${tog(`brief.items.${i}.b`,it.b)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à mettre en avant")}
   ${ed("brief.source","p","sub",B.source)}`;}
  if(n.id==="mood"){const M=DATA.mood;return `<ol class="v">${M.items.map((t,i)=>`<li>${ed(`mood.items.${i}`,"span","",t)}${del("mood.items",i)}</li>`).join("")}</ol>${add("mood.items","str","mood")}
   ${ed("mood.p","p","",M.p)}${M.img?`<img class="rimg" data-zoom src="${esc(imgSrc(M.img))}" alt="Dégradé N&B de référence">`:""}${setimg("mood.img",M.img?"Changer l'image":"+ image")}`;}
@@ -454,10 +455,11 @@ document.addEventListener("paste",e=>{const t=e.target.closest&&e.target.closest
 document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Enter"&&t.isContentEditable&&!t.dataset.t&&t.tagName!=="DIV")e.preventDefault()});
 document.addEventListener("click",e=>{
  if(!EDIT)return;
- const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]");
+ const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]"),tg=e.target.closest("[data-tog]");
  if(a){e.stopPropagation();get(a.dataset.add).push(TPL[a.dataset.tpl]());changed();renderAll()}
  else if(d){e.stopPropagation();if(confirm("Supprimer cet élément ?")){get(d.dataset.del).splice(+d.dataset.i,1);changed();renderAll()}}
  else if(ai){e.stopPropagation();pickImage(src=>{get(ai.dataset.addimg).push({src,alt:""});changed();renderAll()})}
+ else if(tg){e.stopPropagation();set(tg.dataset.tog,get(tg.dataset.tog)?0:1);changed();renderAll()}
  else if(si){e.stopPropagation();pickImage(src=>{set(si.dataset.setimg,src);changed();renderAll()})}
  else if(e.target.closest("label.st")){const c=e.target.closest("label.st").querySelector("input");e.preventDefault();c.checked=!c.checked;c.dispatchEvent(new Event("input",{bubbles:true}));renderAll()}
 },true);
