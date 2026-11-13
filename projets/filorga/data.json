@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T13:50:00Z",
+ "updated": "2026-11-13T12:44:10.646Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -155,14 +155,65 @@
  },
  "depts": [
   {
-   "id": "cam",
-   "name": "Caméra",
+   "id": "prod",
+   "name": "Production",
    "known": [
     {
-     "t": "Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
+     "t": "Type : Pub – tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
      "sub": "",
      "w": 0
     },
+    {
+     "t": "Dates : 19+20/11/2026 – 1 campagne par demi-journée de tournage (4 demi-journées)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Location : Studio de la Montjoie",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Prod : Boner Boner · Director : Eve Vitré",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Talent : 1 mannequin par campagne",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Chaque campagne : 1 mannequin, avec des plans d'attitude et d'application des produits",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Prises de vues essentiellement sur les mannequins et les produits",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Briefs : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE 261105 »",
+     "sub": "Dans la note Evernote, non publiés ici",
+     "w": 1
+    }
+   ],
+   "todo": [],
+   "refs": [
+    {
+     "src": "refs/plan-plateau-480.jpg",
+     "title": "Plan du plateau 480",
+     "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
+     "link": "refs/plan-plateau-480.pdf",
+     "linkText": "Plan en PDF"
+    }
+   ]
+  },
+  {
+   "id": "cam",
+   "name": "Caméra",
+   "known": [
     {
      "t": "Plans principalement serrés, peu de mouvements à ce stade",
      "sub": "",
@@ -171,7 +222,7 @@
     {
      "t": "Utilisation possible du bras Neutron, comme sur LRP",
      "sub": "À confirmer",
-     "w": 1
+     "w": 0
     },
     {
      "t": "1st AC : Lucas Bidard",
@@ -400,6 +451,32 @@
      "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
      "link": "refs/plan-plateau-480.pdf",
      "linkText": "Plan en PDF"
+    }
+   ]
+  },
+  {
+   "id": "post",
+   "name": "Post / IA-3D",
+   "known": [
+    {
+     "t": "Plans produits seuls : IA ou 3D (non tournés)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
+     "sub": "",
+     "w": 0
+    }
+   ],
+   "todo": [],
+   "refs": [
+    {
+     "src": "refs/uv-ref.jpg",
+     "title": "UV Cellular · références",
+     "cap": "Mood incrust : background gris ou chroma key, TBD.",
+     "link": "",
+     "linkText": ""
     }
    ]
   }
