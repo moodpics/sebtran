@@ -186,18 +186,6 @@ window.FILMS = {
       "thumb": null
     },
     {
-      "id": "1246445192",
-      "h": null,
-      "client": "Prada",
-      "title": "Paradoxe Sweet Chemistry — PR Looks",
-      "category": "Commercial",
-      "director": null,
-      "production": "Phantasm",
-      "year": null,
-      "duration": 15,
-      "thumb": null
-    },
-    {
       "id": "1228750774",
       "h": "968addf563",
       "client": "Vichy Dercos",
