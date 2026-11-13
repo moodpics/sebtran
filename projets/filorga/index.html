@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#0a0a0a">
+<title>Filorga — 4 campagnes · 19+20 nov. 2026</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a; --bg2:#121211; --bg3:#191917; --fg:#ebe8e2; --muted:#8a8780; --line:rgba(235,232,226,.12);
+  --accent:#e0a35c; --ok:#7fb08a; --warn:#e5483a;
+  --serif:"Instrument Serif","Times New Roman",serif; --sans:"Inter Tight",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --pad:clamp(18px,4vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--fg);font:300 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,select,textarea,input{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.05}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+section{padding:72px var(--pad);border-top:1px solid var(--line);max-width:1240px;margin:0 auto}
+section>h2{font-size:clamp(34px,5vw,56px);margin:10px 0 28px}
+.lead{max-width:62ch;color:#cfccc5}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none}
+nav.top::-webkit-scrollbar{display:none}
+nav.top a{flex:none;padding:18px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent}
+nav.top a:hover,nav.top a.on{color:var(--fg);border-color:var(--accent)}
+
+/* hero */
+.hero{padding:clamp(56px,10vw,120px) var(--pad) 56px;max-width:1240px;margin:0 auto;position:relative}
+.hero h1{font-size:clamp(64px,14vw,176px);letter-spacing:-.02em}
+.hero h1 em{color:var(--accent);font-style:italic}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.facts div{background:var(--bg);padding:18px 20px}
+.facts b{display:block;font-weight:400;font-size:18px;margin-top:6px}
+.count{display:inline-flex;gap:10px;align-items:baseline;margin-top:26px}
+.count strong{font:400 52px/1 var(--serif);color:var(--accent)}
+.role{margin-top:36px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);border-radius:99px;padding:8px 16px;font-size:14px;transition:.2s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+
+/* brief */
+.brief{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.brief div{border-left:2px solid var(--accent);padding:4px 0 4px 18px}
+.brief h3{font-size:26px;margin-bottom:6px}
+.brief p{margin:0;color:#cfccc5}
+
+/* campaigns */
+.camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.camp{position:relative;border:1px solid var(--line);min-height:360px;padding:56px 22px 22px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--g)}
+.camp::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.05) 70%)}
+.camp>*{position:relative}
+.camp .n{position:absolute;top:18px;left:22px}
+.camp h3{font-size:34px}
+.camp p{margin:8px 0 12px;color:#e6e2da}
+.tag{display:inline-block;border:1px solid rgba(235,232,226,.35);border-radius:99px;padding:3px 10px;font-size:12px;margin:0 6px 6px 0}
+.camp textarea{margin-top:10px}
+
+/* swatches */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:8px}
+.sw{height:120px;border:1px solid var(--line);display:flex;align-items:flex-end;padding:12px;font-size:14px}
+.sw span{background:rgba(0,0,0,.55);padding:2px 8px}
+
+/* planning */
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.slot{border:1px solid var(--line);background:var(--bg2);padding:16px}
+.slot select{width:100%;margin-top:10px}
+
+/* forms */
+select,textarea,input[type=text]{background:var(--bg3);border:1px solid var(--line);padding:10px 12px;width:100%;border-radius:2px}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+select:focus,textarea:focus,input:focus{outline:1px solid var(--accent);border-color:var(--accent)}
+
+/* departments */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+.tab{border:1px solid var(--line);padding:10px 18px;font-size:14px}
+.tab.on{background:var(--fg);color:#0a0a0a;border-color:var(--fg)}
+.tab:hover:not(.on){border-color:var(--accent)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.card{border:1px solid var(--line);background:var(--bg2);padding:22px}
+.card h3{font-size:26px;margin-bottom:14px}
+.card ul{margin:0;padding:0;list-style:none}
+.known li{padding:9px 0 9px 20px;border-top:1px solid var(--line);position:relative;color:#d8d5ce}
+.known li:first-child{border-top:0}
+.known li::before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:var(--ok);border-radius:50%}
+.known li.warn::before{background:var(--accent)}
+.known li small{display:block;color:var(--muted);font-size:13px}
+.chk li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
+.chk li:first-child{border-top:0}
+.chk li input{accent-color:var(--accent);width:18px;height:18px;margin-top:3px;flex:none}
+.chk li.done span{color:var(--muted);text-decoration:line-through}
+.chk li.piste span::after{content:" · piste";color:var(--accent);font-size:12px}
+.chk .rm{margin-left:auto;color:var(--muted);font-size:18px;line-height:1;padding:0 4px}
+.chk .rm:hover{color:var(--warn)}
+.add{display:flex;gap:8px;margin-top:14px}
+.add input{flex:1;min-width:0;width:auto}
+.add button,.btn{border:1px solid var(--line);padding:9px 16px;font-size:14px;white-space:nowrap}
+.add button:hover,.btn:hover{border-color:var(--accent);color:var(--accent)}
+.who{margin-bottom:10px}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.mem{border:1px solid var(--line);padding:16px;background:var(--bg2)}
+.mem b{display:block;font:400 22px/1.15 var(--serif);margin-top:6px}
+.mem.tbc{background:transparent;border-style:dashed}
+.mem.tbc b{color:var(--muted);font-style:italic}
+
+/* questions */
+.q{border:1px solid var(--line);background:var(--bg2);padding:20px;margin-bottom:12px}
+.q.done{opacity:.6}
+.q header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.q h3{font:400 24px/1.2 var(--serif);max-width:60ch}
+.q .tags{margin:8px 0 12px}
+.q .tags .tag{border-color:var(--line);color:var(--muted)}
+.st{border:1px solid var(--line);padding:6px 14px;font-size:13px;border-radius:99px}
+.st.open{color:var(--accent);border-color:var(--accent)}
+.st.res{color:var(--ok);border-color:var(--ok)}
+.q textarea{min-height:70px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+
+footer{border-top:1px solid var(--line);padding:48px var(--pad) 80px;max-width:1240px;margin:0 auto}
+footer .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 22px}
+.notice{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--accent);padding:14px 18px;color:#cfccc5;max-width:72ch;font-size:15px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--fg);color:#0a0a0a;padding:10px 18px;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media print{nav.top,.add,footer .row,.role{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+
+<nav class="top" id="nav">
+  <a href="#top" class="on">Filorga</a><a href="#brief">Brief</a><a href="#campagnes">Campagnes</a><a href="#planning">Planning</a><a href="#departements">Départements</a><a href="#equipe">Équipe</a><a href="#questions">Questions</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="mono">Boner Boner · Réal. Eve Vitré · Photo Ben Fourmi · Image Seb Trân</div>
+  <h1>Filorga<br><em>4 campagnes</em></h1>
+  <div class="count mono"><strong id="days">—</strong><span id="daysLabel">jours avant le tournage</span></div>
+  <div class="facts">
+    <div><span class="mono">Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div>
+    <div><span class="mono">Lieu</span><b>Studio de la Montjoie · plateau 480</b></div>
+    <div><span class="mono">Format</span><b>Photo + vidéo, en binôme</b></div>
+    <div><span class="mono">Rythme</span><b>1 campagne / demi-journée</b></div>
+  </div>
+  <div class="role" id="role"><span class="mono" style="margin-right:8px">Je suis…</span></div>
+</header>
+
+<section id="brief">
+  <div class="mono">01 — Pour tout le monde</div>
+  <h2>Le brief en 30 secondes</h2>
+  <div class="brief">
+    <div><h3>4 campagnes</h3><p>Regen Peptide, UV Cellular, Time Filler, NCEF Revitalize. Une campagne par demi-journée, soit 4 demi-journées sur 2 jours.</p></div>
+    <div><h3>1 mannequin par campagne</h3><p>Plans d'attitude et plans d'application des produits.</p></div>
+    <div><h3>Plans serrés, peu de mouvement</h3><p>Prises de vues essentiellement sur les mannequins et les produits. Bras Neutron possible, comme sur LRP (à confirmer).</p></div>
+    <div><h3>Produits seuls : pas tournés</h3><p>Les plans produits seuls seront réalisés en IA ou en 3D.</p></div>
+  </div>
+  <p class="mono" style="margin-top:36px">Source : note de job Evernote, état au 13 nov. 2026 · documents de brief (PDF) à joindre</p>
+</section>
+
+<section id="campagnes">
+  <div class="mono">02 — Les campagnes</div>
+  <h2>Quatre univers, un plateau</h2>
+  <div class="camps" id="camps"></div>
+  <h3 style="font-size:30px;margin:56px 0 4px">Fonds évoqués</h3>
+  <p class="lead" style="margin:0 0 12px">Discussion créative en cours : à valider (fond dégradé, fond bleu, fonds intégrés). Les aplats ci-dessous sont des repères de couleur, pas des références.</p>
+  <div class="swatches">
+    <div class="sw" style="background:linear-gradient(#0b0b0b,#8d8d8d)"><span>Dégradé haut noir → bas gris</span></div>
+    <div class="sw" style="background:#2c5fa6"><span>Fond bleu</span></div>
+    <div class="sw" style="background:linear-gradient(#7fd0e0,#1c7f9c)"><span>Fond intégré : piscine</span></div>
+    <div class="sw" style="background:linear-gradient(#a9d3ee,#efdcb0)"><span>Fond intégré : plage</span></div>
+  </div>
+</section>
+
+<section id="planning">
+  <div class="mono">03 — Planning provisoire</div>
+  <h2>Ordre des campagnes</h2>
+  <p class="lead" style="margin-bottom:24px">L'ordre n'est pas encore validé : c'est une question ouverte de la production. Chacun peut tester un ordre ici, il reste sur ton appareil.</p>
+  <div class="slots" id="slots"></div>
+</section>
+
+<section id="departements">
+  <div class="mono">04 — Chacun sa partie</div>
+  <h2>Départements</h2>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="panel" id="panel"></div>
+</section>
+
+<section id="equipe">
+  <div class="mono">05 — Équipe</div>
+  <h2>Qui fait quoi</h2>
+  <p class="lead" style="margin-bottom:24px">Les cases en pointillés sont à confirmer côté production. Les coordonnées ne sont volontairement pas publiées sur cette page.</p>
+  <div class="team" id="team"></div>
+</section>
+
+<section id="questions">
+  <div class="mono">06 — À trancher</div>
+  <h2>Questions ouvertes</h2>
+  <div class="filters" id="qfilters"></div>
+  <div id="qs"></div>
+</section>
+
+<footer>
+  <div class="mono">Tes notes</div>
+  <div class="notice">Ce que tu coches ou écris ici est enregistré <b>sur ton appareil uniquement</b> : les autres ne le voient pas. Pour le partager, copie tes notes ou exporte-les et envoie-les à Seb.</div>
+  <div class="row">
+    <label class="mono" style="display:flex;gap:10px;align-items:center">Ton nom <input type="text" id="author" placeholder="ex. Nathan" style="width:180px"></label>
+    <button class="btn" id="copy">Copier mes notes</button>
+    <button class="btn" id="export">Exporter (.json)</button>
+    <label class="btn" style="cursor:pointer">Importer<input type="file" id="import" accept="application/json" hidden></label>
+    <button class="btn" id="reset">Tout effacer</button>
+  </div>
+  <div class="mono">Page de travail en test · Moodpics · non indexée</div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Contenu (issu de la note de job Evernote, état au 13/11/2026) ---------- */
+const SHOOT_DATE = "2026-11-19";
+const CAMPS = [
+  {id:"regen", n:"01", name:"Regen Peptide", sub:"Réparer la barrière cutanée", tags:["N&B pas toujours linéaire"], pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)", g:"linear-gradient(160deg,#4f8a86,#14201f)"},
+  {id:"time",  n:"02", name:"Time Filler", sub:"40 ans et +, anti-rides", tags:["N&B toujours droit"], g:"linear-gradient(160deg,#d2b185,#2b2217)"},
+  {id:"ncef",  n:"03", name:"NCEF Revitalize", sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow", tags:["N&B toujours droit"], g:"linear-gradient(160deg,#eaa7a0,#2d191b)"},
+  {id:"uv",    n:"04", name:"UV Cellular", sub:"Solaire", tags:[], g:"linear-gradient(160deg,#e3a65e,#26548f)"}
+];
+const SLOTS = ["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
+
+const DEPTS = [
+ {id:"prod", name:"Production",
+  known:[
+   ["Tournage les 19 et 20 novembre 2026, 1 campagne par demi-journée"],
+   ["Studio de la Montjoie, plateau 480","Plan et dimensions à préciser"],
+   ["Production Boner Boner, réalisation Eve Vitré"],
+   ["1 mannequin par campagne"],
+   ["Documents de brief : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE (05/11) »","À joindre à cette page (les PDF sont dans Evernote)",1]
+  ],
+  todo:["Valider l'ordre des 4 campagnes sur les 2 jours","Confirmer l'agence","Confirmer le loueur matériel","Compléter l'équipe : producer, line producer, régisseur général, prod exe, 1er AD","Confirmer le plan et les dimensions du plateau 480","Renseigner l'hôtel si nécessaire"]},
+ {id:"cam", name:"Caméra",
+  known:[
+   ["Plans principalement serrés, peu de mouvements à ce stade"],
+   ["Binôme avec le photographe Ben Fourmi : photo et vidéo"],
+   ["Bras Neutron possible, comme sur LRP","À confirmer",1],
+   ["1er AC : Lucas Bidard"]
+  ],
+  todo:["Corps caméra","Codec / résolution / fps","LUT / profil","Optiques (set, focales)","Monitoring","Média + backup","Technical specs","Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?|p"]},
+ {id:"lum", name:"Lumière",
+  known:[
+   ["Mood général : à définir","",1],
+   ["Fond dégradé : haut noir vers bas gris"],
+   ["Autres fonds évoqués : fond bleu ; fonds intégrés (piscine, plage)","À valider",1],
+   ["Gaffer : Nathan Jean-François"]
+  ],
+  todo:["Key light","Fill in / negative fill","Backlight","Background","Effet de lumière spécial","Effet filé de Regen Peptide côté lumière|p"]},
+ {id:"mach", name:"Machinerie",
+  known:[
+   ["Bras Neutron possible","À confirmer : mouvements prévus et usage réel",1],
+   ["Grip : Nicolas Sommermeyer"],
+   ["Plateau 480 : plan et dimensions à préciser"],
+   ["Pour mémoire, relevé lors du shoot La Roche-Posay dans ce même plateau : hauteur du cyclo avec retour 4,35 m ; barre à 4,6 m au-dessus du retour","À revérifier pour Filorga",1]
+  ],
+  todo:["Support caméra et mouvements","Rigging et fixations","Rigs spéciaux","Obtenir le plan du plateau 480"]},
+ {id:"photo", name:"Photo",
+  known:[
+   ["Ben Fourmi, photographe, travaille régulièrement avec Filorga"],
+   ["Tournage photo et vidéo en binôme sur chaque campagne"]
+  ],
+  todo:["Définir le partage de la lumière et de la caméra entre photo et vidéo"]},
+ {id:"post", name:"Post / IA-3D",
+  known:[
+   ["Plans produits seuls : réalisés en IA ou en 3D, pas tournés"],
+   ["Fonds intégrés évoqués (piscine, plage) : à clarifier avec la post-production",
+    "Fond incrusté ou non ? à trancher",1]
+  ],
+  todo:["Savoir qui produit les plans produits IA / 3D, et à quelle étape","Désigner un DIT","Définir le workflow rushs et proxies","Trancher : fonds incrustés ou fonds physiques"]}
+];
+
+const TEAM = [
+ ["Production","Boner Boner"],["Réalisation","Eve Vitré"],["Photographe","Ben Fourmi"],["Chef opérateur","Seb Trân"],
+ ["1er AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin par campagne"],
+ ["Producer",""],["Line producer",""],["Régisseur général",""],["Prod exe",""],["Agence",""],["DA",""],["1er AD",""],["2e AC",""],["DIT",""],["Loueur matériel",""]
+];
+
+const QS = [
+ {id:"q1",t:"Quel ordre pour les 4 campagnes sur les 19 et 20 novembre ?",d:["prod"]},
+ {id:"q2",t:"Quelle agence, et quel loueur matériel ?",d:["prod"]},
+ {id:"q3",t:"Quels mouvements sont prévus, et le bras Neutron sera-t-il utilisé ?",d:["mach","cam"]},
+ {id:"q4",t:"Qui produit les plans produits en IA / 3D, et à quelle étape ?",d:["post"]},
+ {id:"q5",t:"Comment se partagent la lumière et la caméra entre la photo (Ben Fourmi) et la vidéo ?",d:["photo","cam","lum"]},
+ {id:"q6",t:"Tout se tourne-t-il sur le même plateau 480 ? Un écran LED est-il prévu ?",d:["prod","lum"]},
+ {id:"q7",t:"Quels backgrounds exactement ? Fond incrusté ou fond physique ?",d:["lum","post"]},
+ {id:"q8",t:"Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?",d:["cam","lum"]}
+];
+
+/* ---------- État local ---------- */
+const KEY="filorga-2026-11:v1";
+const blank=()=>({role:"",author:"",checks:{},custom:{},notes:{},qs:{},plan:{},camp:{}});
+let S; try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){S=blank()}
+let saveT; const save=()=>{clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150)};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const deptName=id=>DEPTS.find(d=>d.id===id).name;
+let activeDept = DEPTS.find(d=>d.id===S.role)?S.role:"prod";
+
+/* ---------- Compte à rebours ---------- */
+(function(){
+  const d=Math.ceil((new Date(SHOOT_DATE+"T09:00:00")-new Date())/864e5);
+  const el=$("#days"),lb=$("#daysLabel");
+  if(d>1){el.textContent=d;lb.textContent="jours avant le tournage"}
+  else if(d===1||d===0){el.textContent=d;lb.textContent=d===1?"jour avant le tournage":"c'est aujourd'hui"}
+  else {el.textContent="—";lb.textContent="tournage passé ou en cours"}
+})();
+
+/* ---------- Rôle ---------- */
+function renderRole(){
+  const r=$("#role");
+  r.querySelectorAll(".chip").forEach(c=>c.remove());
+  DEPTS.forEach(d=>{
+    const b=document.createElement("button");b.className="chip"+(S.role===d.id?" on":"");b.textContent=d.name;
+    b.onclick=()=>{S.role=S.role===d.id?"":d.id;if(S.role){activeDept=d.id;renderDepts();document.getElementById("departements").scrollIntoView()}save();renderRole()};
+    r.appendChild(b);
+  });
+}
+
+/* ---------- Campagnes ---------- */
+function renderCamps(){
+  $("#camps").innerHTML=CAMPS.map(c=>`
+   <article class="camp" style="--g:${c.g}">
+     <span class="mono n" style="color:#e6e2da">${c.n}</span>
+     <h3>${esc(c.name)}</h3>
+     <p>${esc(c.sub)}</p>
+     <div>${c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}${c.pist?`<span class="tag" style="border-color:var(--accent);color:var(--accent)">${esc(c.pist)}</span>`:""}</div>
+     <textarea data-camp="${c.id}" placeholder="Ma note sur cette campagne…" aria-label="Note ${esc(c.name)}">${esc(S.camp[c.id]||"")}</textarea>
+   </article>`).join("");
+  document.querySelectorAll("[data-camp]").forEach(t=>t.oninput=()=>{S.camp[t.dataset.camp]=t.value;save()});
+}
+
+/* ---------- Planning ---------- */
+function renderSlots(){
+  $("#slots").innerHTML=SLOTS.map((s,i)=>`
+   <div class="slot"><span class="mono">${esc(s)}</span>
+    <select data-slot="${i}" aria-label="${esc(s)}"><option value="">À définir</option>
+    ${CAMPS.map(c=>`<option value="${c.id}"${S.plan[i]===c.id?" selected":""}>${esc(c.name)}</option>`).join("")}</select></div>`).join("");
+  document.querySelectorAll("[data-slot]").forEach(s=>s.onchange=()=>{S.plan[s.dataset.slot]=s.value;save()});
+}
+
+/* ---------- Départements ---------- */
+function renderTabs(){
+  $("#tabs").innerHTML=DEPTS.map(d=>`<button class="tab${d.id===activeDept?" on":""}" role="tab" data-d="${d.id}">${esc(d.name)}</button>`).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{activeDept=b.dataset.d;renderDepts()});
+}
+function renderDepts(){
+  renderTabs();
+  const d=DEPTS.find(x=>x.id===activeDept);
+  const fixed=d.todo.map((t,i)=>{const p=t.endsWith("|p");return {id:d.id+":"+i,text:p?t.slice(0,-2):t,piste:p}});
+  const custom=(S.custom[d.id]||[]);
+  const item=(it,isC)=>`<li class="${S.checks[it.id]?"done":""}${it.piste?" piste":""}"><input type="checkbox" id="c_${it.id}" data-chk="${it.id}"${S.checks[it.id]?" checked":""}><span>${esc(it.text)}</span>${isC?`<button class="rm" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`;
+  const qs=QS.filter(q=>q.d.includes(d.id));
+  $("#panel").innerHTML=`
+   <div class="card known"><h3>Ce qui est acté</h3><ul>${d.known.map(k=>`<li class="${k[2]?"warn":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
+   <div class="card chk"><h3>À préparer</h3><ul>${fixed.map(i=>item(i,false)).join("")}${custom.map(i=>item(i,true)).join("")}</ul>
+     <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…" aria-label="Ajouter un point"><button type="submit">Ajouter</button></form></div>
+   <div class="card"><h3>Questions pour ${esc(d.name)}</h3>
+     ${qs.length?`<ul class="known">${qs.map(q=>`<li class="${S.qs[q.id]&&S.qs[q.id].done?"":"warn"}">${esc(q.t)}<small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"} · <a href="#questions">voir</a></small></li>`).join("")}</ul>`:`<p class="lead" style="margin:0">Aucune question ouverte.</p>`}</div>
+   <div class="card"><h3>Mes notes ${esc(d.name)}</h3>
+     <textarea id="dnote" style="min-height:180px" placeholder="Besoins, remarques, matériel, contraintes…">${esc(S.notes[d.id]||"")}</textarea></div>`;
+  document.querySelectorAll("[data-chk]").forEach(c=>c.onchange=()=>{S.checks[c.dataset.chk]=c.checked;c.closest("li").classList.toggle("done",c.checked);save()});
+  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{S.custom[d.id]=(S.custom[d.id]||[]).filter(i=>i.id!==b.dataset.rm);save();renderDepts()});
+  $("#addForm").onsubmit=e=>{e.preventDefault();const v=$("#addText").value.trim();if(!v)return;(S.custom[d.id]=S.custom[d.id]||[]).push({id:"x"+uid(),text:v});save();renderDepts()};
+  $("#dnote").oninput=e=>{S.notes[d.id]=e.target.value;save()};
+}
+
+/* ---------- Équipe ---------- */
+function renderTeam(){
+  $("#team").innerHTML=TEAM.map(m=>`<div class="mem${m[1]?"":" tbc"}"><span class="mono">${esc(m[0])}</span><b>${m[1]?esc(m[1]):"à confirmer"}</b></div>`).join("");
+}
+
+/* ---------- Questions ---------- */
+let qFilter="all";
+function renderQs(){
+  $("#qfilters").innerHTML=[["all","Toutes"],...DEPTS.map(d=>[d.id,d.name])].map(([id,n])=>`<button class="chip${qFilter===id?" on":""}" data-f="${id}">${esc(n)}</button>`).join("");
+  document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;renderQs()});
+  $("#qs").innerHTML=QS.filter(q=>qFilter==="all"||q.d.includes(qFilter)).map(q=>{
+    const s=S.qs[q.id]||{};
+    return `<div class="q${s.done?" done":""}"><header><h3>${esc(q.t)}</h3><button class="st ${s.done?"res":"open"}" data-q="${q.id}">${s.done?"Résolu":"Ouvert"}</button></header>
+      <div class="tags">${q.d.map(d=>`<span class="tag">${esc(deptName(d))}</span>`).join("")}</div>
+      <textarea data-qa="${q.id}" placeholder="Réponse, décision, précision…">${esc(s.answer||"")}</textarea></div>`}).join("");
+  document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const s=S.qs[b.dataset.q]=S.qs[b.dataset.q]||{};s.done=!s.done;save();renderQs();renderDepts()});
+  document.querySelectorAll("[data-qa]").forEach(t=>t.oninput=()=>{(S.qs[t.dataset.qa]=S.qs[t.dataset.qa]||{}).answer=t.value;save()});
+}
+
+/* ---------- Résumé / export / import ---------- */
+function summary(){
+  const L=["FILORGA — 4 campagnes — 19+20/11/2026"+(S.author?" — notes de "+S.author:"")];
+  DEPTS.forEach(d=>{
+    const fixed=d.todo.map((t,i)=>({id:d.id+":"+i,text:t.replace(/\|p$/,"")}));
+    const items=[...fixed,...(S.custom[d.id]||[])].map(i=>`  [${S.checks[i.id]?"x":" "}] ${i.text}`);
+    const note=(S.notes[d.id]||"").trim();
+    L.push("","## "+d.name,...items);
+    if(note)L.push("  Notes : "+note.replace(/\n/g,"\n  "));
+  });
+  const camps=CAMPS.filter(c=>(S.camp[c.id]||"").trim()).map(c=>`  ${c.name} : ${S.camp[c.id].trim()}`);
+  if(camps.length)L.push("","## Campagnes",...camps);
+  const plan=SLOTS.map((s,i)=>S.plan[i]?`  ${s} : ${CAMPS.find(c=>c.id===S.plan[i]).name}`:null).filter(Boolean);
+  if(plan.length)L.push("","## Ordre testé",...plan);
+  const qs=QS.filter(q=>S.qs[q.id]&&(S.qs[q.id].answer||S.qs[q.id].done)).map(q=>`  ${S.qs[q.id].done?"[résolu]":"[ouvert]"} ${q.t}${S.qs[q.id].answer?"\n    → "+S.qs[q.id].answer.trim():""}`);
+  if(qs.length)L.push("","## Questions",...qs);
+  return L.join("\n");
+}
+$("#author").value=S.author;
+$("#author").oninput=e=>{S.author=e.target.value;save()};
+$("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(summary());toast("Notes copiées")}catch(e){const w=window.open("","_blank");if(w){w.document.write("<pre>"+esc(summary())+"</pre>")}}};
+$("#export").onclick=()=>{
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:"application/json"}));
+  a.download="filorga-"+(S.author||"notes").toLowerCase().replace(/\W+/g,"-")+".json";a.click();URL.revokeObjectURL(a.href);toast("Export prêt");
+};
+$("#import").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{
+    const o=JSON.parse(r.result),who=o.author||"import";
+    Object.entries(o.checks||{}).forEach(([k,v])=>{if(v)S.checks[k]=true});
+    Object.entries(o.custom||{}).forEach(([d,a])=>{S.custom[d]=S.custom[d]||[];a.forEach(i=>{if(!S.custom[d].some(x=>x.id===i.id))S.custom[d].push(i)})});
+    Object.entries(o.notes||{}).forEach(([d,t])=>{if(t&&t!==S.notes[d])S.notes[d]=((S.notes[d]||"")+`\n— ${who} —\n${t}`).trim()});
+    Object.entries(o.camp||{}).forEach(([d,t])=>{if(t&&t!==S.camp[d])S.camp[d]=((S.camp[d]||"")+`\n— ${who} —\n${t}`).trim()});
+    Object.entries(o.qs||{}).forEach(([q,v])=>{const s=S.qs[q]=S.qs[q]||{};if(v.done)s.done=true;if(v.answer&&v.answer!==s.answer)s.answer=((s.answer||"")+`\n— ${who} —\n${v.answer}`).trim()});
+    save();renderAll();toast("Import fusionné");
+  }catch(err){toast("Fichier non lisible")}};
+  r.readAsText(f);e.target.value="";
+};
+$("#reset").onclick=()=>{if(confirm("Effacer toutes tes notes et coches sur cet appareil ?")){S=blank();try{localStorage.removeItem(KEY)}catch(e){}$("#author").value="";activeDept="prod";renderAll();toast("Effacé")}};
+
+/* ---------- Nav active ---------- */
+const links=[...document.querySelectorAll("nav.top a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+e.target.id))}}),{rootMargin:"-40% 0px -55% 0px"});
+["top","brief","campagnes","planning","departements","equipe","questions"].forEach(id=>io.observe(document.getElementById(id)));
+
+function renderAll(){renderRole();renderCamps();renderSlots();renderDepts();renderTeam();renderQs()}
+renderAll();
+</script>
+</body>
+</html>
