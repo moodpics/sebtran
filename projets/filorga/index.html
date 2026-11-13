@@ -70,6 +70,8 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .rimg{display:block;width:100%;height:auto;border-radius:3px;margin-top:10px;border:1px solid var(--line);cursor:zoom-in;background:#000}
 .refs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
 .refs img{width:100%;height:112px;object-fit:cover;border-radius:3px;border:1px solid var(--line);cursor:zoom-in;display:block}
+.refs.one{grid-template-columns:1fr}
+.refs.one img{height:auto;object-fit:contain;background:#fff}
 .refs.three{grid-template-columns:1fr 1fr 1fr}
 .refs.three img{height:120px}
 .node p.v{color:var(--ink)}
@@ -264,14 +266,14 @@ const tog=(p,on)=>EDIT?`<button class="xadd" data-tog="${p}" title="Met la ligne
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
 const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
  brief:()=>({t:"",b:1,sub:[],img:"",imgNote:""}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
-const imgs=(p,list,cls)=>`<div class="refs ${cls||""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
+const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
 /* =========== Corps des nodes =========== */
 const world=$("#world"),svg=$("#edges"),stage=$("#stage");
 let NODES=[],EDGES=[];const el={};
 function makeNodes(){
  NODES=[{id:"root",kind:"Projet",x:470,y:60,w:620},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
-  ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,ci:i})),
+  ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:i<3?230+i*370:230,y:830+(i<3?0:420),w:i<3?340:1100,ci:i})),
   {id:"plan",kind:"Planning provisoire",x:215,y:1420,w:440},{id:"loc",kind:"Location",x:725,y:1420,w:620},
   {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
   ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:Math.round(780-(DATA.depts.length*330+(DATA.depts.length-1)*40)/2)+i*370,y:1920,w:330,cls:"dept",did:d.id})),
@@ -323,7 +325,7 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined).map(n=>n.id),90],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team"],90]];
+  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined&&n.ci<3).map(n=>n.id),90],[NODES.filter(n=>n.ci!==undefined&&n.ci>=3).map(n=>n.id),40],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team"],90]];
   let y=60;
   rows.forEach(([ids,gap],ri)=>{
    if(ri>0)y+=gap;
