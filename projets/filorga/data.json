@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T15:42:16.956Z",
+ "updated": "2026-11-13T15:47:11.640Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -60,17 +60,10 @@
     "imgNote": "Référence : Mugler Angel Elixir"
    },
    {
-    "t": "Plans produits seuls : IA ou 3D (non tournés)",
-    "b": 0,
-    "sub": [],
-    "img": "",
-    "imgNote": ""
-   },
-   {
     "t": "Effet de \"battery loading\" au sol : Affaire en lumière avec des automatiques et gobos, mais il faut pouvoir gérer l'évolution des barres de chargement, ou sinon, vidéo projecteur avec haut potentiel Lumen",
     "b": 1,
     "sub": [],
-    "img": "refs/886dda32-772e-498a-8eb6-9247ab552eaa-mwf4zftl.jpg",
+    "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
     "imgNote": ""
    }
   ],
@@ -376,7 +369,7 @@
      "linkText": ""
     },
     {
-     "src": "refs/886dda32-772e-498a-8eb6-9247ab552eaa-mwf52z3i.jpg",
+     "src": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gr7s.jpg",
      "title": "Nouvelle référence",
      "cap": "Un effet de \"battery loading\" au sol,  un chargement de batterie à pouvoir faire évoluer. CF deniere section",
      "link": "",
