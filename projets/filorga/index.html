@@ -145,8 +145,11 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .ds .kn li.w::before{background:transparent;border:1.5px solid #000}
 .ds small{display:block;color:var(--mute)}
 .ck li{display:flex;gap:11px;align-items:flex-start;padding-left:0}
-.ck input[type=checkbox]{accent-color:#000;width:17px;height:17px;margin-top:2px;flex:none}
-.ck li.done .t{color:#8a8a8a}
+.ck .mk-l{cursor:pointer;display:flex;flex:none;margin-top:5px}
+.ck i.mk{flex:none;width:11px;height:11px;border-radius:50%;border:1.5px solid #b5b5b5;margin-top:5px;box-sizing:border-box}
+.ck .mk-l i.mk{margin-top:0}
+.ck i.mk.on{background:#000;border-color:#000}
+.ck li.off .t{color:#9a9a9a;font-weight:400}
 .ck .t{font-weight:500}
 .det{display:block;margin-top:4px;font-size:13px;color:#555}
 .det>span{display:block;padding:2px 0}
@@ -182,7 +185,6 @@ body.m .pills{max-width:62vw}
 body.m .bar small{display:none}
 
 /* lecture seule / édition */
-.ck input[type=checkbox]:disabled{opacity:1;cursor:default}
 .slots b{font-weight:500}.slots b.tbc{color:#9a9a9a;font-weight:400;font-style:italic}
 .node h2.pl{white-space:pre-line;font-size:84px;line-height:1;letter-spacing:-.035em;font-weight:600;margin:22px 0 12px}
 #n_root .sub{font-size:18px}
@@ -250,7 +252,7 @@ const mobile=()=>innerWidth<1000;
 const uid=()=>Math.random().toString(36).slice(2,8);
 const D=id=>DATA.depts.find(d=>d.id===id);
 const di=id=>DATA.depts.findIndex(d=>d.id===id);
-const isDone=t=>!!t.done;
+const isDone=t=>!!t.done||!!((t.lines&&t.lines.length)||(t.fix&&t.fix.length)||(t.ctl&&t.ctl.length));
 
 /* champs éditables : en lecture seule ce sont de simples textes */
 const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(txt)}</${tag}>`;
@@ -292,7 +294,7 @@ function body(n){
   ${imgs("loc.imgs",L.imgs,"three")}${L.pdf?`<p class="sub" style="margin:8px 0 0"><a href="${esc(L.pdf)}" target="_blank" rel="noopener">Plan du plateau en PDF</a></p>`:""}`;}
  if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
-  return `<h3>${esc(d.name)}</h3>${tot?`<div class="sub">${done} / ${tot} points</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
+  return `<h3>${esc(d.name)}</h3>${tot?`<div class="sub">${done} / ${tot} renseignés</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
   <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k.t)}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
  if(n.id==="team")return `<ul class="team">${DATA.team.map((m,i)=>`<li class="${m.name||EDIT?"":"tbc"}">${ed(`team.${i}.role`,"span","",m.role,"Rôle")}<span class="rt">${EDIT?ed(`team.${i}.name`,"b","",m.name,"à confirmer"):`<b style="font-weight:500">${m.name?esc(m.name):"à confirmer"}</b>`}${del("team",i)}</span></li>`).join("")}</ul>${add("team","team","membre")}
   <p class="sub" style="margin:10px 0 0">Téléphones et mails : dans la note Evernote, non publiés ici.</p>`;
@@ -401,7 +403,7 @@ function openDept(id,keep){
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
-  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>
+  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}">${EDIT?`<label class="mk-l" title="Sous-catégorie concernée (rond plein) ou non"><input type="checkbox" hidden data-p="${P}.todo.${i}.done" ${t.done?"checked":""}><i class="mk${isDone(t)?" on":""}"></i></label>`:`<i class="mk${isDone(t)?" on":""}"></i>`}<span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>
   ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   ${((d.reco&&d.reco.length)||EDIT)?`<div class="ds"><h4>Ma liste recommandée</h4><ul class="kn">${(d.reco||[]).map((r,i)=>`<li>${ed(`${P}.reco.${i}.t`,"span","",r.t,"Matériel recommandé")}${del(P+".reco",i)}</li>`).join("")}</ul>${add(P+".reco","reco","élément de la liste")}</div>`:""}`);
  if(!keep)drawer.scrollTop=0;
@@ -442,7 +444,7 @@ document.addEventListener("input",e=>{
  else{v=t.innerText.replace(/ /g," ").replace(/\n+$/,"");if(t.dataset.t==="lines")v=v.split("\n").map(s=>s.trim()).filter(Boolean);else if(t.dataset.t==="semi")v=v.split(/[;,]/).map(s=>s.trim()).filter(Boolean)}
  set(p,v);changed();
  if(t.type==="checkbox"){
-  if(/\.todo\.\d+\.done$/.test(p)){const li=t.closest("li");if(li)li.classList.toggle("done",t.checked)}
+  if(/\.todo\.\d+\.done$/.test(p)){const li=t.closest("li");if(li){const on=t.checked||[...li.querySelectorAll(".det .ed")].some(x=>x.textContent.trim());li.classList.toggle("off",!on);const m=li.querySelector("i.mk");if(m)m.classList.toggle("on",!!on)}}
   else if(/^qs\.\d+\.done$/.test(p))renderAll();
  }
  if(p==="shootDate")countdown();
