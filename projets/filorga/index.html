@@ -63,6 +63,21 @@ textarea,select,input[type=text]{width:100%;background:var(--soft);border:1px so
 textarea{min-height:64px;resize:vertical;line-height:1.45}
 textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1px;background:#fff}
 
+/* images de référence */
+.rimg{display:block;width:100%;height:auto;border-radius:3px;margin-top:10px;border:1px solid var(--line);cursor:zoom-in;background:#000}
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.refs img{width:100%;height:112px;object-fit:cover;border-radius:3px;border:1px solid var(--line);cursor:zoom-in;display:block}
+.refs.three{grid-template-columns:1fr 1fr 1fr}
+.refs.three img{height:120px}
+.node p.v{color:var(--ink)}
+.node ul.v>li,.node ol.v>li{padding:9px 0}
+.node ol.v{padding-left:18px;margin:0}
+.node ol.v>li{border-top:1px solid var(--line)}
+.node ul.s{margin:6px 0 0;padding-left:16px;list-style:disc}
+.node ul.s li{border:0;padding:2px 0}
+#lb{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 20px 80px rgba(0,0,0,.6)}
 /* fonds */
 .sw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sw div{height:74px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:flex-end;padding:7px;font-size:12px}
@@ -123,7 +138,11 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .ds small{display:block;color:var(--mute)}
 .ck li{display:flex;gap:11px;align-items:flex-start;padding-left:0}
 .ck input[type=checkbox]{accent-color:#000;width:17px;height:17px;margin-top:2px;flex:none}
-.ck li.done span{color:#9a9a9a;text-decoration:line-through}
+.ck li.done .t{color:#8a8a8a}
+.ck .t{font-weight:500}
+.det{display:block;margin-top:4px;font-size:13px;color:#555}
+.det>span{display:block;padding:2px 0}
+.det em{font-style:normal;color:var(--mute)}
 .ck .x{margin-left:auto;color:#9a9a9a;font-size:18px;line-height:1}
 .ck .x:hover{color:#000}
 .pis{font-size:12px;border:1px solid #cfcfcf;border-radius:99px;padding:0 8px;margin-left:6px;color:#555}
@@ -169,97 +188,118 @@ body.m .bar small{display:none}
 <div id="shade"></div>
 <aside id="drawer" aria-hidden="true"></aside>
 <div class="toast" id="toast"></div>
+<div id="lb"><img alt=""></div>
 
 <script>
-/* =========== Contenu : note de job Evernote, état au 13/11/2026 =========== */
+/* =========== Contenu : note de job Evernote, reprise telle qu'écrite (état au 13/11/2026) =========== */
 const SHOOT_DATE="2026-11-19";
 const CAMPS=[
- {id:"regen",name:"Regen Peptide",sub:"Réparer la barrière cutanée",tags:["Dégradé N&B : la ligne peut se casser"],pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)",g:"linear-gradient(180deg,#000,#fff)"},
- {id:"time",name:"Time Filler",sub:"40 ans et +, anti-rides",tags:["Dégradé N&B : ligne droite"],g:"linear-gradient(180deg,#fff,#000)"},
- {id:"ncef",name:"NCEF Revitalize",sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow",tags:["Dégradé N&B : ligne droite"],g:"linear-gradient(90deg,#000,#fff)"},
- {id:"uv",name:"UV Cellular",sub:"Solaire",tags:[],g:"radial-gradient(circle at 50% 120%,#fff,#000 75%)"}
+ {id:"regen",name:"Regen Peptide",txt:"REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé, pas toujours, pas forcément linéaire",
+  imgs:[["refs/regen-ref.jpg","Regen Peptide : référence (Reveal vidéo)"],["refs/effet-file.jpg","Effet filé sur film Peptide"]],
+  pist:"Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps"},
+ {id:"time",name:"Time Filler",txt:"TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé, toujours droit, horizontal",
+  imgs:[["refs/time-ncef-gradient.jpg","Dégradé N&B de référence"],["refs/time-ref.jpg","Time Filler : références"]]},
+ {id:"ncef",name:"NCEF Revitalize",txt:"NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé, toujours droit, horizontal",
+  imgs:[["refs/time-ncef-gradient.jpg","Dégradé N&B de référence"],["refs/ncef-ref.jpg","NCEF Revitalize : références"]]},
+ {id:"uv",name:"UV Cellular",txt:"UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
+  imgs:[["refs/uv-ref.jpg","UV Cellular : références"]]}
 ];
 const SLOTS=["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
+const MUGLER={src:"refs/mugler-angel-elixir-plan1.gif",title:"Plan machinerie spécial · référence",
+ cap:"Référence de mouvement : pub Mugler Angel Elixir. La caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus d'elle.",link:"https://www.youtube.com/watch?v=OE999ilxDNk",linkText:"Voir la pub complète"};
+const PLAN={src:"refs/plan-plateau-480.jpg",title:"Plan du plateau 480",cap:"Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",link:"refs/plan-plateau-480.pdf",linkText:"Plan en PDF"};
 const DEPTS=[
  {id:"prod",name:"Production",known:[
-   ["Tournage les 19 et 20 novembre 2026, 1 campagne par demi-journée"],
-   ["Studio de la Montjoie, plateau 480","Plan et dimensions à préciser"],
-   ["Production Boner Boner, réalisation Eve Vitré"],
-   ["1 mannequin par campagne"],
-   ["Documents de brief : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE (05/11) »","À joindre à cette page (les PDF sont dans Evernote)",1]],
-  todo:["Valider l'ordre des 4 campagnes sur les 2 jours","Confirmer l'agence","Confirmer le loueur matériel","Compléter l'équipe : producer, line producer, régisseur général, prod exe, 1er AD","Confirmer le plan et les dimensions du plateau 480","Renseigner l'hôtel si nécessaire"]},
+   ["Type : Pub – tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
+   ["Dates : 19+20/11/2026 – 1 campagne par demi-journée de tournage (4 demi-journées)"],
+   ["Location : Studio de la Montjoie"],
+   ["Prod : Boner Boner · Director : Eve Vitré"],
+   ["Talent : 1 mannequin par campagne"],
+   ["Chaque campagne : 1 mannequin, avec des plans d'attitude et d'application des produits"],
+   ["Prises de vues essentiellement sur les mannequins et les produits"],
+   ["Briefs : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE 261105 »","Dans la note Evernote, non publiés ici",1]],
+  todo:[],refs:[PLAN]},
  {id:"cam",name:"Caméra",known:[
+   ["Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
    ["Plans principalement serrés, peu de mouvements à ce stade"],
-   ["Binôme avec le photographe Ben Fourmi : photo et vidéo"],
-   ["Bras Neutron possible, comme sur LRP","À confirmer",1],
-   ["1er AC : Lucas Bidard"]],
-  todo:["Corps caméra","Codec / résolution / fps","LUT / profil","Optiques (set, focales)","Monitoring","Média + backup","Technical specs","Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?|p"]},
+   ["Utilisation possible du bras Neutron, comme sur LRP","À confirmer",1],
+   ["1st AC : Lucas Bidard"],
+   ["Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps"]],
+  todo:["Camera body","Lenses","Special Equipment","Monitoring","Luts","Technical Specs"],
+  refs:[{src:"refs/effet-file.jpg",title:"Réflexions & intuitions de DOP · effet filé sur film Peptide",cap:"Optiquement : filtres spécifiques. FPS : low fps."}]},
  {id:"lum",name:"Lumière",known:[
-   ["Mood général : à définir","",1],
-   ["Fond dégradé : haut noir vers bas gris"],
-   ["Autres fonds évoqués : fond bleu ; fonds intégrés (piscine, plage)","À valider",1],
+   ["General Mood : 2 moods"],
+   ["mood B&W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)"],
+   ["mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight"],
+   ["On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable."],
    ["Gaffer : Nathan Jean-François"]],
-  todo:["Key light","Fill in / negative fill","Backlight","Background","Effet de lumière spécial","Effet filé de Regen Peptide côté lumière|p"]},
+  todo:[
+   {t:"Keylight",def:1,lines:["mood B&W : Beauty light, 2400 + Parabolic softbox 140","mood incrust : (solaire) 1 mole Richardson 10K + 2400 Daylight dans cadre diff 1/2 4x4"],fix:["1 x Evoke 2400 B + 1 Mole Richardson 10K"],ctl:["mamas, cadres 120 de diff"]},
+   {t:"Fill in / Negativ fill",def:1,lines:["Negativ fill : floppy, pendrillons"],ctl:["borniol, floppys"]},
+   {t:"Backlight",def:1,lines:["mood B&W : non","mood incrust : (solaire) oui pour le plan spray du produit pour mettre le produit en valeur"],fix:["1 LED 1200, option spotligth"]},
+   {t:"Background",def:1,lines:["mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril","mood incrust : à voir, mais quelque chose d'étal"],fix:["10 skypanel X Hyperoptics"]},
+   "Special lighting effect"],
+  refs:[{src:"refs/time-ncef-gradient.jpg",title:"Dégradé N&B de référence",cap:"Time Filler et NCEF Revitalize : toujours droit, horizontal. Regen Peptide : pas toujours, pas forcément linéaire."}]},
  {id:"mach",name:"Machinerie",known:[
-   ["Bras Neutron possible","À confirmer : mouvements prévus et usage réel",1],
+   ["1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot"],
+   ["Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)","Bras Neutron : à confirmer",1],
    ["Grip : Nicolas Sommermeyer"],
-   ["Plateau 480 : plan et dimensions à préciser"],
-   ["Pour mémoire, relevé lors du shoot La Roche-Posay dans ce même plateau : hauteur du cyclo avec retour 4,35 m ; barre à 4,6 m au-dessus du retour","À revérifier pour Filorga",1]],
-  todo:["Support caméra et mouvements","Rigging et fixations","Rigs spéciaux","Obtenir le plan du plateau 480"],
-  ref:{src:"refs/mugler-angel-elixir-plan1.gif",title:"Plan de référence spécial · Regen Peptide",cap:"Mugler Angel Elixir (Hunter Schafer) : la caméra s’approche d’elle en travelling, passe au-dessus de sa tête et se retourne. Référence de mouvement pour le film Regen Peptide, à étudier côté machinerie (rig, trajectoire, faisabilité).",link:"https://www.youtube.com/watch?v=OE999ilxDNk"}},
+   ["On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable."]],
+  todo:[{t:"Camera Support & Movement",lines:["Bras Neutron (à confirmer)"]},"Rigging & mounting","Special Rigs"],
+  refs:[MUGLER,PLAN]},
  {id:"photo",name:"Photo",known:[
-   ["Ben Fourmi, photographe, travaille régulièrement avec Filorga"],
-   ["Tournage photo et vidéo en binôme sur chaque campagne"]],
-  todo:["Définir le partage de la lumière et de la caméra entre photo et vidéo"]},
+   ["Ben Fourmi, photographe"],
+   ["Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi"],
+   ["Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo"]],
+  todo:[]},
  {id:"post",name:"Post / IA-3D",known:[
-   ["Plans produits seuls : réalisés en IA ou en 3D, pas tournés"],
-   ["Fonds intégrés évoqués (piscine, plage) : à clarifier avec la post-production","Fond incrusté ou non ? à trancher",1]],
-  todo:["Savoir qui produit les plans produits IA / 3D, et à quelle étape","Désigner un DIT","Définir le workflow rushs et proxies","Trancher : fonds incrustés ou fonds physiques"]}
+   ["Plans produits seuls : IA ou 3D (non tournés)"],
+   ["UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris"]],
+  todo:[],refs:[{src:"refs/uv-ref.jpg",title:"UV Cellular · références",cap:"Mood incrust : background gris ou chroma key, TBD."}]}
 ];
 const TEAM=[
- ["Production","Boner Boner"],["Réalisation","Eve Vitré"],["Photographe","Ben Fourmi"],["Chef opérateur","Seb Trân"],
- ["1er AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin / campagne"],
- ["Producer",""],["Line producer",""],["Régie générale",""],["Prod exe",""],["Agence",""],["DA",""],["1er AD",""],["2e AC",""],["DIT",""],["Loueur matériel",""]
+ ["Prod","Boner Boner"],["Director","Eve Vitré"],["Photographe","Ben Fourmi"],["DOP","Seb Trân"],
+ ["1st AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin par campagne"],
+ ["Producer",""],["Line Producer",""],["Régisseur Gé",""],["Prod exe",""],["Agence",""],["DA",""],["Hotel",""],["1st AD",""],["2nd AC",""],["DIT",""],["Loueur matos",""]
 ];
 const QS=[
- {id:"q1",t:"Quel ordre pour les 4 campagnes sur les 19 et 20 novembre ?",d:["prod"]},
- {id:"q2",t:"Quelle agence, et quel loueur matériel ?",d:["prod"]},
- {id:"q3",t:"Quels mouvements sont prévus, et le bras Neutron sera-t-il utilisé ?",d:["mach","cam"]},
- {id:"q4",t:"Qui produit les plans produits en IA / 3D, et à quelle étape ?",d:["post"]},
- {id:"q5",t:"Comment se partagent la lumière et la caméra entre la photo (Ben Fourmi) et la vidéo ?",d:["photo","cam","lum"]},
- {id:"q6",t:"Tout se tourne-t-il sur le même plateau 480 ? Un écran LED est-il prévu ?",d:["prod","lum"]},
- {id:"q7",t:"Quels backgrounds exactement ? Fond incrusté ou fond physique ?",d:["lum","post"]},
- {id:"q8",t:"Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?",d:["cam","lum"]}
+ {id:"q1",t:"Ordre des 4 campagnes sur les 19 et 20 novembre",d:["prod"]},
+ {id:"q2",t:"Agence / loueur matos",d:["prod"]},
+ {id:"q3",t:"Mouvements prévus et usage du bras Neutron",d:["mach","cam"]},
+ {id:"q4",t:"Qui produit les plans produits IA / 3D, et à quelle étape",d:["post"]},
+ {id:"q5",t:"Partage de la lumière et de la caméra entre photo (Ben Fourmi) et vidéo",d:["photo","cam","lum"]}
 ];
 
 /* =========== Mise en page des nodes (coordonnées du plan) =========== */
 const WORLD_W=1560;
 const NODES=[
  {id:"root",kind:"Projet",x:520,y:60,w:520},
- {id:"brief",kind:"Brief",x:110,y:70,w:310},
- {id:"fonds",kind:"Fonds évoqués",x:1140,y:70,w:310},
- ...CAMPS.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:200+i*300,y:520,w:260,camp:c})),
- {id:"plan",kind:"Planning provisoire",x:560,y:940,w:440},
- {id:"hub",kind:"Chacun sa partie",x:650,y:1260,w:260,cls:"hub"},
- ...DEPTS.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1400,w:225,cls:"dept",dept:d})),
- {id:"team",kind:"Équipe",x:120,y:1750,w:560},
- {id:"qs",kind:"Questions ouvertes",x:740,y:1750,w:420},
- {id:"me",kind:"Mes notes",x:1220,y:1750,w:260}
+ {id:"brief",kind:"Brief",x:90,y:70,w:350},
+ {id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
+ ...CAMPS.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,camp:c})),
+ {id:"plan",kind:"Planning provisoire",x:90,y:1420,w:440},
+ {id:"loc",kind:"Location",x:600,y:1420,w:620},
+ {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
+ ...DEPTS.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1920,w:225,cls:"dept",dept:d})),
+ {id:"team",kind:"Équipe",x:120,y:2400,w:560},
+ {id:"qs",kind:"Questions ouvertes",x:740,y:2400,w:420},
+ {id:"me",kind:"Mes notes",x:1220,y:2400,w:260}
 ];
-const EDGES=[["root","brief"],["root","fonds"],...CAMPS.map(c=>["root","c_"+c.id]),...CAMPS.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DEPTS.map(d=>["hub","d_"+d.id])];
+const EDGES=[["root","brief"],["root","mood"],...CAMPS.map(c=>["root","c_"+c.id]),...CAMPS.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DEPTS.map(d=>["hub","d_"+d.id])];
 
 /* =========== État local =========== */
-const KEY="filorga-2026-11:v2";
+const KEY="filorga-2026-11:v3";
 const blank=()=>({role:"",author:"",checks:{},custom:{},notes:{},qs:{},plan:{},camp:{},pos:{},z:0});
 let S;
-try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("filorga-2026-11:v1")||"{}"))}catch(e){S=blank()}
+try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){S=blank()}
 let saveT;const save=()=>{clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150)};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)};
 const uid=()=>Math.random().toString(36).slice(2,9);
 const D=id=>DEPTS.find(d=>d.id===id);
-const fixedTodo=d=>d.todo.map((t,i)=>({id:d.id+":"+i,text:t.replace(/\|p$/,""),piste:t.endsWith("|p")}));
+const fixedTodo=d=>d.todo.map((t,i)=>typeof t==="string"?{id:d.id+":"+i,text:t}:{id:d.id+":"+i,text:t.t,def:t.def,lines:t.lines,fix:t.fix,ctl:t.ctl});
+const isDone=i=>(i.id in S.checks)?!!S.checks[i.id]:!!i.def;
 const allTodo=d=>[...fixedTodo(d),...(S.custom[d.id]||[])];
 const mobile=()=>innerWidth<820;
 
@@ -268,31 +308,36 @@ const world=$("#world"),svg=$("#edges"),stage=$("#stage");
 const el={};
 function body(n){
  if(n.id==="root")return `<h2>Filorga<br>4 campagnes</h2>
-  <p class="sub" style="margin-top:8px">Boner Boner · Réal. Eve Vitré · Photo Ben Fourmi · Image Seb Trân</p>
-  <div class="facts"><div><span>Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div><div><span>Lieu</span><b>Studio de la Montjoie, plateau 480</b></div><div><span>Format</span><b>Photo + vidéo, en binôme</b></div><div><span>Rythme</span><b>1 campagne par demi-journée</b></div></div>
+  <p class="sub" style="margin-top:8px">Boner Boner · Director Eve Vitré · Photographe Ben Fourmi · DOP Seb Trân</p>
+  <div class="facts"><div><span>Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div><div><span>Lieu</span><b>Studio de la Montjoie</b></div><div><span>Type</span><b>Pub – photo + vidéo, en binôme avec Ben Fourmi</b></div><div><span>Rythme</span><b>1 campagne par demi-journée (4)</b></div></div>
   <div class="cd"><strong id="days">—</strong><span class="sub" id="daysLabel"></span></div>`;
- if(n.id==="brief")return `<h3>Le brief en 30 secondes</h3><ul>
-  <li><b>4 campagnes</b><br><span class="sub">Regen Peptide, UV Cellular, Time Filler, NCEF Revitalize</span></li>
-  <li><b>1 mannequin par campagne</b><br><span class="sub">Plans d'attitude et d'application des produits</span></li>
-  <li><b>Plans serrés, peu de mouvement</b><br><span class="sub">Bras Neutron possible, comme sur LRP (à confirmer)</span></li>
-  <li><b>Produits seuls : pas tournés</b><br><span class="sub">Réalisés en IA ou en 3D</span></li></ul>
-  <p class="sub" style="margin:10px 0 0">Source : note de job, 13 nov. Documents de brief à joindre.</p>`;
- if(n.id==="fonds")return `<p class="sub">Discussion créative en cours, à valider. Aplats = repères, pas des références.</p>
-  <div class="sw"><div class="dark" style="background:linear-gradient(#000,#8d8d8d)"><span>Dégradé noir → gris</span></div>
-  <div class="dark" style="background:#2f5d94"><span>Fond bleu</span></div>
-  <div style="background:var(--soft);border-style:dashed"><span>Intégré : piscine</span></div>
-  <div style="background:var(--soft);border-style:dashed"><span>Intégré : plage</span></div></div>`;
- if(n.camp){const c=n.camp;return `<div class="band" style="background:${c.g}"></div><h3>${esc(c.name)}</h3><p class="sub">${esc(c.sub)}</p>
-  <div>${c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}${c.pist?`<span class="tag k">${esc(c.pist)}</span>`:""}</div>
+ if(n.id==="brief")return `<ul class="v">
+  <li><b>Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo</b>
+   <ul class="s"><li>1 campagne par demi-journée : REGEN PEPTIDE, UV CELLULAR, TIME FILLER, NCEF REVITALIZE</li><li>1 mannequin par campagne : plans d'attitude + application des produits</li></ul></li>
+  <li><b>Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)</b></li>
+  <li><b>1 plan machinerie spécial &gt; la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot</b>
+   <img class="rimg" data-zoom src="${MUGLER.src}" alt="Référence Mugler Angel Elixir"><span class="sub">Référence : Mugler Angel Elixir</span></li>
+  <li>Plans produits seuls : IA ou 3D (non tournés)</li></ul>
+  <p class="sub" style="margin:10px 0 0">Source : note de job Evernote, 13 nov.</p>`;
+ if(n.id==="mood")return `<ol class="v"><li>mood B&amp;W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)</li>
+  <li>mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight</li></ol>
+  <p style="margin-top:10px">On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.</p>
+  <img class="rimg" data-zoom src="refs/time-ncef-gradient.jpg" alt="Dégradé N&B de référence">`;
+ if(n.camp){const c=n.camp;return `<h3>${esc(c.name)}</h3><p class="v">${esc(c.txt)}</p>
+  ${c.pist?`<span class="tag k">${esc(c.pist)}</span>`:""}
+  <div class="refs">${c.imgs.map(i=>`<img data-zoom src="${i[0]}" alt="${esc(i[1])}" loading="lazy">`).join("")}</div>
   <textarea data-camp="${c.id}" placeholder="Ma note sur cette campagne…" aria-label="Note ${esc(c.name)}" style="margin-top:10px">${esc(S.camp[c.id]||"")}</textarea>`;}
- if(n.id==="plan")return `<p class="sub" style="margin-bottom:12px">Ordre non validé : question ouverte de la production. Teste un ordre, il reste sur ton appareil.</p>
+ if(n.id==="loc")return `<h3>Studio de la Montjoie</h3><p class="sub"><a href="https://studiosdelamontjoie.com" target="_blank" rel="noopener">studiosdelamontjoie.com</a></p>
+  <div class="refs three"><img data-zoom src="refs/montjoie-1.jpg" alt="Studio de la Montjoie, plateau 480" loading="lazy"><img data-zoom src="refs/montjoie-2.jpg" alt="Studio de la Montjoie, plateau 480" loading="lazy"><img data-zoom src="${PLAN.src}" alt="Plan plateau 480" loading="lazy"></div>
+  <p class="sub" style="margin:8px 0 0">Plateau 480 · <a href="${PLAN.link}" target="_blank" rel="noopener">${PLAN.linkText}</a></p>`;
+ if(n.id==="plan")return `<p class="sub" style="margin-bottom:12px">Ordre des 4 campagnes : question ouverte. Teste un ordre, il reste sur ton appareil.</p>
   <div class="slots">${SLOTS.map((s,i)=>`<div><label>${esc(s)}</label><select data-slot="${i}"><option value="">À définir</option>${CAMPS.map(c=>`<option value="${c.id}"${S.plan[i]===c.id?" selected":""}>${esc(c.name)}</option>`).join("")}</select></div>`).join("")}</div>`;
  if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
- if(n.dept){const d=n.dept,all=allTodo(d),done=all.filter(i=>S.checks[i.id]).length;
+ if(n.dept){const d=n.dept,all=allTodo(d),done=all.filter(isDone).length;
   return `<h3>${esc(d.name)}</h3><div class="sub">${done} / ${all.length} points</div><div class="bardone"><i style="width:${all.length?done/all.length*100:0}%"></i></div>
   <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k[0])}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
  if(n.id==="team")return `<ul class="team">${TEAM.map(m=>`<li class="${m[1]?"":"tbc"}"><span>${esc(m[0])}</span><b style="font-weight:500">${m[1]?esc(m[1]):"à confirmer"}</b></li>`).join("")}</ul>
-  <p class="sub" style="margin:10px 0 0">Coordonnées volontairement non publiées ici.</p>`;
+  <p class="sub" style="margin:10px 0 0">Téléphones et mails : dans la note Evernote, non publiés ici.</p>`;
  if(n.id==="qs"){const open=QS.filter(q=>!(S.qs[q.id]&&S.qs[q.id].done)).length;
   return `<div class="sub" style="margin-bottom:6px">${open} ouvertes sur ${QS.length}</div><ul class="ql">${QS.map(q=>{const r=S.qs[q.id]&&S.qs[q.id].done;return `<li data-openq="${q.id}"><i class="dot${r?" ok":""}"></i><span>${esc(q.t)}</span></li>`}).join("")}</ul>`;}
  if(n.id==="me")return `<p class="sub">Ce que tu écris ici reste <b>sur ton appareil</b>. Pour le partager, copie ou exporte tes notes et envoie-les à Seb.</p>
@@ -368,17 +413,21 @@ function place2(n){place(n)}
 const drawer=$("#drawer"),shade=$("#shade");
 function openDrawer(html){drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.scrollTop=0;drawer.querySelector("[data-close]").onclick=closeDrawer}
 function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true")}
-shade.onclick=closeDrawer;addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+shade.onclick=closeDrawer;addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();closeDrawer()}});
+const lb=$("#lb");function closeLb(){lb.classList.remove("on")}
+lb.onclick=closeLb;
+document.addEventListener("click",e=>{const i=e.target.closest&&e.target.closest("img[data-zoom]");if(!i)return;e.stopPropagation();lb.querySelector("img").src=i.currentSrc||i.src;lb.classList.add("on")},true);
 const head=t=>`<div class="dh"><h2>${esc(t)}</h2><button data-close aria-label="Fermer">×</button></div>`;
 
 function openDept(id){
  const d=D(id);
- const item=(it,c)=>`<li class="${S.checks[it.id]?"done":""}"><input type="checkbox" data-chk="${it.id}"${S.checks[it.id]?" checked":""}><span>${esc(it.text)}${it.piste?'<em class="pis" style="font-style:normal">piste</em>':""}</span>${c?`<button class="x" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`;
+ const det=it=>(it.lines||it.fix||it.ctl)?`<span class="det">${(it.lines||[]).map(l=>`<span>${esc(l)}</span>`).join("")}${it.fix?`<span><em>Fixtures :</em> ${esc(it.fix.join(" ; "))}</span>`:""}${it.ctl?`<span><em>Light Control :</em> ${esc(it.ctl.join(" ; "))}</span>`:""}</span>`:"";
+ const item=(it,c)=>{const dn=isDone(it);return `<li class="${dn?"done":""}"><input type="checkbox" data-chk="${it.id}"${dn?" checked":""}><span><b class="t">${esc(it.text)}</b>${det(it)}</span>${c?`<button class="x" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`};
  const qs=QS.filter(q=>q.d.includes(id));
  openDrawer(head(d.name)+`
   <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map(k=>`<li class="${k[2]?"w":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
-  ${d.ref?`<div class="ds"><h4>${esc(d.ref.title)}</h4><img src="${d.ref.src}" alt="${esc(d.ref.title)}" style="width:100%;border-radius:8px;display:block;background:#000"><p class="sub" style="margin:8px 0 0">${esc(d.ref.cap)} <a href="${d.ref.link}" target="_blank" rel="noopener">Voir la pub complète</a></p></div>`:""}
-  <div class="ds"><h4>À préparer</h4><ul class="ck">${fixedTodo(d).map(i=>item(i,0)).join("")}${(S.custom[id]||[]).map(i=>item(i,1)).join("")}</ul>
+  ${(d.refs||[]).map(r=>`<div class="ds"><h4>${esc(r.title)}</h4><img class="rimg" data-zoom src="${r.src}" alt="${esc(r.title)}">${r.cap?`<p class="sub" style="margin:8px 0 0">${esc(r.cap)}${r.link?` <a href="${r.link}" target="_blank" rel="noopener">${esc(r.linkText)}</a>`:""}</p>`:""}</div>`).join("")}
+  <div class="ds"><h4>${d.todo.length?"À préparer":"Mes points à ajouter"}</h4><ul class="ck">${fixedTodo(d).map(i=>item(i,0)).join("")}${(S.custom[id]||[]).map(i=>item(i,1)).join("")}</ul>
    <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…"><button class="btn" type="submit">Ajouter</button></form></div>
   <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>
   <div class="ds"><h4>Mes notes ${esc(d.name)}</h4><textarea id="dnote" style="min-height:150px" placeholder="Besoins, remarques, matériel, contraintes…">${esc(S.notes[id]||"")}</textarea></div>`);
@@ -412,7 +461,7 @@ function markRole(){DEPTS.forEach(d=>el["d_"+d.id].classList.toggle("me",S.role=
 /* =========== Notes : copier / export / import =========== */
 function summary(){
  const L=["FILORGA — 4 campagnes — 19+20/11/2026"+(S.author?" — notes de "+S.author:"")];
- DEPTS.forEach(d=>{const items=allTodo(d).map(i=>`  [${S.checks[i.id]?"x":" "}] ${i.text}`),note=(S.notes[d.id]||"").trim();
+ DEPTS.forEach(d=>{const items=allTodo(d).map(i=>`  [${isDone(i)?"x":" "}] ${i.text}`),note=(S.notes[d.id]||"").trim();
   L.push("","## "+d.name,...items);if(note)L.push("  Notes : "+note.replace(/\n/g,"\n  "))});
  const camps=CAMPS.filter(c=>(S.camp[c.id]||"").trim()).map(c=>`  ${c.name} : ${S.camp[c.id].trim()}`);if(camps.length)L.push("","## Campagnes",...camps);
  const plan=SLOTS.map((s,i)=>S.plan[i]?`  ${s} : ${CAMPS.find(c=>c.id===S.plan[i]).name}`:null).filter(Boolean);if(plan.length)L.push("","## Ordre testé",...plan);
