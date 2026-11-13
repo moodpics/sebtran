@@ -274,8 +274,8 @@ window.FILMS = {
     {
       "id": "1246448217",
       "h": null,
-      "client": "Atelier Roman",
-      "title": "Lola",
+      "client": "Lola",
+      "title": "Atelier Roman",
       "category": "Fashion",
       "director": "Chris Roman",
       "production": "Atelier Roman",
