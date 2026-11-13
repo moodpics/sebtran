@@ -405,7 +405,7 @@ window.FILMS = {
     },
     {
       "id": "1205523223",
-      "h": "7e5b23605c",
+      "h": null,
       "client": "Fauré Le Page",
       "title": "Film II",
       "category": "Fashion",
