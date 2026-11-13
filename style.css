@@ -212,7 +212,7 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .card.is-playing .card__dur { opacity: 0; }
 
 @media (hover: hover) {
-  .grid.has-hover .card:not(.is-hover) { filter: brightness(.5) saturate(.85); }
+  .grid.has-hover .card:not(.is-hover) { filter: brightness(.65) saturate(.85); }
   .card.is-hover { z-index: 5; }
   .card.is-hover .card__frame { transform: scale(1.035); }
   .card.is-hover .card__frame img { transform: scale(1); filter: saturate(1.05) brightness(1.03); }

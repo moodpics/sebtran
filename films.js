@@ -186,18 +186,6 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2075024311-101bb096cb7e07992ef830c8a391599730c63d11211e85a7175d61aa61e87a21-d"
     },
     {
-      "id": "1246432133",
-      "h": null,
-      "client": "Vichy",
-      "title": "M89 — Science Film",
-      "category": "Commercial",
-      "director": null,
-      "production": "Henry",
-      "year": null,
-      "duration": 20,
-      "thumb": null
-    },
-    {
       "id": "1246446913",
       "h": null,
       "client": "Miu Miu",
@@ -244,18 +232,6 @@ window.FILMS = {
       "year": null,
       "duration": 10,
       "thumb": null
-    },
-    {
-      "id": "1228750774",
-      "h": "968addf563",
-      "client": "Vichy Dercos",
-      "title": "Regen",
-      "category": "Commercial",
-      "director": null,
-      "production": "U-Turn",
-      "year": null,
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/2203249269-b5961eb17fef382057545383140e85d75c3fa1b82d3d531dec5a65d90c5e2b0b-d"
     },
     {
       "id": "1246445465",
