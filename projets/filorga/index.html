@@ -4,292 +4,223 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#000000">
 <title>Filorga — 4 campagnes · 19+20 nov. 2026</title>
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a0a0a; --bg2:#121211; --bg3:#191917; --fg:#ebe8e2; --muted:#8a8780; --line:rgba(235,232,226,.12);
-  --accent:#e0a35c; --ok:#7fb08a; --warn:#e5483a;
-  --serif:"Instrument Serif","Times New Roman",serif; --sans:"Inter Tight",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
-  --pad:clamp(18px,4vw,56px);
-}
+:root{--ink:#0c0c0c;--mute:#7b7b7b;--line:#e4e4e4;--soft:#f5f5f5;--sans:"Hanken Grotesk",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
 *,*::before,*::after{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth;scroll-padding-top:64px}
-body{margin:0;background:var(--bg);color:var(--fg);font:300 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:inherit}
+html,body{margin:0;height:100%}
+body{font:400 14px/1.45 var(--sans);color:var(--ink);background:#000;-webkit-font-smoothing:antialiased}
 button,select,textarea,input{font:inherit;color:inherit}
 button{background:none;border:0;padding:0;cursor:pointer}
-h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.05}
-.mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-section{padding:72px var(--pad);border-top:1px solid var(--line);max-width:1240px;margin:0 auto}
-section>h2{font-size:clamp(34px,5vw,56px);margin:10px 0 28px}
-.lead{max-width:62ch;color:#cfccc5}
+a{color:inherit}
 
-/* nav */
-nav.top{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:0 var(--pad);scrollbar-width:none}
-nav.top::-webkit-scrollbar{display:none}
-nav.top a{flex:none;padding:18px 12px;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent}
-nav.top a:hover,nav.top a.on{color:var(--fg);border-color:var(--accent)}
+/* ---- barre du haut ---- */
+.bar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:14px;padding:12px 18px;background:linear-gradient(#000 60%,rgba(0,0,0,0));color:#fff}
+.bar b{font-weight:600;letter-spacing:-.01em;font-size:15px;margin-right:auto;white-space:nowrap}
+.bar small{color:#9a9a9a;font-size:12px;margin-right:6px}
+.pills{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;max-width:70vw}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:none;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:5px 13px;font-size:13px;transition:.15s}
+.pill:hover{border-color:#fff}
+.pill.on{background:#fff;color:#000;border-color:#fff}
+
+/* ---- canvas ---- */
+#view{position:fixed;inset:0;overflow:auto}
+#stage{position:relative;margin:0 auto;background:linear-gradient(180deg,#000 0%,#000 7%,#7d7d7d 42%,#e9e9e9 74%,#fff 100%)}
+#world{position:absolute;left:0;top:0;transform-origin:0 0}
+#edges{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.node{position:absolute;background:#fff;border:1px solid rgba(0,0,0,.14);border-radius:4px;box-shadow:0 14px 34px -12px rgba(0,0,0,.45)}
+.node.drag{box-shadow:0 24px 50px -12px rgba(0,0,0,.6);z-index:5}
+.node.me{box-shadow:0 0 0 3px #000,0 0 0 5px #fff,0 14px 34px -12px rgba(0,0,0,.45)}
+.nh{display:flex;justify-content:space-between;align-items:center;padding:9px 14px 8px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);cursor:grab;user-select:none;touch-action:none}
+.nh i{font-style:normal;letter-spacing:0;text-transform:none;font-size:12px}
+.nb{padding:14px}
+.node h3{margin:0 0 4px;font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+.node h2{margin:0;font-size:30px;font-weight:500;letter-spacing:-.03em;line-height:1.05}
+.node p{margin:0 0 8px;color:#3d3d3d}
+.sub{color:var(--mute);font-size:13px}
+.node ul{list-style:none;margin:0;padding:0}
+.node li{padding:7px 0;border-top:1px solid var(--line)}
+.node li:first-child{border-top:0}
 
 /* hero */
-.hero{padding:clamp(56px,10vw,120px) var(--pad) 56px;max-width:1240px;margin:0 auto;position:relative}
-.hero h1{font-size:clamp(64px,14vw,176px);letter-spacing:-.02em}
-.hero h1 em{color:var(--accent);font-style:italic}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
-.facts div{background:var(--bg);padding:18px 20px}
-.facts b{display:block;font-weight:400;font-size:18px;margin-top:6px}
-.count{display:inline-flex;gap:10px;align-items:baseline;margin-top:26px}
-.count strong{font:400 52px/1 var(--serif);color:var(--accent)}
-.role{margin-top:36px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.chip{border:1px solid var(--line);border-radius:99px;padding:8px 16px;font-size:14px;transition:.2s}
-.chip:hover{border-color:var(--accent)}
-.chip.on{background:var(--accent);color:#0a0a0a;border-color:var(--accent)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin-top:16px}
+.facts span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.facts b{font-weight:500;font-size:14px}
+.cd{display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.cd strong{font-size:34px;font-weight:500;letter-spacing:-.03em}
 
-/* brief */
-.brief{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.brief div{border-left:2px solid var(--accent);padding:4px 0 4px 18px}
-.brief h3{font-size:26px;margin-bottom:6px}
-.brief p{margin:0;color:#cfccc5}
+/* campagnes */
+.band{height:84px;margin:-14px -14px 12px;border-bottom:1px solid var(--line)}
+.tag{display:inline-block;border:1px solid #cfcfcf;border-radius:99px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0}
+.tag.k{background:#000;color:#fff;border-color:#000}
+textarea,select,input[type=text]{width:100%;background:var(--soft);border:1px solid var(--line);border-radius:3px;padding:8px 10px}
+textarea{min-height:64px;resize:vertical;line-height:1.45}
+textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1px;background:#fff}
 
-/* campaigns */
-.camps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.camp{position:relative;border:1px solid var(--line);min-height:360px;padding:56px 22px 22px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--g)}
-.camp::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.05) 70%)}
-.camp>*{position:relative}
-.camp .n{position:absolute;top:18px;left:22px}
-.camp h3{font-size:34px}
-.camp p{margin:8px 0 12px;color:#e6e2da}
-.tag{display:inline-block;border:1px solid rgba(235,232,226,.35);border-radius:99px;padding:3px 10px;font-size:12px;margin:0 6px 6px 0}
-.camp textarea{margin-top:10px}
-
-/* swatches */
-.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:8px}
-.sw{height:120px;border:1px solid var(--line);display:flex;align-items:flex-end;padding:12px;font-size:14px}
-.sw span{background:rgba(0,0,0,.55);padding:2px 8px}
+/* fonds */
+.sw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sw div{height:74px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:flex-end;padding:7px;font-size:12px}
+.sw div span{background:rgba(255,255,255,.88);padding:1px 6px;border-radius:2px}
+.sw .dark span{background:rgba(0,0,0,.6);color:#fff}
 
 /* planning */
-.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.slot{border:1px solid var(--line);background:var(--bg2);padding:16px}
-.slot select{width:100%;margin-top:10px}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.slots label{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:5px}
 
-/* forms */
-select,textarea,input[type=text]{background:var(--bg3);border:1px solid var(--line);padding:10px 12px;width:100%;border-radius:2px}
-textarea{min-height:110px;resize:vertical;line-height:1.5}
-select:focus,textarea:focus,input:focus{outline:1px solid var(--accent);border-color:var(--accent)}
+/* hub / départements */
+.hub .nb{padding:12px 16px;text-align:center}
+.hub h3{font-size:17px;margin:0}
+.dept{cursor:pointer}
+.dept:hover{box-shadow:0 18px 40px -12px rgba(0,0,0,.55)}
+.bardone{height:4px;background:var(--line);border-radius:2px;margin:10px 0 12px;overflow:hidden}
+.bardone i{display:block;height:100%;background:#000}
+.dept li{font-size:13px;color:#3d3d3d}
+.open{display:inline-block;margin-top:10px;font-size:13px;font-weight:500;border-bottom:1px solid #000}
 
-/* departments */
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
-.tab{border:1px solid var(--line);padding:10px 18px;font-size:14px}
-.tab.on{background:var(--fg);color:#0a0a0a;border-color:var(--fg)}
-.tab:hover:not(.on){border-color:var(--accent)}
-.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
-.card{border:1px solid var(--line);background:var(--bg2);padding:22px}
-.card h3{font-size:26px;margin-bottom:14px}
-.card ul{margin:0;padding:0;list-style:none}
-.known li{padding:9px 0 9px 20px;border-top:1px solid var(--line);position:relative;color:#d8d5ce}
-.known li:first-child{border-top:0}
-.known li::before{content:"";position:absolute;left:2px;top:17px;width:7px;height:7px;background:var(--ok);border-radius:50%}
-.known li.warn::before{background:var(--accent)}
-.known li small{display:block;color:var(--muted);font-size:13px}
-.chk li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
-.chk li:first-child{border-top:0}
-.chk li input{accent-color:var(--accent);width:18px;height:18px;margin-top:3px;flex:none}
-.chk li.done span{color:var(--muted);text-decoration:line-through}
-.chk li.piste span::after{content:" · piste";color:var(--accent);font-size:12px}
-.chk .rm{margin-left:auto;color:var(--muted);font-size:18px;line-height:1;padding:0 4px}
-.chk .rm:hover{color:var(--warn)}
-.add{display:flex;gap:8px;margin-top:14px}
-.add input{flex:1;min-width:0;width:auto}
-.add button,.btn{border:1px solid var(--line);padding:9px 16px;font-size:14px;white-space:nowrap}
-.add button:hover,.btn:hover{border-color:var(--accent);color:var(--accent)}
-.who{margin-bottom:10px}
+/* équipe / questions */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.team li{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.team li span{color:var(--mute)}
+.team li.tbc b{color:#aaa;font-weight:400;font-style:italic}
+.ql li{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:13px}
+.ql li:hover{background:var(--soft)}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:#000;margin-top:6px}
+.dot.ok{background:transparent;border:1.5px solid #9a9a9a}
 
-/* team */
-.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.mem{border:1px solid var(--line);padding:16px;background:var(--bg2)}
-.mem b{display:block;font:400 22px/1.15 var(--serif);margin-top:6px}
-.mem.tbc{background:transparent;border-style:dashed}
-.mem.tbc b{color:var(--muted);font-style:italic}
+/* boutons */
+.btn{display:inline-block;border:1px solid #000;border-radius:3px;padding:7px 13px;font-size:13px;font-weight:500;background:#fff;cursor:pointer}
+.btn:hover{background:#000;color:#fff}
+.btn.p{background:#000;color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 
-/* questions */
-.q{border:1px solid var(--line);background:var(--bg2);padding:20px;margin-bottom:12px}
-.q.done{opacity:.6}
-.q header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
-.q h3{font:400 24px/1.2 var(--serif);max-width:60ch}
-.q .tags{margin:8px 0 12px}
-.q .tags .tag{border-color:var(--line);color:var(--muted)}
-.st{border:1px solid var(--line);padding:6px 14px;font-size:13px;border-radius:99px}
-.st.open{color:var(--accent);border-color:var(--accent)}
-.st.res{color:var(--ok);border-color:var(--ok)}
-.q textarea{min-height:70px}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+/* zoom */
+.zoom{position:fixed;left:18px;bottom:18px;z-index:30;display:flex;background:#fff;border:1px solid rgba(0,0,0,.2);border-radius:4px;box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
+.zoom button{padding:8px 13px;font-size:14px;border-right:1px solid var(--line)}
+.zoom button:last-child{border:0;font-size:12px}
+.zoom button:hover{background:var(--soft)}
 
-footer{border-top:1px solid var(--line);padding:48px var(--pad) 80px;max-width:1240px;margin:0 auto}
-footer .row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 22px}
-.notice{background:var(--bg2);border:1px solid var(--line);border-left:2px solid var(--accent);padding:14px 18px;color:#cfccc5;max-width:72ch;font-size:15px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--fg);color:#0a0a0a;padding:10px 18px;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+/* tiroir */
+#shade{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;opacity:0;pointer-events:none;transition:.2s}
+#shade.on{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(540px,100vw);background:#fff;z-index:41;transform:translateX(105%);transition:transform .25s cubic-bezier(.2,.8,.2,1);overflow:auto;box-shadow:-20px 0 60px rgba(0,0,0,.35)}
+#drawer.on{transform:none}
+.dh{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+.dh h2{font-size:26px;font-weight:500;letter-spacing:-.025em;margin:0}
+.dh button{font-size:26px;line-height:1;padding:2px 8px}
+.ds{padding:20px 22px;border-bottom:1px solid var(--line)}
+.ds ul{list-style:none;margin:0;padding:0}
+.ds h4{margin:0 0 10px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.ds li{padding:8px 0 8px 16px;border-top:1px solid var(--line);position:relative}
+.ds li:first-child{border-top:0}
+.ds .kn li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;border-radius:50%;background:#000}
+.ds .kn li.w::before{background:transparent;border:1.5px solid #000}
+.ds small{display:block;color:var(--mute)}
+.ck li{display:flex;gap:11px;align-items:flex-start;padding-left:0}
+.ck input[type=checkbox]{accent-color:#000;width:17px;height:17px;margin-top:2px;flex:none}
+.ck li.done span{color:#9a9a9a;text-decoration:line-through}
+.ck .x{margin-left:auto;color:#9a9a9a;font-size:18px;line-height:1}
+.ck .x:hover{color:#000}
+.pis{font-size:12px;border:1px solid #cfcfcf;border-radius:99px;padding:0 8px;margin-left:6px;color:#555}
+.add{display:flex;gap:8px;margin-top:12px}
+.q{border:1px solid var(--line);border-radius:4px;padding:14px;margin-bottom:10px}
+.q.done{opacity:.55}
+.q header{display:flex;justify-content:space-between;gap:12px}
+.q h5{margin:0;font-size:15px;font-weight:600;line-height:1.3}
+.st{flex:none;border:1px solid #000;border-radius:99px;padding:2px 11px;font-size:12px;height:fit-content}
+.st.r{background:#000;color:#fff}
+.q .tags{margin:8px 0}
+.q textarea{min-height:56px}
+.fl{display:flex;gap:6px;flex-wrap:wrap}
+.fl button{border:1px solid #cfcfcf;border-radius:99px;padding:3px 11px;font-size:12px}
+.fl button.on{background:#000;color:#fff;border-color:#000}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(14px);background:#fff;color:#000;padding:9px 16px;border-radius:3px;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:.2s;pointer-events:none;z-index:60;font-size:13px}
 .toast.on{opacity:1;transform:translateX(-50%)}
-@media print{nav.top,.add,footer .row,.role{display:none}body{background:#fff;color:#000}}
+
+/* mobile : colonne simple, plus de câbles */
+body.m{background:linear-gradient(#000 0,#000 3%,#777 35%,#e8e8e8 70%,#fff 100%) fixed}
+body.m #view{position:static;overflow:visible;padding:64px 14px 90px}
+body.m #stage{width:auto!important;height:auto!important;background:none}
+body.m #world{position:static;transform:none!important}
+body.m #edges{display:none}
+body.m .node{position:static;width:auto!important;margin:0 0 14px}
+body.m .nh{cursor:default}
+body.m .zoom{display:none}
+body.m .pills{max-width:62vw}
+body.m .bar small{display:none}
 </style>
 </head>
 <body>
 
-<nav class="top" id="nav">
-  <a href="#top" class="on">Filorga</a><a href="#brief">Brief</a><a href="#campagnes">Campagnes</a><a href="#planning">Planning</a><a href="#departements">Départements</a><a href="#equipe">Équipe</a><a href="#questions">Questions</a>
-</nav>
+<div class="bar">
+  <b>Filorga</b><small>Je suis…</small>
+  <div class="pills" id="pills"></div>
+</div>
 
-<header class="hero" id="top">
-  <div class="mono">Boner Boner · Réal. Eve Vitré · Photo Ben Fourmi · Image Seb Trân</div>
-  <h1>Filorga<br><em>4 campagnes</em></h1>
-  <div class="count mono"><strong id="days">—</strong><span id="daysLabel">jours avant le tournage</span></div>
-  <div class="facts">
-    <div><span class="mono">Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div>
-    <div><span class="mono">Lieu</span><b>Studio de la Montjoie · plateau 480</b></div>
-    <div><span class="mono">Format</span><b>Photo + vidéo, en binôme</b></div>
-    <div><span class="mono">Rythme</span><b>1 campagne / demi-journée</b></div>
-  </div>
-  <div class="role" id="role"><span class="mono" style="margin-right:8px">Je suis…</span></div>
-</header>
+<div id="view"><div id="stage"><div id="world"><svg id="edges"></svg></div></div></div>
 
-<section id="brief">
-  <div class="mono">01 — Pour tout le monde</div>
-  <h2>Le brief en 30 secondes</h2>
-  <div class="brief">
-    <div><h3>4 campagnes</h3><p>Regen Peptide, UV Cellular, Time Filler, NCEF Revitalize. Une campagne par demi-journée, soit 4 demi-journées sur 2 jours.</p></div>
-    <div><h3>1 mannequin par campagne</h3><p>Plans d'attitude et plans d'application des produits.</p></div>
-    <div><h3>Plans serrés, peu de mouvement</h3><p>Prises de vues essentiellement sur les mannequins et les produits. Bras Neutron possible, comme sur LRP (à confirmer).</p></div>
-    <div><h3>Produits seuls : pas tournés</h3><p>Les plans produits seuls seront réalisés en IA ou en 3D.</p></div>
-  </div>
-  <p class="mono" style="margin-top:36px">Source : note de job Evernote, état au 13 nov. 2026 · documents de brief (PDF) à joindre</p>
-</section>
+<div class="zoom" id="zoom"><button data-z="-" aria-label="Dézoomer">−</button><button data-z="+" aria-label="Zoomer">+</button><button data-z="fit">Ajuster</button><button data-z="reset">Remettre en place</button></div>
 
-<section id="campagnes">
-  <div class="mono">02 — Les campagnes</div>
-  <h2>Quatre univers, un plateau</h2>
-  <div class="camps" id="camps"></div>
-  <h3 style="font-size:30px;margin:56px 0 4px">Fonds évoqués</h3>
-  <p class="lead" style="margin:0 0 12px">Discussion créative en cours : à valider (fond dégradé, fond bleu, fonds intégrés). Les aplats ci-dessous sont des repères de couleur, pas des références.</p>
-  <div class="swatches">
-    <div class="sw" style="background:linear-gradient(#0b0b0b,#8d8d8d)"><span>Dégradé haut noir → bas gris</span></div>
-    <div class="sw" style="background:#2c5fa6"><span>Fond bleu</span></div>
-    <div class="sw" style="background:linear-gradient(#7fd0e0,#1c7f9c)"><span>Fond intégré : piscine</span></div>
-    <div class="sw" style="background:linear-gradient(#a9d3ee,#efdcb0)"><span>Fond intégré : plage</span></div>
-  </div>
-</section>
-
-<section id="planning">
-  <div class="mono">03 — Planning provisoire</div>
-  <h2>Ordre des campagnes</h2>
-  <p class="lead" style="margin-bottom:24px">L'ordre n'est pas encore validé : c'est une question ouverte de la production. Chacun peut tester un ordre ici, il reste sur ton appareil.</p>
-  <div class="slots" id="slots"></div>
-</section>
-
-<section id="departements">
-  <div class="mono">04 — Chacun sa partie</div>
-  <h2>Départements</h2>
-  <div class="tabs" id="tabs" role="tablist"></div>
-  <div class="panel" id="panel"></div>
-</section>
-
-<section id="equipe">
-  <div class="mono">05 — Équipe</div>
-  <h2>Qui fait quoi</h2>
-  <p class="lead" style="margin-bottom:24px">Les cases en pointillés sont à confirmer côté production. Les coordonnées ne sont volontairement pas publiées sur cette page.</p>
-  <div class="team" id="team"></div>
-</section>
-
-<section id="questions">
-  <div class="mono">06 — À trancher</div>
-  <h2>Questions ouvertes</h2>
-  <div class="filters" id="qfilters"></div>
-  <div id="qs"></div>
-</section>
-
-<footer>
-  <div class="mono">Tes notes</div>
-  <div class="notice">Ce que tu coches ou écris ici est enregistré <b>sur ton appareil uniquement</b> : les autres ne le voient pas. Pour le partager, copie tes notes ou exporte-les et envoie-les à Seb.</div>
-  <div class="row">
-    <label class="mono" style="display:flex;gap:10px;align-items:center">Ton nom <input type="text" id="author" placeholder="ex. Nathan" style="width:180px"></label>
-    <button class="btn" id="copy">Copier mes notes</button>
-    <button class="btn" id="export">Exporter (.json)</button>
-    <label class="btn" style="cursor:pointer">Importer<input type="file" id="import" accept="application/json" hidden></label>
-    <button class="btn" id="reset">Tout effacer</button>
-  </div>
-  <div class="mono">Page de travail en test · Moodpics · non indexée</div>
-</footer>
+<div id="shade"></div>
+<aside id="drawer" aria-hidden="true"></aside>
 <div class="toast" id="toast"></div>
 
 <script>
-/* ---------- Contenu (issu de la note de job Evernote, état au 13/11/2026) ---------- */
-const SHOOT_DATE = "2026-11-19";
-const CAMPS = [
-  {id:"regen", n:"01", name:"Regen Peptide", sub:"Réparer la barrière cutanée", tags:["N&B pas toujours linéaire"], pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)", g:"linear-gradient(160deg,#4f8a86,#14201f)"},
-  {id:"time",  n:"02", name:"Time Filler", sub:"40 ans et +, anti-rides", tags:["N&B toujours droit"], g:"linear-gradient(160deg,#d2b185,#2b2217)"},
-  {id:"ncef",  n:"03", name:"NCEF Revitalize", sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow", tags:["N&B toujours droit"], g:"linear-gradient(160deg,#eaa7a0,#2d191b)"},
-  {id:"uv",    n:"04", name:"UV Cellular", sub:"Solaire", tags:[], g:"linear-gradient(160deg,#e3a65e,#26548f)"}
+/* =========== Contenu : note de job Evernote, état au 13/11/2026 =========== */
+const SHOOT_DATE="2026-11-19";
+const CAMPS=[
+ {id:"regen",name:"Regen Peptide",sub:"Réparer la barrière cutanée",tags:["N&B pas toujours linéaire"],pist:"Piste DoP : effet filé (filtres spécifiques ? basse cadence ?)",g:"linear-gradient(180deg,#000,#fff)"},
+ {id:"time",name:"Time Filler",sub:"40 ans et +, anti-rides",tags:["N&B toujours droit"],g:"linear-gradient(180deg,#fff,#000)"},
+ {id:"ncef",name:"NCEF Revitalize",sub:"Sérum anti-âge pour jeunes (~25 ans), effet glow",tags:["N&B toujours droit"],g:"linear-gradient(90deg,#000,#fff)"},
+ {id:"uv",name:"UV Cellular",sub:"Solaire",tags:[],g:"radial-gradient(circle at 50% 120%,#fff,#000 75%)"}
 ];
-const SLOTS = ["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
-
-const DEPTS = [
- {id:"prod", name:"Production",
-  known:[
+const SLOTS=["Jeu. 19 nov — matin","Jeu. 19 nov — après-midi","Ven. 20 nov — matin","Ven. 20 nov — après-midi"];
+const DEPTS=[
+ {id:"prod",name:"Production",known:[
    ["Tournage les 19 et 20 novembre 2026, 1 campagne par demi-journée"],
    ["Studio de la Montjoie, plateau 480","Plan et dimensions à préciser"],
    ["Production Boner Boner, réalisation Eve Vitré"],
    ["1 mannequin par campagne"],
-   ["Documents de brief : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE (05/11) »","À joindre à cette page (les PDF sont dans Evernote)",1]
-  ],
+   ["Documents de brief : « Brief Prod des 4 campagnes » et « Brief FILORGA film PEPTIDE (05/11) »","À joindre à cette page (les PDF sont dans Evernote)",1]],
   todo:["Valider l'ordre des 4 campagnes sur les 2 jours","Confirmer l'agence","Confirmer le loueur matériel","Compléter l'équipe : producer, line producer, régisseur général, prod exe, 1er AD","Confirmer le plan et les dimensions du plateau 480","Renseigner l'hôtel si nécessaire"]},
- {id:"cam", name:"Caméra",
-  known:[
+ {id:"cam",name:"Caméra",known:[
    ["Plans principalement serrés, peu de mouvements à ce stade"],
    ["Binôme avec le photographe Ben Fourmi : photo et vidéo"],
    ["Bras Neutron possible, comme sur LRP","À confirmer",1],
-   ["1er AC : Lucas Bidard"]
-  ],
+   ["1er AC : Lucas Bidard"]],
   todo:["Corps caméra","Codec / résolution / fps","LUT / profil","Optiques (set, focales)","Monitoring","Média + backup","Technical specs","Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?|p"]},
- {id:"lum", name:"Lumière",
-  known:[
+ {id:"lum",name:"Lumière",known:[
    ["Mood général : à définir","",1],
    ["Fond dégradé : haut noir vers bas gris"],
    ["Autres fonds évoqués : fond bleu ; fonds intégrés (piscine, plage)","À valider",1],
-   ["Gaffer : Nathan Jean-François"]
-  ],
+   ["Gaffer : Nathan Jean-François"]],
   todo:["Key light","Fill in / negative fill","Backlight","Background","Effet de lumière spécial","Effet filé de Regen Peptide côté lumière|p"]},
- {id:"mach", name:"Machinerie",
-  known:[
+ {id:"mach",name:"Machinerie",known:[
    ["Bras Neutron possible","À confirmer : mouvements prévus et usage réel",1],
    ["Grip : Nicolas Sommermeyer"],
    ["Plateau 480 : plan et dimensions à préciser"],
-   ["Pour mémoire, relevé lors du shoot La Roche-Posay dans ce même plateau : hauteur du cyclo avec retour 4,35 m ; barre à 4,6 m au-dessus du retour","À revérifier pour Filorga",1]
-  ],
+   ["Pour mémoire, relevé lors du shoot La Roche-Posay dans ce même plateau : hauteur du cyclo avec retour 4,35 m ; barre à 4,6 m au-dessus du retour","À revérifier pour Filorga",1]],
   todo:["Support caméra et mouvements","Rigging et fixations","Rigs spéciaux","Obtenir le plan du plateau 480"]},
- {id:"photo", name:"Photo",
-  known:[
+ {id:"photo",name:"Photo",known:[
    ["Ben Fourmi, photographe, travaille régulièrement avec Filorga"],
-   ["Tournage photo et vidéo en binôme sur chaque campagne"]
-  ],
+   ["Tournage photo et vidéo en binôme sur chaque campagne"]],
   todo:["Définir le partage de la lumière et de la caméra entre photo et vidéo"]},
- {id:"post", name:"Post / IA-3D",
-  known:[
+ {id:"post",name:"Post / IA-3D",known:[
    ["Plans produits seuls : réalisés en IA ou en 3D, pas tournés"],
-   ["Fonds intégrés évoqués (piscine, plage) : à clarifier avec la post-production",
-    "Fond incrusté ou non ? à trancher",1]
-  ],
+   ["Fonds intégrés évoqués (piscine, plage) : à clarifier avec la post-production","Fond incrusté ou non ? à trancher",1]],
   todo:["Savoir qui produit les plans produits IA / 3D, et à quelle étape","Désigner un DIT","Définir le workflow rushs et proxies","Trancher : fonds incrustés ou fonds physiques"]}
 ];
-
-const TEAM = [
+const TEAM=[
  ["Production","Boner Boner"],["Réalisation","Eve Vitré"],["Photographe","Ben Fourmi"],["Chef opérateur","Seb Trân"],
- ["1er AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin par campagne"],
- ["Producer",""],["Line producer",""],["Régisseur général",""],["Prod exe",""],["Agence",""],["DA",""],["1er AD",""],["2e AC",""],["DIT",""],["Loueur matériel",""]
+ ["1er AC","Lucas Bidard"],["Gaffer","Nathan Jean-François"],["Grip","Nicolas Sommermeyer"],["Talent","1 mannequin / campagne"],
+ ["Producer",""],["Line producer",""],["Régie générale",""],["Prod exe",""],["Agence",""],["DA",""],["1er AD",""],["2e AC",""],["DIT",""],["Loueur matériel",""]
 ];
-
-const QS = [
+const QS=[
  {id:"q1",t:"Quel ordre pour les 4 campagnes sur les 19 et 20 novembre ?",d:["prod"]},
  {id:"q2",t:"Quelle agence, et quel loueur matériel ?",d:["prod"]},
  {id:"q3",t:"Quels mouvements sont prévus, et le bras Neutron sera-t-il utilisé ?",d:["mach","cam"]},
@@ -300,152 +231,215 @@ const QS = [
  {id:"q8",t:"Effet filé de Regen Peptide : filtres spécifiques ? basse cadence ?",d:["cam","lum"]}
 ];
 
-/* ---------- État local ---------- */
-const KEY="filorga-2026-11:v1";
-const blank=()=>({role:"",author:"",checks:{},custom:{},notes:{},qs:{},plan:{},camp:{}});
-let S; try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){S=blank()}
-let saveT; const save=()=>{clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150)};
+/* =========== Mise en page des nodes (coordonnées du plan) =========== */
+const WORLD_W=1560;
+const NODES=[
+ {id:"root",kind:"Projet",x:520,y:60,w:520},
+ {id:"brief",kind:"Brief",x:110,y:70,w:310},
+ {id:"fonds",kind:"Fonds évoqués",x:1140,y:70,w:310},
+ ...CAMPS.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:200+i*300,y:520,w:260,camp:c})),
+ {id:"plan",kind:"Planning provisoire",x:560,y:940,w:440},
+ {id:"hub",kind:"Chacun sa partie",x:650,y:1260,w:260,cls:"hub"},
+ ...DEPTS.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1400,w:225,cls:"dept",dept:d})),
+ {id:"team",kind:"Équipe",x:120,y:1750,w:560},
+ {id:"qs",kind:"Questions ouvertes",x:740,y:1750,w:420},
+ {id:"me",kind:"Mes notes",x:1220,y:1750,w:260}
+];
+const EDGES=[["root","brief"],["root","fonds"],...CAMPS.map(c=>["root","c_"+c.id]),...CAMPS.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DEPTS.map(d=>["hub","d_"+d.id])];
+
+/* =========== État local =========== */
+const KEY="filorga-2026-11:v2";
+const blank=()=>({role:"",author:"",checks:{},custom:{},notes:{},qs:{},plan:{},camp:{},pos:{},z:0});
+let S;
+try{S=Object.assign(blank(),JSON.parse(localStorage.getItem(KEY)||localStorage.getItem("filorga-2026-11:v1")||"{}"))}catch(e){S=blank()}
+let saveT;const save=()=>{clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150)};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)};
 const uid=()=>Math.random().toString(36).slice(2,9);
-const deptName=id=>DEPTS.find(d=>d.id===id).name;
-let activeDept = DEPTS.find(d=>d.id===S.role)?S.role:"prod";
+const D=id=>DEPTS.find(d=>d.id===id);
+const fixedTodo=d=>d.todo.map((t,i)=>({id:d.id+":"+i,text:t.replace(/\|p$/,""),piste:t.endsWith("|p")}));
+const allTodo=d=>[...fixedTodo(d),...(S.custom[d.id]||[])];
+const mobile=()=>innerWidth<820;
 
-/* ---------- Compte à rebours ---------- */
-(function(){
-  const d=Math.ceil((new Date(SHOOT_DATE+"T09:00:00")-new Date())/864e5);
-  const el=$("#days"),lb=$("#daysLabel");
-  if(d>1){el.textContent=d;lb.textContent="jours avant le tournage"}
-  else if(d===1||d===0){el.textContent=d;lb.textContent=d===1?"jour avant le tournage":"c'est aujourd'hui"}
-  else {el.textContent="—";lb.textContent="tournage passé ou en cours"}
-})();
-
-/* ---------- Rôle ---------- */
-function renderRole(){
-  const r=$("#role");
-  r.querySelectorAll(".chip").forEach(c=>c.remove());
-  DEPTS.forEach(d=>{
-    const b=document.createElement("button");b.className="chip"+(S.role===d.id?" on":"");b.textContent=d.name;
-    b.onclick=()=>{S.role=S.role===d.id?"":d.id;if(S.role){activeDept=d.id;renderDepts();document.getElementById("departements").scrollIntoView()}save();renderRole()};
-    r.appendChild(b);
-  });
+/* =========== Construction des nodes =========== */
+const world=$("#world"),svg=$("#edges"),stage=$("#stage");
+const el={};
+function body(n){
+ if(n.id==="root")return `<h2>Filorga<br>4 campagnes</h2>
+  <p class="sub" style="margin-top:8px">Boner Boner · Réal. Eve Vitré · Photo Ben Fourmi · Image Seb Trân</p>
+  <div class="facts"><div><span>Dates</span><b>Jeu. 19 + ven. 20 nov. 2026</b></div><div><span>Lieu</span><b>Studio de la Montjoie, plateau 480</b></div><div><span>Format</span><b>Photo + vidéo, en binôme</b></div><div><span>Rythme</span><b>1 campagne par demi-journée</b></div></div>
+  <div class="cd"><strong id="days">—</strong><span class="sub" id="daysLabel"></span></div>`;
+ if(n.id==="brief")return `<h3>Le brief en 30 secondes</h3><ul>
+  <li><b>4 campagnes</b><br><span class="sub">Regen Peptide, UV Cellular, Time Filler, NCEF Revitalize</span></li>
+  <li><b>1 mannequin par campagne</b><br><span class="sub">Plans d'attitude et d'application des produits</span></li>
+  <li><b>Plans serrés, peu de mouvement</b><br><span class="sub">Bras Neutron possible, comme sur LRP (à confirmer)</span></li>
+  <li><b>Produits seuls : pas tournés</b><br><span class="sub">Réalisés en IA ou en 3D</span></li></ul>
+  <p class="sub" style="margin:10px 0 0">Source : note de job, 13 nov. Documents de brief à joindre.</p>`;
+ if(n.id==="fonds")return `<p class="sub">Discussion créative en cours, à valider. Aplats = repères, pas des références.</p>
+  <div class="sw"><div class="dark" style="background:linear-gradient(#000,#8d8d8d)"><span>Dégradé noir → gris</span></div>
+  <div class="dark" style="background:#2f5d94"><span>Fond bleu</span></div>
+  <div style="background:var(--soft);border-style:dashed"><span>Intégré : piscine</span></div>
+  <div style="background:var(--soft);border-style:dashed"><span>Intégré : plage</span></div></div>`;
+ if(n.camp){const c=n.camp;return `<div class="band" style="background:${c.g}"></div><h3>${esc(c.name)}</h3><p class="sub">${esc(c.sub)}</p>
+  <div>${c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}${c.pist?`<span class="tag k">${esc(c.pist)}</span>`:""}</div>
+  <textarea data-camp="${c.id}" placeholder="Ma note sur cette campagne…" aria-label="Note ${esc(c.name)}" style="margin-top:10px">${esc(S.camp[c.id]||"")}</textarea>`;}
+ if(n.id==="plan")return `<p class="sub" style="margin-bottom:12px">Ordre non validé : question ouverte de la production. Teste un ordre, il reste sur ton appareil.</p>
+  <div class="slots">${SLOTS.map((s,i)=>`<div><label>${esc(s)}</label><select data-slot="${i}"><option value="">À définir</option>${CAMPS.map(c=>`<option value="${c.id}"${S.plan[i]===c.id?" selected":""}>${esc(c.name)}</option>`).join("")}</select></div>`).join("")}</div>`;
+ if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
+ if(n.dept){const d=n.dept,all=allTodo(d),done=all.filter(i=>S.checks[i.id]).length;
+  return `<h3>${esc(d.name)}</h3><div class="sub">${done} / ${all.length} points</div><div class="bardone"><i style="width:${all.length?done/all.length*100:0}%"></i></div>
+  <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k[0])}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
+ if(n.id==="team")return `<ul class="team">${TEAM.map(m=>`<li class="${m[1]?"":"tbc"}"><span>${esc(m[0])}</span><b style="font-weight:500">${m[1]?esc(m[1]):"à confirmer"}</b></li>`).join("")}</ul>
+  <p class="sub" style="margin:10px 0 0">Coordonnées volontairement non publiées ici.</p>`;
+ if(n.id==="qs"){const open=QS.filter(q=>!(S.qs[q.id]&&S.qs[q.id].done)).length;
+  return `<div class="sub" style="margin-bottom:6px">${open} ouvertes sur ${QS.length}</div><ul class="ql">${QS.map(q=>{const r=S.qs[q.id]&&S.qs[q.id].done;return `<li data-openq="${q.id}"><i class="dot${r?" ok":""}"></i><span>${esc(q.t)}</span></li>`}).join("")}</ul>`;}
+ if(n.id==="me")return `<p class="sub">Ce que tu écris ici reste <b>sur ton appareil</b>. Pour le partager, copie ou exporte tes notes et envoie-les à Seb.</p>
+  <input type="text" id="author" placeholder="Ton nom" value="${esc(S.author)}" style="margin:8px 0 0">
+  <div class="row"><button class="btn p" id="copy">Copier</button><button class="btn" id="export">Exporter</button><label class="btn">Importer<input type="file" id="import" accept="application/json" hidden></label><button class="btn" id="reset">Effacer</button></div>`;
+ return "";
+}
+function refresh(id){const n=NODES.find(x=>x.id===id);el[id].querySelector(".nb").innerHTML=body(n);wire(el[id]);if(id==="root")countdown();if(id==="me")wireMe();requestAnimationFrame(drawEdges)}
+function build(){
+ NODES.forEach(n=>{
+  const a=document.createElement("article");a.className="node "+(n.cls||"");a.id="n_"+n.id;a.style.width=n.w+"px";
+  a.innerHTML=`<header class="nh"><span>${esc(n.kind)}</span></header><div class="nb">${body(n)}</div>`;
+  world.appendChild(a);el[n.id]=a;
+  place(n);drag(n,a);wire(a);
+  if(n.dept)a.onclick=e=>{if(e.target.closest(".nh"))return;openDept(n.dept.id)};
+ });
+ countdown();wireMe();
+}
+const pos=n=>S.pos[n.id]||{x:n.x,y:n.y};
+function place(n){const p=pos(n);el[n.id].style.left=p.x+"px";el[n.id].style.top=p.y+"px"}
+function wire(root){
+ root.querySelectorAll("[data-camp]").forEach(t=>t.oninput=()=>{S.camp[t.dataset.camp]=t.value;save()});
+ root.querySelectorAll("[data-slot]").forEach(s=>s.onchange=()=>{S.plan[s.dataset.slot]=s.value;save()});
+ root.querySelectorAll("[data-openq]").forEach(li=>li.onclick=()=>openQs(li.dataset.openq));
+ root.querySelectorAll("textarea,select,input").forEach(i=>i.addEventListener("pointerdown",e=>e.stopPropagation()));
+}
+function countdown(){
+ const d=Math.ceil((new Date(SHOOT_DATE+"T09:00:00")-new Date())/864e5),a=$("#days"),b=$("#daysLabel");if(!a)return;
+ if(d>1){a.textContent="J-"+d;b.textContent="jours avant le tournage"}else if(d===1){a.textContent="J-1";b.textContent="demain"}else if(d===0){a.textContent="J";b.textContent="c'est aujourd'hui"}else{a.textContent="—";b.textContent="tournage passé ou en cours"}
 }
 
-/* ---------- Campagnes ---------- */
-function renderCamps(){
-  $("#camps").innerHTML=CAMPS.map(c=>`
-   <article class="camp" style="--g:${c.g}">
-     <span class="mono n" style="color:#e6e2da">${c.n}</span>
-     <h3>${esc(c.name)}</h3>
-     <p>${esc(c.sub)}</p>
-     <div>${c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}${c.pist?`<span class="tag" style="border-color:var(--accent);color:var(--accent)">${esc(c.pist)}</span>`:""}</div>
-     <textarea data-camp="${c.id}" placeholder="Ma note sur cette campagne…" aria-label="Note ${esc(c.name)}">${esc(S.camp[c.id]||"")}</textarea>
-   </article>`).join("");
-  document.querySelectorAll("[data-camp]").forEach(t=>t.oninput=()=>{S.camp[t.dataset.camp]=t.value;save()});
+/* =========== Glisser les nodes + câbles =========== */
+let z=1;
+function drag(n,a){
+ a.querySelector(".nh").addEventListener("pointerdown",e=>{
+  if(mobile()||e.button>0)return;e.preventDefault();
+  const sx=e.clientX,sy=e.clientY,p0={...pos(n)};a.classList.add("drag");
+  const mv=ev=>{S.pos[n.id]={x:Math.max(0,Math.round(p0.x+(ev.clientX-sx)/z)),y:Math.max(0,Math.round(p0.y+(ev.clientY-sy)/z))};place(n);drawEdges()};
+  const up=()=>{window.removeEventListener("pointermove",mv);a.classList.remove("drag");save();fitStage()};
+  window.addEventListener("pointermove",mv);window.addEventListener("pointerup",up,{once:true});
+ });
 }
+const rect=id=>{const n=NODES.find(x=>x.id===id),p=pos(n),e=el[id];return{x:p.x,y:p.y,w:e.offsetWidth,h:e.offsetHeight}};
+function drawEdges(){
+ if(mobile()){svg.innerHTML="";return}
+ let out="";
+ EDGES.forEach(([a,b])=>{
+  const P=rect(a),C=rect(b);let x1,y1,x2,y2,path;
+  if(C.y>=P.y+P.h-20){x1=P.x+P.w/2;y1=P.y+P.h;x2=C.x+C.w/2;y2=C.y;const m=(y2-y1)/2;path=`M${x1} ${y1}C${x1} ${y1+m} ${x2} ${y2-m} ${x2} ${y2}`}
+  else if(C.x+C.w<=P.x){x1=P.x;y1=P.y+P.h/2;x2=C.x+C.w;y2=C.y+C.h/2;const m=(x1-x2)/2;path=`M${x1} ${y1}C${x1-m} ${y1} ${x2+m} ${y2} ${x2} ${y2}`}
+  else if(C.x>=P.x+P.w){x1=P.x+P.w;y1=P.y+P.h/2;x2=C.x;y2=C.y+C.h/2;const m=(x2-x1)/2;path=`M${x1} ${y1}C${x1+m} ${y1} ${x2-m} ${y2} ${x2} ${y2}`}
+  else{x1=P.x+P.w/2;y1=P.y;x2=C.x+C.w/2;y2=C.y+C.h;const m=(y1-y2)/2;path=`M${x1} ${y1}C${x1} ${y1-m} ${x2} ${y2+m} ${x2} ${y2}`}
+  out+=`<path d="${path}" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="4" stroke-linecap="round"/><path d="${path}" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>`;
+ });
+ svg.innerHTML=out;
+}
+function worldH(){return Math.max(...NODES.map(n=>{const r=rect(n.id);return r.y+r.h}))+90}
+function fitStage(){
+ if(mobile()){stage.style.width=stage.style.height="";world.style.transform="";return}
+ const W=Math.max(WORLD_W,...NODES.map(n=>{const r=rect(n.id);return r.x+r.w+40})),H=worldH();
+ svg.setAttribute("width",W);svg.setAttribute("height",H);
+ world.style.width=W+"px";world.style.height=H+"px";world.style.transform=`scale(${z})`;
+ stage.style.width=W*z+"px";stage.style.height=H*z+"px";
+}
+function zoomTo(v){z=Math.min(1.4,Math.max(.4,v));S.z=z;save();fitStage()}
+const fitZ=()=>Math.min(1,Math.max(.5,(innerWidth-20)/WORLD_W));
+$("#zoom").onclick=e=>{const b=e.target.closest("[data-z]");if(!b)return;const k=b.dataset.z;
+ if(k==="+")zoomTo(z+.1);else if(k==="-")zoomTo(z-.1);else if(k==="fit")zoomTo(fitZ());
+ else if(confirm("Remettre tous les blocs à leur place d'origine ?")){S.pos={};NODES.forEach(place2);save();fitStage();drawEdges()}};
+function place2(n){place(n)}
 
-/* ---------- Planning ---------- */
-function renderSlots(){
-  $("#slots").innerHTML=SLOTS.map((s,i)=>`
-   <div class="slot"><span class="mono">${esc(s)}</span>
-    <select data-slot="${i}" aria-label="${esc(s)}"><option value="">À définir</option>
-    ${CAMPS.map(c=>`<option value="${c.id}"${S.plan[i]===c.id?" selected":""}>${esc(c.name)}</option>`).join("")}</select></div>`).join("");
-  document.querySelectorAll("[data-slot]").forEach(s=>s.onchange=()=>{S.plan[s.dataset.slot]=s.value;save()});
-}
+/* =========== Tiroir =========== */
+const drawer=$("#drawer"),shade=$("#shade");
+function openDrawer(html){drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.scrollTop=0;drawer.querySelector("[data-close]").onclick=closeDrawer}
+function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true")}
+shade.onclick=closeDrawer;addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+const head=t=>`<div class="dh"><h2>${esc(t)}</h2><button data-close aria-label="Fermer">×</button></div>`;
 
-/* ---------- Départements ---------- */
-function renderTabs(){
-  $("#tabs").innerHTML=DEPTS.map(d=>`<button class="tab${d.id===activeDept?" on":""}" role="tab" data-d="${d.id}">${esc(d.name)}</button>`).join("");
-  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{activeDept=b.dataset.d;renderDepts()});
+function openDept(id){
+ const d=D(id);
+ const item=(it,c)=>`<li class="${S.checks[it.id]?"done":""}"><input type="checkbox" data-chk="${it.id}"${S.checks[it.id]?" checked":""}><span>${esc(it.text)}${it.piste?'<em class="pis" style="font-style:normal">piste</em>':""}</span>${c?`<button class="x" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`;
+ const qs=QS.filter(q=>q.d.includes(id));
+ openDrawer(head(d.name)+`
+  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map(k=>`<li class="${k[2]?"w":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
+  <div class="ds"><h4>À préparer</h4><ul class="ck">${fixedTodo(d).map(i=>item(i,0)).join("")}${(S.custom[id]||[]).map(i=>item(i,1)).join("")}</ul>
+   <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…"><button class="btn" type="submit">Ajouter</button></form></div>
+  <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>
+  <div class="ds"><h4>Mes notes ${esc(d.name)}</h4><textarea id="dnote" style="min-height:150px" placeholder="Besoins, remarques, matériel, contraintes…">${esc(S.notes[id]||"")}</textarea></div>`);
+ drawer.querySelectorAll("[data-chk]").forEach(c=>c.onchange=()=>{S.checks[c.dataset.chk]=c.checked;c.closest("li").classList.toggle("done",c.checked);save();refresh("d_"+id)});
+ drawer.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{S.custom[id]=(S.custom[id]||[]).filter(i=>i.id!==b.dataset.rm);save();refresh("d_"+id);openDept(id)});
+ drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
+ $("#addForm").onsubmit=e=>{e.preventDefault();const v=$("#addText").value.trim();if(!v)return;(S.custom[id]=S.custom[id]||[]).push({id:"x"+uid(),text:v});save();refresh("d_"+id);openDept(id)};
+ $("#dnote").oninput=e=>{S.notes[id]=e.target.value;save()};
 }
-function renderDepts(){
-  renderTabs();
-  const d=DEPTS.find(x=>x.id===activeDept);
-  const fixed=d.todo.map((t,i)=>{const p=t.endsWith("|p");return {id:d.id+":"+i,text:p?t.slice(0,-2):t,piste:p}});
-  const custom=(S.custom[d.id]||[]);
-  const item=(it,isC)=>`<li class="${S.checks[it.id]?"done":""}${it.piste?" piste":""}"><input type="checkbox" id="c_${it.id}" data-chk="${it.id}"${S.checks[it.id]?" checked":""}><span>${esc(it.text)}</span>${isC?`<button class="rm" data-rm="${it.id}" aria-label="Supprimer">×</button>`:""}</li>`;
-  const qs=QS.filter(q=>q.d.includes(d.id));
-  $("#panel").innerHTML=`
-   <div class="card known"><h3>Ce qui est acté</h3><ul>${d.known.map(k=>`<li class="${k[2]?"warn":""}">${esc(k[0])}${k[1]?`<small>${esc(k[1])}</small>`:""}</li>`).join("")}</ul></div>
-   <div class="card chk"><h3>À préparer</h3><ul>${fixed.map(i=>item(i,false)).join("")}${custom.map(i=>item(i,true)).join("")}</ul>
-     <form class="add" id="addForm"><input type="text" id="addText" placeholder="Ajouter un point…" aria-label="Ajouter un point"><button type="submit">Ajouter</button></form></div>
-   <div class="card"><h3>Questions pour ${esc(d.name)}</h3>
-     ${qs.length?`<ul class="known">${qs.map(q=>`<li class="${S.qs[q.id]&&S.qs[q.id].done?"":"warn"}">${esc(q.t)}<small>${S.qs[q.id]&&S.qs[q.id].done?"Résolu":"Ouvert"} · <a href="#questions">voir</a></small></li>`).join("")}</ul>`:`<p class="lead" style="margin:0">Aucune question ouverte.</p>`}</div>
-   <div class="card"><h3>Mes notes ${esc(d.name)}</h3>
-     <textarea id="dnote" style="min-height:180px" placeholder="Besoins, remarques, matériel, contraintes…">${esc(S.notes[d.id]||"")}</textarea></div>`;
-  document.querySelectorAll("[data-chk]").forEach(c=>c.onchange=()=>{S.checks[c.dataset.chk]=c.checked;c.closest("li").classList.toggle("done",c.checked);save()});
-  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{S.custom[d.id]=(S.custom[d.id]||[]).filter(i=>i.id!==b.dataset.rm);save();renderDepts()});
-  $("#addForm").onsubmit=e=>{e.preventDefault();const v=$("#addText").value.trim();if(!v)return;(S.custom[d.id]=S.custom[d.id]||[]).push({id:"x"+uid(),text:v});save();renderDepts()};
-  $("#dnote").oninput=e=>{S.notes[d.id]=e.target.value;save()};
-}
-
-/* ---------- Équipe ---------- */
-function renderTeam(){
-  $("#team").innerHTML=TEAM.map(m=>`<div class="mem${m[1]?"":" tbc"}"><span class="mono">${esc(m[0])}</span><b>${m[1]?esc(m[1]):"à confirmer"}</b></div>`).join("");
-}
-
-/* ---------- Questions ---------- */
 let qFilter="all";
-function renderQs(){
-  $("#qfilters").innerHTML=[["all","Toutes"],...DEPTS.map(d=>[d.id,d.name])].map(([id,n])=>`<button class="chip${qFilter===id?" on":""}" data-f="${id}">${esc(n)}</button>`).join("");
-  document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;renderQs()});
-  $("#qs").innerHTML=QS.filter(q=>qFilter==="all"||q.d.includes(qFilter)).map(q=>{
-    const s=S.qs[q.id]||{};
-    return `<div class="q${s.done?" done":""}"><header><h3>${esc(q.t)}</h3><button class="st ${s.done?"res":"open"}" data-q="${q.id}">${s.done?"Résolu":"Ouvert"}</button></header>
-      <div class="tags">${q.d.map(d=>`<span class="tag">${esc(deptName(d))}</span>`).join("")}</div>
-      <textarea data-qa="${q.id}" placeholder="Réponse, décision, précision…">${esc(s.answer||"")}</textarea></div>`}).join("");
-  document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const s=S.qs[b.dataset.q]=S.qs[b.dataset.q]||{};s.done=!s.done;save();renderQs();renderDepts()});
-  document.querySelectorAll("[data-qa]").forEach(t=>t.oninput=()=>{(S.qs[t.dataset.qa]=S.qs[t.dataset.qa]||{}).answer=t.value;save()});
+function openQs(focus){
+ const list=QS.filter(q=>qFilter==="all"||q.d.includes(qFilter));
+ openDrawer(head("Questions ouvertes")+`<div class="ds"><div class="fl">${[["all","Toutes"],...DEPTS.map(d=>[d.id,d.name])].map(([i,n])=>`<button class="${qFilter===i?"on":""}" data-f="${i}">${esc(n)}</button>`).join("")}</div></div>
+  <div class="ds">${list.map(q=>{const s=S.qs[q.id]||{};return `<div class="q${s.done?" done":""}" id="q_${q.id}"><header><h5>${esc(q.t)}</h5><button class="st${s.done?" r":""}" data-q="${q.id}">${s.done?"Résolu":"Ouvert"}</button></header>
+   <div class="tags">${q.d.map(d=>`<span class="tag">${esc(D(d).name)}</span>`).join("")}</div>
+   <textarea data-qa="${q.id}" placeholder="Réponse, décision, précision…">${esc(s.answer||"")}</textarea></div>`}).join("")}</div>`);
+ drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
+ drawer.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const s=S.qs[b.dataset.q]=S.qs[b.dataset.q]||{};s.done=!s.done;save();refresh("qs");const y=drawer.scrollTop;openQs();drawer.scrollTop=y});
+ drawer.querySelectorAll("[data-qa]").forEach(t=>t.oninput=()=>{(S.qs[t.dataset.qa]=S.qs[t.dataset.qa]||{}).answer=t.value;save()});
+ if(focus){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
 
-/* ---------- Résumé / export / import ---------- */
+/* =========== Rôle =========== */
+function renderPills(){
+ const p=$("#pills");p.innerHTML="";
+ DEPTS.forEach(d=>{const b=document.createElement("button");b.className="pill"+(S.role===d.id?" on":"");b.textContent=d.name;
+  b.onclick=()=>{S.role=S.role===d.id?"":d.id;save();renderPills();markRole();if(S.role){openDept(S.role)}};p.appendChild(b)});
+}
+function markRole(){DEPTS.forEach(d=>el["d_"+d.id].classList.toggle("me",S.role===d.id))}
+
+/* =========== Notes : copier / export / import =========== */
 function summary(){
-  const L=["FILORGA — 4 campagnes — 19+20/11/2026"+(S.author?" — notes de "+S.author:"")];
-  DEPTS.forEach(d=>{
-    const fixed=d.todo.map((t,i)=>({id:d.id+":"+i,text:t.replace(/\|p$/,"")}));
-    const items=[...fixed,...(S.custom[d.id]||[])].map(i=>`  [${S.checks[i.id]?"x":" "}] ${i.text}`);
-    const note=(S.notes[d.id]||"").trim();
-    L.push("","## "+d.name,...items);
-    if(note)L.push("  Notes : "+note.replace(/\n/g,"\n  "));
-  });
-  const camps=CAMPS.filter(c=>(S.camp[c.id]||"").trim()).map(c=>`  ${c.name} : ${S.camp[c.id].trim()}`);
-  if(camps.length)L.push("","## Campagnes",...camps);
-  const plan=SLOTS.map((s,i)=>S.plan[i]?`  ${s} : ${CAMPS.find(c=>c.id===S.plan[i]).name}`:null).filter(Boolean);
-  if(plan.length)L.push("","## Ordre testé",...plan);
-  const qs=QS.filter(q=>S.qs[q.id]&&(S.qs[q.id].answer||S.qs[q.id].done)).map(q=>`  ${S.qs[q.id].done?"[résolu]":"[ouvert]"} ${q.t}${S.qs[q.id].answer?"\n    → "+S.qs[q.id].answer.trim():""}`);
-  if(qs.length)L.push("","## Questions",...qs);
-  return L.join("\n");
+ const L=["FILORGA — 4 campagnes — 19+20/11/2026"+(S.author?" — notes de "+S.author:"")];
+ DEPTS.forEach(d=>{const items=allTodo(d).map(i=>`  [${S.checks[i.id]?"x":" "}] ${i.text}`),note=(S.notes[d.id]||"").trim();
+  L.push("","## "+d.name,...items);if(note)L.push("  Notes : "+note.replace(/\n/g,"\n  "))});
+ const camps=CAMPS.filter(c=>(S.camp[c.id]||"").trim()).map(c=>`  ${c.name} : ${S.camp[c.id].trim()}`);if(camps.length)L.push("","## Campagnes",...camps);
+ const plan=SLOTS.map((s,i)=>S.plan[i]?`  ${s} : ${CAMPS.find(c=>c.id===S.plan[i]).name}`:null).filter(Boolean);if(plan.length)L.push("","## Ordre testé",...plan);
+ const qs=QS.filter(q=>S.qs[q.id]&&(S.qs[q.id].answer||S.qs[q.id].done)).map(q=>`  ${S.qs[q.id].done?"[résolu]":"[ouvert]"} ${q.t}${S.qs[q.id].answer?"\n    → "+S.qs[q.id].answer.trim():""}`);if(qs.length)L.push("","## Questions",...qs);
+ return L.join("\n");
 }
-$("#author").value=S.author;
-$("#author").oninput=e=>{S.author=e.target.value;save()};
-$("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(summary());toast("Notes copiées")}catch(e){const w=window.open("","_blank");if(w){w.document.write("<pre>"+esc(summary())+"</pre>")}}};
-$("#export").onclick=()=>{
-  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:"application/json"}));
-  a.download="filorga-"+(S.author||"notes").toLowerCase().replace(/\W+/g,"-")+".json";a.click();URL.revokeObjectURL(a.href);toast("Export prêt");
-};
-$("#import").onchange=e=>{
-  const f=e.target.files[0];if(!f)return;const r=new FileReader();
-  r.onload=()=>{try{
-    const o=JSON.parse(r.result),who=o.author||"import";
-    Object.entries(o.checks||{}).forEach(([k,v])=>{if(v)S.checks[k]=true});
-    Object.entries(o.custom||{}).forEach(([d,a])=>{S.custom[d]=S.custom[d]||[];a.forEach(i=>{if(!S.custom[d].some(x=>x.id===i.id))S.custom[d].push(i)})});
-    Object.entries(o.notes||{}).forEach(([d,t])=>{if(t&&t!==S.notes[d])S.notes[d]=((S.notes[d]||"")+`\n— ${who} —\n${t}`).trim()});
-    Object.entries(o.camp||{}).forEach(([d,t])=>{if(t&&t!==S.camp[d])S.camp[d]=((S.camp[d]||"")+`\n— ${who} —\n${t}`).trim()});
-    Object.entries(o.qs||{}).forEach(([q,v])=>{const s=S.qs[q]=S.qs[q]||{};if(v.done)s.done=true;if(v.answer&&v.answer!==s.answer)s.answer=((s.answer||"")+`\n— ${who} —\n${v.answer}`).trim()});
-    save();renderAll();toast("Import fusionné");
-  }catch(err){toast("Fichier non lisible")}};
-  r.readAsText(f);e.target.value="";
-};
-$("#reset").onclick=()=>{if(confirm("Effacer toutes tes notes et coches sur cet appareil ?")){S=blank();try{localStorage.removeItem(KEY)}catch(e){}$("#author").value="";activeDept="prod";renderAll();toast("Effacé")}};
+function wireMe(){
+ const g=id=>document.getElementById(id);if(!g("copy"))return;
+ g("author").oninput=e=>{S.author=e.target.value;save()};
+ g("copy").onclick=async()=>{try{await navigator.clipboard.writeText(summary());toast("Notes copiées")}catch(e){const w=window.open("","_blank");if(w)w.document.write("<pre>"+esc(summary())+"</pre>")}};
+ g("export").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:"application/json"}));a.download="filorga-"+(S.author||"notes").toLowerCase().replace(/\W+/g,"-")+".json";a.click();URL.revokeObjectURL(a.href);toast("Export prêt")};
+ g("import").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{
+   const o=JSON.parse(r.result),who=o.author||"import",add=(a,t)=>t&&t!==a?((a||"")+`\n— ${who} —\n${t}`).trim():a;
+   Object.entries(o.checks||{}).forEach(([k,v])=>{if(v)S.checks[k]=true});
+   Object.entries(o.custom||{}).forEach(([d,a])=>{S.custom[d]=S.custom[d]||[];a.forEach(i=>{if(!S.custom[d].some(x=>x.id===i.id))S.custom[d].push(i)})});
+   Object.entries(o.notes||{}).forEach(([d,t])=>{S.notes[d]=add(S.notes[d],t)});
+   Object.entries(o.camp||{}).forEach(([d,t])=>{S.camp[d]=add(S.camp[d],t)});
+   Object.entries(o.qs||{}).forEach(([q,v])=>{const s=S.qs[q]=S.qs[q]||{};if(v.done)s.done=true;s.answer=add(s.answer,v.answer)});
+   save();NODES.forEach(n=>{if(n.id!=="me")refresh(n.id)});toast("Import fusionné")}catch(err){toast("Fichier non lisible")}};r.readAsText(f);e.target.value=""};
+ g("reset").onclick=()=>{if(confirm("Effacer toutes tes notes et coches sur cet appareil ?")){S=blank();try{localStorage.removeItem(KEY)}catch(e){}NODES.forEach(n=>{place(n);refresh(n.id)});renderPills();markRole();zoomTo(fitZ());toast("Effacé")}};
+}
 
-/* ---------- Nav active ---------- */
-const links=[...document.querySelectorAll("nav.top a")];
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+e.target.id))}}),{rootMargin:"-40% 0px -55% 0px"});
-["top","brief","campagnes","planning","departements","equipe","questions"].forEach(id=>io.observe(document.getElementById(id)));
-
-function renderAll(){renderRole();renderCamps();renderSlots();renderDepts();renderTeam();renderQs()}
-renderAll();
+/* =========== Démarrage =========== */
+function layoutMode(){document.body.classList.toggle("m",mobile());fitStage();drawEdges()}
+build();renderPills();markRole();
+z=S.z||fitZ();layoutMode();
+addEventListener("resize",layoutMode);
+if(window.ResizeObserver){const ro=new ResizeObserver(()=>{fitStage();drawEdges()});Object.values(el).forEach(e=>ro.observe(e))}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitStage();drawEdges()});
 </script>
 </body>
 </html>
