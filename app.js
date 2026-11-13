@@ -8,9 +8,9 @@
   const CONFIG = {
     email: "sebastientrandop@gmail.com",
     defaultMode: "cinematography",
-    clients: ["Cartier", "Yves Saint Laurent", "Miu Miu", "Lancôme", "Chanel", "Balmain", "L'Oréal Paris",
+    clients: ["Cartier", "Yves Saint Laurent", "Prada", "Miu Miu", "Lancôme", "Chanel", "Balmain", "L'Oréal Paris",
       "Armani Beauty", "Maison Margiela", "Off-White", "Chaumet", "Kérastase", "AMI Paris", "Salomon",
-      "Clarins", "Helena Rubinstein", "Paco Rabanne", "KITH", "Nowness", "La Roche-Posay"],
+      "Clarins", "Helena Rubinstein", "Paco Rabanne", "KITH", "Nowness", "La Roche-Posay", "Biotherm"],
     modes: {
       cinematography: {
         role: "Cinematographer",
@@ -22,7 +22,7 @@
         role: "Director",
         workTitle: "Directed Films",
         hud: "SC 01 · TK 03 · REC · 25 FPS",
-        about: "As a director I start from the *light* and build outward — beauty and fashion films for Miu Miu, Armani Beauty and L'Oréal Paris, shot with the eye of a cinematographer and cut with an obsession for *texture*, *rhythm* and *intimacy*. Small crews, precise images, faces that stay with you."
+        about: "As a director I start from the *light* and build outward — fragrance, beauty and fashion films for Prada, Miu Miu, Armani Beauty and L'Oréal Paris, shot with the eye of a cinematographer and cut with an obsession for *texture*, *rhythm* and *intimacy*. Small crews, precise images, faces that stay with you."
       }
     }
   };
@@ -38,7 +38,13 @@
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  const thumb = (f, size = "1280x720") => `${f.thumb}_${size}`;
+  const thumb = (f, size = "1280x720") => f.thumb ? `${f.thumb}_${size}` : `https://vumbnail.com/${f.id}.jpg`;
+  // Films without a stored thumbnail get one from Vimeo's oEmbed (fast, cached by the browser)
+  const resolveThumbs = () => Promise.all(Object.values(window.FILMS).flat().filter(f => !f.thumb).map(f =>
+    fetch(`https://vimeo.com/api/oembed.json?width=1920&url=${encodeURIComponent(`https://vimeo.com/${f.id}${f.h ? "/" + f.h : ""}`)}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(j => { if (j && j.thumbnail_url) f.thumb = j.thumbnail_url.split("?")[0].replace(/_\d+(x\d+)?(\.\w+)?$/, ""); })
+      .catch(() => {})));
   const vimeo = (f, extra = {}) => {
     const p = new URLSearchParams({ dnt: 1, ...extra });
     if (f.h) p.set("h", f.h);
@@ -487,7 +493,9 @@
      Boot
      ========================================================================== */
   const hashMode = location.hash.slice(1);
-  applyMode(CONFIG.modes[hashMode] ? hashMode : CONFIG.defaultMode);
+  Promise.race([resolveThumbs(), wait(2500)]).then(() => {
+    applyMode(CONFIG.modes[hashMode] ? hashMode : CONFIG.defaultMode);
+  });
   if (!CONFIG.modes[hashMode]) history.replaceState(null, "", location.pathname);
   requestAnimationFrame(loop);
   letterbox();
