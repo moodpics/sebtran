@@ -136,6 +136,9 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .ds h4{margin:0 0 10px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);font-weight:500}
 .ds li{padding:8px 0 8px 16px;border-top:1px solid var(--line);position:relative}
 .ds li:first-child{border-top:0}
+.det.bl>span{display:block;position:relative;padding-left:14px}
+.det.bl>span:not(.ed)::before{content:"";position:absolute;left:2px;top:.62em;width:5px;height:5px;border-radius:50%;background:#000}
+.det.bl>span.ed{padding-left:0;min-width:240px}
 .notebox{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.5;white-space:pre-wrap;min-height:64px}
 .notebox .ed{display:block;min-height:40px}
 .ds .kn li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;border-radius:50%;background:#000}
@@ -390,7 +393,7 @@ const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Ferme
 
 function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
- const det=(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
+ const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}</span>`:(t.lines.length?`<span class="det bl">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
   :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
  openDrawer(head(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name))+`
   <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small><label class="wk"><input type="checkbox" data-p="${P}.known.${i}.w" ${it.w?"checked":""}> à confirmer</label>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
