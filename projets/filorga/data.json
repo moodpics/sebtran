@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T14:20:00Z",
+ "updated": "2026-11-13T13:19:50.483Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -209,14 +209,18 @@
     {
      "t": "Camera body",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "ALexa 35"
+     ],
      "fix": [],
      "ctl": []
     },
     {
      "t": "Lenses",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "Serie Master Primes"
+     ],
      "fix": [],
      "ctl": []
     },
@@ -258,8 +262,12 @@
      "linkText": ""
     }
    ],
-   "notes": "",
-   "reco": []
+   "notes": "encore en reflexion de mon côté",
+   "reco": [
+    {
+     "t": ""
+    }
+   ]
   },
   {
    "id": "lum",
@@ -427,7 +435,7 @@
      "linkText": "Plan en PDF"
     }
    ],
-   "notes": "",
+   "notes": "??",
    "reco": []
   }
  ],
