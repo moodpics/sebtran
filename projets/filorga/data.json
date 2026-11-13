@@ -1,28 +1,11 @@
 {
  "v": 1,
- "updated": "2026-11-13T12:20:00Z",
+ "updated": "2026-11-13T13:40:00Z",
  "shootDate": "2026-11-19",
  "root": {
-  "title": "Filorga\n4 campagnes",
-  "sub": "Boner Boner · Director Eve Vitré · Photographe Ben Fourmi · DOP Seb Trân",
-  "facts": [
-   [
-    "Dates",
-    "Jeu. 19 + ven. 20 nov. 2026"
-   ],
-   [
-    "Lieu",
-    "Studio de la Montjoie"
-   ],
-   [
-    "Type",
-    "Pub – photo + vidéo, en binôme avec Ben Fourmi"
-   ],
-   [
-    "Rythme",
-    "1 campagne par demi-journée (4)"
-   ]
-  ]
+  "title": "Filorga",
+  "sub": "Jeudi 19 + vendredi 20 novembre 2026",
+  "facts": []
  },
  "brief": {
   "items": [
@@ -477,29 +460,6 @@
    ]
   },
   {
-   "id": "photo",
-   "name": "Photo",
-   "known": [
-    {
-     "t": "Ben Fourmi, photographe",
-     "sub": "",
-     "w": 0
-    },
-    {
-     "t": "Tournage photo et vidéo, en binôme avec le photographe Ben Fourmi",
-     "sub": "",
-     "w": 0
-    },
-    {
-     "t": "Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo",
-     "sub": "",
-     "w": 0
-    }
-   ],
-   "todo": [],
-   "refs": []
-  },
-  {
    "id": "post",
    "name": "Post / IA-3D",
    "known": [
@@ -604,55 +564,6 @@
    "name": ""
   }
  ],
- "qs": [
-  {
-   "id": "q1",
-   "t": "Ordre des 4 campagnes sur les 19 et 20 novembre",
-   "d": [
-    "prod"
-   ],
-   "done": 0,
-   "answer": ""
-  },
-  {
-   "id": "q2",
-   "t": "Agence / loueur matos",
-   "d": [
-    "prod"
-   ],
-   "done": 0,
-   "answer": ""
-  },
-  {
-   "id": "q3",
-   "t": "Mouvements prévus et usage du bras Neutron",
-   "d": [
-    "mach",
-    "cam"
-   ],
-   "done": 0,
-   "answer": ""
-  },
-  {
-   "id": "q4",
-   "t": "Qui produit les plans produits IA / 3D, et à quelle étape",
-   "d": [
-    "post"
-   ],
-   "done": 0,
-   "answer": ""
-  },
-  {
-   "id": "q5",
-   "t": "Partage de la lumière et de la caméra entre photo (Ben Fourmi) et vidéo",
-   "d": [
-    "photo",
-    "cam",
-    "lum"
-   ],
-   "done": 0,
-   "answer": ""
-  }
- ],
+ "qs": [],
  "pos": {}
 }

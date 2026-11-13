@@ -176,7 +176,8 @@ body.m .bar small{display:none}
 /* lecture seule / édition */
 .ck input[type=checkbox]:disabled{opacity:1;cursor:default}
 .slots b{font-weight:500}.slots b.tbc{color:#9a9a9a;font-weight:400;font-style:italic}
-.pl{white-space:pre-line}
+.node h2.pl{white-space:pre-line;font-size:84px;line-height:1;letter-spacing:-.035em;font-weight:600;margin:22px 0 12px}
+#n_root .sub{font-size:18px}
 .team .rt{display:inline-flex;align-items:center}
 .q .ans{margin-top:8px;padding:10px 12px;background:var(--soft);border-radius:3px;white-space:pre-wrap}
 .rw{position:relative}
@@ -258,19 +259,18 @@ const imgs=(p,list,cls)=>`<div class="refs ${cls||""}">${list.map((i,n)=>`<div c
 const world=$("#world"),svg=$("#edges"),stage=$("#stage");
 let NODES=[],EDGES=[];const el={};
 function makeNodes(){
- NODES=[{id:"root",kind:"Projet",x:520,y:60,w:520},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
+ NODES=[{id:"root",kind:"Projet",x:470,y:60,w:620},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
   ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:70+i*370,y:830,w:340,ci:i})),
   {id:"plan",kind:"Planning provisoire",x:90,y:1420,w:440},{id:"loc",kind:"Location",x:600,y:1420,w:620},
   {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
   ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:55+i*245,y:1920,w:225,cls:"dept",did:d.id})),
-  {id:"team",kind:"Équipe",x:120,y:2400,w:560},{id:"qs",kind:"Questions ouvertes",x:740,y:2400,w:420}];
+  {id:"team",kind:"Équipe",x:120,y:2400,w:560}];
  EDGES=[["root","brief"],["root","mood"],...DATA.camps.map(c=>["root","c_"+c.id]),...DATA.camps.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DATA.depts.map(d=>["hub","d_"+d.id])];
 }
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
   ${ed("root.sub","p","sub",r.sub)}
-  <div class="facts">${r.facts.map((f,i)=>`<div>${ed(`root.facts.${i}.0`,"span","",f[0])}${ed(`root.facts.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
-  <div class="cd"><strong id="days">—</strong><span class="sub" id="daysLabel"></span>${EDIT?`<input type="date" class="dt" data-p="shootDate" value="${esc(DATA.shootDate)}" title="Date du tournage">`:""}</div>`;}
+`;}
  if(n.id==="brief"){const B=DATA.brief;return `<ul class="v">${B.items.map((it,i)=>`<li>${ed(`brief.items.${i}.t`,it.b?"b":"span","",it.t,"Point du brief")}
    ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((s,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",s)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
    ${it.img?`<img class="rimg" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point du brief")}
@@ -312,7 +312,7 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined).map(n=>n.id),90],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team","qs"],90]];
+  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined).map(n=>n.id),90],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team"],90]];
   let y=60;
   rows.forEach(([ids,gap],ri)=>{
    if(ri>0)y+=gap;
@@ -385,15 +385,13 @@ function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
  const det=(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
   :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(l)}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
- const qs=DATA.qs.filter(q=>q.d.includes(id));
  openDrawer(head(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name))+`
   <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small><label class="wk"><input type="checkbox" data-p="${P}.known.${i}.w" ${it.w?"checked":""}> à confirmer</label>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
   ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
-  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>
-  <div class="ds"><h4>Questions liées</h4>${qs.length?`<ul>${qs.map(q=>`<li style="padding-left:0"><a href="#" data-gq="${q.id}">${esc(q.t)}</a><small>${q.done?"Résolu":"Ouvert"}</small></li>`).join("")}</ul>`:`<p class="sub">Aucune.</p>`}</div>`);
+  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>`);
  if(!keep)drawer.scrollTop=0;
  drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
 }
