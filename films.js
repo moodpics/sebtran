@@ -337,7 +337,7 @@ window.FILMS = {
       "client": "Calvin Klein",
       "title": "Xmas",
       "category": "Fashion",
-      "director": "Cédric Bihr",
+      "director": "Joachim Laguinge",
       "production": "Onirim",
       "year": null,
       "duration": 30,
