@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-13T14:10:00Z",
+ "updated": "2026-11-13T14:20:00Z",
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
@@ -20,12 +20,16 @@
     "Seb Trân"
    ],
    [
+    "1er assistant caméra",
+    "Lucas Bidard"
+   ],
+   [
     "Gaffer",
     "Nathan Jean-François"
    ],
    [
-    "1er assistant caméra",
-    "Lucas Bidard"
+    "Chef machino",
+    "Nicolas Sommermeyer"
    ]
   ]
  },
@@ -253,7 +257,9 @@
      "link": "",
      "linkText": ""
     }
-   ]
+   ],
+   "notes": "",
+   "reco": []
   },
   {
    "id": "lum",
@@ -351,7 +357,9 @@
      "link": "",
      "linkText": ""
     }
-   ]
+   ],
+   "notes": "",
+   "reco": []
   },
   {
    "id": "mach",
@@ -418,7 +426,9 @@
      "link": "refs/plan-plateau-480.pdf",
      "linkText": "Plan en PDF"
     }
-   ]
+   ],
+   "notes": "",
+   "reco": []
   }
  ],
  "team": [

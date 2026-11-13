@@ -52,7 +52,7 @@ a{color:inherit}
 .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin-top:16px}
 .facts span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 .facts b{font-weight:500;font-size:14px}
-.facts.crew{grid-template-columns:repeat(5,1fr);gap:14px 16px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.facts.crew{grid-template-columns:repeat(3,1fr);gap:16px 20px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
 .facts.crew b{font-size:15px}
 body.m .facts.crew{grid-template-columns:1fr 1fr}
 .cd{display:flex;align-items:baseline;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
@@ -136,6 +136,8 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .ds h4{margin:0 0 10px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);font-weight:500}
 .ds li{padding:8px 0 8px 16px;border-top:1px solid var(--line);position:relative}
 .ds li:first-child{border-top:0}
+.notebox{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.5;white-space:pre-wrap;min-height:64px}
+.notebox .ed{display:block;min-height:40px}
 .ds .kn li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;border-radius:50%;background:#000}
 .ds .kn li.w::before{background:transparent;border:1.5px solid #000}
 .ds small{display:block;color:var(--mute)}
@@ -254,7 +256,7 @@ const del=(p,i)=>EDIT?`<button class="xdel" data-del="${p}" data-i="${i}" title=
 const add=(p,tpl,label)=>EDIT?`<button class="xadd" data-add="${p}" data-tpl="${tpl}">+ ${esc(label)}</button>`:"";
 const addimg=(p,label)=>EDIT?`<button class="xadd" data-addimg="${p}">+ ${esc(label||"image")}</button>`:"";
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
-const TPL={known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
+const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
  brief:()=>({t:"",b:0,sub:[],img:"",imgNote:""}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
 const imgs=(p,list,cls)=>`<div class="refs ${cls||""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
@@ -396,7 +398,9 @@ function openDept(id,keep){
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
-  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>`);
+  <div class="ds"><h4>${d.todo.length||EDIT?"À préparer":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"done":""}"><input type="checkbox" data-p="${P}.todo.${i}.done" ${isDone(t)?"checked":""} ${EDIT?"":"disabled"}><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","point à préparer")}</div>
+  ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
+  ${((d.reco&&d.reco.length)||EDIT)?`<div class="ds"><h4>Ma liste recommandée</h4><ul class="kn">${(d.reco||[]).map((r,i)=>`<li>${ed(`${P}.reco.${i}.t`,"span","",r.t,"Matériel recommandé")}${del(P+".reco",i)}</li>`).join("")}</ul>${add(P+".reco","reco","élément de la liste")}</div>`:""}`);
  if(!keep)drawer.scrollTop=0;
  drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
 }
