@@ -420,6 +420,18 @@ body.m .cg li .cgc{grid-column:1/-1}
 .bf .fbar{flex:none;width:12px;height:auto;min-height:44px;border-radius:3px;border:1px solid rgba(0,0,0,.25);margin-top:2px}
 body.m .bsplit{grid-template-columns:1fr}body.m .bf+.bf{border-left:0;border-top:1px solid var(--line)}
 .mp.base{margin:0 0 10px;padding:9px 12px;background:#f5f5f5;border-left:4px solid #bbb;border-radius:0 6px 6px 0;font-weight:500}
+.acc{border:1px solid var(--line);border-radius:8px;margin:0 0 10px;background:#fff}
+.acc>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:600;font-size:15.5px;display:flex;justify-content:space-between;align-items:center}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary::after{content:"›";font-size:22px;color:#888;transform:rotate(90deg);transition:transform .2s;line-height:1}
+.acc[open]>summary::after{transform:rotate(-90deg)}
+.acc[open]>summary{border-bottom:1px solid var(--line)}
+.acc .accb{padding:14px 16px 16px}
+.bdy{padding:16px 18px 40px}
+.bcl{display:flex;justify-content:space-between;align-items:center;gap:14px;cursor:pointer;padding:4px 0}
+.bcl b{font-size:26px;font-weight:600;letter-spacing:-.01em}
+.bcl .cgo{opacity:.7}
+.bcl:hover .cgo{opacity:1}
 </style>
 </head>
 <body>
@@ -578,7 +590,7 @@ const ICON={
 function makeNodes(){
  NODES=[{id:"root",kind:"Projet",x:70,y:60,w:640},
   {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
-  {id:"bt",kind:"Brief équipe",x:750,y:70,w:560,cls:"bt"},
+  {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:750,y:70,w:560,cls:"bt"},
   {id:"hub",kind:"Chacun sa partie",x:750,y:0,w:560,cls:"hub"},
   ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
   {id:"team",kind:"Équipe",x:70,y:0,w:640}];
@@ -590,14 +602,8 @@ function body(n){
   ${ed("root.sub","p","sub",r.sub)}
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
   <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;}
- if(n.id==="bt"){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
-  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
-  return `<div class="bsec"><h4>Où</h4>${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}</div>
-  <div class="bsec"><h4>Planning provisoire</h4>${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div></div>
-  <div class="bsec"><h4>À penser, par département</h4><ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
-   ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((x,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",x)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
-   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}</div>`;}
- if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div>${baseBlock()}<div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
+ if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief équipe</b><span class="cgo">Ouvrir ›</span></div>`;
+ if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
   if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
   return `<span class="dic">${ICON[d.id]||""}</span><h3>${esc(d.name)}${(DATA.log||[]).some(c=>(c.d||[]).includes(d.id)&&Date.now()-new Date(c.at)<2592e5)?`<span class="nw">Nouveau</span>`:""}</h3>${tot?`<div class="sub">${done} / ${tot} renseignés</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
@@ -668,7 +674,7 @@ function drawEdges(){
 }
 const WORLD_W=1380;
 function fitStage(){
- if(mobile()){stage.style.width=stage.style.height="";world.style.transform="";return}
+ if(mobile()){stage.style.width=stage.style.height="";world.style.transform="";world.style.width=world.style.height="";svg.setAttribute("width",0);svg.setAttribute("height",0);return}
  const W=Math.max(WORLD_W,...NODES.map(n=>{const r=rect(n.id);return r.x+r.w+40})),H=Math.max(...NODES.map(n=>{const r=rect(n.id);return r.y+r.h}))+90;
  svg.setAttribute("width",W);svg.setAttribute("height",H);
  world.style.width=W+"px";world.style.height=H+"px";world.style.transform=`scale(${z})`;
@@ -686,13 +692,21 @@ $("#zoom").onclick=e=>{const b=e.target.closest("[data-z]");if(!b)return;const k
 const drawer=$("#drawer"),shade=$("#shade");let drawerCtx=null;
 function openDrawer(html){drawer.classList.remove("d-cam","d-lum","d-mach");drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.querySelector("[data-close]").onclick=closeDrawer}
 function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true");const had=drawerCtx;drawerCtx=null;if(had&&EDIT)renderAll()}
-function reopen(){const c=drawerCtx;if(!c)return;const y=drawer.scrollTop;if(c.t==="d")openDept(c.id,1);else openQs(c.id,1);drawer.scrollTop=y}
-shade.onclick=closeDrawer;
+function reopen(){const c=drawerCtx;if(!c)return;const y=drawer.scrollTop;if(c.t==="d")openDept(c.id,1);else if(c.t==="b")openBrief(1);else openQs(c.id,1);drawer.scrollTop=y}
+shade.onclick=closeDrawer;drawer.addEventListener("toggle",e=>{const t=e.target;if(t&&t.dataset&&t.dataset.acc)ACC[t.dataset.acc]=t.open},true);
 const lb=$("#lb");function closeLb(){lb.classList.remove("on")}
 lb.onclick=closeLb;addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb();closeDrawer()}});
 document.addEventListener("click",e=>{const i=e.target.closest&&e.target.closest("img[data-zoom]");if(!i)return;e.stopPropagation();lb.querySelector("img").src=i.currentSrc||i.src;lb.classList.add("on")},true);
 const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Fermer">×</button></div>`;
 
+const ACC={};
+function briefHtml(){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
+  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
+  const secs=[["loc","Où",`${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}`],["plan","Planning provisoire",`${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div>`],["glob","Au global",`<ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
+   ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((x,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",x)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
+   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}`],["fond","Lumière / Machinerie",baseBlock()]];
+  return secs.map(([k,t,h])=>`<details class="acc" data-acc="${k}"${ACC[k]?" open":""}><summary>${t}</summary><div class="accb">${h}</div></details>`).join("")}
+function openBrief(keep){drawerCtx={t:"b"};openDrawer(head("Brief équipe")+`<div class="bdy">${briefHtml()}</div>`);if(!keep)drawer.scrollTop=0}
 function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
  const mir=t=>(t.mir||[]).map(m=>`<span class="mir">↳ ${rich(m.text)} <em>(${esc(m.src)})</em></span>`).join("");
@@ -737,7 +751,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{const bto=e.target.closest&&e.target.closest("[data-brief]");if(bto){e.preventDefault();openBrief();return}const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Fenêtre campagne (effet woosh) =========== */
 const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gradient(180deg,#000 0%,#7a7a7a 55%,#f2f2f2 100%)","radial-gradient(circle at 72% 28%,#fff 0%,#a8a8a8 45%,#1b1b1b 100%)","linear-gradient(135deg,#232323 0%,#a98a3d 65%,#f1dc96 100%)"];
