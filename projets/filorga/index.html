@@ -218,21 +218,22 @@ body.edit .nh{cursor:grab}body:not(.edit) .nh{cursor:default}
 body.edit .pills{max-width:42vw}
 
 /* dernières nouvelles */
-.news{margin-top:20px;padding:12px 14px 10px;border-radius:7px;background:linear-gradient(135deg,rgba(0,0,0,.03),rgba(0,0,0,.075));border:1px solid rgba(0,0,0,.1);box-shadow:0 12px 30px -16px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.7);backdrop-filter:blur(6px)}
+.news{margin-top:20px;padding:12px 14px 10px;border-radius:7px;background:linear-gradient(135deg,rgba(255,138,138,.16),rgba(255,92,92,.24));border:1px solid rgba(214,84,84,.38);box-shadow:0 12px 30px -16px rgba(190,60,60,.6),inset 0 1px 0 rgba(255,255,255,.7);backdrop-filter:blur(6px)}
 .news .nt{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .news .nt b{font-weight:600}
 .news .nt span{margin-left:auto;color:var(--mute);letter-spacing:0;text-transform:none;font-size:12px}
-.pd{width:8px;height:8px;border-radius:50%;background:#000;flex:none;animation:pd 2s ease-out infinite}
-@keyframes pd{0%{box-shadow:0 0 0 0 rgba(0,0,0,.45)}100%{box-shadow:0 0 0 9px rgba(0,0,0,0)}}
+.pd{width:8px;height:8px;border-radius:50%;background:#d9534f;flex:none;animation:pd 2s ease-out infinite}
+@keyframes pd{0%{box-shadow:0 0 0 0 rgba(217,83,79,.55)}100%{box-shadow:0 0 0 9px rgba(217,83,79,0)}}
 .news ul{margin-top:8px}
-.news li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:6px 0;font-size:13px;border-top:1px solid rgba(0,0,0,.08)}
+.news li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:6px 0;font-size:13px;border-top:1px solid rgba(214,84,84,.22)}
 .news li:first-child{border-top:0}
 .news li.go{cursor:pointer}
 .news li.go:hover .nx{text-decoration:underline}
 .news li small{margin-left:auto;color:var(--mute);font-size:11px;white-space:nowrap}
-.nk{flex:none;font-size:10px;letter-spacing:.07em;text-transform:uppercase;border:1px solid #000;border-radius:99px;padding:0 7px}
-.nk.ajout{background:#000;color:#fff}.nk.retrait{border-color:#aaa;color:#888}
-.ds.news-d li{padding:7px 0;border-top:1px solid var(--line)}
+.nk{flex:none;font-size:10px;letter-spacing:.07em;text-transform:uppercase;border:1px solid #c94a4a;color:#a83a3a;border-radius:99px;padding:0 7px}
+.nk.ajout{background:#c94a4a;color:#fff}.nk.retrait{border-color:#aaa;color:#888}
+.ds.news-d{background:rgba(255,120,120,.1)}
+.ds.news-d li{padding:7px 0;border-top:1px solid rgba(214,84,84,.22)}
 .ds.news-d li:first-child{border-top:0}
 .ds.news-d li::before{display:none}
 .ds.news-d small{display:inline;margin-left:auto}
@@ -240,6 +241,10 @@ body.edit .pills{max-width:42vw}
 .rto{margin-top:6px;display:flex;flex-wrap:wrap;align-items:center;gap:0 2px;font-size:12px}
 .rto .xadd{margin:4px 4px 0 0}
 .xadd.on{background:#000;color:#fff;border:1px solid #000}
+.node.dept{border:1.5px solid #000}
+.node.dept h3{font-size:22px}
+.node.hub{background:transparent;border-color:rgba(255,255,255,.5);box-shadow:none}
+.node.hub .nh,.node.hub h3,.node.hub .sub{color:#fff;border-color:rgba(255,255,255,.35)}
 </style>
 </head>
 <body>
@@ -357,13 +362,15 @@ const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""
 const world=$("#world"),svg=$("#edges"),stage=$("#stage");
 let NODES=[],EDGES=[];const el={};
 function makeNodes(){
- NODES=[{id:"root",kind:"Projet",x:470,y:60,w:620},{id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:1110,y:70,w:360},
-  ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:i<3?230+i*370:230,y:830+(i<3?0:420),w:i<3?340:1100,ci:i})),
-  {id:"plan",kind:"Planning provisoire",x:215,y:1420,w:440},{id:"loc",kind:"Location",x:725,y:1420,w:620},
-  {id:"hub",kind:"Chacun sa partie",x:650,y:1780,w:260,cls:"hub"},
-  ...DATA.depts.map((d,i)=>({id:"d_"+d.id,kind:"Département",x:Math.round(780-(DATA.depts.length*330+(DATA.depts.length-1)*40)/2)+i*370,y:1920,w:330,cls:"dept",did:d.id})),
-  {id:"team",kind:"Équipe",x:500,y:2400,w:560}];
- EDGES=[["root","brief"],["root","mood"],...DATA.camps.map(c=>["root","c_"+c.id]),...DATA.camps.map(c=>["c_"+c.id,"plan"]),["plan","hub"],...DATA.depts.map(d=>["hub","d_"+d.id])];
+ NODES=[{id:"root",kind:"Projet",x:470,y:60,w:620},
+  {id:"hub",kind:"Chacun sa partie",x:1130,y:70,w:360,cls:"hub"},
+  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:1130,y:0,w:360,cls:"dept",did:d.id})),
+  {id:"brief",kind:"Brief",x:90,y:70,w:350},{id:"mood",kind:"Light direction · General mood",x:90,y:0,w:350},
+  ...DATA.camps.map((c,i)=>({id:"c_"+c.id,kind:"Campagne 0"+(i+1),x:470,y:0,w:620,ci:i})),
+  {id:"plan",kind:"Planning provisoire",x:470,y:0,w:620},{id:"loc",kind:"Location",x:470,y:0,w:620},
+  {id:"team",kind:"Équipe",x:470,y:0,w:620}];
+ const cs=DATA.camps.map(c=>"c_"+c.id),ds=DATA.depts.map(d=>"d_"+d.id);
+ EDGES=[["root","brief"],["brief","mood"],["root","hub"],["root",cs[0]],...cs.slice(1).map((c,i)=>[cs[i],c]),[cs[cs.length-1],"plan"],["plan","loc"],["hub",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
 }
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
@@ -411,14 +418,8 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const rows=[[["root","brief","mood"],0],[NODES.filter(n=>n.ci!==undefined&&n.ci<3).map(n=>n.id),90],[NODES.filter(n=>n.ci!==undefined&&n.ci>=3).map(n=>n.id),40],[["plan","loc"],90],[["hub"],70],[NODES.filter(n=>n.did).map(n=>n.id),50],[["team"],90]];
-  let y=60;
-  rows.forEach(([ids,gap],ri)=>{
-   if(ri>0)y+=gap;
-   let bot=y;
-   ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=ri===0&&id!=="root"?y+10:y;place(n);bot=Math.max(bot,n.y+el[id].offsetHeight)});
-   y=bot;
-  });
+  const cols=[["brief","mood"],["root",...DATA.camps.map(c=>"c_"+c.id),"plan","loc","team"],["hub",...DATA.depts.map(d=>"d_"+d.id)]],tops={brief:70,root:60,hub:70};
+  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="hub"?26:44)})});
   fitStage();drawEdges();
  });
 }
