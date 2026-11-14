@@ -346,12 +346,6 @@
    "name": "Caméra",
    "known": [
     {
-     "t": "1st AC : Lucas Bidard",
-     "sub": "",
-     "w": 0,
-     "g": "tech"
-    },
-    {
      "t": "Alexa 35, série Master Primes",
      "sub": "",
      "w": 0,
@@ -482,12 +476,6 @@
    "name": "Lumière",
    "known": [
     {
-     "t": "Gaffer : Nathan Jean-François",
-     "sub": "",
-     "w": 0,
-     "g": "tech"
-    },
-    {
      "t": "Effet « battery loading » au sol : Astera Hyperion, sol surélevé en plexi frosté",
      "sub": "",
      "w": 0,
@@ -589,12 +577,6 @@
    "id": "mach",
    "name": "Machinerie",
    "known": [
-    {
-     "t": "Grip : Nicolas Sommermeyer",
-     "sub": "",
-     "w": 0,
-     "g": "tech"
-    },
     {
      "t": "Plans principalement serrés, peu de mouvements",
      "sub": "",
