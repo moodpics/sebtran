@@ -62,14 +62,6 @@
    [
     "Chef machino",
     "Nicolas Sommermeyer"
-   ],
-   [
-    "DA",
-    "Eve Vitré"
-   ],
-   [
-    "Directeur de production",
-    "Philippe Devallez"
    ]
   ]
  },
@@ -751,16 +743,12 @@
    "name": "1 mannequin par campagne"
   },
   {
-   "role": "Directeur de production",
-   "name": "Philippe Devallez"
-  },
-  {
    "role": "Producer",
    "name": ""
   },
   {
    "role": "Line Producer",
-   "name": ""
+   "name": "Philippe Devallez"
   },
   {
    "role": "Régisseur Gé",
