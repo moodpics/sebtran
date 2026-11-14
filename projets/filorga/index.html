@@ -229,8 +229,8 @@ body.edit .pills{max-width:42vw}
 .news ul{margin-top:8px}
 .news li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;padding:6px 0;font-size:13px;border-top:1px solid rgba(214,84,84,.22)}
 .news li:first-child{border-top:0}
-.news li.go{cursor:pointer}
-.news li.go:hover .nx{text-decoration:underline}
+.nx.go{cursor:pointer}
+.nx.go:hover{text-decoration:underline}
 .news li small{margin-left:auto;color:var(--mute);font-size:11px;white-space:nowrap}
 .news li{display:block}
 .news .nm,.ds.news-d .nm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
@@ -350,6 +350,8 @@ body.m .cvp .refs img{height:auto}
 .cp{display:inline-flex;align-items:center;gap:5px;font:inherit;font-size:.84em;font-weight:600;letter-spacing:.01em;padding:0 9px 0 7px;margin:0 1px;border-radius:99px;background:color-mix(in srgb,var(--cc,#777) 14%,#fff);color:color-mix(in srgb,var(--cc,#777) 62%,#000);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--cc,#777) 42%,transparent);white-space:nowrap;line-height:1.55;vertical-align:baseline}
 .cp::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cc,#777);flex:none}
 .cp.all{--cc:#8a8a8a}
+.cp[data-cpo]{cursor:pointer}.cp[data-cpo]:hover{filter:brightness(.95);box-shadow:inset 0 0 0 1px var(--cc)}
+.dp[data-link]{cursor:pointer}.dp[data-link]:hover{filter:brightness(.96);box-shadow:inset 0 0 0 1px var(--dc)}
 .cpg{display:inline-flex;flex-wrap:wrap;align-items:center;gap:3px;padding:2px 8px 2px 4px;border-radius:8px;background:rgba(0,0,0,.04);box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
 .cpg em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-left:4px}
 .ct{border-top:0}
@@ -437,7 +439,7 @@ function campRe(){const cs=(DATA&&DATA.camps)||[];const k=cs.map(c=>c.name+"|"+(
  const names=[];cs.forEach((c,i)=>{[c.name,...(c.alias||[])].forEach(n=>{if(n){names.push(n);_rm[n.toLowerCase()]=i}})});
  names.sort((a,b)=>b.length-a.length);
  _re=names.length?new RegExp("\\b("+names.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")\\b","gi"):null;return _re}
-const campChip=i=>`<span class="cp cc${i%4}">${esc(DATA.camps[i].name)}</span>`;
+const campChip=i=>`<span class="cp cc${i%4}" data-cpo="${i}" title="Ouvrir la fiche">${esc(DATA.camps[i].name)}</span>`;
 function rich(t){const h=esc(clean(t));const re=campRe();if(!re)return h;return h.replace(re,m=>{const i=_rm[m.toLowerCase()];return i==null?m:campChip(i)})}
 function campChips(ids){const cs=DATA.camps;ids=(ids||[]).filter(id=>cs.some(c=>c.id===id));
  if(!ids.length)return `<span class="cp all">Tous les films</span>`;
@@ -517,7 +519,7 @@ function diffChanges(a,b){
 }
 function newsList(list,max){
  return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
-  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${rich(c.src)} : ${rich(c.text)}</span></div></li>`}).join("");
+  return `<li><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx${dl?" go":""}"${dl?` data-link="${dl}"`:""}>${rich(c.src)} : ${rich(c.text)}</span></div></li>`}).join("");
 }
 const routeUI2=(path,to,own)=>EDIT?`<div class="rto"><span class="sub">Envoyer aussi vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rrm="${path}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-radd="${path}"><option value="">+ sous-partie d'un autre département…</option>${ROUTEOPTS().map(([d,s2,l],k)=>d===own?"":`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
@@ -556,7 +558,7 @@ function body(n){
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
   <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;}
  if(n.id==="bt"){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
-  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
+  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   return `<div class="bsec"><h4>Où</h4>${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}</div>
   <div class="bsec"><h4>Planning provisoire</h4>${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div></div>
   <div class="bsec"><h4>À penser, par département</h4><ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
@@ -692,7 +694,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Fenêtre campagne (effet woosh) =========== */
 const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gradient(180deg,#000 0%,#7a7a7a 55%,#f2f2f2 100%)","radial-gradient(circle at 72% 28%,#fff 0%,#a8a8a8 45%,#1b1b1b 100%)","linear-gradient(135deg,#232323 0%,#a98a3d 65%,#f1dc96 100%)"];

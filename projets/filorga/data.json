@@ -44,8 +44,8 @@
     "Boner Boner"
    ],
    [
-    "Réalisation",
-    "Eve Vitré"
+    "Co-réalisation",
+    "Eve Vitré et Ben Fourmi"
    ],
    [
     "Chef opérateur",
@@ -62,6 +62,14 @@
    [
     "Chef machino",
     "Nicolas Sommermeyer"
+   ],
+   [
+    "DA",
+    "Eve Vitré"
+   ],
+   [
+    "Directeur de production",
+    "Philippe Devallez"
    ]
   ]
  },
@@ -686,8 +694,8 @@
    "name": "Boner Boner"
   },
   {
-   "role": "Director",
-   "name": "Eve Vitré"
+   "role": "Co-réal",
+   "name": "Eve Vitré et Ben Fourmi"
   },
   {
    "role": "Photographe",
@@ -714,6 +722,10 @@
    "name": "1 mannequin par campagne"
   },
   {
+   "role": "Directeur de production",
+   "name": "Philippe Devallez"
+  },
+  {
    "role": "Producer",
    "name": ""
   },
@@ -735,7 +747,7 @@
   },
   {
    "role": "DA",
-   "name": ""
+   "name": "Eve Vitré"
   },
   {
    "role": "Hotel",
