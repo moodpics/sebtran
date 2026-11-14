@@ -385,7 +385,7 @@ function unitsOf(Dt,withMood){
  Dt.brief.items.forEach(it=>{add(it.t,"Brief","brief",it.to);(it.sub||[]).forEach(x=>add(x,"Brief","brief",it.to))});
  Dt.camps.forEach(c=>{add(c.txt,c.name,"camp");if(c.pist)add(c.pist,c.name+" · piste","camp");[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].forEach(([k,n])=>(c[k]||[]).forEach(l=>add(l,c.name+" · "+n,"camp",[{d:k}])))});
  if(withMood)(Dt.mood.items||[]).forEach(t=>add(t,"Mood","mood",["lum"]));
- Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id,null,k.from?"synced":null));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id,null,d.id+"|"+norm(t.t).trim())));if(d.notes)add(d.notes,d.name+" · notes",d.id);(d.reco||[]).forEach(r=>add(r.t,d.name+" · liste recommandée",d.id))});
+ Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id,null,k.from?"synced":null));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id,null,d.id+"|"+norm(t.t).trim())));if(d.notes)add(d.notes,d.name+" · notes",d.id)});
  return u;
 }
 /* où une ligne est envoyée : #tags + cases « Envoyer vers » ; à défaut, mots-clés */
@@ -583,7 +583,7 @@ function openDept(id,keep){
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
   <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
   ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
-  ${((d.reco&&d.reco.length)||EDIT)?`<div class="ds"><h4>Ma liste recommandée</h4><ul class="kn">${(d.reco||[]).map((r,i)=>`<li>${ed(`${P}.reco.${i}.t`,"span","",r.t,"Matériel recommandé")}${del(P+".reco",i)}</li>`).join("")}</ul>${add(P+".reco","reco","élément de la liste")}</div>`:""}`);
+  `);
  if(!keep)drawer.scrollTop=0;
  drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
 }

@@ -374,15 +374,7 @@
      "linkText": ""
     }
    ],
-   "notes": "encore en reflexion de mon côté",
-   "reco": [
-    {
-     "t": "Gimbal Ronin 2 (plan spécial)"
-    },
-    {
-     "t": "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
-    }
-   ]
+   "notes": "encore en reflexion de mon côté"
   },
   {
    "id": "lum",
@@ -470,8 +462,7 @@
      "linkText": ""
     }
    ],
-   "notes": "",
-   "reco": []
+   "notes": ""
   },
   {
    "id": "mach",
@@ -546,15 +537,7 @@
      "linkText": "Plan en PDF"
     }
    ],
-   "notes": "",
-   "reco": [
-    {
-     "t": "Gimbal Ronin 2 (plan spécial)"
-    },
-    {
-     "t": "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
-    }
-   ]
+   "notes": ""
   }
  ],
  "team": [
