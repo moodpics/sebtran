@@ -387,6 +387,21 @@ body.m .cvp .refs img{height:auto}
 .opn .or li{border:0;padding:1px 0;font-size:14px;color:#222}
 body.m .cg li{grid-template-columns:1fr auto}
 body.m .cg li .cgc{grid-column:1/-1}
+
+/* ===== acté en 3 blocs ===== */
+.kgrp{margin:0 0 16px}.kgrp:last-child{margin-bottom:0}
+.kgrp h5{margin:0 0 2px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dd,#666);font-weight:600}
+.kg-tech li{font-weight:600}
+.kb{display:inline-block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:0 8px;border-radius:99px;margin:0 6px 2px 0;line-height:1.6;color:var(--dd,#444)}
+.kb.decide{background:var(--dt,#eee);box-shadow:inset 0 0 0 1px var(--dc,#888)}
+.kb.presse{background:#fff;box-shadow:inset 0 0 0 1px var(--dc,#888);border:1px dashed var(--dc,#888)}
+.kc{margin:0 0 3px;display:flex;flex-wrap:wrap;gap:3px}
+.kgo{display:inline-block;margin-top:4px;font-size:12px;font-weight:600;color:var(--dd,#222);text-decoration:none}
+.kgo:hover{text-decoration:underline}
+.kn small{display:block}
+.kst,.kgs{width:auto!important;display:inline-block;margin:2px 4px 2px 0;font-size:12px;padding:3px 6px}
+.oi.flash{animation:flsh 1.7s}
+@keyframes flsh{0%,65%{box-shadow:0 0 0 3px var(--dc,#000)}100%{box-shadow:0 0 0 0 transparent}}
 </style>
 </head>
 <body>
@@ -449,7 +464,7 @@ function campChips(ids){const cs=DATA.camps;ids=(ids||[]).filter(id=>cs.some(c=>
 const campTog=(path,ids)=>EDIT?`<div class="ctg">${DATA.camps.map((c,i)=>`<button class="cp cc${i%4}${(ids||[]).includes(c.id)?" on":""}" data-ctog="${path}" data-cid="${c.id}">${esc(c.name)}</button>`).join("")}<span class="sub">(aucun = tous les films)</span></div>`:"";
 const FOND={grad:{n:"Fond dégradé N&B",g:"Un seul fond pour {n} films : dégradé N&B haut / bas"},incrust:{n:"Fond incrust",g:"Fond différent : incrust post-pro (gris ou chroma key, à décider)"}};
 function fondLegend(){const cs=DATA.camps;return ["grad","incrust"].map(k=>{const m=cs.map((c,i)=>[c,i]).filter(([c])=>c.fond===k);if(!m.length)return "";return `<div class="fg"><i class="fbar ${k}"></i><div><b>${esc(FOND[k].g.replace("{n}",m.length))}</b><div class="fgc">${m.map(([c,i])=>campChip(i)).join("")}</div></div></div>`}).join("")}
-function fixData(d){(d.depts||[]).forEach(x=>{x.open=x.open||[];x.chg=x.chg||[];x.open.forEach(o=>{o.c=o.c||[];o.sol=o.sol||[]});x.chg.forEach(o=>{o.c=o.c||[]})});(d.camps||[]).forEach(c=>{c.alias=c.alias||[]});return d}
+function fixData(d){(d.depts||[]).forEach(x=>{x.open=x.open||[];x.open.forEach(o=>{o.c=o.c||[];o.sol=o.sol||[]});});(d.camps||[]).forEach(c=>{c.alias=c.alias||[]});return d}
 
 const clip=(s,n=230)=>s.length>n?s.slice(0,n).replace(/\s+\S*$/,"")+"…":s;
 const RULES=[
@@ -531,7 +546,7 @@ const addimg=(p,label)=>EDIT?`<button class="xadd" data-addimg="${p}">+ ${esc(la
 const tog=(p,on)=>EDIT?`<button class="xadd" data-tog="${p}" title="Met la ligne en gras dans le brief">${on?"Retirer la mise en avant":"Mettre en avant"}</button>`:"";
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
 const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
- brief:()=>({id:uid(),t:"",b:1,sub:[],img:"",imgNote:"",to:[]}),str:()=>"",team:()=>({role:"",name:""}),open:()=>({id:uid(),t:"",c:[],pb:"",ch:"",sol:[]}),chg:()=>({c:[],t:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
+ brief:()=>({id:uid(),t:"",b:1,sub:[],img:"",imgNote:"",to:[]}),str:()=>"",team:()=>({role:"",name:""}),open:()=>({id:uid(),t:"",c:[],pb:"",ch:"",sol:[]}),known_tech:()=>({t:"",sub:"",w:0,g:"tech"}),known_conf:()=>({t:"",sub:"",w:0,g:"conf"}),known_spec:()=>({t:"",sub:"",w:0,g:"spec"}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
 const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
 /* =========== Corps des nodes =========== */
@@ -665,19 +680,25 @@ function openDept(id,keep){
  const mir=t=>(t.mir||[]).map(m=>`<span class="mir">↳ ${rich(m.text)} <em>(${esc(m.src)})</em></span>`).join("");
  const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}${mir(t)}</span>`:((t.lines.length||(t.mir||[]).length)?`<span class="det bl">${t.lines.map(l=>`<span>${rich(l)}</span>`).join("")}${mir(t)}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}${mir(t)}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
   :(t.lines.length||t.fix.length||t.ctl.length||(t.mir||[]).length)?`<span class="det">${t.lines.map(l=>`<span>${rich(l)}</span>`).join("")}${mir(t)}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
+
+ const G3=[["tech","Technicien"],["conf","Config générale · décidée ou pressentie"],["spec","Plans et effets spéciaux"]],GL={tech:"technicien",conf:"point de config",spec:"plan / effet spécial"};
+ const goOpts=()=>{const o=[["","Aucun lien"]];DATA.depts.forEach(x=>(x.refs||[]).forEach((r,i)=>{if(r.src)o.push([`ref:${x.id}:${i}`,`Image · ${x.name} · ${clip(clean(r.title),38)}`])}));(d.open||[]).forEach(q=>o.push([`open:${q.id}`,`À définir · ${clip(clean(q.t),38)}`]));return o};
+ const goLink=g=>g?`<a href="#" class="kgo" data-go="${esc(g)}">${g.startsWith("open:")?"Voir le point à définir ›":"Ouvrir le plan / l'effet ›"}</a>`:"";
+ const kItem=(it,i)=>{const Q=`${P}.known.${i}`,g=it.g||"conf";
+  return `<li class="${it.w?"w":""}">${g==="conf"?(EDIT?`<select class="kst" data-p="${Q}.st"><option value="">statut —</option><option value="decide"${it.st==="decide"?" selected":""}>Décidé</option><option value="presse"${it.st==="presse"?" selected":""}>Pressenti</option></select>`:(it.st?`<span class="kb ${it.st}">${it.st==="decide"?"Décidé":"Pressenti"}</span>`:"")):""}${EDIT?campTog(Q+".c",it.c):((it.c&&it.c.length)?`<div class="kc">${campChips(it.c)}</div>`:"")}${ed(`${Q}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${Q}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${rich(it.sub)}</small>`:"")}${EDIT?`<div class="rto"><select class="kgs" data-p="${Q}.g">${G3.map(([v,l])=>`<option value="${v}"${g===v?" selected":""}>${GL[v]}</option>`).join("")}</select><select class="kgs" data-p="${Q}.go">${goOpts().map(([v,l])=>`<option value="${esc(v)}"${(it.go||"")===v?" selected":""}>${esc(l)}</option>`).join("")}</select></div>`:goLink(it.go)}${it.from?"":routeUI2(Q,it.to,id)}${del(P+".known",i)}</li>`};
+ const knownHtml=G3.map(([g,gl])=>{const its=d.known.map((it,i)=>[it,i]).filter(([it])=>(it.g||"conf")===g);if(!its.length&&!EDIT)return "";return `<div class="kgrp kg-${g}"><h5>${gl}</h5><ul class="kn">${its.map(([it,i])=>kItem(it,i)).join("")}</ul>${add(P+".known","known_"+g,GL[g])}</div>`}).join("");
  openDrawer(head(`<span class="dhi">${ICON[id]||""}</span>`+(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name)))+`
-  ${(d.chg&&d.chg.length||EDIT)?`<div class="ds chg"><h4>Gros changements on set</h4><ul class="cg">${(d.chg||[]).map((x,i)=>`<li><div class="cgc">${EDIT?campTog(`${P}.chg.${i}.c`,x.c):campChips(x.c)}</div><div class="cgt">${ed(`${P}.chg.${i}.t`,"span","",x.t,"Ce qui change")}</div>${del(P+".chg",i)}</li>`).join("")}</ul>${add(P+".chg","chg","changement on set")}</div>`:""}
   ${(()=>{const dn=(DATA.log||[]).filter(c=>(c.d||[]).includes(id));return `<div class="ds news-d"><h4>Latest news/modif</h4>${dn.length?`<ul>${newsList(dn,6)}</ul>`:`<p class="sub" style="margin:0">Rien de nouveau pour l'instant.</p>`}</div>`})()}
   ${id==="lum"?(()=>{const M=DATA.mood;return `<div class="ds"><h4>Light direction · General mood</h4><ul class="kn">${M.items.map((t,i)=>`<li>${ed(`mood.items.${i}`,"span","",t)}${del("mood.items",i)}</li>`).join("")}</ul>${add("mood.items","str","mood")}${(M.p||EDIT)?`<p style="margin:10px 0 0">${ed("mood.p","span","",M.p)}</p>`:""}${M.img&&!d.refs.some(r=>r.src===M.img)?`<img class="rimg" data-zoom src="${esc(imgSrc(M.img))}" alt="Dégradé N&B de référence">`:""}${setimg("mood.img",M.img?"Changer l'image":"+ image")}</div>`})():""}
-  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${rich(it.sub)}</small>`:"")}${it.from?"":routeUI2(`${P}.known.${i}`,it.to,id)}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
-  ${(d.open&&d.open.length||EDIT)?`<div class="ds opn"><h4>À définir</h4>${(d.open||[]).map((o,i)=>{const Q=`${P}.open.${i}`;return `<div class="oi"><div class="oh">${EDIT?campTog(Q+".c",o.c):(o.c&&o.c.length?campChips(o.c):"")}<b>${ed(Q+".t","span","",o.t,"Sujet à définir")}</b>${del(P+".open",i)}</div>${(o.pb||EDIT)?`<div class="or"><em>Problème</em>${ed(Q+".pb","span","",o.pb,"Quel est le problème ?")}</div>`:""}${(o.ch||EDIT)?`<div class="or"><em>Enjeu</em>${ed(Q+".ch","span","",o.ch,"Quel est le challenge ?")}</div>`:""}${((o.sol&&o.sol.length)||EDIT)?`<div class="or"><em>Pistes à discuter</em>${EDIT?edj(Q+".sol","span","",o.sol,"\n","Une piste par ligne"):`<ul>${o.sol.map(x=>`<li>${rich(x)}</li>`).join("")}</ul>`}</div>`:""}</div>`}).join("")}${add(P+".open","open","point à définir")}</div>`:""}
+  <div class="ds"><h4>Ce qui est acté</h4>${knownHtml}</div>
+  ${(d.open&&d.open.length||EDIT)?`<div class="ds opn"><h4>À définir</h4>${(d.open||[]).map((o,i)=>{const Q=`${P}.open.${i}`;return `<div class="oi" data-oid="${esc(o.id||"")}"><div class="oh">${EDIT?campTog(Q+".c",o.c):(o.c&&o.c.length?campChips(o.c):"")}<b>${ed(Q+".t","span","",o.t,"Sujet à définir")}</b>${del(P+".open",i)}</div>${(o.pb||EDIT)?`<div class="or"><em>Problème</em>${ed(Q+".pb","span","",o.pb,"Quel est le problème ?")}</div>`:""}${(o.ch||EDIT)?`<div class="or"><em>Enjeu</em>${ed(Q+".ch","span","",o.ch,"Quel est le challenge ?")}</div>`:""}${((o.sol&&o.sol.length)||EDIT)?`<div class="or"><em>Pistes à discuter</em>${EDIT?edj(Q+".sol","span","",o.sol,"\n","Une piste par ligne"):`<ul>${o.sol.map(x=>`<li>${rich(x)}</li>`).join("")}</ul>`}</div>`:""}</div>`}).join("")}${add(P+".open","open","point à définir")}</div>`:""}
 
+  <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
+  ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
-  <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
-  ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   `);
  drawer.classList.add("d-"+id);
  if(!keep)drawer.scrollTop=0;
@@ -694,7 +715,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Fenêtre campagne (effet woosh) =========== */
 const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gradient(180deg,#000 0%,#7a7a7a 55%,#f2f2f2 100%)","radial-gradient(circle at 72% 28%,#fff 0%,#a8a8a8 45%,#1b1b1b 100%)","linear-gradient(135deg,#232323 0%,#a98a3d 65%,#f1dc96 100%)"];
@@ -754,6 +775,7 @@ document.addEventListener("input",e=>{
  else if(t.tagName==="INPUT"||t.tagName==="SELECT")v=t.value;
  else{v=t.innerText.replace(/ /g," ").replace(/\n+$/,"");if(t.dataset.t==="lines")v=v.split("\n").map(s=>s.trim()).filter(Boolean);else if(t.dataset.t==="semi")v=v.split(/[;,]/).map(s=>s.trim()).filter(Boolean)}
  set(p,v);changed();
+ if(/\.known\.\d+\.(g|st|go)$/.test(p))renderAll();
  {const bm=/^brief\.items\.(\d+)\.(t|sub)/.exec(p);if(bm)syncBrief(+bm[1]);if(bm||/^depts\./.test(p))syncDept()}
  if(t.type==="checkbox"){
   if(/\.todo\.\d+\.done$/.test(p)){const li=t.closest("li");if(li){const on=t.checked||[...li.querySelectorAll(".det .ed")].some(x=>x.textContent.trim());li.classList.toggle("off",!on);const m=li.querySelector("i.mk");if(m)m.classList.toggle("on",!!on)}}

@@ -313,24 +313,56 @@
    "name": "Caméra",
    "known": [
     {
-     "t": "Plans principalement serrés, peu de mouvements à ce stade",
+     "t": "1st AC : Lucas Bidard",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "tech"
     },
     {
-     "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+     "t": "Alexa 35, série Master Primes",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Plans principalement serrés, peu de mouvements à ce stade",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "st": "presse"
     },
     {
      "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf",
+     "st": "decide"
     },
     {
-     "t": "1st AC : Lucas Bidard",
+     "t": "Fond propre et cadrage prévus pour l'incrustation post-pro",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "uv"
+     ]
+    },
+    {
+     "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "go": "ref:mach:0"
+    },
+    {
+     "t": "Effet filé : piste filtres spécifiques en optique et FPS bas (à définir)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "regen"
+     ],
+     "go": "ref:cam:0"
     }
    ],
    "todo": [
@@ -408,28 +440,6 @@
       "FPS bas (piste actuelle)"
      ]
     }
-   ],
-   "chg": [
-    {
-     "c": [],
-     "t": "Alexa 35, série Master Primes. Plans principalement serrés, peu de mouvements."
-    },
-    {
-     "c": [
-      "regen"
-     ],
-     "t": "Effet filé : filtres spécifiques en optique, FPS bas (à définir)."
-    },
-    {
-     "c": [],
-     "t": "1 plan spécial : bras déporté, jib sur dolly, tête Ronin 2 (gimbal). Tous les autres plans : jib sur dolly, tête 3D Cartoni Lambda 25."
-    },
-    {
-     "c": [
-      "uv"
-     ],
-     "t": "Fond propre et cadrage prévus pour l'incrustation post-pro."
-    }
    ]
   },
   {
@@ -439,7 +449,58 @@
     {
      "t": "Gaffer : Nathan Jean-François",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "tech"
+    },
+    {
+     "t": "Fond dégradé N&B haut / bas conservé d'un film à l'autre : rangée de Skypanel X Hyperoptics sur grill, keylight beauty light, negative fill, borniol en top ajustable",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "regen",
+      "time",
+      "ncef"
+     ]
+    },
+    {
+     "t": "Dégradé pas toujours droit, pas forcément linéaire",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "regen"
+     ]
+    },
+    {
+     "t": "Dégradé toujours droit, horizontal",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "time",
+      "ncef"
+     ]
+    },
+    {
+     "t": "Effet « battery loading » au sol : Astera Hyperion, sol surélevé en plexi frosté",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "regen"
+     ],
+     "go": "ref:lum:1"
+    },
+    {
+     "t": "Fond incrust (gris ou chroma, à décider). Lumière solaire : Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4. Backlight pour le plan spray du produit",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "uv"
+     ],
+     "go": "open:lum-uv"
     }
    ],
    "todo": [
@@ -546,35 +607,6 @@
       "Chroma key"
      ]
     }
-   ],
-   "chg": [
-    {
-     "c": [
-      "regen",
-      "time",
-      "ncef"
-     ],
-     "t": "Fond dégradé N&B haut / bas conservé d'un film à l'autre : rangée de Skypanel X Hyperoptics sur grill, keylight beauty light, negative fill, borniol en top ajustable."
-    },
-    {
-     "c": [
-      "regen"
-     ],
-     "t": "Dégradé pas toujours droit, pas forcément linéaire. Effet « battery loading » au sol (Astera Hyperion)."
-    },
-    {
-     "c": [
-      "time",
-      "ncef"
-     ],
-     "t": "Dégradé toujours droit, horizontal."
-    },
-    {
-     "c": [
-      "uv"
-     ],
-     "t": "Fond incrust (gris ou chroma, à décider). Lumière solaire : Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4. Backlight pour le plan spray du produit."
-    }
    ]
   },
   {
@@ -582,24 +614,62 @@
    "name": "Machinerie",
    "known": [
     {
-     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
+     "t": "Grip : Nicolas Sommermeyer",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "tech"
     },
     {
      "t": "Plans principalement serrés, peu de mouvements",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf"
     },
     {
-     "t": "Grip : Nicolas Sommermeyer",
+     "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf",
+     "st": "decide"
+    },
+    {
+     "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "regen",
+      "time",
+      "ncef"
+     ]
     },
     {
      "t": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
      "sub": "",
-     "w": 0
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "regen",
+      "time",
+      "ncef"
+     ]
+    },
+    {
+     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
+     "sub": "Bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+     "w": 0,
+     "g": "spec",
+     "go": "ref:mach:0"
+    },
+    {
+     "t": "À définir selon le fond retenu (chroma key ou gris)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "uv"
+     ],
+     "go": "open:mach-uv"
     }
    ],
    "todo": [
@@ -664,26 +734,6 @@
       "Chroma key",
       "Gris"
      ]
-    }
-   ],
-   "chg": [
-    {
-     "c": [],
-     "t": "1 plan machinerie spécial : la caméra avance vers le talent qui marche vers elle, puis monte au-dessus de lui. Mouvement clean, robotique, sans robot."
-    },
-    {
-     "c": [
-      "regen",
-      "time",
-      "ncef"
-     ],
-     "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable."
-    },
-    {
-     "c": [
-      "uv"
-     ],
-     "t": "À définir selon le fond retenu (chroma key ou gris)."
     }
    ]
   }
