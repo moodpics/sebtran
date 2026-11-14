@@ -220,7 +220,15 @@ body.edit .nh{cursor:grab}body:not(.edit) .nh{cursor:default}
 body.edit .pills{max-width:42vw}
 
 /* dernières nouvelles */
-.newsn .news{margin-top:0}
+.node.newsn{background:transparent;border:0;box-shadow:none}
+.node.newsn .nh{display:none}
+.node.newsn .nb{padding:0}
+.newsn .news{margin-top:0;color:#fff;background:linear-gradient(135deg,rgba(255,110,110,.22),rgba(255,70,70,.32));border-color:rgba(255,120,120,.6);box-shadow:0 12px 30px -16px rgba(255,80,80,.5)}
+.newsn .news .nt span{color:rgba(255,255,255,.65)}
+.newsn .news .nd{color:#ffb4b4}
+.newsn .news li{border-top-color:rgba(255,150,150,.3)}
+.newsn .news .nk{color:#ffc9c9;border-color:rgba(255,170,170,.6)}
+.newsn .news .nk.add,.newsn .news .nk.ajout{color:#fff}
 .news{margin-top:20px;padding:12px 14px 10px;border-radius:7px;background:linear-gradient(135deg,rgba(255,138,138,.16),rgba(255,92,92,.24));border:1px solid rgba(214,84,84,.38);box-shadow:0 12px 30px -16px rgba(190,60,60,.6),inset 0 1px 0 rgba(255,255,255,.7);backdrop-filter:blur(6px)}
 .news .nt{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .news .nt b{font-weight:600}
@@ -434,6 +442,8 @@ body.m .bsplit{grid-template-columns:1fr}body.m .bf+.bf{border-left:0;border-top
 .bcl b{font-size:26px;font-weight:600;letter-spacing:-.01em}
 .bcl .cgo{opacity:.7}
 .bcl:hover .cgo{opacity:1}
+.gsub{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.gsub h5{margin:0 0 12px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#777;font-weight:600}
 </style>
 </head>
 <body>
@@ -594,11 +604,10 @@ function makeNodes(){
   {id:"news",kind:"Latest news",x:750,y:70,w:560,cls:"newsn"},
   {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
   {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:750,y:70,w:560,cls:"bt"},
-  {id:"hub",kind:"Chacun sa partie",x:750,y:0,w:560,cls:"hub"},
   ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
   {id:"team",kind:"Équipe",x:70,y:0,w:640}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
- EDGES=[["root","camps"],["camps","team"],["root","news"],["news","bt"],["bt","hub"],["hub",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
+ EDGES=[["root","camps"],["camps","team"],["root","news"],["news","bt"],["bt",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
 }
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
@@ -608,7 +617,6 @@ function body(n){
 
  if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief équipe</b><span class="cgo">Ouvrir ›</span></div>`;
  if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
-  if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
   return `<span class="dic">${ICON[d.id]||""}</span><h3>${esc(d.name)}${(DATA.log||[]).some(c=>(c.d||[]).includes(d.id)&&Date.now()-new Date(c.at)<2592e5)?`<span class="nw">Nouveau</span>`:""}</h3>${tot?`<div class="sub">${done} / ${tot} renseignés</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
   <ul>${d.known.slice(0,2).map(k=>`<li>${esc(k.t)}</li>`).join("")}</ul><span class="open">Ouvrir</span>`;}
@@ -638,8 +646,8 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const cols=[["root","camps","team"],["news","bt","hub",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,news:70};
-  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?30:id==="hub"?26:44)})});
+  const cols=[["root","camps","team"],["news","bt",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,news:70};
+  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?30:44)})});
   fitStage();drawEdges();
  });
 }
@@ -708,7 +716,7 @@ function briefHtml(){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
   const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   const secs=[["loc","Où",`${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}`],["plan","Planning provisoire",`${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div>`],["glob","Au global",`<ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
    ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((x,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",x)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
-   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}`],["fond","Lumière / Machinerie",baseBlock()]];
+   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}<div class="gsub"><h5>Lumière / Machinerie</h5>${baseBlock()}</div>`]];
   return secs.map(([k,t,h])=>`<details class="acc" data-acc="${k}"${ACC[k]?" open":""}><summary>${t}</summary><div class="accb">${h}</div></details>`).join("")}
 function openBrief(keep){drawerCtx={t:"b"};openDrawer(head("Brief équipe")+`<div class="bdy">${briefHtml()}</div>`);if(!keep)drawer.scrollTop=0}
 function openDept(id,keep){
