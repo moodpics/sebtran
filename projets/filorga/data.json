@@ -63,7 +63,11 @@
     "Chef machino",
     "Nicolas Sommermeyer"
    ]
-  ]
+  ],
+  "base": {
+   "t": "Base commune : le fond cyclo blanc",
+   "p": "Tous les films sont tournés sur le fond cyclo blanc. C'est à partir de cette base que chaque fond est travaillé."
+  }
  },
  "brief": {
   "items": [
@@ -114,7 +118,7 @@
  },
  "mood": {
   "items": [],
-  "p": "On shoote tout sur le fond cyclo blanc, et on crée le dégradé à la lumière : gros travail de contrôle de lumière, avec du borniol en top, ajustable.",
+  "p": "On shoote tout sur le fond cyclo blanc, et on crée les fonds à partir de cette base. Dégradé fait à la lumière : gros travail de contrôle, avec du borniol en top, ajustable.",
   "moods": [
    {
     "id": "mood-bw",
@@ -126,6 +130,7 @@
      "ncef"
     ],
     "lines": [
+     "Créé à la lumière avec la rangée de Skypanel X Hyperoptics sur le grill",
      "Regen Peptide : dégradé pas toujours droit, pas forcément linéaire",
      "Time Filler et NCEF Revitalize : dégradé toujours droit, horizontal"
     ],
@@ -135,7 +140,7 @@
    {
     "id": "mood-inc",
     "t": "Mood 2 · Incrust",
-    "d": "Background gris ou chroma key, à décider",
+    "d": "Background gris étale, sur la base du cyclo blanc (incrust post-pro ; chroma key encore possible, à décider)",
     "c": [
      "uv"
     ],
