@@ -220,6 +220,7 @@ body.edit .nh{cursor:grab}body:not(.edit) .nh{cursor:default}
 body.edit .pills{max-width:42vw}
 
 /* dernières nouvelles */
+.newsn .news{margin-top:0}
 .news{margin-top:20px;padding:12px 14px 10px;border-radius:7px;background:linear-gradient(135deg,rgba(255,138,138,.16),rgba(255,92,92,.24));border:1px solid rgba(214,84,84,.38);box-shadow:0 12px 30px -16px rgba(190,60,60,.6),inset 0 1px 0 rgba(255,255,255,.7);backdrop-filter:blur(6px)}
 .news .nt{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
 .news .nt b{font-weight:600}
@@ -283,7 +284,8 @@ body.edit .pills{max-width:42vw}
 .cvl{min-height:48px;white-space:pre-wrap}
 @media(max-width:700px){.cvg{grid-template-columns:1fr}.cvh h2{font-size:30px}#cv{padding:8px}}
 body.m #world{display:flex;flex-direction:column}
-body.m #n_root{order:-2}
+body.m #n_root{order:-3}
+body.m #n_news{order:-2}
 body.m #n_camps{order:-1}
 body.m .ctiles{grid-template-columns:1fr 1fr;gap:10px}
 body.m .ct img,body.m .ct p{display:none}
@@ -589,19 +591,21 @@ const ICON={
  mach:`<svg viewBox="0 0 64 64" ${IC}><rect x="20" y="9" width="22" height="14" rx="2"/><path d="M42 13l9-4v14l-9-4"/><path d="M31 23v10"/><rect x="10" y="33" width="44" height="8" rx="2"/><circle cx="20" cy="49" r="4"/><circle cx="44" cy="49" r="4"/><path d="M4 57h56"/></svg>`};
 function makeNodes(){
  NODES=[{id:"root",kind:"Projet",x:70,y:60,w:640},
+  {id:"news",kind:"Latest news",x:750,y:70,w:560,cls:"newsn"},
   {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
   {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:750,y:70,w:560,cls:"bt"},
   {id:"hub",kind:"Chacun sa partie",x:750,y:0,w:560,cls:"hub"},
   ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
   {id:"team",kind:"Équipe",x:70,y:0,w:640}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
- EDGES=[["root","camps"],["camps","team"],["root","bt"],["bt","hub"],["hub",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
+ EDGES=[["root","camps"],["camps","team"],["root","news"],["news","bt"],["bt","hub"],["hub",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
 }
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
   ${ed("root.sub","p","sub",r.sub)}
-  <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
-  <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;}
+  <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
+ if(n.id==="news")return `<div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;
+
  if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief équipe</b><span class="cgo">Ouvrir ›</span></div>`;
  if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
   if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
@@ -634,8 +638,8 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const cols=[["root","camps","team"],["bt","hub",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,bt:70};
-  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"?30:id==="hub"?26:44)})});
+  const cols=[["root","camps","team"],["news","bt","hub",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,news:70};
+  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?30:id==="hub"?26:44)})});
   fitStage();drawEdges();
  });
 }
