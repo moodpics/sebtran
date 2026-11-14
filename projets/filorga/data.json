@@ -369,7 +369,10 @@
      "sub": "",
      "w": 0,
      "g": "spec",
-     "go": "ref:mach:0"
+     "go": "ref:mach:0",
+     "c": [
+      "regen"
+     ]
     },
     {
      "t": "Effet filé : piste filtres spécifiques en optique et FPS bas (à définir)",
@@ -595,19 +598,29 @@
      "t": "Plans principalement serrés, peu de mouvements",
      "sub": "",
      "w": 0,
-     "g": "conf"
+     "g": "mvt"
     },
     {
-     "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
+     "t": "Setup : jib sur dolly avec tête 3D Cartoni Lambda 25, pour tous les plans sauf le plan spécial",
      "sub": "",
      "w": 0,
-     "g": "conf"
+     "g": "mvt"
+    },
+    {
+     "t": "Plan machinerie spécial : la caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus du talent. Mouvement clean, robotique… sans robot",
+     "sub": "Bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+     "w": 0,
+     "g": "mvt",
+     "c": [
+      "regen"
+     ],
+     "go": "ref:mach:0"
     },
     {
      "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable",
      "sub": "",
      "w": 0,
-     "g": "conf",
+     "g": "rig",
      "c": [
       "regen",
       "time",
@@ -618,7 +631,7 @@
      "t": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
      "sub": "",
      "w": 0,
-     "g": "conf",
+     "g": "rig",
      "c": [
       "regen",
       "time",
@@ -626,17 +639,20 @@
      ]
     },
     {
-     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
-     "sub": "Bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
-     "w": 0,
-     "g": "spec",
-     "go": "ref:mach:0"
-    },
-    {
-     "t": "À définir selon le fond retenu (chroma key ou gris)",
+     "t": "Effet « battery loading » au sol : sol surélevé en plexi frosté, Astera Hyperion (collaboration lumière / déco)",
      "sub": "",
      "w": 0,
-     "g": "spec",
+     "g": "rig",
+     "c": [
+      "regen"
+     ],
+     "go": "ref:lum:0"
+    },
+    {
+     "t": "Fond du film UV à définir (chroma key ou gris), la machinerie en dépend",
+     "sub": "",
+     "w": 0,
+     "g": "rig",
      "c": [
       "uv"
      ],
