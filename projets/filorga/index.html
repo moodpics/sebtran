@@ -374,7 +374,7 @@ const TAGMAP={cam:"cam",camera:"cam",lum:"lum",lumiere:"lum",mach:"mach",machine
 const clean=s=>String(s==null?"":s).replace(TAGRE,"").trim();
 const clip=(s,n=230)=>s.length>n?s.slice(0,n).replace(/\s+\S*$/,"")+"…":s;
 const RULES=[
- {re:/(mouvement|bras neutron|neutron|dolly|jib|ronin|travelling|steadicam|\brail\b|grue|robotique|camera (avance|monte|recule|tourne))/,to:["cam","mach"]},
+ {re:/(mouvement|dolly|jib|ronin|travelling|steadicam|\brail\b|grue|robotique|camera (avance|monte|recule|tourne))/,to:["cam","mach"]},
  {re:/(optique|filtre|focale|\bfps\b|objectif|alexa|master prime)/,to:["cam"]},
  {re:/(lumiere|eclairage|projecteur|gobo|lumen|skypanel|sypanel|keylight|borniol|floppy|batter|loading|astera|hyperion|hyperoptic|plexi|\bled\b|fresnel|\bhmi\b|dimmer|backlight|negativ fill|spotlight|\bspot\b)/,to:["lum"],from:["brief","camp"]},
  {re:/(\brig\b|rigs|rigging|\bgril|grill|\btop\b|truss|structure|perche|accroche|fixer|suspen)/,to:["mach"],from:["lum","brief","camp"]}

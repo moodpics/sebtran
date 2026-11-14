@@ -1,7 +1,17 @@
 {
  "v": 1,
- "updated": "2026-11-14T15:18:32.000Z",
+ "updated": "2026-11-14T17:01:55.000Z",
  "log": [
+  {
+   "at": "2026-11-14T17:01:55.000Z",
+   "src": "Machinerie · Camera Support & Movement",
+   "d": [
+    "mach",
+    "cam"
+   ],
+   "kind": "modif",
+   "text": "Plus de bras Neutron : plan spécial en jib sur dolly avec Ronin 2 (gimbal), autres plans en jib sur dolly avec tête 3D Cartoni Lambda 25"
+  },
   {
    "at": "2026-11-14T12:36:54.515Z",
    "src": "Brief",
@@ -48,7 +58,7 @@
  "brief": {
   "items": [
    {
-    "t": "Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)",
+    "t": "Plans principalement serrés, peu de mouvements : jib sur dolly avec tête 3D Cartoni Lambda 25",
     "b": 1,
     "sub": [],
     "img": "",
@@ -60,7 +70,8 @@
     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
     "b": 1,
     "sub": [
-     "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. "
+     "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. ",
+     "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)"
     ],
     "img": "refs/mugler-angel-elixir-plan1.gif",
     "imgNote": "Référence : Mugler Angel Elixir",
@@ -273,9 +284,14 @@
      "w": 0
     },
     {
-     "t": "Utilisation possible du bras Neutron, comme sur LRP",
-     "sub": "À confirmer",
-     "w": 1
+     "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+     "sub": "",
+     "w": 0
+    },
+    {
+     "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
+     "sub": "",
+     "w": 0
     },
     {
      "t": "1st AC : Lucas Bidard",
@@ -451,9 +467,9 @@
      "w": 0
     },
     {
-     "t": "Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)",
-     "sub": "Bras Neutron : à confirmer",
-     "w": 1
+     "t": "Plans principalement serrés, peu de mouvements",
+     "sub": "",
+     "w": 0
     },
     {
      "t": "Grip : Nicolas Sommermeyer",
@@ -471,8 +487,8 @@
      "t": "Camera Support & Movement",
      "done": 0,
      "lines": [
-      "Setup 1 (Plan spécial ) jib sur Dolly avec Ronin 2 manivelles rail",
-      "Setup 2 jibs sur Dolly avec Tête 3D Lambda 25"
+      "Setup 1 (plan spécial) : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal), manivelles, rail",
+      "Setup 2 (tous les autres plans) : jib sur dolly avec tête 3D Cartoni Lambda 25"
      ],
      "fix": [],
      "ctl": []
