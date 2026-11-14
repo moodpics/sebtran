@@ -477,8 +477,8 @@ function makeNodes(){
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
   ${ed("root.sub","p","sub",r.sub)}
-  <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>
-  <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
+  <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
+  <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;}
  if(n.id==="bt"){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
   const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   return `<div class="bsec"><h4>Où</h4>${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}</div>
