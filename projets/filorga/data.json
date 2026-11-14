@@ -1,7 +1,17 @@
 {
  "v": 1,
- "updated": "2026-11-14T12:36:54.515Z",
+ "updated": "2026-11-14T14:09:03.000Z",
  "log": [
+  {
+   "at": "2026-11-14T14:09:03.000Z",
+   "src": "Lumière · Special lighting effect",
+   "d": [
+    "lum",
+    "brief"
+   ],
+   "kind": "modif",
+   "text": "« battery loading » : contenu remplacé par la ligne du brief"
+  },
   {
    "at": "2026-11-14T12:36:54.515Z",
    "src": "Brief",
@@ -55,14 +65,18 @@
      "1 mannequin par campagne : plans d'attitude + application des produits"
     ],
     "img": "",
-    "imgNote": ""
+    "imgNote": "",
+    "id": "bqdmjp",
+    "to": []
    },
    {
     "t": "Plans principalement serrés, peu de mouvements, bras Neutron possible (comme sur LRP)",
     "b": 1,
     "sub": [],
     "img": "",
-    "imgNote": ""
+    "imgNote": "",
+    "id": "bcxi6x",
+    "to": []
    },
    {
     "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
@@ -71,21 +85,32 @@
      "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. "
     ],
     "img": "refs/mugler-angel-elixir-plan1.gif",
-    "imgNote": "Référence : Mugler Angel Elixir"
+    "imgNote": "Référence : Mugler Angel Elixir",
+    "id": "bph5qt",
+    "to": []
    },
    {
     "t": "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes #lumiere",
     "b": 1,
     "sub": [],
     "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
-    "imgNote": ""
+    "imgNote": "",
+    "id": "bpmttl",
+    "to": [
+     {
+      "d": "lum",
+      "s": "Special lighting effect \" battery loading\" au sol"
+     }
+    ]
    },
    {
     "t": "Grosse lumière en douche accrochée sur le grill ",
     "b": 1,
     "sub": [],
     "img": "",
-    "imgNote": ""
+    "imgNote": "",
+    "id": "b4nr5t",
+    "to": []
    }
   ],
   "source": "Source : note de job Evernote, 13 nov."
@@ -374,8 +399,7 @@
      "t": "Special lighting effect \" battery loading\" au sol ",
      "done": 0,
      "lines": [
-      "automatique/gobo",
-      "Video projecteur au minimum 14 lm, à fixer en top shot, un peu back"
+      "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes"
      ],
      "fix": [],
      "ctl": []
