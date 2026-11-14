@@ -153,7 +153,11 @@
    "mach": [
     "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
     "Borniol / top noir en cadre, ajustable"
-   ]
+   ],
+   "alias": [
+    "Peptide"
+   ],
+   "fond": "grad"
   },
   {
    "id": "time",
@@ -185,7 +189,9 @@
    "mach": [
     "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
     "Borniol / top noir en cadre, ajustable"
-   ]
+   ],
+   "alias": [],
+   "fond": "grad"
   },
   {
    "id": "ncef",
@@ -217,7 +223,11 @@
    "mach": [
     "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
     "Borniol / top noir en cadre, ajustable"
-   ]
+   ],
+   "alias": [
+    "NCEF"
+   ],
+   "fond": "grad"
   },
   {
    "id": "uv",
@@ -241,7 +251,12 @@
    ],
    "mach": [
     "À définir selon le fond retenu (chroma key ou gris)"
-   ]
+   ],
+   "alias": [
+    "UV",
+    "film UV"
+   ],
+   "fond": "incrust"
   }
  ],
  "plan": {
@@ -308,11 +323,6 @@
      "t": "1st AC : Lucas Bidard",
      "sub": "",
      "w": 0
-    },
-    {
-     "t": "Effet filé sur film Peptide : optiquement filtres spécifiques ; FPS low fps",
-     "sub": "",
-     "w": 0
     }
    ],
    "todo": [
@@ -375,7 +385,44 @@
      "linkText": ""
     }
    ],
-   "notes": "encore en reflexion de mon côté"
+   "notes": "encore en reflexion de mon côté",
+   "open": [
+    {
+     "id": "cam-fil",
+     "t": "Effet filé",
+     "c": [
+      "regen"
+     ],
+     "pb": "Effet filé sur le film Regen Peptide, à obtenir en optique avec des filtres spécifiques et un FPS bas.",
+     "ch": "",
+     "sol": [
+      "Filtres spécifiques en optique (piste actuelle)",
+      "FPS bas (piste actuelle)"
+     ]
+    }
+   ],
+   "chg": [
+    {
+     "c": [],
+     "t": "Alexa 35, série Master Primes. Plans principalement serrés, peu de mouvements."
+    },
+    {
+     "c": [
+      "regen"
+     ],
+     "t": "Effet filé : filtres spécifiques en optique, FPS bas (à définir)."
+    },
+    {
+     "c": [],
+     "t": "1 plan spécial : bras déporté, jib sur dolly, tête Ronin 2 (gimbal). Tous les autres plans : jib sur dolly, tête 3D Cartoni Lambda 25."
+    },
+    {
+     "c": [
+      "uv"
+     ],
+     "t": "Fond propre et cadrage prévus pour l'incrustation post-pro."
+    }
+   ]
   },
   {
    "id": "lum",
@@ -463,7 +510,64 @@
      "linkText": ""
     }
    ],
-   "notes": ""
+   "notes": "",
+   "open": [
+    {
+     "id": "lum-bat",
+     "t": "Effet « battery loading » au sol",
+     "c": [
+      "regen"
+     ],
+     "pb": "Effet au sol avec une vingtaine d'Astera Hyperion, sur un sol surélevé en plexi frosté (collaboration lumière / déco).",
+     "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
+     "sol": [
+      "2 m de large sur 6 m de profondeur (proposition du chef op)",
+      "Bandes noires en travers de la plaque pour délimiter les lignes"
+     ]
+    },
+    {
+     "id": "lum-uv",
+     "t": "Fond du film UV : gris ou chroma key",
+     "c": [
+      "uv"
+     ],
+     "pb": "Incrustation post-pro : le fond n'est pas encore choisi.",
+     "ch": "Le choix du fond conditionne la lumière et la machinerie.",
+     "sol": [
+      "Fond gris",
+      "Chroma key"
+     ]
+    }
+   ],
+   "chg": [
+    {
+     "c": [
+      "regen",
+      "time",
+      "ncef"
+     ],
+     "t": "Fond dégradé N&B haut / bas conservé d'un film à l'autre : rangée de Skypanel X Hyperoptics sur grill, keylight beauty light, negative fill, borniol en top ajustable."
+    },
+    {
+     "c": [
+      "regen"
+     ],
+     "t": "Dégradé pas toujours droit, pas forcément linéaire. Effet « battery loading » au sol (Astera Hyperion)."
+    },
+    {
+     "c": [
+      "time",
+      "ncef"
+     ],
+     "t": "Dégradé toujours droit, horizontal."
+    },
+    {
+     "c": [
+      "uv"
+     ],
+     "t": "Fond incrust (gris ou chroma, à décider). Lumière solaire : Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4. Backlight pour le plan spray du produit."
+    }
+   ]
   },
   {
    "id": "mach",
@@ -538,7 +642,42 @@
      "linkText": "Plan en PDF"
     }
    ],
-   "notes": ""
+   "notes": "",
+   "open": [
+    {
+     "id": "mach-uv",
+     "t": "Machinerie du film UV selon le fond retenu",
+     "c": [
+      "uv"
+     ],
+     "pb": "Dépend du choix du fond : chroma key ou gris.",
+     "ch": "",
+     "sol": [
+      "Chroma key",
+      "Gris"
+     ]
+    }
+   ],
+   "chg": [
+    {
+     "c": [],
+     "t": "1 plan machinerie spécial : la caméra avance vers le talent qui marche vers elle, puis monte au-dessus de lui. Mouvement clean, robotique, sans robot."
+    },
+    {
+     "c": [
+      "regen",
+      "time",
+      "ncef"
+     ],
+     "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable."
+    },
+    {
+     "c": [
+      "uv"
+     ],
+     "t": "À définir selon le fond retenu (chroma key ou gris)."
+    }
+   ]
   }
  ],
  "team": [

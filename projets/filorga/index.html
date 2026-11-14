@@ -322,10 +322,69 @@ body.m .cvp .refs img{height:auto}
 .ss{color:#555;font-size:13px;margin-top:3px}
 .dp.sm{font-size:10px;padding:0 8px}
 .det .mir{font-style:italic;color:#555}
-.node.dept{border:1.5px solid #000}
+.node.dept{border:1.5px solid var(--dc,#000);background:linear-gradient(180deg,var(--dt,#fff) 0,#fff 120px)}
 .node.dept h3{font-size:22px}
 .node.hub{background:transparent;border-color:rgba(255,255,255,.5);box-shadow:none}
 .node.hub .nh,.node.hub h3,.node.hub .sub{color:#fff;border-color:rgba(255,255,255,.35)}
+
+/* ===== couleurs départements (doux) ===== */
+.d-cam{--dc:#5a80b8;--dt:#ecf1f9;--dd:#34527f;--dl:#a3bde6}
+.d-lum{--dc:#8068b0;--dt:#f1ecf8;--dd:#56427f;--dl:#c0aee2}
+.d-mach{--dc:#8f4455;--dt:#f7ebee;--dd:#5f2b38;--dl:#dba5b1}
+.dp[class*=" d-"]{background:var(--dt);color:var(--dd);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--dc) 38%,transparent)}
+.dp[class*=" d-"] .pi{color:var(--dc);opacity:1}
+.pill[class*=" d-"]{border-color:var(--dl);color:#fff}
+.pill[class*=" d-"] .pi{color:var(--dl);opacity:1}
+.pill[class*=" d-"]:hover{background:color-mix(in srgb,var(--dc) 45%,transparent);border-color:var(--dl)}
+.node.dept .dic{color:var(--dc);opacity:.45}
+.node.dept .bardone i{background:var(--dc)}
+.node.dept .open{color:var(--dd)}
+.node.dept:hover{box-shadow:0 18px 40px -12px color-mix(in srgb,var(--dc) 55%,#000)}
+#drawer[class*=" d-"] .dh{background:var(--dt);border-bottom:2px solid var(--dc)}
+#drawer[class*=" d-"] .dhi{color:var(--dc);opacity:.7}
+#drawer[class*=" d-"] .ds>h4{color:var(--dd)}
+.cvg>div[class*="d-"]{background:var(--dt);border:1px solid color-mix(in srgb,var(--dc) 30%,transparent);border-left:4px solid var(--dc)}
+.cvg>div[class*="d-"] h5{color:var(--dd)}
+/* ===== campagnes identifiables ===== */
+.cc0{--cc:#3f9a9a}.cc1{--cc:#c9953c}.cc2{--cc:#7ba05b}.cc3{--cc:#d9776a}
+.cp{display:inline-flex;align-items:center;gap:5px;font:inherit;font-size:.84em;font-weight:600;letter-spacing:.01em;padding:0 9px 0 7px;margin:0 1px;border-radius:99px;background:color-mix(in srgb,var(--cc,#777) 14%,#fff);color:color-mix(in srgb,var(--cc,#777) 62%,#000);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--cc,#777) 42%,transparent);white-space:nowrap;line-height:1.55;vertical-align:baseline}
+.cp::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cc,#777);flex:none}
+.cp.all{--cc:#8a8a8a}
+.cpg{display:inline-flex;flex-wrap:wrap;align-items:center;gap:3px;padding:2px 8px 2px 4px;border-radius:8px;background:rgba(0,0,0,.04);box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)}
+.cpg em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-left:4px}
+.ct{border-top:0}
+.ct .cth{border-bottom:5px solid var(--cc)}
+.ct .cth small::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cc);margin-right:6px;box-shadow:0 0 0 2px rgba(255,255,255,.75)}
+.cf{display:flex;align-items:center;gap:7px;font-size:11px;padding:6px 12px 0;color:#555}
+.cf i{display:block;width:34px;height:8px;border-radius:2px;border:1px solid rgba(0,0,0,.25)}
+.fbar.grad,.cf.grad i{background:linear-gradient(180deg,#000,#fff)}
+.fbar.incrust,.cf.incrust i{background:repeating-linear-gradient(45deg,#bdbdbd 0 4px,#d9d9d9 4px 8px)}
+.fl3{margin-top:14px;display:grid;gap:10px}
+.fg{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.35}
+.fg .fbar{flex:none;width:12px;height:36px;border-radius:3px;border:1px solid rgba(0,0,0,.25);margin-top:2px}
+.fgc{margin-top:5px;display:flex;flex-wrap:wrap;gap:4px}
+.cvh{border-bottom:6px solid var(--cc)}
+.cvfond{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#444;margin:2px 0 12px}
+.cvfond i{display:block;width:44px;height:10px;border-radius:2px;border:1px solid rgba(0,0,0,.25)}
+.cvfond.grad i{background:linear-gradient(180deg,#000,#fff)}.cvfond.incrust i{background:repeating-linear-gradient(45deg,#bdbdbd 0 4px,#d9d9d9 4px 8px)}
+.ctg{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:2px 0 6px}
+.ctg .cp{cursor:pointer;border:0}
+.ctg .cp:not(.on){opacity:.35}
+/* ===== gros changements on set + à définir ===== */
+.cg{list-style:none;margin:0;padding:0}
+.cg li{display:grid;grid-template-columns:minmax(120px,38%) 1fr auto;gap:10px;align-items:start;padding:8px 0;border-top:1px solid var(--line)}
+.cg li:first-child{border-top:0}
+.cgc{display:flex;flex-wrap:wrap;gap:3px}
+.cgt{font-size:14px;line-height:1.4}
+.opn .oi{border:1px dashed color-mix(in srgb,var(--dc,#888) 55%,transparent);background:var(--dt,var(--soft));border-radius:7px;padding:10px 12px;margin:0 0 10px}
+.opn .oh{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.opn .oh b{font-size:15px}
+.opn .or{font-size:14px;line-height:1.45;margin-top:6px}
+.opn .or em{display:block;font-style:normal;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dd,#666);margin-bottom:1px}
+.opn .or ul{margin:0;padding:0 0 0 18px;list-style:disc}
+.opn .or li{border:0;padding:1px 0;font-size:14px;color:#222}
+body.m .cg li{grid-template-columns:1fr auto}
+body.m .cg li .cgc{grid-column:1/-1}
 </style>
 </head>
 <body>
@@ -373,6 +432,23 @@ const norm=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase(
 const TAGRE=/\s*#(cam|camera|lum|lumiere|mach|machinerie)\b/gi;
 const TAGMAP={cam:"cam",camera:"cam",lum:"lum",lumiere:"lum",mach:"mach",machinerie:"mach"};
 const clean=s=>String(s==null?"":s).replace(TAGRE,"").trim();
+let _re=null,_rk="",_rm={};
+function campRe(){const cs=(DATA&&DATA.camps)||[];const k=cs.map(c=>c.name+"|"+(c.alias||[]).join(",")).join(";");if(k===_rk)return _re;_rk=k;_rm={};
+ const names=[];cs.forEach((c,i)=>{[c.name,...(c.alias||[])].forEach(n=>{if(n){names.push(n);_rm[n.toLowerCase()]=i}})});
+ names.sort((a,b)=>b.length-a.length);
+ _re=names.length?new RegExp("\\b("+names.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")\\b","gi"):null;return _re}
+const campChip=i=>`<span class="cp cc${i%4}">${esc(DATA.camps[i].name)}</span>`;
+function rich(t){const h=esc(clean(t));const re=campRe();if(!re)return h;return h.replace(re,m=>{const i=_rm[m.toLowerCase()];return i==null?m:campChip(i)})}
+function campChips(ids){const cs=DATA.camps;ids=(ids||[]).filter(id=>cs.some(c=>c.id===id));
+ if(!ids.length)return `<span class="cp all">Tous les films</span>`;
+ const grp=cs.filter(c=>c.fond==="grad").map(c=>c.id);
+ if(grp.length>1&&grp.length===ids.length&&grp.every(x=>ids.includes(x)))return `<span class="cpg">${grp.map(g=>campChip(cs.findIndex(c=>c.id===g))).join("")}<em>même fond</em></span>`;
+ return ids.map(id=>campChip(cs.findIndex(c=>c.id===id))).join("")}
+const campTog=(path,ids)=>EDIT?`<div class="ctg">${DATA.camps.map((c,i)=>`<button class="cp cc${i%4}${(ids||[]).includes(c.id)?" on":""}" data-ctog="${path}" data-cid="${c.id}">${esc(c.name)}</button>`).join("")}<span class="sub">(aucun = tous les films)</span></div>`:"";
+const FOND={grad:{n:"Fond dégradé N&B",g:"Un seul fond pour {n} films : dégradé N&B haut / bas"},incrust:{n:"Fond incrust",g:"Fond différent : incrust post-pro (gris ou chroma key, à décider)"}};
+function fondLegend(){const cs=DATA.camps;return ["grad","incrust"].map(k=>{const m=cs.map((c,i)=>[c,i]).filter(([c])=>c.fond===k);if(!m.length)return "";return `<div class="fg"><i class="fbar ${k}"></i><div><b>${esc(FOND[k].g.replace("{n}",m.length))}</b><div class="fgc">${m.map(([c,i])=>campChip(i)).join("")}</div></div></div>`}).join("")}
+function fixData(d){(d.depts||[]).forEach(x=>{x.open=x.open||[];x.chg=x.chg||[];x.open.forEach(o=>{o.c=o.c||[];o.sol=o.sol||[]});x.chg.forEach(o=>{o.c=o.c||[]})});(d.camps||[]).forEach(c=>{c.alias=c.alias||[]});return d}
+
 const clip=(s,n=230)=>s.length>n?s.slice(0,n).replace(/\s+\S*$/,"")+"…":s;
 const RULES=[
  {re:/(mouvement|dolly|jib|ronin|travelling|steadicam|\brail\b|grue|robotique|camera (avance|monte|recule|tourne))/,to:["cam","mach"]},
@@ -441,11 +517,11 @@ function diffChanges(a,b){
 }
 function newsList(list,max){
  return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
-  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span></div></li>`}).join("");
+  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${rich(c.src)} : ${rich(c.text)}</span></div></li>`}).join("");
 }
 const routeUI2=(path,to,own)=>EDIT?`<div class="rto"><span class="sub">Envoyer aussi vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rrm="${path}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-radd="${path}"><option value="">+ sous-partie d'un autre département…</option>${ROUTEOPTS().map(([d,s2,l],k)=>d===own?"":`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
-const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(clean(txt))}</${tag}>`;
+const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${/(^|\.)name$|^root\.|^camps\.\d+\./.test(p)?esc(clean(txt)):rich(txt)}</${tag}>`;
 const edj=(p,tag,cls,arr,sep,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-t="${sep==="\n"?"lines":"semi"}" data-ph="${esc(ph||"…")}">${esc((arr||[]).join(sep))}</${tag}>`:"";
 const del=(p,i)=>EDIT?`<button class="xdel" data-del="${p}" data-i="${i}" title="Supprimer" aria-label="Supprimer">×</button>`:"";
 const add=(p,tpl,label)=>EDIT?`<button class="xadd" data-add="${p}" data-tpl="${tpl}">+ ${esc(label)}</button>`:"";
@@ -453,7 +529,7 @@ const addimg=(p,label)=>EDIT?`<button class="xadd" data-addimg="${p}">+ ${esc(la
 const tog=(p,on)=>EDIT?`<button class="xadd" data-tog="${p}" title="Met la ligne en gras dans le brief">${on?"Retirer la mise en avant":"Mettre en avant"}</button>`:"";
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
 const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
- brief:()=>({id:uid(),t:"",b:1,sub:[],img:"",imgNote:"",to:[]}),str:()=>"",team:()=>({role:"",name:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
+ brief:()=>({id:uid(),t:"",b:1,sub:[],img:"",imgNote:"",to:[]}),str:()=>"",team:()=>({role:"",name:""}),open:()=>({id:uid(),t:"",c:[],pb:"",ch:"",sol:[]}),chg:()=>({c:[],t:""}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
 const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
 /* =========== Corps des nodes =========== */
@@ -469,7 +545,7 @@ function makeNodes(){
   {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
   {id:"bt",kind:"Brief équipe",x:750,y:70,w:560,cls:"bt"},
   {id:"hub",kind:"Chacun sa partie",x:750,y:0,w:560,cls:"hub"},
-  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept",did:d.id})),
+  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
   {id:"team",kind:"Équipe",x:70,y:0,w:640}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
  EDGES=[["root","camps"],["camps","team"],["root","bt"],["bt","hub"],["hub",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
@@ -480,13 +556,13 @@ function body(n){
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>
   <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;}
  if(n.id==="bt"){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
-  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
+  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   return `<div class="bsec"><h4>Où</h4>${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}</div>
   <div class="bsec"><h4>Planning provisoire</h4>${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div></div>
   <div class="bsec"><h4>À penser, par département</h4><ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
    ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((x,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",x)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
    ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}</div>`;}
- if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
+ if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div><div class="fl3">${fondLegend()}</div>`}
   if(n.id==="hub")return `<h3>Chacun sa partie</h3><p class="sub" style="margin:2px 0 0">Ouvre ton département</p>`;
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
   return `<span class="dic">${ICON[d.id]||""}</span><h3>${esc(d.name)}${(DATA.log||[]).some(c=>(c.d||[]).includes(d.id)&&Date.now()-new Date(c.at)<2592e5)?`<span class="nw">Nouveau</span>`:""}</h3>${tot?`<div class="sub">${done} / ${tot} renseignés</div><div class="bardone"><i style="width:${done/tot*100}%"></i></div>`:`<div style="height:10px"></div>`}
@@ -573,7 +649,7 @@ $("#zoom").onclick=e=>{const b=e.target.closest("[data-z]");if(!b)return;const k
 
 /* =========== Tiroir =========== */
 const drawer=$("#drawer"),shade=$("#shade");let drawerCtx=null;
-function openDrawer(html){drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.querySelector("[data-close]").onclick=closeDrawer}
+function openDrawer(html){drawer.classList.remove("d-cam","d-lum","d-mach");drawer.innerHTML=html;drawer.classList.add("on");shade.classList.add("on");drawer.setAttribute("aria-hidden","false");drawer.querySelector("[data-close]").onclick=closeDrawer}
 function closeDrawer(){drawer.classList.remove("on");shade.classList.remove("on");drawer.setAttribute("aria-hidden","true");const had=drawerCtx;drawerCtx=null;if(had&&EDIT)renderAll()}
 function reopen(){const c=drawerCtx;if(!c)return;const y=drawer.scrollTop;if(c.t==="d")openDept(c.id,1);else openQs(c.id,1);drawer.scrollTop=y}
 shade.onclick=closeDrawer;
@@ -584,13 +660,15 @@ const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Ferme
 
 function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
- const mir=t=>(t.mir||[]).map(m=>`<span class="mir">↳ ${esc(clean(m.text))} <em>(${esc(m.src)})</em></span>`).join("");
- const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}${mir(t)}</span>`:((t.lines.length||(t.mir||[]).length)?`<span class="det bl">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${mir(t)}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}${mir(t)}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
-  :(t.lines.length||t.fix.length||t.ctl.length||(t.mir||[]).length)?`<span class="det">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${mir(t)}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
+ const mir=t=>(t.mir||[]).map(m=>`<span class="mir">↳ ${rich(m.text)} <em>(${esc(m.src)})</em></span>`).join("");
+ const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}${mir(t)}</span>`:((t.lines.length||(t.mir||[]).length)?`<span class="det bl">${t.lines.map(l=>`<span>${rich(l)}</span>`).join("")}${mir(t)}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}${mir(t)}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
+  :(t.lines.length||t.fix.length||t.ctl.length||(t.mir||[]).length)?`<span class="det">${t.lines.map(l=>`<span>${rich(l)}</span>`).join("")}${mir(t)}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
  openDrawer(head(`<span class="dhi">${ICON[id]||""}</span>`+(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name)))+`
+  ${(d.chg&&d.chg.length||EDIT)?`<div class="ds chg"><h4>Gros changements on set</h4><ul class="cg">${(d.chg||[]).map((x,i)=>`<li><div class="cgc">${EDIT?campTog(`${P}.chg.${i}.c`,x.c):campChips(x.c)}</div><div class="cgt">${ed(`${P}.chg.${i}.t`,"span","",x.t,"Ce qui change")}</div>${del(P+".chg",i)}</li>`).join("")}</ul>${add(P+".chg","chg","changement on set")}</div>`:""}
   ${(()=>{const dn=(DATA.log||[]).filter(c=>(c.d||[]).includes(id));return `<div class="ds news-d"><h4>Latest news/modif</h4>${dn.length?`<ul>${newsList(dn,6)}</ul>`:`<p class="sub" style="margin:0">Rien de nouveau pour l'instant.</p>`}</div>`})()}
   ${id==="lum"?(()=>{const M=DATA.mood;return `<div class="ds"><h4>Light direction · General mood</h4><ul class="kn">${M.items.map((t,i)=>`<li>${ed(`mood.items.${i}`,"span","",t)}${del("mood.items",i)}</li>`).join("")}</ul>${add("mood.items","str","mood")}${(M.p||EDIT)?`<p style="margin:10px 0 0">${ed("mood.p","span","",M.p)}</p>`:""}${M.img&&!d.refs.some(r=>r.src===M.img)?`<img class="rimg" data-zoom src="${esc(imgSrc(M.img))}" alt="Dégradé N&B de référence">`:""}${setimg("mood.img",M.img?"Changer l'image":"+ image")}</div>`})():""}
-  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${it.from?"":routeUI2(`${P}.known.${i}`,it.to,id)}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
+  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${rich(it.sub)}</small>`:"")}${it.from?"":routeUI2(`${P}.known.${i}`,it.to,id)}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
+  ${(d.open&&d.open.length||EDIT)?`<div class="ds opn"><h4>À définir</h4>${(d.open||[]).map((o,i)=>{const Q=`${P}.open.${i}`;return `<div class="oi"><div class="oh">${EDIT?campTog(Q+".c",o.c):(o.c&&o.c.length?campChips(o.c):"")}<b>${ed(Q+".t","span","",o.t,"Sujet à définir")}</b>${del(P+".open",i)}</div>${(o.pb||EDIT)?`<div class="or"><em>Problème</em>${ed(Q+".pb","span","",o.pb,"Quel est le problème ?")}</div>`:""}${(o.ch||EDIT)?`<div class="or"><em>Enjeu</em>${ed(Q+".ch","span","",o.ch,"Quel est le challenge ?")}</div>`:""}${((o.sol&&o.sol.length)||EDIT)?`<div class="or"><em>Pistes à discuter</em>${EDIT?edj(Q+".sol","span","",o.sol,"\n","Une piste par ligne"):`<ul>${o.sol.map(x=>`<li>${rich(x)}</li>`).join("")}</ul>`}</div>`:""}</div>`}).join("")}${add(P+".open","open","point à définir")}</div>`:""}
 
   ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
@@ -599,6 +677,7 @@ function openDept(id,keep){
   <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
   ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   `);
+ drawer.classList.add("d-"+id);
  if(!keep)drawer.scrollTop=0;
  drawer.querySelectorAll("[data-gq]").forEach(a=>a.onclick=e=>{e.preventDefault();openQs(a.dataset.gq)});
 }
@@ -620,12 +699,13 @@ const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gra
 const cv=$("#cv"),cvp=cv.querySelector(".cvp");let cvCtx=null,cvFrom=null;
 function cvBody(i){
  const c=DATA.camps[i],P="camps."+i,slot=(DATA.plan.slots||[]).find(x=>x.camp===c.name);
- return `<div class="cvh" style="background:${CT[i%4]}"><div><span class="cvn">Campagne 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
+ return `<div class="cvh cc${i%4}" style="background:${CT[i%4]}"><div><span class="cvn">Campagne 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
  <div class="cvbd"><p class="sub">${slot?"Tournage : "+esc(slot.label):"Créneau : à définir (voir Planning provisoire)"}</p>
  ${ed(P+".txt","p","v",c.txt)}
+ ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Incrust (gris / chroma)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
  ${(c.pist||EDIT)?ed(P+".pist","span","tag k",c.pist,"piste DoP"):""}
  ${imgs(P+".imgs",c.imgs)}
- <h4>Déclinaison par département</h4><div class="cvg">${[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].map(([k,n])=>`<div><h5>${n}</h5>${EDIT?edj(`${P}.${k}`,"div","cvl",c[k],"\n","Une ligne par point"):((c[k]&&c[k].length)?`<ul>${c[k].map(l=>`<li>${esc(l)}</li>`).join("")}</ul>`:`<p class="sub" style="margin:0">À définir</p>`)}</div>`).join("")}</div>
+ <h4>Déclinaison par département</h4><div class="cvg">${[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].map(([k,n])=>`<div class="d-${k}"><h5>${n}</h5>${EDIT?edj(`${P}.${k}`,"div","cvl",c[k],"\n","Une ligne par point"):((c[k]&&c[k].length)?`<ul>${c[k].map(l=>`<li>${esc(l)}</li>`).join("")}</ul>`:`<p class="sub" style="margin:0">À définir</p>`)}</div>`).join("")}</div>
  <h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",c.notes||"","Notes libres…")}</div></div>`;
 }
 function openCamp(i,from){
@@ -654,11 +734,11 @@ addEventListener("keydown",e=>{if(e.key==="Escape")closeCamp()});
 /* =========== Rôle (navigation) =========== */
 function renderPills(){
  const p=$("#pills");p.innerHTML="";
- DATA.depts.forEach(d=>{const b=document.createElement("button");b.className="pill"+(V.role===d.id?" on":"");b.innerHTML=`<span class="pi">${ICON[d.id]||""}</span>${esc(d.name)}`;
-  b.onclick=()=>{V.role=V.role===d.id?"":d.id;saveView();renderPills();markRole();if(V.role)openDept(V.role)};p.appendChild(b)});
+ DATA.depts.forEach(d=>{const b=document.createElement("button");b.className="pill d-"+d.id;b.innerHTML=`<span class="pi">${ICON[d.id]||""}</span>${esc(d.name)}`;
+  b.onclick=()=>openDept(d.id);p.appendChild(b)});
  markRole();
 }
-function markRole(){DATA.depts.forEach(d=>{const n=el["d_"+d.id];if(n)n.classList.toggle("me",V.role===d.id)})}
+function markRole(){DATA.depts.forEach(d=>{const n=el["d_"+d.id];if(n)n.classList.remove("me")});if(V.role){V.role="";try{saveView()}catch(e){}}}
 function stamp(){const t=$("#stamp");if(!t)return;const d=new Date(DATA.updated);t.textContent=isNaN(d)?"":"Mis à jour le "+d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" à "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}
 
 /* =========== Édition : saisie, listes, images =========== */
@@ -684,8 +764,9 @@ document.addEventListener("paste",e=>{const t=e.target.closest&&e.target.closest
 document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Enter"&&t.isContentEditable&&!t.dataset.t&&t.tagName!=="DIV")e.preventDefault()});
 document.addEventListener("click",e=>{
  if(!EDIT)return;
- const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]"),tg=e.target.closest("[data-tog]"),ro=e.target.closest("[data-rmroute]"),rr=e.target.closest("[data-rrm]");
- if(rr){e.stopPropagation();const o=get(rr.dataset.rrm);o.to.splice(+rr.dataset.j,1);syncDept();changed();renderAll()}
+ const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]"),tg=e.target.closest("[data-tog]"),ro=e.target.closest("[data-rmroute]"),rr=e.target.closest("[data-rrm]"),ct=e.target.closest("[data-ctog]");
+ if(ct){e.stopPropagation();const arr=get(ct.dataset.ctog)||[],id=ct.dataset.cid,k=arr.indexOf(id);if(k<0)arr.push(id);else arr.splice(k,1);set(ct.dataset.ctog,arr);changed();renderAll()}
+ else if(rr){e.stopPropagation();const o=get(rr.dataset.rrm);o.to.splice(+rr.dataset.j,1);syncDept();changed();renderAll()}
  else if(ro){e.stopPropagation();DATA.brief.items[+ro.dataset.rmroute].to.splice(+ro.dataset.j,1);changed();renderAll()}
  else if(a){e.stopPropagation();get(a.dataset.add).push(TPL[a.dataset.tpl]());syncDept();changed();renderAll()}
  else if(d){e.stopPropagation();if(confirm("Supprimer cet élément ?")){get(d.dataset.del).splice(+d.dataset.i,1);syncDept();changed();renderAll()}}
@@ -756,11 +837,11 @@ async function loadData(){
  let src;
  if(EDIT){try{const r=await gh(`/data.json?ref=${REPO.branch}`,{headers:{Accept:"application/vnd.github.raw+json"}});if(r.ok)src=await r.json()}catch(e){}}
  if(!src){const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});src=await r.json()}
- DATA=src;BASE=JSON.parse(JSON.stringify(src));serverStamp=DATA.updated;
+ DATA=fixData(src);BASE=JSON.parse(JSON.stringify(src));serverStamp=DATA.updated;
 }
 async function poll(){
  if(EDIT||document.hidden)return;
- try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const n=await r.json();if(n.updated&&n.updated!==serverStamp){DATA=n;serverStamp=n.updated;makeNodes();build();renderAll();fitStage();drawEdges()}}catch(e){}
+ try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)return;const n=await r.json();if(n.updated&&n.updated!==serverStamp){DATA=fixData(n);serverStamp=n.updated;makeNodes();build();renderAll();fitStage();drawEdges()}}catch(e){}
 }
 function layoutMode(){document.body.classList.toggle("m",mobile());applyZoom()}
 async function start(){
