@@ -453,6 +453,8 @@ body.m .bsplit{grid-template-columns:1fr}body.m .bf+.bf{border-left:0;border-top
 .bcl:hover .cgo{opacity:1}
 .gsub{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
 .gsub h5{margin:0 0 12px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#777;font-weight:600}
+.rcap{margin-top:6px;font-size:12px;line-height:1.35;font-weight:600;color:var(--cc,#333);letter-spacing:.01em}
+.rcap .ed:empty::before{font-weight:400;color:#999}
 </style>
 </head>
 <body>
@@ -598,7 +600,7 @@ const tog=(p,on)=>EDIT?`<button class="xadd" data-tog="${p}" title="Met la ligne
 const setimg=(p,label)=>EDIT?`<button class="xadd" data-setimg="${p}">${esc(label||"Changer l'image")}</button>`:"";
 const TPL={reco:()=>({t:""}),known:()=>({t:"",sub:"",w:0}),todo:()=>({t:"",done:0,lines:[],fix:[],ctl:[]}),ref:()=>({src:"",title:"Nouvelle référence",cap:"",link:"",linkText:""}),
  brief:()=>({id:uid(),t:"",b:1,sub:[],img:"",imgNote:"",to:[]}),str:()=>"",team:()=>({role:"",name:""}),open:()=>({id:uid(),t:"",c:[],pb:"",ch:"",sol:[]}),mood:()=>({id:uid(),t:"",d:"",c:[],lines:[],img:"",go:""}),known_mvt:()=>({t:"",sub:"",w:0,g:"mvt"}),known_rig:()=>({t:"",sub:"",w:0,g:"rig"}),known_tech:()=>({t:"",sub:"",w:0,g:"tech"}),known_conf:()=>({t:"",sub:"",w:0,g:"conf"}),known_spec:()=>({t:"",sub:"",w:0,g:"spec"}),qs:()=>({id:"q"+uid(),t:"",d:[],done:0,answer:""})};
-const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
+const imgs=(p,list,cls)=>`<div class="refs ${cls||""}${list.length===1?" one":""}">${list.map((i,n)=>`<div class="rw"><img data-zoom src="${esc(imgSrc(i.src))}" alt="${esc(i.alt||"")}" loading="lazy">${(i.cap||EDIT)?`<div class="rcap">${ed(`${p}.${n}.cap`,"span","",i.cap||"","Légende de l'image")}</div>`:""}${del(p,n)}</div>`).join("")}</div>${addimg(p)}`;
 
 /* =========== Corps des nodes =========== */
 const world=$("#world"),svg=$("#edges"),stage=$("#stage");

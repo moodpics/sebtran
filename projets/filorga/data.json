@@ -171,11 +171,13 @@
    "imgs": [
     {
      "src": "refs/regen-ref.jpg",
-     "alt": "Regen Peptide : référence (Reveal vidéo)"
+     "alt": "Regen Peptide : référence (Reveal vidéo)",
+     "cap": "Storyboard"
     },
     {
      "src": "refs/effet-file.jpg",
-     "alt": "Effet filé sur film Peptide"
+     "alt": "Effet filé sur film Peptide",
+     "cap": "Effet recherché pour raconter la vitesse"
     }
    ],
    "lum": [
@@ -209,11 +211,13 @@
    "imgs": [
     {
      "src": "refs/time-ncef-gradient.jpg",
-     "alt": "Dégradé N&B de référence"
+     "alt": "Dégradé N&B de référence",
+     "cap": "Background recherché"
     },
     {
      "src": "refs/time-ref.jpg",
-     "alt": "Time Filler : références"
+     "alt": "Time Filler : références",
+     "cap": "Référence Keylight"
     }
    ],
    "lum": [
@@ -243,11 +247,13 @@
    "imgs": [
     {
      "src": "refs/time-ncef-gradient.jpg",
-     "alt": "Dégradé N&B de référence"
+     "alt": "Dégradé N&B de référence",
+     "cap": "Background recherché"
     },
     {
      "src": "refs/ncef-ref.jpg",
-     "alt": "NCEF Revitalize : références"
+     "alt": "NCEF Revitalize : références",
+     "cap": "Référence Keylight"
     }
    ],
    "lum": [
@@ -279,7 +285,8 @@
    "imgs": [
     {
      "src": "refs/uv-ref.jpg",
-     "alt": "UV Cellular : références"
+     "alt": "UV Cellular : références",
+     "cap": "Storyboard pour l'instant"
     }
    ],
    "lum": [
