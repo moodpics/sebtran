@@ -230,6 +230,12 @@ body.edit .pills{max-width:42vw}
 .news li.go{cursor:pointer}
 .news li.go:hover .nx{text-decoration:underline}
 .news li small{margin-left:auto;color:var(--mute);font-size:11px;white-space:nowrap}
+.news li{display:block}
+.news .nm,.ds.news-d .nm{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.nd{font-size:14px;font-weight:600;color:#a83a3a;letter-spacing:-.01em}
+.dp{font-size:11px;font-weight:500;letter-spacing:.04em;background:#000;color:#fff;border-radius:99px;padding:1px 10px}
+.ntx{display:flex;gap:8px;align-items:baseline}
+.ntx .nk{flex:none}
 .nk{flex:none;font-size:10px;letter-spacing:.07em;text-transform:uppercase;border:1px solid #c94a4a;color:#a83a3a;border-radius:99px;padding:0 7px}
 .nk.ajout{background:#c94a4a;color:#fff}.nk.retrait{border-color:#aaa;color:#888}
 .ds.news-d{background:rgba(255,120,120,.1)}
@@ -380,8 +386,8 @@ function diffChanges(a,b){
  return [...m.values()];
 }
 function newsList(list,max){
- return list.slice(0,max).map(c=>{const dl=(c.d||[]).find(x=>D(x));
-  return `<li${dl?` class="go" data-link="${dl}"`:""}><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span><small>${esc(fmtAt(c.at))}</small></li>`}).join("");
+ return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
+  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp">${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span></div></li>`}).join("");
 }
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(clean(txt))}</${tag}>`;
