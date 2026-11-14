@@ -279,7 +279,16 @@ body.edit .pills{max-width:42vw}
 .cvg li{padding:4px 0 4px 14px;position:relative}
 .cvg li::before{content:"";position:absolute;left:2px;top:.75em;width:5px;height:5px;border-radius:50%;background:#000}
 .cvl{min-height:48px;white-space:pre-wrap}
-@media(max-width:700px){.cvg{grid-template-columns:1fr}.cvh h2{font-size:30px}#cv{padding:8px}.ctiles{grid-template-columns:1fr}}
+@media(max-width:700px){.cvg{grid-template-columns:1fr}.cvh h2{font-size:30px}#cv{padding:8px}}
+body.m .ctiles{grid-template-columns:1fr 1fr;gap:10px}
+body.m .ct img,body.m .ct p{display:none}
+body.m .ct .cth{height:78px;padding:10px 12px}
+body.m .ct .cth b{font-size:17px}
+body.m .ct .cgo{padding:8px 12px}
+body.m #cv{padding:0;align-items:flex-end}
+body.m .cvp{width:100%;max-height:94vh;border-radius:14px 14px 0 0}
+body.m .cvp .refs{grid-template-columns:1fr}
+body.m .cvp .refs img{height:auto}
 .rto select{width:auto;padding:3px 6px;font-size:12px;margin-top:4px;max-width:100%}
 .node.dept{border:1.5px solid #000}
 .node.dept h3{font-size:22px}
