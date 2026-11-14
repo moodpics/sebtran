@@ -294,7 +294,10 @@ body.m .cvp .refs{grid-template-columns:1fr}
 body.m .cvp .refs img{height:auto}
 .rto select{width:auto;padding:3px 6px;font-size:12px;margin-top:4px;max-width:100%}
 /* icônes de départements */
-.dic{position:absolute;right:16px;top:46px;width:62px;height:62px;color:#000;opacity:.12;pointer-events:none}
+.dic{position:absolute;right:16px;top:44px;width:74px;height:74px;color:#000;opacity:.3;pointer-events:none}
+.pi{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:6px;opacity:.8}
+.pi svg{width:100%;height:100%;display:block}
+.dp .pi{width:11px;height:11px;margin-right:4px;vertical-align:-1px;opacity:.9}
 .dic svg,.dhi svg{width:100%;height:100%;display:block}
 .dh h2{display:flex;align-items:center}
 .dhi{display:inline-block;width:30px;height:30px;margin-right:10px;color:#000;opacity:.28}
@@ -423,7 +426,7 @@ function diffChanges(a,b){
 }
 function newsList(list,max){
  return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
-  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp">${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span></div></li>`}).join("");
+  return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span></div></li>`}).join("");
 }
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(clean(txt))}</${tag}>`;
@@ -461,7 +464,7 @@ function body(n){
   <div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
  if(n.id==="bt"){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
-  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm">${esc(D(x).name)}</span>`).join("");
+  const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   return `<div class="bsec"><h4>Où</h4>${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}</div>
   <div class="bsec"><h4>Planning provisoire</h4>${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div></div>
   <div class="bsec"><h4>À penser, par département</h4><ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
@@ -634,7 +637,7 @@ addEventListener("keydown",e=>{if(e.key==="Escape")closeCamp()});
 /* =========== Rôle (navigation) =========== */
 function renderPills(){
  const p=$("#pills");p.innerHTML="";
- DATA.depts.forEach(d=>{const b=document.createElement("button");b.className="pill"+(V.role===d.id?" on":"");b.textContent=d.name;
+ DATA.depts.forEach(d=>{const b=document.createElement("button");b.className="pill"+(V.role===d.id?" on":"");b.innerHTML=`<span class="pi">${ICON[d.id]||""}</span>${esc(d.name)}`;
   b.onclick=()=>{V.role=V.role===d.id?"":d.id;saveView();renderPills();markRole();if(V.role)openDept(V.role)};p.appendChild(b)});
  markRole();
 }
