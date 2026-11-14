@@ -1,7 +1,17 @@
 {
  "v": 1,
- "updated": "2026-11-14T17:01:55.000Z",
+ "updated": "2026-11-14T17:04:14.000Z",
  "log": [
+  {
+   "at": "2026-11-14T17:04:14.000Z",
+   "src": "Caméra et Machinerie · listes",
+   "d": [
+    "cam",
+    "mach"
+   ],
+   "kind": "ajout",
+   "text": "Gimbal Ronin 2 et tête 3D Cartoni Lambda 25 ajoutés aux deux listes"
+  },
   {
    "at": "2026-11-14T17:01:55.000Z",
    "src": "Machinerie · Camera Support & Movement",
@@ -326,7 +336,10 @@
     {
      "t": "Special Equipment",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "Gimbal Ronin 2 (plan spécial)",
+      "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
+     ],
      "fix": [],
      "ctl": []
     },
@@ -364,7 +377,10 @@
    "notes": "encore en reflexion de mon côté",
    "reco": [
     {
-     "t": ""
+     "t": "Gimbal Ronin 2 (plan spécial)"
+    },
+    {
+     "t": "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
     }
    ]
   },
@@ -506,7 +522,10 @@
     {
      "t": "Special Rigs",
      "done": 0,
-     "lines": [],
+     "lines": [
+      "Gimbal Ronin 2 (plan spécial)",
+      "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
+     ],
      "fix": [],
      "ctl": []
     }
@@ -528,7 +547,14 @@
     }
    ],
    "notes": "",
-   "reco": []
+   "reco": [
+    {
+     "t": "Gimbal Ronin 2 (plan spécial)"
+    },
+    {
+     "t": "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
+    }
+   ]
   }
  ],
  "team": [
