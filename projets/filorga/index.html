@@ -334,11 +334,11 @@ const RULES=[
  {re:/(\brig\b|rigs|rigging|\bgril|grill|\btop\b|truss|structure|perche|accroche|fixer|suspen)/,to:["mach"],from:["lum","brief","camp"]}
 ];
 function unitsOf(Dt,withMood){
- const u=[],add=(text,src,srcId,to)=>{if(text&&String(text).trim())u.push({text:String(text),src,srcId,to:to||null})};
+ const u=[],add=(text,src,srcId,to,tk)=>{if(text&&String(text).trim())u.push({text:String(text),src,srcId,to:to||null,tk:tk||null})};
  Dt.brief.items.forEach(it=>{add(it.t,"Brief","brief",it.to);(it.sub||[]).forEach(x=>add(x,"Brief","brief",it.to))});
  Dt.camps.forEach(c=>{add(c.txt,c.name,"camp");if(c.pist)add(c.pist,c.name+" · piste","camp");[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].forEach(([k,n])=>(c[k]||[]).forEach(l=>add(l,c.name+" · "+n,"camp",[{d:k}])))});
  if(withMood)(Dt.mood.items||[]).forEach(t=>add(t,"Mood","mood",["lum"]));
- Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id)));if(d.notes)add(d.notes,d.name+" · notes",d.id);(d.reco||[]).forEach(r=>add(r.t,d.name+" · liste recommandée",d.id))});
+ Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id,null,k.from?"synced":null));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id,null,d.id+"|"+norm(t.t).trim())));if(d.notes)add(d.notes,d.name+" · notes",d.id);(d.reco||[]).forEach(r=>add(r.t,d.name+" · liste recommandée",d.id))});
  return u;
 }
 /* où une ligne est envoyée : #tags + cases « Envoyer vers » ; à défaut, mots-clés */
@@ -367,9 +367,12 @@ const toks=t=>new Set(norm(clean(t)).split(/[^a-z0-9]+/).filter(w=>w.length>2));
 const sim=(a,b)=>{const x=toks(a),y=toks(b);if(!x.size||!y.size)return 0;let n=0;x.forEach(w=>{if(y.has(w))n++});return n/(x.size+y.size-n)};
 function mkChange(u,kind){const d=new Set([u.srcId]);routeOf(u).forEach(x=>d.add(x));return{src:u.src,d:[...d],kind,text:clip(clean(u.text),110)}}
 function diffChanges(a,b){
- const A=unitsOf(a,1),B=unitsOf(b,1),ks=u=>u.srcId+"|"+norm(clean(u.text)).trim();
+ const ks=u=>u.srcId+"|"+norm(clean(u.text)).trim(),sT=new Set();
+ [a,b].forEach(Dt=>Dt.brief.items.forEach(it=>(it.to||[]).forEach(t=>{if(t&&t.d&&t.s!=="@known")sT.add(t.d+"|"+norm(t.s).trim())})));
+ const skip=u=>u.tk==="synced"||(u.tk&&sT.has(u.tk));/* sous-parties alimentées par le brief : seul le brief est signalé */
+ const A=unitsOf(a,1),B=unitsOf(b,1);
  const sa=new Set(A.map(ks)),sb=new Set(B.map(ks));
- const add=B.filter(u=>!sa.has(ks(u))),rem=A.filter(u=>!sb.has(ks(u))),used=new Set(),out=[];
+ const add=B.filter(u=>!sa.has(ks(u))&&!skip(u)),rem=A.filter(u=>!sb.has(ks(u))&&!skip(u)),used=new Set(),out=[];
  add.forEach(u=>{let best=-1,bs=0;rem.forEach((r,i)=>{if(used.has(i)||r.srcId!==u.srcId)return;const v=sim(r.text,u.text);if(v>bs){bs=v;best=i}});
   const mod=bs>=.4;if(mod)used.add(best);out.push(mkChange(u,mod?"modif":"ajout"))});
  rem.forEach((r,i)=>{if(!used.has(i))out.push(mkChange(r,"retrait"))});
