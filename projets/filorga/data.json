@@ -1,6 +1,18 @@
 {
  "v": 1,
  "updated": "2026-11-14T12:36:54.515Z",
+ "log": [
+  {
+   "at": "2026-11-14T12:36:54.515Z",
+   "src": "Brief",
+   "d": [
+    "brief",
+    "lum"
+   ],
+   "kind": "modif",
+   "text": "Effet « battery loading » au sol : collaboration lumière / déco, vingtaine d'Astera Hyperion, sol surélevé en plexi frosté"
+  }
+ ],
  "shootDate": "2026-11-19",
  "root": {
   "title": "Filorga",
