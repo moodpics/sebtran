@@ -321,6 +321,7 @@ body.m .cvp .refs img{height:auto}
 .sum b{font-weight:600;font-size:16px;letter-spacing:-.01em}
 .ss{color:#555;font-size:13px;margin-top:3px}
 .dp.sm{font-size:10px;padding:0 8px}
+.det .mir{font-style:italic;color:#555}
 .node.dept{border:1.5px solid #000}
 .node.dept h3{font-size:22px}
 .node.hub{background:transparent;border-color:rgba(255,255,255,.5);box-shadow:none}
@@ -365,7 +366,7 @@ const mobile=()=>innerWidth<1000;
 const uid=()=>Math.random().toString(36).slice(2,8);
 const D=id=>DATA.depts.find(d=>d.id===id);
 const di=id=>DATA.depts.findIndex(d=>d.id===id);
-const isDone=t=>!!((t.lines&&t.lines.length)||(t.fix&&t.fix.length)||(t.ctl&&t.ctl.length));
+const isDone=t=>!!((t.lines&&t.lines.length)||(t.fix&&t.fix.length)||(t.ctl&&t.ctl.length)||(t.mir&&t.mir.length));
 
 /* champs éditables : en lecture seule ce sont de simples textes */
 const norm=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
@@ -385,7 +386,7 @@ function unitsOf(Dt,withMood){
  Dt.brief.items.forEach(it=>{add(it.t,"Brief","brief",it.to);(it.sub||[]).forEach(x=>add(x,"Brief","brief",it.to))});
  Dt.camps.forEach(c=>{add(c.txt,c.name,"camp");if(c.pist)add(c.pist,c.name+" · piste","camp");[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].forEach(([k,n])=>(c[k]||[]).forEach(l=>add(l,c.name+" · "+n,"camp",[{d:k}])))});
  if(withMood)(Dt.mood.items||[]).forEach(t=>add(t,"Mood","mood",["lum"]));
- Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id,null,k.from?"synced":null));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id,null,d.id+"|"+norm(t.t).trim())));if(d.notes)add(d.notes,d.name+" · notes",d.id)});
+ Dt.depts.forEach(d=>{d.known.forEach(k=>add(k.t,d.name,d.id,k.to,k.from?"synced":null));d.todo.forEach(t=>(t.lines||[]).forEach(l=>add(l,d.name+" · "+t.t,d.id,t.to,d.id+"|"+norm(t.t).trim())));if(d.notes)add(d.notes,d.name+" · notes",d.id)});
  return u;
 }
 /* où une ligne est envoyée : #tags + cases « Envoyer vers » ; à défaut, mots-clés */
@@ -404,6 +405,18 @@ function syncBrief(i){
   if(t.s==="@known"){let k=d.known.find(x=>x.from===it.id);if(!k){k={t:"",sub:"",w:0,from:it.id};d.known.push(k)}k.t=lines[0]||"";k.sub=lines.slice(1).join(" · ")}
   else{const td=d.todo.find(x=>norm(x.t).trim()===norm(t.s).trim());if(td)td.lines=lines.slice()}
  });
+}
+/* lignes écrites directement dans un département : recopiées dans les autres départements choisis */
+function syncDept(){
+ DATA.depts.forEach(d=>{d.known=d.known.filter(k=>!(k.from&&String(k.from).startsWith("dept:")));d.todo.forEach(t=>{t.mir=[]})});
+ DATA.depts.forEach(src=>{
+  const push=(lines,to,id)=>(to||[]).forEach(r=>{if(!r||!r.d||r.d===src.id)return;const dst=D(r.d);if(!dst)return;
+   if(r.s==="@known")lines.forEach((l,i)=>dst.known.push({t:l,sub:"depuis "+src.name,w:0,from:"dept:"+id+":"+i}));
+   else{const td=dst.todo.find(x=>norm(x.t).trim()===norm(r.s).trim());if(td)lines.forEach(l=>td.mir.push({text:l,src:src.name}))}});
+  src.known.forEach((k,i)=>{if(!k.from&&k.to&&k.to.length&&k.t)push([clean(k.t)],k.to,src.id+"k"+i)});
+  src.todo.forEach((t,i)=>{if(t.to&&t.to.length&&(t.lines||[]).length)push(t.lines.map(clean),t.to,src.id+"t"+i)});
+ });
+ DATA.depts.forEach(d=>d.todo.forEach(t=>{if(!t.mir||!t.mir.length)delete t.mir}));
 }
 const ROUTEOPTS=()=>DATA.depts.flatMap(d=>[[d.id,"@known",d.name+" › Ce qui est acté"],...d.todo.map(t=>[d.id,t.t.trim(),d.name+" › "+t.t.trim()])]);
 const routeLabel=t=>{const d=D(t.d);return (d?d.name:t.d)+" › "+(t.s==="@known"?"Ce qui est acté":String(t.s).trim())};
@@ -430,6 +443,7 @@ function newsList(list,max){
  return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
   return `<li${dl?` class="go" data-link="${dl}"`:""}><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx">${esc(c.src)} : ${esc(c.text)}</span></div></li>`}).join("");
 }
+const routeUI2=(path,to,own)=>EDIT?`<div class="rto"><span class="sub">Envoyer aussi vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rrm="${path}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-radd="${path}"><option value="">+ sous-partie d'un autre département…</option>${ROUTEOPTS().map(([d,s2,l],k)=>d===own?"":`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const ed=(p,tag,cls,txt,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-ph="${esc(ph||"…")}">${esc(txt)}</${tag}>`:`<${tag} class="${cls||""}">${esc(clean(txt))}</${tag}>`;
 const edj=(p,tag,cls,arr,sep,ph)=>EDIT?`<${tag} class="${cls||""} ed" contenteditable="true" spellcheck="false" data-p="${p}" data-t="${sep==="\n"?"lines":"semi"}" data-ph="${esc(ph||"…")}">${esc((arr||[]).join(sep))}</${tag}>`:"";
@@ -570,18 +584,19 @@ const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Ferme
 
 function openDept(id,keep){
  const d=D(id),k=di(id),P="depts."+k;drawerCtx={t:"d",id};
- const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}</span>`:(t.lines.length?`<span class="det bl">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
-  :(t.lines.length||t.fix.length||t.ctl.length)?`<span class="det">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
+ const mir=t=>(t.mir||[]).map(m=>`<span class="mir">↳ ${esc(clean(m.text))} <em>(${esc(m.src)})</em></span>`).join("");
+ const det=id!=="lum"?(t,p)=>EDIT?`<span class="det bl">${edj(p+".lines","span","",t.lines,"\n","Une ligne par point (liste à puces)")}${mir(t)}</span>`:((t.lines.length||(t.mir||[]).length)?`<span class="det bl">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${mir(t)}</span>`:""):(t,p)=>EDIT?`<span class="det">${edj(p+".lines","span","",t.lines,"\n","Détails (une ligne par point)")}${mir(t)}<span><em>Fixtures :</em> ${edj(p+".fix","span","",t.fix,"; ","fixtures (séparées par ;)")}</span><span><em>Light Control :</em> ${edj(p+".ctl","span","",t.ctl,"; ","light control (séparés par ;)")}</span></span>`
+  :(t.lines.length||t.fix.length||t.ctl.length||(t.mir||[]).length)?`<span class="det">${t.lines.map(l=>`<span>${esc(clean(l))}</span>`).join("")}${mir(t)}${t.fix.length?`<span><em>Fixtures :</em> ${esc(t.fix.join(" ; "))}</span>`:""}${t.ctl.length?`<span><em>Light Control :</em> ${esc(t.ctl.join(" ; "))}</span>`:""}</span>`:"";
  openDrawer(head(`<span class="dhi">${ICON[id]||""}</span>`+(EDIT?ed(P+".name","span","",d.name,"Nom"):esc(d.name)))+`
   ${(()=>{const dn=(DATA.log||[]).filter(c=>(c.d||[]).includes(id));return `<div class="ds news-d"><h4>Latest news/modif</h4>${dn.length?`<ul>${newsList(dn,6)}</ul>`:`<p class="sub" style="margin:0">Rien de nouveau pour l'instant.</p>`}</div>`})()}
   ${id==="lum"?(()=>{const M=DATA.mood;return `<div class="ds"><h4>Light direction · General mood</h4><ul class="kn">${M.items.map((t,i)=>`<li>${ed(`mood.items.${i}`,"span","",t)}${del("mood.items",i)}</li>`).join("")}</ul>${add("mood.items","str","mood")}${(M.p||EDIT)?`<p style="margin:10px 0 0">${ed("mood.p","span","",M.p)}</p>`:""}${M.img&&!d.refs.some(r=>r.src===M.img)?`<img class="rimg" data-zoom src="${esc(imgSrc(M.img))}" alt="Dégradé N&B de référence">`:""}${setimg("mood.img",M.img?"Changer l'image":"+ image")}</div>`})():""}
-  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
+  <div class="ds"><h4>Ce qui est acté</h4><ul class="kn">${d.known.map((it,i)=>`<li class="${it.w?"w":""}">${ed(`${P}.known.${i}.t`,"span","",it.t,"Point")}${EDIT?`<small>${ed(`${P}.known.${i}.sub`,"span","",it.sub,"Précision (optionnelle)")}</small>`:(it.sub?`<small>${esc(it.sub)}</small>`:"")}${it.from?"":routeUI2(`${P}.known.${i}`,it.to,id)}${del(P+".known",i)}</li>`).join("")}</ul>${add(P+".known","known","point acté")}</div>
 
   ${d.refs.map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
    ${EDIT?`<p class="sub">Lien : ${ed(`${P}.refs.${i}.link`,"span","",r.link,"https://…")} · texte : ${ed(`${P}.refs.${i}.linkText`,"span","",r.linkText,"Voir…")}</p>`:""}</div>`).join("")}
   ${EDIT?`<div class="ds">${add(P+".refs","ref","référence (image / lien)")}</div>`:""}
-  <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
+  <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
   ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   `);
  if(!keep)drawer.scrollTop=0;
@@ -657,7 +672,7 @@ document.addEventListener("input",e=>{
  else if(t.tagName==="INPUT"||t.tagName==="SELECT")v=t.value;
  else{v=t.innerText.replace(/ /g," ").replace(/\n+$/,"");if(t.dataset.t==="lines")v=v.split("\n").map(s=>s.trim()).filter(Boolean);else if(t.dataset.t==="semi")v=v.split(/[;,]/).map(s=>s.trim()).filter(Boolean)}
  set(p,v);changed();
- {const bm=/^brief\.items\.(\d+)\.(t|sub)/.exec(p);if(bm)syncBrief(+bm[1])}
+ {const bm=/^brief\.items\.(\d+)\.(t|sub)/.exec(p);if(bm)syncBrief(+bm[1]);if(bm||/^depts\./.test(p))syncDept()}
  if(t.type==="checkbox"){
   if(/\.todo\.\d+\.done$/.test(p)){const li=t.closest("li");if(li){const on=t.checked||[...li.querySelectorAll(".det .ed")].some(x=>x.textContent.trim());li.classList.toggle("off",!on);const m=li.querySelector("i.mk");if(m)m.classList.toggle("on",!!on)}}
   else if(/^qs\.\d+\.done$/.test(p))renderAll();
@@ -669,16 +684,19 @@ document.addEventListener("paste",e=>{const t=e.target.closest&&e.target.closest
 document.addEventListener("keydown",e=>{const t=e.target;if(e.key==="Enter"&&t.isContentEditable&&!t.dataset.t&&t.tagName!=="DIV")e.preventDefault()});
 document.addEventListener("click",e=>{
  if(!EDIT)return;
- const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]"),tg=e.target.closest("[data-tog]"),ro=e.target.closest("[data-rmroute]");
- if(ro){e.stopPropagation();DATA.brief.items[+ro.dataset.rmroute].to.splice(+ro.dataset.j,1);changed();renderAll()}
- else if(a){e.stopPropagation();get(a.dataset.add).push(TPL[a.dataset.tpl]());changed();renderAll()}
- else if(d){e.stopPropagation();if(confirm("Supprimer cet élément ?")){get(d.dataset.del).splice(+d.dataset.i,1);changed();renderAll()}}
+ const a=e.target.closest("[data-add]"),d=e.target.closest("[data-del]"),ai=e.target.closest("[data-addimg]"),si=e.target.closest("[data-setimg]"),tg=e.target.closest("[data-tog]"),ro=e.target.closest("[data-rmroute]"),rr=e.target.closest("[data-rrm]");
+ if(rr){e.stopPropagation();const o=get(rr.dataset.rrm);o.to.splice(+rr.dataset.j,1);syncDept();changed();renderAll()}
+ else if(ro){e.stopPropagation();DATA.brief.items[+ro.dataset.rmroute].to.splice(+ro.dataset.j,1);changed();renderAll()}
+ else if(a){e.stopPropagation();get(a.dataset.add).push(TPL[a.dataset.tpl]());syncDept();changed();renderAll()}
+ else if(d){e.stopPropagation();if(confirm("Supprimer cet élément ?")){get(d.dataset.del).splice(+d.dataset.i,1);syncDept();changed();renderAll()}}
  else if(ai){e.stopPropagation();pickImage(src=>{get(ai.dataset.addimg).push({src,alt:""});changed();renderAll()})}
  else if(tg){e.stopPropagation();set(tg.dataset.tog,get(tg.dataset.tog)?0:1);changed();renderAll()}
  else if(si){e.stopPropagation();pickImage(src=>{set(si.dataset.setimg,src);changed();renderAll()})}
  else if(e.target.closest("label.st")){const c=e.target.closest("label.st").querySelector("input");e.preventDefault();c.checked=!c.checked;c.dispatchEvent(new Event("input",{bubbles:true}));renderAll()}
 },true);
 document.addEventListener("change",e=>{
+ const sd=e.target.closest&&e.target.closest("[data-radd]");
+ if(sd&&EDIT&&sd.value!==""){const o=ROUTEOPTS()[+sd.value],obj=get(sd.dataset.radd);if(o&&obj){obj.to=(obj.to||[]).filter(x=>x&&x.d);if(!obj.to.some(x=>x.d===o[0]&&x.s===o[1]))obj.to.push({d:o[0],s:o[1]});syncDept();changed();renderAll();toast("Aussi envoyé dans "+o[2])}return}
  const sl=e.target.closest&&e.target.closest("[data-addroute]");if(!sl||!EDIT||sl.value==="")return;
  const i=+sl.dataset.addroute,o=ROUTEOPTS()[+sl.value],it=DATA.brief.items[i];if(!o)return;
  it.to=(it.to||[]).filter(x=>x&&x.d);if(!it.to.some(x=>x.d===o[0]&&x.s===o[1]))it.to.push({d:o[0],s:o[1]});
@@ -709,6 +727,7 @@ async function publish(){
    const r=await gh("/"+path,{method:"PUT",body:JSON.stringify({message:"Filorga : ajout image "+path,content:v.b64,branch:REPO.branch})});
    if(!r.ok)throw new Error("image "+r.status)}
   const now=new Date().toISOString();
+  syncDept();
   try{const ch=BASE?diffChanges(BASE,DATA):[];DATA.log=ch.slice(0,12).map(c=>Object.assign({at:now},c)).concat((BASE&&BASE.log)||DATA.log||[]).slice(0,40)}catch(e){}
   DATA.updated=now;
   const cur=await gh(`/data.json?ref=${REPO.branch}`);if(!cur.ok)throw new Error("lecture "+cur.status);const cj=await cur.json(),sha=cj.sha;
