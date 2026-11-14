@@ -438,7 +438,8 @@
      "sol": [
       "Filtres spécifiques en optique (piste actuelle)",
       "FPS bas (piste actuelle)"
-     ]
+     ],
+     "ref": "ref:cam:0"
     }
    ]
   },
@@ -592,7 +593,8 @@
      "sol": [
       "2 m de large sur 6 m de profondeur (proposition du chef op)",
       "Bandes noires en travers de la plaque pour délimiter les lignes"
-     ]
+     ],
+     "ref": "ref:lum:1"
     },
     {
      "id": "lum-uv",
