@@ -121,12 +121,39 @@
   }
  },
  "mood": {
-  "items": [
-   "mood B&W : background dégradé Haut/ Bas, Noir/ blanc (pour 3 films, Regen Peptide, Time Filler, NCEF Revitalize)",
-   "mood Incrust : background gris ou chroma key, TBD (film UV solaire), lumière solaire en keylight"
-  ],
-  "p": "On peut tout shooter sur le fond cyclo blanc, et créer ce dégradé à la lumière, mais il va y avoir un bon travail de contrôle de lumière, avec du borniol en top, ajustable.",
-  "img": "refs/time-ncef-gradient.jpg"
+  "items": [],
+  "p": "On shoote tout sur le fond cyclo blanc, et on crée le dégradé à la lumière : gros travail de contrôle de lumière, avec du borniol en top, ajustable.",
+  "moods": [
+   {
+    "id": "mood-bw",
+    "t": "Mood 1 · Black & White",
+    "d": "Background dégradé haut / bas, noir / blanc",
+    "c": [
+     "regen",
+     "time",
+     "ncef"
+    ],
+    "lines": [
+     "Regen Peptide : dégradé pas toujours droit, pas forcément linéaire",
+     "Time Filler et NCEF Revitalize : dégradé toujours droit, horizontal"
+    ],
+    "img": "refs/time-ncef-gradient.jpg",
+    "go": ""
+   },
+   {
+    "id": "mood-inc",
+    "t": "Mood 2 · Incrust",
+    "d": "Background gris ou chroma key, à décider",
+    "c": [
+     "uv"
+    ],
+    "lines": [
+     "Lumière solaire en keylight"
+    ],
+    "img": "refs/uv-ref.jpg",
+    "go": "open:lum-uv"
+   }
+  ]
  },
  "camps": [
   {
@@ -328,15 +355,13 @@
      "t": "Plans principalement serrés, peu de mouvements à ce stade",
      "sub": "",
      "w": 0,
-     "g": "conf",
-     "st": "presse"
+     "g": "conf"
     },
     {
      "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
      "sub": "",
      "w": 0,
-     "g": "conf",
-     "st": "decide"
+     "g": "conf"
     },
     {
      "t": "Fond propre et cadrage prévus pour l'incrustation post-pro",
@@ -454,36 +479,6 @@
      "g": "tech"
     },
     {
-     "t": "Fond dégradé N&B haut / bas conservé d'un film à l'autre : rangée de Skypanel X Hyperoptics sur grill, keylight beauty light, negative fill, borniol en top ajustable",
-     "sub": "",
-     "w": 0,
-     "g": "conf",
-     "c": [
-      "regen",
-      "time",
-      "ncef"
-     ]
-    },
-    {
-     "t": "Dégradé pas toujours droit, pas forcément linéaire",
-     "sub": "",
-     "w": 0,
-     "g": "conf",
-     "c": [
-      "regen"
-     ]
-    },
-    {
-     "t": "Dégradé toujours droit, horizontal",
-     "sub": "",
-     "w": 0,
-     "g": "conf",
-     "c": [
-      "time",
-      "ncef"
-     ]
-    },
-    {
      "t": "Effet « battery loading » au sol : Astera Hyperion, sol surélevé en plexi frosté",
      "sub": "",
      "w": 0,
@@ -491,17 +486,7 @@
      "c": [
       "regen"
      ],
-     "go": "ref:lum:1"
-    },
-    {
-     "t": "Fond incrust (gris ou chroma, à décider). Lumière solaire : Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4. Backlight pour le plan spray du produit",
-     "sub": "",
-     "w": 0,
-     "g": "spec",
-     "c": [
-      "uv"
-     ],
-     "go": "open:lum-uv"
+     "go": "ref:lum:0"
     }
    ],
    "todo": [
@@ -566,13 +551,6 @@
    ],
    "refs": [
     {
-     "src": "refs/time-ncef-gradient.jpg",
-     "title": "Dégradé N&B de référence",
-     "cap": "Time Filler et NCEF Revitalize : toujours droit, horizontal. Regen Peptide : pas toujours, pas forcément linéaire.",
-     "link": "",
-     "linkText": ""
-    },
-    {
      "src": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gr7s.jpg",
      "title": "Nouvelle référence",
      "cap": "Un effet de \"battery loading\" au sol,  un chargement de batterie à pouvoir faire évoluer. CF deniere section",
@@ -594,7 +572,7 @@
       "2 m de large sur 6 m de profondeur (proposition du chef op)",
       "Bandes noires en travers de la plaque pour délimiter les lignes"
      ],
-     "ref": "ref:lum:1"
+     "ref": "ref:lum:0"
     },
     {
      "id": "lum-uv",
@@ -631,8 +609,7 @@
      "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
      "sub": "",
      "w": 0,
-     "g": "conf",
-     "st": "decide"
+     "g": "conf"
     },
     {
      "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable",
