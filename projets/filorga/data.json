@@ -1,7 +1,17 @@
 {
  "v": 1,
- "updated": "2026-11-14T17:04:14.000Z",
+ "updated": "2026-11-14T23:20:00.000Z",
  "log": [
+  {
+   "at": "2026-11-14T23:20:00.000Z",
+   "src": "Film UV Cellular · fond",
+   "d": [
+    "lum",
+    "mach"
+   ],
+   "kind": "modif",
+   "text": "Fond gris étale confirmé, le chroma key est abandonné (incrust post-pro sur gris)"
+  },
   {
    "at": "2026-11-14T17:04:14.000Z",
    "src": "Caméra et Machinerie · listes",
@@ -140,7 +150,7 @@
    {
     "id": "mood-inc",
     "t": "Mood 2 · Incrust",
-    "d": "Background gris étale, sur la base du cyclo blanc (incrust post-pro ; chroma key encore possible, à décider)",
+    "d": "Background gris étale, sur la base du cyclo blanc (incrust post-pro)",
     "c": [
      "uv"
     ],
@@ -148,7 +158,7 @@
      "Lumière solaire en keylight"
     ],
     "img": "refs/uv-ref.jpg",
-    "go": "open:lum-uv"
+    "go": ""
    }
   ]
  },
@@ -264,7 +274,7 @@
   {
    "id": "uv",
    "name": "UV Cellular",
-   "txt": "UV CELLULAR (solaire), ce sera de l'incrustation post-pro, à voir si on est sur fond Chroma Key ou juste gris",
+   "txt": "UV CELLULAR (solaire), ce sera de l'incrustation post-pro, sur fond gris étale",
    "pist": "",
    "imgs": [
     {
@@ -273,7 +283,7 @@
     }
    ],
    "lum": [
-    "Mood incrust : fond gris ou chroma key (à décider), quelque chose d'étale",
+    "Mood incrust : fond gris étale, quelque chose d'étale",
     "Lumière solaire en keylight : 1 Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4",
     "Backlight : oui, pour le plan spray du produit (LED 1200, option spotlight)"
    ],
@@ -282,11 +292,10 @@
     "Fond propre et cadrage prévus pour l'incrustation post-pro"
    ],
    "mach": [
-    "À définir selon le fond retenu (chroma key ou gris)"
+    "Fond gris étale (incrust post-pro)"
    ],
    "alias": [
-    "UV",
-    "film UV"
+    "UV"
    ],
    "fond": "incrust"
   }
@@ -573,19 +582,6 @@
       "Bandes noires en travers de la plaque pour délimiter les lignes"
      ],
      "ref": "ref:lum:0"
-    },
-    {
-     "id": "lum-uv",
-     "t": "Fond du film UV : gris ou chroma key",
-     "c": [
-      "uv"
-     ],
-     "pb": "Incrustation post-pro : le fond n'est pas encore choisi.",
-     "ch": "Le choix du fond conditionne la lumière et la machinerie.",
-     "sol": [
-      "Fond gris",
-      "Chroma key"
-     ]
     }
    ]
   },
@@ -654,14 +650,14 @@
      "go": "ref:lum:0"
     },
     {
-     "t": "Fond du film UV à définir (chroma key ou gris), la machinerie en dépend",
+     "t": "Film UV : fond gris étale (incrust post-pro)",
      "sub": "",
      "w": 0,
      "g": "rig",
      "c": [
       "uv"
      ],
-     "go": "open:mach-uv"
+     "go": ""
     }
    ],
    "todo": [
@@ -713,21 +709,7 @@
     }
    ],
    "notes": "",
-   "open": [
-    {
-     "id": "mach-uv",
-     "t": "Machinerie du film UV selon le fond retenu",
-     "c": [
-      "uv"
-     ],
-     "pb": "Dépend du choix du fond : chroma key ou gris.",
-     "ch": "",
-     "sol": [
-      "Chroma key",
-      "Gris"
-     ]
-    }
-   ]
+   "open": []
   }
  ],
  "team": [

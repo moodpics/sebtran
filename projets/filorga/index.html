@@ -747,7 +747,7 @@ function cvBody(i){
  return `<div class="cvh cc${i%4}" style="background:${CT[i%4]}"><div><span class="cvn">Campagne 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
  <div class="cvbd"><p class="sub">${slot?"Tournage : "+esc(slot.label):"Créneau : à définir (voir Planning provisoire)"}</p>
  ${ed(P+".txt","p","v",c.txt)}
- ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Incrust (gris / chroma)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
+ ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Gris étale (incrust post-pro)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
  ${(c.pist||EDIT)?ed(P+".pist","span","tag k",c.pist,"piste DoP"):""}
  ${imgs(P+".imgs",c.imgs)}
  <h4>Déclinaison par département</h4><div class="cvg">${[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].map(([k,n])=>`<div class="d-${k}"><h5>${n}</h5>${EDIT?edj(`${P}.${k}`,"div","cvl",c[k],"\n","Une ligne par point"):((c[k]&&c[k].length)?`<ul>${c[k].map(l=>`<li>${esc(l)}</li>`).join("")}</ul>`:`<p class="sub" style="margin:0">À définir</p>`)}</div>`).join("")}</div>
