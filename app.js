@@ -351,7 +351,7 @@
   function loadPlayer(f) {
     lbPlayer.innerHTML = "";
     const accent = getComputedStyle(document.body).getPropertyValue("--accent").trim().replace("#", "");
-    lbPlayer.appendChild(makeIframe(vimeo(f, { autoplay: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`));
+    lbPlayer.appendChild(makeIframe(vimeo(f, { autoplay: 1, loop: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`));
   }
   async function openLightbox(list, i, fromEl) {
     lbList = list; lbIdx = i;
