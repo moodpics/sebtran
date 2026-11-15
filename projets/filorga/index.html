@@ -224,15 +224,11 @@ body.edit .pills{max-width:42vw}
 .node.newsn .nh{display:none}
 .node.newsn .nb{padding:0}
 .newsn .news{margin-top:0;color:#fff;background:linear-gradient(135deg,rgba(255,110,110,.22),rgba(255,70,70,.32));border-color:rgba(255,120,120,.6);box-shadow:0 12px 30px -16px rgba(255,80,80,.5)}
-.newsn .news{position:relative;overflow:hidden;animation:nglow 3.2s ease-in-out infinite}
-.newsn .news::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-18deg);animation:nsweep 4.5s ease-in-out infinite;pointer-events:none}
-.newsn .news .nt b{background:linear-gradient(90deg,#fff 0%,#fff 35%,#ffd0d0 50%,#fff 65%,#fff 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:ntxt 3s linear infinite}
-.newsn .news .nt b::after{content:"✦";display:inline-block;margin-left:7px;font-size:11px;color:#ffe3e3;-webkit-text-fill-color:#ffe3e3;animation:ntw 1.6s ease-in-out infinite}
-@keyframes nsweep{0%{left:-60%}55%,100%{left:130%}}
-@keyframes nglow{0%,100%{box-shadow:0 12px 30px -16px rgba(255,80,80,.5),0 0 0 0 rgba(255,110,110,.0)}50%{box-shadow:0 12px 34px -14px rgba(255,80,80,.8),0 0 22px 2px rgba(255,110,110,.45)}}
-@keyframes ntxt{0%{background-position:100% 0}100%{background-position:-150% 0}}
-@keyframes ntw{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(45deg)}}
-@media (prefers-reduced-motion:reduce){.newsn .news,.newsn .news::after,.newsn .news .nt b,.newsn .news .nt b::after{animation:none}}
+.newsn .news{position:relative;overflow:hidden;animation:nglow 7s ease-in-out infinite}
+.newsn .news::after{content:"";position:absolute;top:0;bottom:0;left:-50%;width:35%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.07),transparent);transform:skewX(-18deg);animation:nsweep 11s ease-in-out infinite;pointer-events:none}
+@keyframes nsweep{0%{left:-50%}35%,100%{left:130%}}
+@keyframes nglow{0%,100%{box-shadow:0 12px 30px -16px rgba(255,80,80,.5),0 0 0 0 rgba(255,110,110,0)}50%{box-shadow:0 12px 30px -16px rgba(255,80,80,.55),0 0 14px 0 rgba(255,110,110,.16)}}
+@media (prefers-reduced-motion:reduce){.newsn .news,.newsn .news::after{animation:none}}
 .newsn .news .nt span{color:rgba(255,255,255,.65)}
 .newsn .news .nd{color:#ffb4b4}
 .newsn .news li{border-top-color:rgba(255,150,150,.3)}
