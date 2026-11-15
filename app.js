@@ -63,6 +63,14 @@
     }
     iframe.addEventListener("load", () => setTimeout(cb, 600));
   };
+  // Films with a "loopEnd" (seconds) loop before their end card / packshot in silent previews
+  const trimLoop = (iframe, f) => {
+    if (!f.loopEnd || !(window.Vimeo && Vimeo.Player)) return;
+    try {
+      const p = new Vimeo.Player(iframe);
+      p.on("timeupdate", d => { if (d.seconds >= f.loopEnd) p.setCurrentTime(f.loopStart || 0).catch(() => {}); });
+    } catch (e) { /* ignore */ }
+  };
   const fmtDur = s => `${pad(Math.floor(s / 60))}:${pad(s % 60)}`;
   const credits = f => [f.director && `Dir. ${f.director}`, f.production && `Prod. ${f.production}`].filter(Boolean).join(" — ");
 
@@ -148,6 +156,7 @@
     const ifr = makeIframe(vimeo(f, bgParams()), `${f.client} — ${f.title}`);
     heroVideo.appendChild(ifr);
     onPlay(ifr, () => heroVideo.classList.add("is-on"));
+    trimLoop(ifr, f);
   }
   $("[data-hero-play]").addEventListener("click", () => heroFilm && openLightbox(state.list.indexOf(heroFilm) >= 0 ? state.list : [heroFilm], Math.max(0, state.list.indexOf(heroFilm)), heroPoster));
   $("[data-hero-play]").dataset.cursor = "play";
@@ -242,6 +251,7 @@
     const ifr = makeIframe(vimeo(f, bgParams("540p")), f.client);
     cover.appendChild(ifr);
     onPlay(ifr, () => card.classList.add("is-playing"));
+    trimLoop(ifr, f);
   }
   function stopPreview(card) {
     if (!card) return;
@@ -316,6 +326,7 @@
       const ifr = makeIframe(vimeo(f, bgParams("360p")), f.client);
       floatVid.appendChild(ifr);
       onPlay(ifr, () => ifr.classList.add("is-on"));
+      trimLoop(ifr, f);
     }, 220);
   }
   function hideFloat() {
