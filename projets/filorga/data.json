@@ -150,8 +150,7 @@
     ],
     "lines": [
      "Créé à la lumière avec la rangée de Skypanel X Hyperoptics sur le grill",
-     "Regen Peptide : dégradé pas toujours droit, pas forcément linéaire",
-     "Time Filler et NCEF Revitalize : dégradé toujours droit, horizontal"
+     "Dégradé droit"
     ],
     "img": "refs/time-ncef-gradient.jpg",
     "go": ""
@@ -175,7 +174,7 @@
   {
    "id": "regen",
    "name": "Regen Peptide",
-   "txt": "REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé, pas toujours, pas forcément linéaire",
+   "txt": "REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé droit",
    "pist": "Effet filé sur film Peptide : slow frame (FPS bas) avec le filtre Handheld Split Phantom FX",
    "imgs": [
     {
@@ -191,7 +190,7 @@
    ],
    "lum": [
     "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé pas toujours droit, pas forcément linéaire",
+    "Dégradé droit",
     "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
     "Keylight : beauty light, 2400 + parabolic softbox 140",
     "Negative fill : floppy, pendrillons. Pas de backlight",
@@ -215,7 +214,7 @@
   {
    "id": "time",
    "name": "Time Filler",
-   "txt": "TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé, toujours droit, horizontal",
+   "txt": "TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé droit",
    "pist": "",
    "imgs": [
     {
@@ -231,7 +230,7 @@
    ],
    "lum": [
     "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé toujours droit, horizontal",
+    "Dégradé droit",
     "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
     "Keylight : beauty light, 2400 + parabolic softbox 140",
     "Negative fill : floppy, pendrillons. Pas de backlight",
@@ -251,7 +250,7 @@
   {
    "id": "ncef",
    "name": "NCEF Revitalize",
-   "txt": "NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé, toujours droit, horizontal",
+   "txt": "NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé droit",
    "pist": "",
    "imgs": [
     {
@@ -267,7 +266,7 @@
    ],
    "lum": [
     "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé toujours droit, horizontal",
+    "Dégradé droit",
     "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
     "Keylight : beauty light, 2400 + parabolic softbox 140",
     "Negative fill : floppy, pendrillons. Pas de backlight",
