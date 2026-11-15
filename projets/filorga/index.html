@@ -530,6 +530,18 @@ body.m #world{gap:6px}
 @keyframes vibe{0%,60%,100%{transform:none}62%{transform:translateX(-2px) rotate(-1deg)}64%{transform:translateX(2px) rotate(1deg)}66%{transform:translateX(-2px)}68%{transform:translateX(2px) rotate(-1deg)}70%{transform:translateX(-1px)}72%{transform:none}}
 @keyframes woosh{0%,58%{left:-70%}74%,100%{left:140%}}
 @media (prefers-reduced-motion:reduce){.vibe,.vibe::after{animation:none}}
+/* campagnes repliées / nouvelle grille */
+.node.shut .nb{display:none}
+.node.shut .nh{border-bottom:0}
+#n_camps .nh{cursor:pointer}
+#n_camps .nh .chv{font-style:normal;font-size:20px;line-height:1;transform:rotate(90deg);transition:transform .2s;margin-left:10px}
+#n_camps:not(.shut) .nh .chv{transform:rotate(-90deg)}
+.node.dept .nb{padding:18px 20px}
+/* barre du haut sur mobile : titre puis pastilles sur toute la largeur */
+body.m .bar{flex-wrap:wrap;gap:8px 10px;padding:10px 14px 8px}
+body.m .bar b{margin-right:0}
+body.m .pills{max-width:100%;flex:1 1 100%;order:3;padding-bottom:2px}
+body.m #view{padding-top:92px}
 </style>
 </head>
 <body>
@@ -689,14 +701,14 @@ const ICON={
  lum:`<svg viewBox="0 0 64 64" ${IC}><rect x="8" y="18" width="26" height="22" rx="3"/><path d="M34 21l11-7v32l-11-7"/><path d="M21 18v-6M21 40v8M13 58l8-10 8 10"/><path d="M51 22l7-3M52 30h8M51 38l7 3"/></svg>`,
  mach:`<svg viewBox="0 0 64 64" ${IC}><rect x="20" y="9" width="22" height="14" rx="2"/><path d="M42 13l9-4v14l-9-4"/><path d="M31 23v10"/><rect x="10" y="33" width="44" height="8" rx="2"/><circle cx="20" cy="49" r="4"/><circle cx="44" cy="49" r="4"/><path d="M4 57h56"/></svg>`};
 function makeNodes(){
- NODES=[{id:"root",kind:"Projet",x:70,y:60,w:640},
-  {id:"news",kind:"Latest news",x:775,y:70,w:560,cls:"newsn"},
-  {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
-  {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:775,y:70,w:560,cls:"bt"},
-  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:775,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
-  {id:"team",kind:"Équipe",x:70,y:0,w:640}];
+ NODES=[{id:"bt",kind:"Brief équipe · clique pour ouvrir",x:420,y:60,w:600,cls:"bt"},
+  {id:"root",kind:"Projet",x:420,y:0,w:600},
+  {id:"news",kind:"Latest news",x:30,y:0,w:340,cls:"newsn"},
+  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:1070,y:0,w:340,cls:"dept d-"+d.id,did:d.id})),
+  {id:"camps",kind:"Les 4 campagnes",x:420,y:0,w:600},
+  {id:"team",kind:"Équipe",x:420,y:0,w:600}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
- EDGES=[["root","camps"],["camps","team"],["root","news"],["news","bt"],["bt",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
+ EDGES=[["bt","root"],["root","news"],...ds.map(d=>["root",d]),["root","camps"],["camps","team"]];
 }
 function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
@@ -721,12 +733,16 @@ function build(){
   const a=document.createElement("article");a.className="node "+(n.cls||"");a.id="n_"+n.id;a.style.width=n.w+"px";
   a.innerHTML=`<header class="nh"><span>${esc(n.kind)}</span></header><div class="nb">${body(n)}</div>`;
   world.appendChild(a);el[n.id]=a;place(n);drag(n,a);
+  if(n.id==="camps"){const h=a.querySelector(".nh");h.dataset.cfold="1";h.insertAdjacentHTML("beforeend",'<i class="chv">›</i>')}
   if(n.did)a.onclick=e=>{if(e.target.closest(".nh"))return;openDept(n.did)};
  });
- countdown();
+ foldCamps();countdown();
 }
+let CAMPS=!!EDIT;
+function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.textContent="Les 4 campagnes · clique pour "+(CAMPS?"replier":"déplier")}
+function toggleCamps(){CAMPS=!CAMPS;foldCamps();autoLayout()}
 function renderAll(){
- NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});
+ NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});foldCamps();
  countdown();autoLayout();
  if(drawerCtx)reopen();if(cvCtx!==null){const y=cvp.scrollTop;cvp.innerHTML=cvBody(cvCtx);cvp.scrollTop=y}renderPills();stamp();
 }
@@ -735,8 +751,10 @@ let lay=0;
 function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
-  const cols=[["root","camps","team"],["news","bt",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,news:70};
-  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?42:60)})});
+  const set=(id,y)=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return y;n.y=y;place(n);return y+el[id].offsetHeight};
+  const yr=set("bt",60)+44,rb=set("root",yr);set("news",yr);
+  let y=yr;DATA.depts.forEach(d=>{y=set("d_"+d.id,y)+30});
+  set("team",set("camps",rb+48)+48);
   fitStage();drawEdges();
  });
 }
@@ -773,7 +791,7 @@ function drawEdges(){
  });
  svg.innerHTML=out;
 }
-const WORLD_W=1380;
+const WORLD_W=1440;
 function fitStage(){
  if(mobile()){stage.style.width=stage.style.height="";world.style.transform="";world.style.width=world.style.height="";svg.setAttribute("width",0);svg.setAttribute("height",0);return}
  const W=Math.max(WORLD_W,...NODES.map(n=>{const r=rect(n.id);return r.x+r.w+40})),H=Math.max(...NODES.map(n=>{const r=rect(n.id);return r.y+r.h}))+90;
@@ -854,7 +872,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const gt=e.target.closest&&e.target.closest("[data-gtab]");if(gt){GT=gt.dataset.gtab;const w=gt.closest(".gsub");w.querySelectorAll("[data-gtab]").forEach(b=>b.classList.toggle("on",b===gt));w.querySelectorAll("[data-gp]").forEach(x=>x.hidden=x.dataset.gp!==GT);return}const bto=e.target.closest&&e.target.closest("[data-brief]");if(bto){e.preventDefault();openBrief();return}const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("[data-cfold]")&&!e.target.closest(".ed")){toggleCamps();return}const gt=e.target.closest&&e.target.closest("[data-gtab]");if(gt){GT=gt.dataset.gtab;const w=gt.closest(".gsub");w.querySelectorAll("[data-gtab]").forEach(b=>b.classList.toggle("on",b===gt));w.querySelectorAll("[data-gp]").forEach(x=>x.hidden=x.dataset.gp!==GT);return}const bto=e.target.closest&&e.target.closest("[data-brief]");if(bto){e.preventDefault();openBrief();return}const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Fenêtre campagne (effet woosh) =========== */
 const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gradient(180deg,#000 0%,#7a7a7a 55%,#f2f2f2 100%)","radial-gradient(circle at 72% 28%,#fff 0%,#a8a8a8 45%,#1b1b1b 100%)","linear-gradient(135deg,#232323 0%,#a98a3d 65%,#f1dc96 100%)"];
