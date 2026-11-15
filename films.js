@@ -186,18 +186,6 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/787201393-5f63af8a017b08fafeac02e8d54a836ce36aba2e363a9e3ae3b1d512426b8ba3-d"
     },
     {
-      "id": "1246441775",
-      "h": null,
-      "client": "Clarins",
-      "title": "Precious — La Crème Yeux",
-      "category": "Beauty",
-      "director": null,
-      "production": "Onirim",
-      "year": 2026,
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/2225882491-fa657651a4467787a1facce48cadd70f29ebbd719d5875b962a624bb595cb014-d"
-    },
-    {
       "id": "1131155471",
       "h": "3587d0b4a5",
       "client": "Miu Miu",
