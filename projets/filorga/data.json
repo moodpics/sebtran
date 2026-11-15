@@ -9,7 +9,7 @@
     "cam"
    ],
    "kind": "modif",
-   "text": "slow frame (FPS bas) avec le filtre Handheld Split Phantom FX (décidé)"
+   "text": "testé avec du slow frame, FPS bas (6 FPS par exemple) + filtre Handheld Split Phantom FX"
   },
   {
    "at": "2026-11-14T23:20:00.000Z",
@@ -384,14 +384,14 @@
      ]
     },
     {
-     "t": "Effet filé : slow frame (FPS bas) avec le filtre Handheld Split Phantom FX",
+     "t": "Effet filé : testé avec du slow frame, FPS bas (6 FPS par exemple)",
      "sub": "",
      "w": 0,
      "g": "spec",
      "c": [
       "regen"
      ],
-     "go": "ref:cam:2"
+     "go": "ref:cam:0"
     },
     {
      "t": "Filtre : Handheld Split Phantom FX (PrismLensFX)",
@@ -402,6 +402,16 @@
       "regen"
      ],
      "go": "ref:cam:1"
+    },
+    {
+     "t": "Effet obtenu avec ce filtre (démo du fabricant)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "regen"
+     ],
+     "go": "ref:cam:2"
     }
    ],
    "todo": [
@@ -458,8 +468,8 @@
    "refs": [
     {
      "src": "refs/effet-file.jpg",
-     "title": "Réflexions & intuitions de DOP · effet filé sur film Peptide",
-     "cap": "Optiquement : filtres spécifiques. FPS : low fps.",
+     "title": "Effet filé · référence film Peptide",
+     "cap": "Effet filé recherché sur le film Regen Peptide.",
      "link": "",
      "linkText": ""
     },
@@ -473,7 +483,7 @@
     {
      "src": "refs/split-phantom-effet.gif",
      "title": "Effet du filtre en vidéo",
-     "cap": "Effet obtenu avec le Split Phantom FX (extrait de la vidéo de démonstration du fabricant).",
+     "cap": "Effet du Split Phantom FX en vidéo (extrait de la démo du fabricant, PrismLensFX).",
      "link": "",
      "linkText": ""
     }
