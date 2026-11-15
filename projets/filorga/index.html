@@ -646,9 +646,11 @@ function diffChanges(a,b){
  const m=new Map();out.forEach(c=>{const k=c.kind+"|"+norm(c.text),e=m.get(k);if(e)c.d.forEach(x=>{if(!e.d.includes(x))e.d.push(x)});else m.set(k,c)});
  return [...m.values()];
 }
+function srcNoDept(src,ds){const names=ds.map(x=>D(x).name.toLowerCase()),parts=String(src||"").split(" · "),first=parts[0].split(/\s+et\s+|\s*,\s*|\s*&\s*/).map(x=>x.trim().toLowerCase()).filter(Boolean);
+ if(first.length&&first.every(x=>names.includes(x)))parts.shift();return parts.join(" · ")}
 function newsList(list,max){
  return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
-  return `<li><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx${dl?" go":""}"${dl?` data-link="${dl}"`:""}>${rich(c.src)} : ${rich(c.text)}</span></div></li>`}).join("");
+  return `<li><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx${dl?" go":""}"${dl?` data-link="${dl}"`:""}>${(()=>{const sc=srcNoDept(c.src,ds);return (sc?rich(sc)+" : ":"")+rich(c.text)})()}</span></div></li>`}).join("");
 }
 const routeUI2=(path,to,own)=>EDIT?`<div class="rto"><span class="sub">Envoyer aussi vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rrm="${path}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-radd="${path}"><option value="">+ sous-partie d'un autre département…</option>${ROUTEOPTS().map(([d,s2,l],k)=>d===own?"":`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
 const routeUI=(i,to)=>EDIT?`<div class="rto"><span class="sub">Envoyer vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rmroute="${i}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-addroute="${i}"><option value="">+ sous-partie…</option>${ROUTEOPTS().map(([d,s2,l],k)=>`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
