@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-15T02:02:19.751Z",
+ "updated": "2026-11-15T02:50:49.000Z",
  "log": [
   {
    "at": "2026-11-14T22:46:00.000Z",
@@ -719,7 +719,7 @@
   },
   {
    "role": "Producer",
-   "name": ""
+   "name": "Augustin Grégoire"
   },
   {
    "role": "Line Producer",
@@ -735,7 +735,7 @@
   },
   {
    "role": "Agence",
-   "name": ""
+   "name": "Camelia"
   },
   {
    "role": "DA",
