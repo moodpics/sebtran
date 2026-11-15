@@ -547,6 +547,8 @@ body.m #view{padding-top:92px}
 .node.dept .dic{opacity:1;display:block;width:84px;height:84px;position:static}.node.dept .dic svg{width:100%;height:100%}
 .node.bt .nh{display:none}.node.bt .nb{padding:16px 20px}
 body.m .node.dept .dic{width:64px;height:64px}
+.node.newsn{z-index:50!important}
+.newsn .news{background:linear-gradient(135deg,rgba(255,110,110,.16),rgba(255,70,70,.24));-webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
 </style>
 </head>
 <body>
@@ -708,9 +710,9 @@ const ICON={
 function makeNodes(){
  NODES=[{id:"bt",kind:"Brief équipe",x:1070,y:0,w:340,cls:"bt"},
   {id:"root",kind:"Projet",x:420,y:0,w:600},
-  {id:"news",kind:"Latest news",x:20,y:0,w:380,cls:"newsn"},
+  {id:"news",kind:"Latest news",x:14,y:0,w:424,cls:"newsn"},
   ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"",x:1070,y:0,w:340,cls:"dept d-"+d.id,did:d.id})),
-  {id:"camps",kind:"Les 4 campagnes",x:420,y:0,w:600},
+  {id:"camps",kind:"4 films : voir les briefs",x:420,y:0,w:600},
   {id:"team",kind:"Équipe",x:420,y:0,w:600}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
  EDGES=[["root","news"],...ds.map(d=>["root",d]),["root","camps"],["camps","team"]];
@@ -743,7 +745,7 @@ function build(){
  foldCamps();countdown();
 }
 let CAMPS=!!EDIT;
-function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.textContent="Les 4 campagnes · clique pour "+(CAMPS?"replier":"déplier")}
+function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.textContent="4 films : voir les briefs · clique pour "+(CAMPS?"replier":"déplier")}
 function toggleCamps(){CAMPS=!CAMPS;foldCamps();autoLayout()}
 function renderAll(){
  NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});foldCamps();
