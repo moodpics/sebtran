@@ -506,6 +506,12 @@ body.m #world{gap:6px}
 .bp .rimg.sm{margin-top:12px}
 .gsub{padding-bottom:28px;margin-bottom:8px;border-bottom:1px solid var(--line)}
 .gsub+ul.bp>li:first-child{padding-top:24px}
+.bf>div{min-width:0}
+.bfimg{display:block;width:100%;max-width:150px;height:70px;object-fit:cover;border-radius:4px;border:1px solid var(--line);margin-top:12px;cursor:zoom-in;transition:transform .15s,box-shadow .15s}
+.bfimg:hover{transform:scale(1.03);box-shadow:0 6px 16px -8px rgba(0,0,0,.5)}
+.bfimg.incrust{object-fit:contain;background:#fff}
+.bfc{display:block;margin-top:5px;font-size:11px;color:#888}
+.bf{padding:16px 18px;gap:14px}
 </style>
 </head>
 <body>
@@ -566,8 +572,9 @@ function campChips(ids){const cs=DATA.camps;ids=(ids||[]).filter(id=>cs.some(c=>
  if(grp.length>1&&grp.length===ids.length&&grp.every(x=>ids.includes(x)))return `<span class="cpg">${grp.map(g=>campChip(cs.findIndex(c=>c.id===g))).join("")}<em>même fond</em></span>`;
  return ids.map(id=>campChip(cs.findIndex(c=>c.id===id))).join("")}
 const campTog=(path,ids)=>EDIT?`<div class="ctg">${DATA.camps.map((c,i)=>`<button class="cp cc${i%4}${(ids||[]).includes(c.id)?" on":""}" data-ctog="${path}" data-cid="${c.id}">${esc(c.name)}</button>`).join("")}<span class="sub">(aucun = tous les films)</span></div>`:"";
+const MOODN={grad:"Mood noir et blanc dégradé",incrust:"Mood incruste"};
 const FOND={grad:{n:"Fond dégradé",g:"{n} {f} · fond dégradé noir → blanc",d:"Haut / bas, créé à la lumière : rangée de Skypanel X Hyperoptics sur le grill, borniol en top."},incrust:{n:"Fond gris étale",g:"{n} {f} · fond gris étale",d:"Fond gris uni, à partir du même cyclo blanc (incrust post-prod)."}};
-function baseBlock(){const cs=DATA.camps,R=(DATA.root&&DATA.root.base)||{t:"",p:""};return `<div class="base"><div class="b0"><i class="bbar"></i><div><b>${ed("root.base.t","span","",R.t,"Base commune")}</b><div class="bp0">${ed("root.base.p","span","",R.p,"Explication")}</div></div></div><div class="bsplit">${["grad","incrust"].map(k=>{const m=cs.map((c,i)=>[c,i]).filter(([c])=>c.fond===k);if(!m.length)return "";return `<div class="bf"><i class="fbar ${k}"></i><div><b>${esc(FOND[k].g.replace("{n}",m.length).replace("{f}",m.length>1?"films":"film"))}</b><span class="d">${esc(FOND[k].d)}</span><div class="fgc">${m.map(([c,i])=>campChip(i)).join("")}</div></div></div>`}).join("")}</div></div>`}
+function baseBlock(){const cs=DATA.camps,R=(DATA.root&&DATA.root.base)||{t:"",p:""};return `<div class="base"><div class="b0"><i class="bbar"></i><div><b>${ed("root.base.t","span","",R.t,"Base commune")}</b><div class="bp0">${ed("root.base.p","span","",R.p,"Explication")}</div></div></div><div class="bsplit">${["grad","incrust"].map(k=>{const m=cs.map((c,i)=>[c,i]).filter(([c])=>c.fond===k);if(!m.length)return "";return `<div class="bf"><i class="fbar ${k}"></i><div><b>${esc(MOODN[k])} · ${m.length} ${m.length>1?"films":"film"}</b><span class="d">${esc(FOND[k].d)}</span><div class="fgc">${m.map(([c,i])=>campChip(i)).join("")}</div>${(()=>{const mm=((DATA.mood||{}).moods||[])[k==="grad"?0:1],im=mm&&mm.img;return im?`<img class="bfimg ${k}" data-zoom src="${esc(imgSrc(im))}" alt="${esc(MOODN[k])}" loading="lazy"><span class="bfc">${k==="grad"?"Référence du fond":"Storyboard pour l'instant"} · clique pour agrandir</span>`:""})()}</div></div>`}).join("")}</div></div>`}
 function fixData(d){(d.depts||[]).forEach(x=>{x.open=x.open||[];x.open.forEach(o=>{o.c=o.c||[];o.sol=o.sol||[]});});(d.camps||[]).forEach(c=>{c.alias=c.alias||[]});d.root=d.root||{};d.root.base=d.root.base||{t:"Base commune : le fond cyclo blanc",p:"Tous les films sont tournés sur le fond cyclo blanc. C'est à partir de cette base que chaque fond est travaillé."};if(d.mood){d.mood.moods=d.mood.moods||[];d.mood.moods.forEach(m=>{m.c=m.c||[];m.lines=m.lines||[]})}return d}
 
 const clip=(s,n=230)=>s.length>n?s.slice(0,n).replace(/\s+\S*$/,"")+"…":s;
