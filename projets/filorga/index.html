@@ -549,6 +549,8 @@ body.m #view{padding-top:92px}
 body.m .node.dept .dic{width:64px;height:64px}
 .node.newsn{z-index:50!important}
 .newsn .news{background:linear-gradient(135deg,rgba(255,110,110,.16),rgba(255,70,70,.24));-webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
+.nh .vro{font-style:normal;display:inline-block;animation:vibe 2.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.nh .vro{animation:none}}
 </style>
 </head>
 <body>
@@ -745,7 +747,7 @@ function build(){
  foldCamps();countdown();
 }
 let CAMPS=!!EDIT;
-function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.textContent="4 films : voir les briefs · clique pour "+(CAMPS?"replier":"déplier")}
+function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.innerHTML='4 films : <em class="vro">voir les briefs</em>'}
 function toggleCamps(){CAMPS=!CAMPS;foldCamps();autoLayout()}
 function renderAll(){
  NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});foldCamps();
