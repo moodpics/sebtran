@@ -402,13 +402,12 @@
      "go": "ref:cam:0,ref:cam:1,ref:cam:2"
     },
     {
-     "t": "À commander : le filtre Handheld Split Phantom FX (PrismLensFX), à trouver",
-     "sub": "Indiqué en rupture de stock sur le site du fabricant au 15 nov. : prévoir une alternative ou un autre revendeur.",
+     "t": "À commander : le filtre",
+     "sub": "",
      "w": 0,
      "g": "spec",
-     "c": [
-      "regen"
-     ]
+     "c": [],
+     "big": 1
     }
    ],
    "todo": [
@@ -493,14 +492,19 @@
    "name": "Lumière",
    "known": [
     {
-     "t": "Effet « battery loading » au sol : Astera Hyperion, sol surélevé en plexi frosté",
-     "sub": "",
+     "t": "Effet « battery loading » au sol : une vingtaine d'Astera Hyperion",
+     "sub": "Sol surélevé sur plexi frosté (collaboration lumière / déco).",
      "w": 0,
      "g": "spec",
      "c": [
       "regen"
      ],
-     "go": "ref:lum:0"
+     "go": "ref:lum:0",
+     "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
+     "sol": [
+      "2 m de large sur 6 m de profondeur (proposition du chef op)",
+      "Bandes noires en travers de la plaque pour délimiter les lignes"
+     ]
     }
    ],
    "todo": [
@@ -573,22 +577,7 @@
     }
    ],
    "notes": "",
-   "open": [
-    {
-     "id": "lum-bat",
-     "t": "Effet « battery loading » au sol",
-     "c": [
-      "regen"
-     ],
-     "pb": "Effet au sol avec une vingtaine d'Astera Hyperion, sur un sol surélevé en plexi frosté (collaboration lumière / déco).",
-     "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
-     "sol": [
-      "2 m de large sur 6 m de profondeur (proposition du chef op)",
-      "Bandes noires en travers de la plaque pour délimiter les lignes"
-     ],
-     "ref": "ref:lum:0"
-    }
-   ]
+   "open": []
   },
   {
    "id": "mach",
