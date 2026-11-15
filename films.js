@@ -78,6 +78,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2203452136-58da23c9ba0948c2b51cb277eb209a2121d8a23c36ac7efccadbbdc5d7ec7fc0-d"
     },
     {
+      "id": "1246441088",
+      "h": null,
+      "client": "Prada",
+      "title": "Paradigme — Tom Holland, How to Refill",
+      "category": "Beauty",
+      "director": null,
+      "production": "Psycho",
+      "year": 2026,
+      "duration": 73,
+      "thumb": "https://i.vimeocdn.com/video/2225877227-7867c5e830254dc60b945cd512824dc7f7833586ef5029ac97429a9af38f7d96-d"
+    },
+    {
       "id": "1131156308",
       "h": "07d3cf34d5",
       "client": "Miu Miu",
@@ -88,6 +100,18 @@ window.FILMS = {
       "year": null,
       "duration": 30,
       "thumb": "https://i.vimeocdn.com/video/2075027570-3b5994f021a5c22ce47d2bcd4df6b47973e49e29df82ef99927fc8302df201ac-d"
+    },
+    {
+      "id": "1246441687",
+      "h": null,
+      "client": "Bourjois",
+      "title": "French Riviera",
+      "category": "Beauty",
+      "director": null,
+      "production": "Onirim",
+      "year": 2026,
+      "duration": 20,
+      "thumb": "https://i.vimeocdn.com/video/2225886484-85bf2cb16d4cc3e2cd0833fed3c9e48fea28224a4b8ace68efe1953ff9ed6199-d"
     },
     {
       "id": "1246441381",
@@ -112,6 +136,18 @@ window.FILMS = {
       "year": null,
       "duration": 15,
       "thumb": "https://i.vimeocdn.com/video/2167753400-0db0c7c20a61551662fabba2106fef6a0becaa5a673c36d1fbb08b8049b4abd8-d"
+    },
+    {
+      "id": "1246441382",
+      "h": null,
+      "client": "Prada",
+      "title": "Paradigme — Tom Holland, BTS Chapter 6 Piano",
+      "category": "BTS",
+      "director": null,
+      "production": "Psycho",
+      "year": 2026,
+      "duration": 45,
+      "thumb": "https://i.vimeocdn.com/video/2225892271-c46890f0a4d6f343c132dea2b0cf677de84a504c4da35e6ed01c68ab61dceebe-d"
     },
     {
       "id": "1246446915",
@@ -150,6 +186,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/787201393-5f63af8a017b08fafeac02e8d54a836ce36aba2e363a9e3ae3b1d512426b8ba3-d"
     },
     {
+      "id": "1246441775",
+      "h": null,
+      "client": "Clarins",
+      "title": "Precious — La Crème Yeux",
+      "category": "Beauty",
+      "director": null,
+      "production": "Onirim",
+      "year": 2026,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/2225882491-fa657651a4467787a1facce48cadd70f29ebbd719d5875b962a624bb595cb014-d"
+    },
+    {
       "id": "1131155471",
       "h": "3587d0b4a5",
       "client": "Miu Miu",
@@ -172,6 +220,18 @@ window.FILMS = {
       "year": null,
       "duration": 20,
       "thumb": "https://i.vimeocdn.com/video/2203510020-628bf0ef291525990ec03ead94b07a5ba5583875eb8f8be5e84538b6a321fed8-d"
+    },
+    {
+      "id": "535333069",
+      "h": null,
+      "client": "SKP",
+      "title": "Enter the Legends — Vanessa Axente",
+      "category": "Fashion",
+      "director": null,
+      "production": "Onirim",
+      "year": 2021,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/1108187563-96e616e4fab28e336872803b2d3d9ca1ef22adc15bbff7815151a96984d1b78f-d"
     },
     {
       "id": "1246445190",
@@ -341,7 +401,8 @@ window.FILMS = {
       "production": "Tem",
       "year": null,
       "duration": 13,
-      "thumb": "https://i.vimeocdn.com/video/2225894590-ac22d56090f8695bb19d6914e965a5086ea8ca17d6e179665e9cda4633be3067-d"
+      "thumb": "https://i.vimeocdn.com/video/2225894590-ac22d56090f8695bb19d6914e965a5086ea8ca17d6e179665e9cda4633be3067-d",
+      "size": 4
     },
     {
       "id": "832608992",
@@ -356,6 +417,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1678548682-821e90e6085ee5033c8a3215af3d1aa3db22c275c41cd7fa43d88934cddeeb11-d"
     },
     {
+      "id": "1205536059",
+      "h": null,
+      "client": "Mixa",
+      "title": "Stretch Mark Oil",
+      "category": "Beauty",
+      "director": "Jennifer Massaux",
+      "production": "Obvious",
+      "year": 2026,
+      "duration": 20,
+      "thumb": "https://i.vimeocdn.com/video/2174141509-7d563479bfb205e64b7b7355d16715652a27de5bf25f7588f30c1a90cfbe4224-d"
+    },
+    {
       "id": "1027613881",
       "h": "70f2a7de51",
       "client": "Repetto",
@@ -366,6 +439,18 @@ window.FILMS = {
       "year": "2024",
       "duration": 43,
       "thumb": "https://i.vimeocdn.com/video/1947618252-e6fdd8b95ccd52a2eac7c21851e40d8870d004161967b3168e628a30fc9413a3-d"
+    },
+    {
+      "id": "1156251700",
+      "h": null,
+      "client": "Yves Saint Laurent",
+      "title": "Nu 21",
+      "category": "Beauty",
+      "director": "Daniel M. Cox",
+      "production": "Helmut",
+      "year": 2026,
+      "duration": 20,
+      "thumb": "https://i.vimeocdn.com/video/2109338236-dd79461eb2461df7ad64de88642edd5e79075f56be247a8feb716fd4907b0acf-d"
     },
     {
       "id": "832625309",
@@ -392,18 +477,6 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1678518795-043ab85aac0d046801e4a4a57e4d8551a6f00aa40a0ad13a0eefb2140f55a350-d"
     },
     {
-      "id": "1050195877",
-      "h": null,
-      "client": "L'Oréal Paris",
-      "title": "Cats Eyes — Camille Lou",
-      "category": "Beauty",
-      "director": "Arthur Lacomblez",
-      "production": "TF1 Factory",
-      "year": null,
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/1974715406-f6efde841f216d78523e166423ee40dd45b17c2bb52ae1963db6e247f020fe36-d"
-    },
-    {
       "id": "1050183582",
       "h": "2c11f7605b",
       "client": "ELLE",
@@ -426,6 +499,18 @@ window.FILMS = {
       "year": null,
       "duration": 20,
       "thumb": "https://i.vimeocdn.com/video/2225897919-8fc144ac25d1e95e1b0a6f36a113297f0bca5f8a50739695d4596f960c238738-d"
+    },
+    {
+      "id": "1156424553",
+      "h": null,
+      "client": "AMI Paris",
+      "title": "Asian Tour — Shanghai",
+      "category": "Fashion",
+      "director": "Hugo Lopez",
+      "production": "Storner",
+      "year": 2026,
+      "duration": 42,
+      "thumb": "https://i.vimeocdn.com/video/2109601072-c80de077d2177ae2ffa7caacace66f9252f8fa8b19b2746518e7ff0c307ab990-d"
     },
     {
       "id": "832764334",
@@ -464,6 +549,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2169914461-55db8a5d3e9cb83fd85c773941c290aead20ebb6ee39dad3ea5aca0db59c13f3-d"
     },
     {
+      "id": "1156255094",
+      "h": null,
+      "client": "Clarins",
+      "title": "Lip Comfort Oil — Repush",
+      "category": "Beauty",
+      "director": "Studio Mimi",
+      "production": "WorkinGirl",
+      "year": 2026,
+      "duration": 20,
+      "thumb": "https://i.vimeocdn.com/video/2109341734-a81884a967eee5fe20049f86ad6d5e00a23511213287246e25c2f9b5bc79a74e-d"
+    },
+    {
       "id": "832597646",
       "h": null,
       "client": "AMI Paris",
@@ -492,12 +589,36 @@ window.FILMS = {
       "h": "10be1329fb",
       "client": "KITH",
       "title": "KITH × Paris",
-      "category": "Fashion",
+      "category": "Narrative",
       "director": "Arthur Degorce",
       "production": "MATTE Projects",
       "year": null,
       "duration": 321,
       "thumb": "https://i.vimeocdn.com/video/1678541781-f98f7757700d8fa5fec2ee83ceba663ce8eabfaf952dd36d5c9644ab479f3521-d"
+    },
+    {
+      "id": "728805872",
+      "h": null,
+      "client": "AMI Paris",
+      "title": "Photomaton — FW22",
+      "category": "Fashion",
+      "director": "Julien Vallon",
+      "production": "Storm",
+      "year": 2022,
+      "duration": 38,
+      "thumb": "https://i.vimeocdn.com/video/1467078725-c789a2224081bdd408ff08101d61c6ddf6b7cec4964374efc32b839dd4727148-d"
+    },
+    {
+      "id": "332771728",
+      "h": null,
+      "client": "Balmain",
+      "title": "FW19 Women — B to N",
+      "category": "Fashion",
+      "director": "Hugo Lopez",
+      "production": "Storner",
+      "year": 2019,
+      "duration": 58,
+      "thumb": "https://i.vimeocdn.com/video/1678772120-fb32dfb076d741d94f0486789e17e380a2548ba5f1e75cc87796369083bb4d71-d"
     },
     {
       "id": "343833646",
@@ -596,16 +717,28 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1467076009-694bd3eeb0cc78c29277962f54e367e077cd854ef48ee09bdaabfca8d89bc4ea-d"
     },
     {
-      "id": "1246454132",
+      "id": "1131125996",
+      "h": null,
+      "client": "Optic 2000",
+      "title": "XV de France U20 — Vestiaire",
+      "category": "Commercial",
+      "director": "Romain Kinnoo",
+      "production": "Bros Stories",
+      "year": 2025,
+      "duration": 10,
+      "thumb": "https://i.vimeocdn.com/video/2074990696-215f5523058bdb32f94b11dc2176c9662a4e0bd9c64cc0868d0aef312272dd52-d"
+    },
+    {
+      "id": "1246455743",
       "h": null,
       "client": "Ouest Paris",
-      "title": "Film 2",
+      "title": "Film 6",
       "category": "Commercial",
       "director": "Cédric Coldefy",
       "production": "Tem",
       "year": null,
-      "duration": 17,
-      "thumb": "https://i.vimeocdn.com/video/2225870875-e7dd0dacc8d08bddab8c629db78a92d958d8eb5be6c344412f5fef07f64c2514-d"
+      "duration": 12,
+      "thumb": "https://i.vimeocdn.com/video/2225872934-f5f232f5d4a2106e1bd32becc22308ca8f786da23b80b0cb52cad540b712118f-d"
     },
     {
       "id": "358923898",
@@ -692,6 +825,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2225868622-944ff06c0c1c8fd3e1129e69c8e3a959c4221ec6b6e7359df56ef6c516ec45d3-d"
     },
     {
+      "id": "1050195877",
+      "h": null,
+      "client": "L'Oréal Paris",
+      "title": "Cats Eyes — Camille Lou",
+      "category": "Beauty",
+      "director": "Arthur Lacomblez",
+      "production": "TF1 Factory",
+      "year": null,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/1974715406-f6efde841f216d78523e166423ee40dd45b17c2bb52ae1963db6e247f020fe36-d"
+    },
+    {
       "id": "535331372",
       "h": "04bb4f5a27",
       "client": "Paco Rabanne",
@@ -762,6 +907,18 @@ window.FILMS = {
       "year": "2020",
       "duration": 38,
       "thumb": "https://i.vimeocdn.com/video/906898343-2e01e38c9a5d11a5eb2a529e5d5558cb539ee4a7a45721d2b1097deb750640c6-d"
+    },
+    {
+      "id": "1131131272",
+      "h": null,
+      "client": "Yves Saint Laurent",
+      "title": "Beauty — Couple",
+      "category": "Beauty",
+      "director": "Fabien Constant",
+      "production": "Storm",
+      "year": 2025,
+      "duration": 15,
+      "thumb": "https://i.vimeocdn.com/video/2074997027-2f04330d8eb8c6f777ab85b3322f3e6c17b57ecf5ac74d23d0e2f934d25903c4-d"
     },
     {
       "id": "460285410",

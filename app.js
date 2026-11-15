@@ -185,7 +185,7 @@
     $("[data-count]").textContent = pad(state.list.length);
 
     grid.innerHTML = state.list.map((f, i) => {
-      const span = state.filter === "All" ? PATTERN[i % PATTERN.length] : [6, 6, 4, 4, 4][i % 5];
+      const span = state.filter === "All" ? (f.size || PATTERN[i % PATTERN.length]) : [6, 6, 4, 4, 4][i % 5];
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
         <div class="card__frame">
