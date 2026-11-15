@@ -16,7 +16,7 @@ window.FILMS = {
       "year": null,
       "duration": 6,
       "thumb": "https://i.vimeocdn.com/video/2225875891-a19a3fd16b1be4c5e797aeb0f17a9f1686e908032f328c145f1023a33279ba90-d",
-      "loopEnd": 4.2
+      "loopEnd": 3.7
     },
     {
       "id": "1246432468",
@@ -331,7 +331,7 @@ window.FILMS = {
       "year": null,
       "duration": 6,
       "thumb": "https://i.vimeocdn.com/video/2225875891-a19a3fd16b1be4c5e797aeb0f17a9f1686e908032f328c145f1023a33279ba90-d",
-      "loopEnd": 4.2
+      "loopEnd": 3.7
     },
     {
       "id": "832880593",
