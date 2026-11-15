@@ -1,25 +1,25 @@
 {
  "v": 1,
- "updated": "2026-11-14T23:20:00.000Z",
+ "updated": "2026-11-14T22:46:00.000Z",
  "log": [
   {
-   "at": "2026-11-15T01:30:00.000Z",
+   "at": "2026-11-14T22:46:00.000Z",
    "src": "Effet filé",
    "d": [
     "cam"
    ],
    "kind": "modif",
-   "text": "testé avec du slow frame, FPS bas (6 FPS par exemple) + filtre Handheld Split Phantom FX"
+   "text": "2 setups : FPS bas d'un côté, filtre Handheld Split Phantom FX de l'autre"
   },
   {
-   "at": "2026-11-14T23:20:00.000Z",
+   "at": "2026-11-14T22:30:00.000Z",
    "src": "Film UV Cellular",
    "d": [
     "lum",
     "mach"
    ],
    "kind": "modif",
-   "text": "fond gris étale, chroma key abandonné (incrust post-prod sur gris)"
+   "text": "background gris étale pour une incrust post-prod (fond cyclo blanc)"
   },
   {
    "at": "2026-11-14T17:04:14.000Z",
@@ -384,7 +384,7 @@
      ]
     },
     {
-     "t": "Effet filé : testé avec du slow frame, FPS bas (6 FPS par exemple), avec le filtre Handheld Split Phantom FX (PrismLensFX)",
+     "t": "Effet filé : 2 setups. D'un côté le FPS bas (6 FPS par exemple), de l'autre le filtre Handheld Split Phantom FX (PrismLensFX)",
      "sub": "",
      "w": 0,
      "g": "spec",
@@ -392,6 +392,15 @@
       "regen"
      ],
      "go": "ref:cam:0,ref:cam:1,ref:cam:2"
+    },
+    {
+     "t": "À commander : le filtre Handheld Split Phantom FX (PrismLensFX), à trouver",
+     "sub": "Indiqué en rupture de stock sur le site du fabricant au 15 nov. : prévoir une alternative ou un autre revendeur.",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "regen"
+     ]
     }
    ],
    "todo": [
