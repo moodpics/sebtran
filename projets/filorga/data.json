@@ -353,31 +353,16 @@
    "name": "Caméra",
    "known": [
     {
-     "t": "Alexa 35, série Master Primes",
-     "sub": "",
-     "w": 0,
-     "g": "conf"
-    },
-    {
      "t": "Plans principalement serrés, peu de mouvements à ce stade",
      "sub": "",
      "w": 0,
      "g": "conf"
     },
     {
-     "t": "Tous les autres plans : jib sur dolly avec tête 3D Cartoni Lambda 25",
+     "t": "Setup de base : jib sur dolly avec tête 3D Cartoni Lambda 25",
      "sub": "",
      "w": 0,
      "g": "conf"
-    },
-    {
-     "t": "Fond propre et cadrage prévus pour l'incrustation post-prod",
-     "sub": "",
-     "w": 0,
-     "g": "conf",
-     "c": [
-      "uv"
-     ]
     },
     {
      "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",

@@ -452,6 +452,12 @@ body.m .bsplit{grid-template-columns:1fr}body.m .bf+.bf{border-left:0;border-top
 .bcl .cgo{opacity:.7}
 .bcl:hover .cgo{opacity:1}
 .gsub{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.gtabs{display:flex;gap:8px;margin-bottom:12px}
+.gtabs .gt{font-size:13px;padding:6px 14px;cursor:pointer;opacity:.55;border:0;font-family:inherit}
+.gtabs .gt.on{opacity:1;box-shadow:inset 0 0 0 1.5px var(--dc)}
+.gtabs .gt .pi{width:14px;height:14px}
+.gp[hidden]{display:none}
+.gl{margin:0;padding-left:18px}.gl li{padding:5px 0;border:0;font-size:14px}
 .gsub h5{margin:0 0 12px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#777;font-weight:600}
 .rcap{margin-top:6px;font-size:12px;line-height:1.35;font-weight:600;color:var(--cc,#333);letter-spacing:.01em}
 .rcap .ed:empty::before{font-weight:400;color:#999}
@@ -722,12 +728,12 @@ lb.onclick=closeLb;addEventListener("keydown",e=>{if(e.key==="Escape"){closeLb()
 document.addEventListener("click",e=>{const i=e.target.closest&&e.target.closest("img[data-zoom]");if(!i)return;e.stopPropagation();lb.querySelector("img").src=i.currentSrc||i.src;lb.classList.add("on")},true);
 const head=t=>`<div class="dh"><h2>${t}</h2><button data-close aria-label="Fermer">×</button></div>`;
 
-const ACC={};
+const ACC={};let GT="lum";
 function briefHtml(){const L=DATA.loc,B=DATA.brief,P=DATA.plan;
   const pills=it=>[...routeOf({text:it.t,srcId:"brief",to:it.to})].filter(x=>D(x)).map(x=>`<span class="dp sm d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("");
   const secs=[["loc","Où",`${ed("loc.name","b","",L.name)}<div class="sub">${EDIT?ed("loc.link","span","",L.link,"https://…"):`<a href="${esc(L.link)}" target="_blank" rel="noopener">${esc(L.link.replace(/^https?:\/\//,""))}</a>`}${L.pdf&&!EDIT?` · <a href="${esc(L.pdf)}" target="_blank" rel="noopener">plan du plateau (PDF)</a>`:""}</div>${imgs("loc.imgs",L.imgs)}`],["plan","Planning provisoire",`${ed("plan.intro","p","sub",P.intro)}<div class="slots">${P.slots.map((s,i)=>`<div>${ed(`plan.slots.${i}.label`,"label","",s.label)}${EDIT?`<select data-p="plan.slots.${i}.camp"><option value="">À définir</option>${DATA.camps.map(c=>`<option${s.camp===c.name?" selected":""}>${esc(c.name)}</option>`).join("")}</select>`:`<b class="${s.camp?"":"tbc"}">${esc(s.camp||"À définir")}</b>`}</div>`).join("")}</div>`],["glob","Au global",`<ul class="bp">${B.items.map((it,i)=>`<li><div class="bpt">${pills(it)}</div>${ed(`brief.items.${i}.t`,"b","bpx",it.t,"Point à penser")}
    ${(it.sub.length||EDIT)?`<ul class="s">${it.sub.map((x,j)=>`<li>${ed(`brief.items.${i}.sub.${j}`,"span","",x)}${del(`brief.items.${i}.sub`,j)}</li>`).join("")}</ul>${add(`brief.items.${i}.sub`,"str","sous-point")}`:""}
-   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}<div class="gsub"><h5>Lumière / Machinerie</h5>${baseBlock()}</div>`]];
+   ${it.img?`<img class="rimg sm" data-zoom src="${esc(imgSrc(it.img))}" alt="">${ed(`brief.items.${i}.imgNote`,"p","sub",it.imgNote,"Légende")}`:""}${setimg(`brief.items.${i}.img`,it.img?"Changer l'image":"+ image")}${routeUI(i,it.to)}${del("brief.items",i)}</li>`).join("")}</ul>${add("brief.items","brief","point à penser")}${ed("brief.source","p","sub",B.source)}<div class="gsub"><div class="gtabs">${[["lum","Lumière"],["mach","Machinerie"]].map(([k,t])=>`<button type="button" class="dp d-${k} gt${GT===k?" on":""}" data-gtab="${k}"><span class="pi">${ICON[k]||""}</span>${t}</button>`).join("")}</div><div class="gp d-lum" data-gp="lum"${GT==="lum"?"":" hidden"}>${baseBlock()}</div><div class="gp d-mach" data-gp="mach"${GT==="mach"?"":" hidden"}><ul class="gl">${((D("mach")||{}).known||[]).filter(k=>k.g==="rig"&&(k.c||[]).some(c=>c!=="regen")).map(k=>`<li>${rich(k.t)}</li>`).join("")}</ul></div></div>`]];
   return secs.map(([k,t,h])=>`<details class="acc" data-acc="${k}"${ACC[k]?" open":""}><summary>${t}</summary><div class="accb">${h}</div></details>`).join("")}
 function openBrief(keep){drawerCtx={t:"b"};openDrawer(head("Brief équipe")+`<div class="bdy">${briefHtml()}</div>`);if(!keep)drawer.scrollTop=0}
 function openDept(id,keep){
@@ -774,7 +780,7 @@ function openQs(focus,keep){
  drawer.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{qFilter=b.dataset.f;openQs()});
  if(focus&&!keep){const q=document.getElementById("q_"+focus);if(q)q.scrollIntoView({block:"center"})}
 }
-document.addEventListener("click",e=>{const bto=e.target.closest&&e.target.closest("[data-brief]");if(bto){e.preventDefault();openBrief();return}const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
+document.addEventListener("click",e=>{const gt=e.target.closest&&e.target.closest("[data-gtab]");if(gt){GT=gt.dataset.gtab;const w=gt.closest(".gsub");w.querySelectorAll("[data-gtab]").forEach(b=>b.classList.toggle("on",b===gt));w.querySelectorAll("[data-gp]").forEach(x=>x.hidden=x.dataset.gp!==GT);return}const bto=e.target.closest&&e.target.closest("[data-brief]");if(bto){e.preventDefault();openBrief();return}const gox=e.target.closest&&e.target.closest("[data-go]");if(gox){e.preventDefault();const [k,a,b]=gox.dataset.go.split(":");if(k==="open"){const c=drawer.querySelector(`[data-oid="${a}"]`);if(c){c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),1700)}}else if(k==="ref"){const r=((D(a)||{}).refs||[])[+b];if(r&&r.src){lb.querySelector("img").src=imgSrc(r.src);lb.classList.add("on")}}return}const cpo=e.target.closest&&e.target.closest("[data-cpo]");if(cpo&&!EDIT){e.preventDefault();e.stopPropagation();openCamp(+cpo.dataset.cpo,cpo);return}const lkx=e.target.closest&&e.target.closest("[data-link]");if(lkx){e.preventDefault();openDept(lkx.dataset.link);return}const q=e.target.closest&&e.target.closest("[data-openq]");if(q)openQs(q.dataset.openq)});
 
 /* =========== Fenêtre campagne (effet woosh) =========== */
 const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gradient(180deg,#000 0%,#7a7a7a 55%,#f2f2f2 100%)","radial-gradient(circle at 72% 28%,#fff 0%,#a8a8a8 45%,#1b1b1b 100%)","linear-gradient(135deg,#232323 0%,#a98a3d 65%,#f1dc96 100%)"];
