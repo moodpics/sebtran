@@ -453,6 +453,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2109338236-dd79461eb2461df7ad64de88642edd5e79075f56be247a8feb716fd4907b0acf-d"
     },
     {
+      "id": "1205592901",
+      "h": "5c038e914b",
+      "client": "Optic 2000",
+      "title": "XV de France Féminin",
+      "category": "Commercial",
+      "director": "Romain Kinoo",
+      "production": "Bros Stories",
+      "year": null,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/2174225264-e860a046a383ed720c6de68b12ee9450e9e1b1a898d2092858f2d3ae7275ede3-d"
+    },
+    {
       "id": "832625309",
       "h": null,
       "client": "L'Oréal Paris",
@@ -542,7 +554,7 @@ window.FILMS = {
       "client": "L'Oréal Paris",
       "title": "Infaillible Skin Ink — Cara Delevingne",
       "category": "Beauty",
-      "director": null,
+      "director": "Seb Trân",
       "production": "Phantasm",
       "year": null,
       "duration": 30,
@@ -657,6 +669,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1974719692-ca2e4e202907f4ceebb7e06ae677242f79d7aee5cee3f1ae9b589efebcd5aebc-d"
     },
     {
+      "id": "1050194780",
+      "h": null,
+      "client": "L'Oréal Paris",
+      "title": "Cats Eyes — Cindy Bruna",
+      "category": "Beauty",
+      "director": "Arthur Lacomblez",
+      "production": "TF1 Factory",
+      "year": 2025,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/1974714344-69128cf756a436cb5b5fbf2675e98d8e6594d0172a9c095e3d7eeb075f770410-d"
+    },
+    {
       "id": "373511992",
       "h": "31bd0b95a9",
       "client": "Isaac Delusion",
@@ -753,18 +777,6 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/1108202486-86f102583a06225a78663969861115a18e496c3925ffb08e24db77a1b545ecf7-d"
     },
     {
-      "id": "535333069",
-      "h": "a3eb59ba52",
-      "client": "SKP",
-      "title": "Enter the Legends — Vanessa Axente",
-      "category": "Fashion",
-      "director": "Seb VB",
-      "production": "Onirim",
-      "year": "2021",
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/1108187563-96e616e4fab28e336872803b2d3d9ca1ef22adc15bbff7815151a96984d1b78f-d"
-    },
-    {
       "id": "1131122161",
       "h": "84a4f2fe62",
       "client": "Clarins",
@@ -787,18 +799,6 @@ window.FILMS = {
       "year": null,
       "duration": 59,
       "thumb": "https://i.vimeocdn.com/video/778572983-d64860304daf96ad032b92ce3945146e21c35694d2d2951d24f6c7117ce40838-d"
-    },
-    {
-      "id": "1205592901",
-      "h": "5c038e914b",
-      "client": "Optic 2000",
-      "title": "XV de France Féminin",
-      "category": "Commercial",
-      "director": "Romain Kinoo",
-      "production": "Bros Stories",
-      "year": null,
-      "duration": 30,
-      "thumb": "https://i.vimeocdn.com/video/2174225264-e860a046a383ed720c6de68b12ee9450e9e1b1a898d2092858f2d3ae7275ede3-d"
     },
     {
       "id": "1246454055",
