@@ -130,7 +130,7 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 /* tiroir */
 #shade{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;opacity:0;pointer-events:none;transition:.2s}
 #shade.on{opacity:1;pointer-events:auto}
-#drawer{position:fixed;top:0;right:0;bottom:0;width:min(540px,100vw);background:#fff;z-index:41;transform:translateX(105%);transition:transform .25s cubic-bezier(.2,.8,.2,1);overflow:auto;box-shadow:-20px 0 60px rgba(0,0,0,.35)}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(var(--dw,540px),100vw);background:#fff;z-index:41;transform:translateX(105%);transition:transform .25s cubic-bezier(.2,.8,.2,1);overflow:auto;box-shadow:-20px 0 60px rgba(0,0,0,.35)}
 #drawer.on{transform:none}
 .dh{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 22px;display:flex;justify-content:space-between;align-items:center;z-index:2}
 .dh h2{font-size:26px;font-weight:500;letter-spacing:-.025em;margin:0}
@@ -554,6 +554,12 @@ body:not(.m) .node.newsn{z-index:4}
 .bcl .vro2{display:inline-block;animation:vibe 2.6s ease-in-out infinite;font-size:22px;line-height:1.15}
 @media (prefers-reduced-motion:reduce){.bcl .vro2{animation:none}}
 .bcl .cgo{white-space:nowrap}.bcl .vro2{font-size:20px}
+#dgrip{position:fixed;top:0;bottom:0;right:calc(min(var(--dw,540px),100vw) - 6px);width:12px;z-index:42;cursor:ew-resize;display:none;touch-action:none}
+#dgrip::after{content:"";position:absolute;top:50%;left:4px;width:4px;height:48px;margin-top:-24px;border-radius:4px;background:rgba(0,0,0,.28)}
+#dgrip:hover::after,#dgrip.on::after{background:rgba(0,0,0,.6)}
+#drawer.on+#dgrip{display:block}
+body.m #dgrip{display:none!important}body.m #drawer{width:100vw}
+body.rs #drawer{transition:none}
 </style>
 </head>
 <body>
@@ -568,7 +574,7 @@ body:not(.m) .node.newsn{z-index:4}
 <div class="zoom" id="zoom"><button data-z="-" aria-label="Dézoomer">−</button><button data-z="+" aria-label="Zoomer">+</button><button data-z="fit">Ajuster</button><button data-z="reset">Remettre en place</button></div>
 
 <div id="shade"></div>
-<aside id="drawer" aria-hidden="true"></aside>
+<aside id="drawer" aria-hidden="true"></aside><div id="dgrip" title="Glisser pour élargir ou rétrécir"></div>
 <div class="toast" id="toast"></div>
 <div id="lb"><img alt=""></div>
 <div id="cv"><div class="cvp"></div></div>
@@ -1047,6 +1053,20 @@ async function start(){
 }
 start();
 
+
+/* largeur du tiroir : moitié de l'écran par défaut, réglable à la souris */
+(function(){const R=document.documentElement,g=document.getElementById("dgrip");
+ let W=0;try{W=+localStorage.getItem("filorga-dw")||0}catch(e){}
+ const cl=w=>Math.max(380,Math.min(innerWidth-80,w));
+ const set=w=>{W=cl(w);R.style.setProperty("--dw",W+"px")};
+ set(W||Math.max(540,innerWidth/2));
+ addEventListener("resize",()=>set(W));
+ g.addEventListener("pointerdown",e=>{e.preventDefault();g.setPointerCapture(e.pointerId);g.classList.add("on");document.body.classList.add("rs")});
+ g.addEventListener("pointermove",e=>{if(!g.hasPointerCapture(e.pointerId))return;set(innerWidth-e.clientX)});
+ const up=e=>{g.classList.remove("on");document.body.classList.remove("rs");try{localStorage.setItem("filorga-dw",W)}catch(x){}};
+ g.addEventListener("pointerup",up);g.addEventListener("pointercancel",up);
+ g.addEventListener("dblclick",()=>{set(Math.max(540,innerWidth/2));try{localStorage.removeItem("filorga-dw")}catch(x){}});
+})();
 </script>
 </body>
 </html>
