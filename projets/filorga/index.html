@@ -461,6 +461,49 @@ body.m .bsplit{grid-template-columns:1fr}body.m .bf+.bf{border-left:0;border-top
 .gsub h5{margin:0 0 12px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#777;font-weight:600}
 .rcap{margin-top:6px;font-size:12px;line-height:1.35;font-weight:600;color:var(--cc,#333);letter-spacing:.01em}
 .rcap .ed:empty::before{font-weight:400;color:#999}
+
+/* ---- aération globale ---- */
+.nb{padding:20px 22px}
+.nh{padding:12px 22px 11px}
+.node li{padding:10px 0}
+.facts.crew{margin-top:28px;padding-top:24px;gap:22px 24px}
+.facts{gap:16px 18px}
+.ctiles{gap:20px}
+.sum{padding:0 0 18px;margin:0 0 22px}
+.team{gap:0 28px}
+.team li{padding:11px 0}
+.newsn .news{padding:18px 20px 14px}
+.news li{padding:10px 0}
+.news .nt{margin-bottom:4px}
+.dh{padding:20px 28px}
+.ds{padding:28px 28px}
+.ds h4{margin:0 0 16px}
+.ds li{padding:11px 0 11px 18px}
+.ds .kn li::before{top:19px}
+.kgrp{margin:0 0 26px}
+.kgrp h5{margin:0 0 8px}
+.bdy{padding:22px 24px 56px}
+.acc{margin:0 0 16px;border-radius:10px}
+.acc>summary{padding:18px 20px}
+.acc .accb{padding:20px 22px 24px}
+.gsub{margin-top:30px;padding-top:26px}
+.gtabs{gap:12px;margin-bottom:18px}
+.gtabs .gt{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;text-align:center}
+.base{margin:18px 0 10px}
+.base .b0{padding:16px 18px}
+.gl li{padding:8px 0}
+.rcap{margin-top:9px}
+.cvp .refs{gap:14px}
+body.m .nb{padding:18px}
+body.m .team{grid-template-columns:1fr}
+body.m .ds,body.m .dh{padding-left:20px;padding-right:20px}
+body.m #world{gap:6px}
+.bp>li{padding:20px 0}
+.bp>li:first-child{padding-top:4px}
+.bp .bpt{margin-bottom:8px}
+.bp ul.s{margin:10px 0 12px}
+.bp ul.s li{padding:4px 0}
+.bp .rimg.sm{margin-top:12px}
 </style>
 </head>
 <body>
@@ -618,10 +661,10 @@ const ICON={
  mach:`<svg viewBox="0 0 64 64" ${IC}><rect x="20" y="9" width="22" height="14" rx="2"/><path d="M42 13l9-4v14l-9-4"/><path d="M31 23v10"/><rect x="10" y="33" width="44" height="8" rx="2"/><circle cx="20" cy="49" r="4"/><circle cx="44" cy="49" r="4"/><path d="M4 57h56"/></svg>`};
 function makeNodes(){
  NODES=[{id:"root",kind:"Projet",x:70,y:60,w:640},
-  {id:"news",kind:"Latest news",x:750,y:70,w:560,cls:"newsn"},
+  {id:"news",kind:"Latest news",x:775,y:70,w:560,cls:"newsn"},
   {id:"camps",kind:"Les 4 campagnes · clique pour déplier",x:70,y:0,w:640},
-  {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:750,y:70,w:560,cls:"bt"},
-  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:750,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
+  {id:"bt",kind:"Brief équipe · clique pour ouvrir",x:775,y:70,w:560,cls:"bt"},
+  ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"Département",x:775,y:0,w:560,cls:"dept d-"+d.id,did:d.id})),
   {id:"team",kind:"Équipe",x:70,y:0,w:640}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
  EDGES=[["root","camps"],["camps","team"],["root","news"],["news","bt"],["bt",ds[0]],...ds.slice(1).map((d,i)=>[ds[i],d])];
@@ -664,7 +707,7 @@ function autoLayout(){
  if(mobile())return;cancelAnimationFrame(lay);
  lay=requestAnimationFrame(()=>{
   const cols=[["root","camps","team"],["news","bt",...DATA.depts.map(d=>"d_"+d.id)]],tops={root:60,news:70};
-  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?30:44)})});
+  cols.forEach(ids=>{let y=tops[ids[0]];ids.forEach(id=>{const n=NODES.find(x=>x.id===id);if(!n||!el[id])return;n.y=y;place(n);y=n.y+el[id].offsetHeight+(id==="bt"||id==="news"?42:60)})});
   fitStage();drawEdges();
  });
 }
