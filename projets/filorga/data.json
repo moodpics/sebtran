@@ -399,15 +399,8 @@
      "c": [
       "regen"
      ],
-     "go": "ref:cam:0,ref:cam:1,ref:cam:2"
-    },
-    {
-     "t": "À commander : le filtre",
-     "sub": "",
-     "w": 0,
-     "g": "spec",
-     "c": [],
-     "big": 1
+     "go": "ref:cam:0,ref:cam:1,ref:cam:2",
+     "tag": "À commander"
     }
    ],
    "todo": [
