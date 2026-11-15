@@ -547,10 +547,13 @@ body.m #view{padding-top:92px}
 .node.dept .dic{opacity:1;display:block;width:84px;height:84px;position:static}.node.dept .dic svg{width:100%;height:100%}
 .node.bt .nh{display:none}.node.bt .nb{padding:16px 20px}
 body.m .node.dept .dic{width:64px;height:64px}
-.node.newsn{z-index:50!important}
+body:not(.m) .node.newsn{z-index:4}
 .newsn .news{background:linear-gradient(135deg,rgba(255,110,110,.16),rgba(255,70,70,.24));-webkit-backdrop-filter:blur(7px) saturate(1.2);backdrop-filter:blur(7px) saturate(1.2)}
 .nh .vro{font-style:normal;display:inline-block;animation:vibe 2.6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.nh .vro{animation:none}}
+.bcl .vro2{display:inline-block;animation:vibe 2.6s ease-in-out infinite;font-size:22px;line-height:1.15}
+@media (prefers-reduced-motion:reduce){.bcl .vro2{animation:none}}
+.bcl .cgo{white-space:nowrap}.bcl .vro2{font-size:20px}
 </style>
 </head>
 <body>
@@ -678,14 +681,13 @@ function diffChanges(a,b){
  const add=B.filter(u=>!sa.has(ks(u))&&!skip(u)),rem=A.filter(u=>!sb.has(ks(u))&&!skip(u)),used=new Set(),out=[];
  add.forEach(u=>{let best=-1,bs=0;rem.forEach((r,i)=>{if(used.has(i)||r.srcId!==u.srcId)return;const v=sim(r.text,u.text);if(v>bs){bs=v;best=i}});
   const mod=bs>=.4;if(mod)used.add(best);out.push(mkChange(u,mod?"modif":"ajout"))});
- rem.forEach((r,i)=>{if(!used.has(i))out.push(mkChange(r,"retrait"))});
  const m=new Map();out.forEach(c=>{const k=c.kind+"|"+norm(c.text),e=m.get(k);if(e)c.d.forEach(x=>{if(!e.d.includes(x))e.d.push(x)});else m.set(k,c)});
  return [...m.values()];
 }
 function srcNoDept(src,ds){const names=ds.map(x=>D(x).name.toLowerCase()),parts=String(src||"").split(" · "),first=parts[0].split(/\s+et\s+|\s*,\s*|\s*&\s*/).map(x=>x.trim().toLowerCase()).filter(Boolean);
  if(first.length&&first.every(x=>names.includes(x)))parts.shift();return parts.join(" · ")}
 function newsList(list,max){
- return list.slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
+ return list.filter(c=>c.kind!=="retrait").slice(0,max).map(c=>{const ds=(c.d||[]).filter(x=>D(x)),dl=ds[0];
   return `<li><div class="nm"><span class="nd">${esc(fmtAt(c.at))}</span>${ds.map(x=>`<span class="dp d-${x}" data-link="${x}"><span class="pi">${ICON[x]||""}</span>${esc(D(x).name)}</span>`).join("")}</div><div class="ntx"><span class="nk ${esc(c.kind)}">${esc(KL[c.kind]||"")}</span><span class="nx${dl?" go":""}"${dl?` data-link="${dl}"`:""}>${(()=>{const sc=srcNoDept(c.src,ds);return (sc?rich(sc)+" : ":"")+rich(c.text)})()}</span></div></li>`}).join("");
 }
 const routeUI2=(path,to,own)=>EDIT?`<div class="rto"><span class="sub">Envoyer aussi vers :</span> ${(to||[]).filter(t=>t&&t.d).map((t,j)=>`<button class="xadd on" data-rrm="${path}" data-j="${j}" title="Retirer">${esc(routeLabel(t))} ×</button>`).join("")}<select data-radd="${path}"><option value="">+ sous-partie d'un autre département…</option>${ROUTEOPTS().map(([d,s2,l],k)=>d===own?"":`<option value="${k}">${esc(l)}</option>`).join("")}</select></div>`:"";
@@ -725,7 +727,7 @@ function body(n){
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
  if(n.id==="news")return `<div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;
 
- if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief équipe</b><span class="cgo">Ouvrir ›</span></div>`;
+ if(n.id==="bt")return `<div class="bcl" data-brief><b class="vro2">Mes briefs généraux équipe</b><span class="cgo">Ouvrir ›</span></div>`;
  if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
   return `<span class="dic" role="img" aria-label="${esc(d.name)}" title="${esc(d.name)}">${ICON[d.id]||""}</span><span class="dname">${esc(d.name)}</span>`;}
