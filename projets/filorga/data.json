@@ -1,7 +1,16 @@
 {
  "v": 1,
- "updated": "2026-11-14T22:46:00.000Z",
+ "updated": "2026-11-15T02:02:19.751Z",
  "log": [
+  {
+   "at": "2026-11-15T02:02:19.751Z",
+   "src": "Caméra · notes",
+   "d": [
+    "cam"
+   ],
+   "kind": "retrait",
+   "text": "encore en reflexion de mon côté"
+  },
   {
    "at": "2026-11-14T22:46:00.000Z",
    "src": "Effet filé",
@@ -476,7 +485,7 @@
      "linkText": ""
     }
    ],
-   "notes": "encore en reflexion de mon côté",
+   "notes": "",
    "open": []
   },
   {
