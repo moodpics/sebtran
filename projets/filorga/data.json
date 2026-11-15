@@ -456,14 +456,14 @@
     {
      "src": "refs/split-phantom-filtre.jpg",
      "title": "Filtre Handheld Split Phantom FX (PrismLensFX)",
-     "cap": "Le filtre : prisme en verre convexe tenu devant l'objectif, il crée un ghosting / flou de mouvement organique.",
+     "cap": "Le filtre : prisme en verre convexe tenu devant l'objectif, effet de ghosting / flou de mouvement organique.",
      "link": "https://prismlensfx.com/collections/handheld-fx-filters/products/handheld-split-phantom-fx-filter",
      "linkText": "Voir le filtre sur prismlensfx.com"
     },
     {
      "src": "refs/split-phantom-effet.gif",
-     "title": "Effet du filtre en vidéo",
-     "cap": "L'effet obtenu avec ce filtre (extrait de la démo du fabricant).",
+     "title": "Effet obtenu avec le filtre",
+     "cap": "Effet obtenu (extrait de la démo du fabricant).",
      "link": "",
      "linkText": ""
     }
