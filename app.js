@@ -250,9 +250,27 @@
     if (cover.firstChild) return;
     const ifr = makeIframe(vimeo(f, bgParams("360p")), f.client);
     const tag = $(".card__live", card); tag.textContent = "Loading";
-    card.classList.add("is-loading"); cursor.classList.add("is-loading");
+    card.classList.add("is-loading");
+    // Loading gauge around the cursor, driven by the real player stages
+    let gp = 0; const gauge = v => { if (activeCard !== card || v <= gp) return; gp = v; cursor.style.setProperty("--p", v); };
+    cursor.style.transition = "none"; cursor.style.setProperty("--p", 0); void cursor.offsetWidth; cursor.style.transition = "";
+    cursor.classList.add("is-loading"); setTimeout(() => gauge(8), 30);
+    ifr.addEventListener("load", () => gauge(30));
     cover.appendChild(ifr);
-    onPlay(ifr, () => { card.classList.remove("is-loading"); cursor.classList.remove("is-loading"); card.classList.add("is-playing"); tag.textContent = "Preview"; });
+    if (window.Vimeo && Vimeo.Player) {
+      try {
+        const vp = new Vimeo.Player(ifr);
+        vp.ready().then(() => gauge(50)).catch(() => {});
+        vp.on("loaded", () => gauge(65));
+        vp.on("progress", d => gauge(65 + Math.min(1, (d.percent || 0) * 5) * 30));
+        vp.on("bufferend", () => gauge(95));
+      } catch (e) { /* ignore */ }
+    }
+    onPlay(ifr, () => {
+      gauge(100);
+      setTimeout(() => { if (activeCard === card) cursor.classList.remove("is-loading"); }, 380);
+      card.classList.remove("is-loading"); card.classList.add("is-playing"); tag.textContent = "Preview";
+    });
     trimLoop(ifr, f);
   }
   function stopPreview(card) {
