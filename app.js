@@ -194,17 +194,13 @@
     $$("[data-fav]").forEach(e => e.classList.toggle("is-on", isFav(e.dataset.fav)));
     const lbFav = $('[data-lb="fav"]'); if (lbFav && lbList[lbIdx]) lbFav.classList.toggle("is-on", isFav(lbList[lbIdx].id));
     const bar = $("[data-selbar]");
-    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName; }
+    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; }
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
     updateHint();
   }
-  /* ---- "Like any film" invitation: shown until the first like (remembered), never on the selection page ---- */
-  const HINT_KEY = "sebtran-hint-off";
-  let hintOff = false; try { hintOff = localStorage.getItem(HINT_KEY) === "1"; } catch (e) { /* storage off */ }
+  /* ---- "Like any film" invitation: shown whenever nothing is liked, never on the selection page ---- */
   function updateHint() {
-    const el = $("[data-likehint]"); if (!el) return;
-    if (favs.length > 0 && !hintOff) { hintOff = true; try { localStorage.setItem(HINT_KEY, "1"); } catch (e) { /* storage off */ } }
-    el.hidden = state.mode === "selection" || hintOff;
+    const el = $("[data-likehint]"); if (el) el.hidden = state.mode === "selection" || favs.length > 0;
   }
   /* ---- Name-your-selection dialog + toast ---- */
   const dlg = $("[data-sel-dlg]"), dlgIn = $("[data-sel-dlg-input]");
@@ -228,7 +224,7 @@
     saveFavs(); updateFavUI();
     const f = allFilms().get(id);
     toast(`${adding ? "Added to" : "Removed from"} <em>${esc(favName)}</em>${f ? " — " + esc(f.client) : ""} <button data-sel-open-toast>View</button>`);
-    if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); $("[data-role]").textContent = selRole(); }
+    if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); setWorkTitle(); }
   }
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-fav]"); if (!b) return;
@@ -335,7 +331,7 @@
   function startPreview(card) {
     if (reduced) return;
     const f = state.list[+card.dataset.i], cover = $(".cover", card);
-    if (cover.firstChild) return;
+    if (!f || !cover || !card.isConnected || cover.firstChild) return; // card was re-rendered (e.g. a like removed it)
     const ifr = makeIframe(vimeo(f, bgParams("360p")), f.client);
     const tag = $(".card__live", card); tag.textContent = "Loading";
     card.classList.add("is-loading");
@@ -554,7 +550,9 @@
     pill.style.width = a.offsetWidth + "px";
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
   }
-  const selRole = () => sharedSel ? `Selection — ${sharedName || "shared"}` : (favs.length ? `Your selection — ${favName}` : "Your selection — empty");
+  const selRole = () => sharedSel ? "Shared selection" : "Your selection";
+  const selTitle = () => sharedSel ? (sharedName || "Shared selection") : (favs.length ? (favName || "My films") : "Empty");
+  const setWorkTitle = () => { $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle; };
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
     if (mode === "selection") buildSelection(); else lastMode = mode;
@@ -562,7 +560,7 @@
     document.body.classList.toggle("mode-direction", mode === "direction");
     $$(".switch__btn").forEach(b => { const on = b.dataset.mode === mode; b.classList.toggle("is-active", on); b.setAttribute("aria-selected", on); });
     placePill();
-    $("[data-work-title]").textContent = M.workTitle;
+    setWorkTitle();
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
     scramble($("[data-role]"), mode === "selection" ? selRole() : M.role);
@@ -596,13 +594,35 @@
     setMode("selection");
   });
   $("[data-sel-close]").addEventListener("click", () => { sharedSel = null; sharedName = ""; setMode(lastMode || CONFIG.defaultMode); });
-  $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); $("[data-role]").textContent = selRole(); }, favName));
+  $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); setWorkTitle(); }, favName));
+  /* ---- Share your selection: copy the link, or send it via the system share sheet / WhatsApp / Email / SMS ---- */
+  const shareMenu = $("[data-sharemenu]"), sharePop = $("[data-share-pop]"), shareTgl = $("[data-share-toggle]"), shareApps = $("[data-share-apps]");
+  const shareName = () => sharedSel ? sharedName : favName;
+  const shareText = () => `Seb Trân — ${shareName() || "a selection of films"}`;
+  const closeShare = () => { sharePop.hidden = true; shareApps.hidden = true; shareTgl.setAttribute("aria-expanded", "false"); };
+  shareTgl.addEventListener("click", () => {
+    const open = sharePop.hidden; closeShare();
+    if (open) { sharePop.hidden = false; shareTgl.setAttribute("aria-expanded", "true"); }
+  });
+  document.addEventListener("click", e => { if (!e.composedPath().includes(shareMenu)) closeShare(); });
   $("[data-sel-copy]").addEventListener("click", async () => {
     const url = shareURL(), msg = $("[data-sel-msg]");
     try { await navigator.clipboard.writeText(url); msg.textContent = "Link copied ✓"; toast("Link copied — ready to share"); }
     catch (e) { prompt("Copy this link:", url); msg.textContent = ""; }
-    setTimeout(() => msg.textContent = "", 2500);
+    closeShare(); setTimeout(() => msg.textContent = "", 2500);
   });
+  $("[data-share-native]").addEventListener("click", async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title: shareText(), text: shareText(), url: shareURL() }); closeShare(); } catch (e) { /* cancelled */ }
+      return;
+    }
+    const u = encodeURIComponent(shareURL()), t = encodeURIComponent(shareText());
+    $('[data-share="wa"]').href = `https://wa.me/?text=${t}%20${u}`;
+    $('[data-share="mail"]').href = `mailto:?subject=${t}&body=${t}%0A${u}`;
+    $('[data-share="sms"]').href = `sms:?&body=${t}%20${u}`;
+    shareApps.hidden = !shareApps.hidden;
+  });
+  $$("[data-share]").forEach(l => l.addEventListener("click", () => setTimeout(closeShare, 200)));
   $("[data-sel-save]").addEventListener("click", () => {
     const ids = sharedSel || [], nm = sharedName;
     const doSave = () => { favs = [...new Set([...favs, ...ids])]; saveFavs(); sharedSel = null; sharedName = ""; history.replaceState(null, "", "#selection"); applyMode("selection"); };
@@ -619,6 +639,11 @@
     const t = document.getElementById(a.dataset.scroll);
     t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - 20, behavior: reduced ? "auto" : "smooth" });
   }));
+  $(".top__name").addEventListener("click", e => {
+    if (state.mode !== "selection") return;
+    e.stopImmediatePropagation(); e.preventDefault();
+    sharedSel = null; sharedName = ""; setMode(lastMode || CONFIG.defaultMode);
+  }, true);
   const mq = $("[data-marquee]");
   mq.innerHTML = [...CONFIG.clients, ...CONFIG.clients].map(c => `<span>${esc(c)}</span>`).join("");
   const mail = $("[data-mail]");

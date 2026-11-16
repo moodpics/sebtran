@@ -64,7 +64,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=1794851210">
+  <link rel="stylesheet" href="style.css?v=1794851818">
 </head>
 <body class="is-loading">
 
@@ -144,7 +144,18 @@
         <div class="work__tools">
           <div class="selbar" data-selbar hidden>
             <button class="selbtn selbtn--close" data-sel-close>× Close</button>
-            <button class="selbtn" data-sel-copy>Copy link</button>
+            <div class="sharemenu" data-sharemenu>
+              <button class="selbtn" data-share-toggle aria-haspopup="true" aria-expanded="false">Share your selection ▾</button>
+              <div class="sharemenu__pop" data-share-pop hidden>
+                <button type="button" data-sel-copy>Copy link</button>
+                <button type="button" data-share-native>Send via…</button>
+                <div class="sharemenu__apps" data-share-apps hidden>
+                  <a data-share="wa" target="_blank" rel="noopener">WhatsApp</a>
+                  <a data-share="mail">Email</a>
+                  <a data-share="sms">SMS</a>
+                </div>
+              </div>
+            </div>
             <button class="selbtn" data-sel-save hidden>Save to mine</button>
             <button class="selbtn" data-sel-rename hidden>Rename</button>
             <span class="selbar__msg mono" data-sel-msg></span>
@@ -158,7 +169,7 @@
           </div>
         </div>
       </div>
-      <p class="sel-empty" data-sel-empty hidden>Your selection is empty. Tap the ♥ on any film to add it, then come back here to copy and share the link.</p>
+      <p class="sel-empty" data-sel-empty hidden>Nothing here yet. Like films with the ♥ to build your selection — then share it from this page.</p>
 
       <div class="grid" data-grid></div>
       <ol class="index" data-index hidden></ol>
@@ -273,7 +284,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794851210"></script>
-  <script src="app.js?v=1794851210"></script>
+  <script src="films.js?v=1794851818"></script>
+  <script src="app.js?v=1794851818"></script>
 </body>
 </html>
