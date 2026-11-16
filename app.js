@@ -198,14 +198,10 @@
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
     updateHint();
   }
-  /* ---- "Like any film" invitation ---- */
-  const HINT_KEY = "sebtran-hint-off";
-  let hintOff = false; try { hintOff = localStorage.getItem(HINT_KEY) === "1"; } catch (e) { /* storage off */ }
+  /* ---- "Like any film" invitation: always visible in the toolbar, except on the selection page ---- */
   function updateHint() {
-    const el = $("[data-likehint]"); if (!el) return;
-    el.hidden = state.mode === "selection" || favs.length > 0 || hintOff;
+    const el = $("[data-likehint]"); if (el) el.hidden = state.mode === "selection";
   }
-  $("[data-likehint-x]").addEventListener("click", () => { hintOff = true; try { localStorage.setItem(HINT_KEY, "1"); } catch (e) { /* storage off */ } updateHint(); });
   /* ---- Name-your-selection dialog + toast ---- */
   const dlg = $("[data-sel-dlg]"), dlgIn = $("[data-sel-dlg-input]");
   let dlgCb = null;

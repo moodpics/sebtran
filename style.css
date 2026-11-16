@@ -422,15 +422,12 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
   .filters.is-open .filters__more { display: flex; }
 }
 
-/* Floating invitation to like films */
-.likehint { position: fixed; left: 50%; bottom: clamp(52px, 8vh, 84px); z-index: 70; display: flex; align-items: center; gap: 12px; max-width: calc(100vw - 32px); padding: 11px 12px 11px 18px; border: 1px solid var(--accent); border-radius: 99px; background: rgba(10,10,10,.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: var(--fg); font: 400 14px/1.25 var(--sans); opacity: 0; transform: translate(-50%, 14px); pointer-events: none; }
+/* Invitation to like films — sits in the toolbar with the other tabs */
+.likehint { display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border: 1px solid var(--accent); border-radius: 99px; color: var(--fg); font: 400 12px/1.2 var(--sans); letter-spacing: .02em; white-space: nowrap; }
 .likehint[hidden] { display: none; }
-body.is-ready .likehint:not([hidden]) { animation: hintIn .9s var(--ease) 2.2s forwards; pointer-events: auto; }
-@keyframes hintIn { to { opacity: 1; transform: translate(-50%, 0); } }
-.likehint svg { flex: none; width: 18px; height: 18px; fill: var(--accent); stroke: var(--accent); stroke-width: 1.8; animation: hintBeat 2.4s ease-in-out infinite; }
+.likehint svg { flex: none; width: 15px; height: 15px; fill: var(--accent); stroke: var(--accent); stroke-width: 1.8; animation: hintBeat 2.4s ease-in-out infinite; }
 @keyframes hintBeat { 0%, 60%, 100% { transform: scale(1); } 70% { transform: scale(1.25); } 80% { transform: scale(1); } 90% { transform: scale(1.18); } }
-.likehint button { flex: none; width: 28px; height: 28px; border-radius: 50%; color: var(--muted); font-size: 18px; line-height: 1; cursor: pointer; transition: color .3s, background .3s; }
-.likehint button:hover { color: var(--fg); background: rgba(255,255,255,.1); }
+@media (max-width: 520px) { .likehint { white-space: normal; } }
 @media (max-width: 900px) { .top { grid-template-columns: 1fr auto; } .switch { grid-column: 2; grid-row: 1; } }
 
 /* Visually hidden but readable by crawlers and screen readers */
