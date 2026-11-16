@@ -210,7 +210,8 @@
     const nm = $("[data-sel-name]"); if (nm) nm.textContent = !inSel && c && c.name ? c.name : "";
     box.hidden = !inSel || !sels.length;
     link.hidden = inSel && sels.length > 0;
-    box.innerHTML = sels.map(x => `<a class="top__sel top__seltab${x.id === activeSel ? " is-active" : ""}" href="#selection" data-sel-pick="${x.id}"><span class="top__heartwrap">${HEART_SM}<b>${x.ids.length}</b></span><span class="top__seltxt">${x.shared ? "Selection" : "Your selection"}</span><span class="top__selname">${esc(x.name || "My films")}</span></a>`).join("");
+    const act = cur(), others = sels.filter(x => x !== act), tabHtml = x => `<a class="top__sel top__seltab${x.id === activeSel ? " is-active" : ""}" href="#selection" ${x.id === activeSel ? "data-sel-toggle" : `data-sel-pick="${x.id}"`}><span class="top__heartwrap">${HEART_SM}<b>${x.ids.length}</b></span><span class="top__seltxt">${x.shared ? "Selection" : "Your selection"}</span><span class="top__selname">${esc(x.name || "My films")}</span>${x.id === activeSel && sels.length > 1 ? `<span class="selpick__caret" title="Switch selection" aria-hidden="true">▾</span>` : ""}</a>`;
+    box.innerHTML = act ? `<div class="selpick">${tabHtml(act)}${others.length ? `<div class="selpick__menu"><div class="selpick__list">${others.map(tabHtml).join("")}</div></div>` : ""}</div>` : "";
   }
   const clearText = () => { const c = cur(); return !c || c.shared || !c.ids.length ? "Delete" : "Clear"; };
   function updateFavUI() {
@@ -335,11 +336,14 @@
     foldUntil = performance.now() + 500;
     const touch = !matchMedia("(hover: hover)").matches;
     if (b.dataset.filter === "All") {
-      // desktop: clicking All folds the other categories away (hover re-opens them); touch: tap toggles them
-      const wasOpen = filtersEl.classList.contains("is-open");
-      filtersEl.classList.remove("is-open");
-      if (touch && state.filter === "All" && !wasOpen) filtersEl.classList.add("is-open");
-      else filtersEl.classList.add("is-folded");
+      const visible = filtersEl.classList.contains("is-open") || (!touch && !filtersEl.classList.contains("is-folded"));
+      if (state.filter !== "All") {
+        // a category was active: "All" resets it and offers every category again
+        filtersEl.classList.remove("is-folded"); filtersEl.classList.add("is-open");
+      } else if (visible) {
+        // categories are showing: a second click on "All" folds them away
+        filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded");
+      } else filtersEl.classList.add("is-open"); // touch: tap opens them
     } else { filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded"); }
     state.filter = b.dataset.filter; renderFilters(); renderWork();
   });
@@ -698,6 +702,11 @@
     if (FILMS.selection[0]) setHero(FILMS.selection[0]);
     scramble($("[data-role]"), selRole()); updateFavUI(); scrollTo({ top: 0, behavior: "auto" });
   }
+  document.addEventListener("click", e => {
+    const tg = e.target.closest("[data-sel-toggle]");
+    if (tg) { e.preventDefault(); const w = tg.closest(".selpick"); w && w.classList.toggle("is-open"); return; }
+    $$(".selpick.is-open").forEach(w => { if (!e.composedPath().includes(w)) w.classList.remove("is-open"); });
+  });
   document.addEventListener("click", e => {
     const t = e.target.closest("[data-sel-pick]"); if (!t) return;
     e.preventDefault(); showSel(t.dataset.selPick);

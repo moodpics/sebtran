@@ -724,3 +724,12 @@ html, body { overflow-x: clip; max-width: 100%; }
 .likepop__new { color: var(--accent); }
 .likepop__new i { border-color: var(--accent); }
 @media (max-width: 560px) { .top.in-sel .top__seltab { flex-basis: auto; padding: 6px 10px; } .top__seltab .top__selname { max-width: 12ch; } .top__seltab .top__seltxt { font-size: 10px; } }
+
+/* v12: only the chosen selection is shown; the others drop down from it */
+.selpick { position: relative; display: inline-flex; }
+.selpick__caret { margin-left: 10px; font-size: 11px; opacity: .8; }
+.selpick__menu { position: absolute; top: 100%; left: 0; z-index: 40; padding-top: 8px; display: none; }
+.selpick__list { display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid var(--line); border-radius: 22px; background: #000; box-shadow: 0 18px 40px rgba(0,0,0,.6); }
+.selpick.is-open .selpick__menu, .selpick:focus-within .selpick__menu { display: block; }
+@media (hover: hover) { .selpick:hover .selpick__menu { display: block; } }
+.selpick__list .top__seltab { white-space: nowrap; }
