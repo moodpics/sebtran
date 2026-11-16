@@ -170,7 +170,7 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .hero__scroll { position: absolute; right: var(--pad); top: 50%; writing-mode: vertical-rl; color: var(--muted); }
 
 /* ---------- Work ---------- */
-.work { padding: clamp(80px, 12vw, 180px) var(--pad) 60px; }
+.work { padding: clamp(40px, 6vw, 90px) var(--pad) 60px; }
 .work__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(30px, 4vw, 60px); }
 .work__title { margin: 0; font: 400 clamp(40px, 6vw, 96px)/.95 var(--serif); letter-spacing: -.02em; }
 .work__title sup { font-size: 12px; color: var(--accent); vertical-align: top; margin-left: 6px; }
