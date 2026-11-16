@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://f.vimeocdn.com">
   <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1794843563">
+  <link rel="stylesheet" href="style.css?v=1794843697">
 </head>
 <body class="is-loading">
 
@@ -51,6 +51,7 @@
       <a href="#work" data-scroll="work">Work</a>
       <a href="#about" data-scroll="about">About</a>
       <a href="#contact" data-scroll="contact">Contact</a>
+      <a href="#selection" data-sel-open>Selection <sup data-fav-count>0</sup></a>
     </nav>
   </header>
 
@@ -90,9 +91,16 @@
           <div class="views">
             <button class="views__btn is-active" data-view="grid" aria-label="Grid view">Grid</button>
             <button class="views__btn" data-view="index" aria-label="Index view">Index</button>
+            <button class="views__btn sel-btn" data-sel-open aria-label="My selection">♥ <span data-fav-count>0</span></button>
           </div>
         </div>
       </div>
+      <div class="selbar mono" data-selbar hidden>
+        <button class="chip" data-sel-copy>Copy link to this selection</button>
+        <button class="chip" data-sel-save hidden>Save to my selection</button>
+        <span data-sel-msg></span>
+      </div>
+      <p class="sel-empty" data-sel-empty hidden>Your selection is empty. Tap the ♥ on any film to add it, then come back here to copy and share the link.</p>
 
       <div class="grid" data-grid></div>
       <ol class="index" data-index hidden></ol>
@@ -138,6 +146,7 @@
         <p class="lightbox__credits mono"></p>
       </div>
       <div class="lightbox__nav">
+        <button data-lb="fav" class="lb-fav" aria-label="Add to selection" title="Add to my selection"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg></button>
         <button data-lb="prev" aria-label="Previous film">←</button>
         <button data-lb="next" aria-label="Next film">→</button>
         <button data-lb="close" aria-label="Close">Close</button>
@@ -146,7 +155,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794843563"></script>
-  <script src="app.js?v=1794843563"></script>
+  <script src="films.js?v=1794843697"></script>
+  <script src="app.js?v=1794843697"></script>
 </body>
 </html>

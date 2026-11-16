@@ -12,6 +12,12 @@
       "Armani Beauty", "Maison Margiela", "Off-White", "Chaumet", "Kérastase", "AMI Paris", "Salomon",
       "Clarins", "Helena Rubinstein", "Paco Rabanne", "KITH", "Nowness", "La Roche-Posay", "Biotherm"],
     modes: {
+      selection: {
+        role: "Selection",
+        workTitle: "Your Selection",
+        hud: "SELECT · ♥ · 25 FPS",
+        about: "A personal *selection* of films by Seb Trân — cinematography and direction. Copy the link to *share* it or come back to it later."
+      },
       cinematography: {
         role: "Cinematographer",
         workTitle: "Selected Cinematography",
@@ -73,6 +79,14 @@
   };
   const fmtDur = s => `${pad(Math.floor(s / 60))}:${pad(s % 60)}`;
   const credits = f => [f.director && `Dir. ${f.director}`, f.production && `Prod. ${f.production}`].filter(Boolean).join(" — ");
+
+  /* ---------- Favorites (stored in this browser) ---------- */
+  const FAV_KEY = "sebtran-selection";
+  let favs = [];
+  try { favs = JSON.parse(localStorage.getItem(FAV_KEY) || "[]").filter(x => typeof x === "string"); } catch (e) { favs = []; }
+  const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); } catch (e) { /* storage off */ } };
+  const isFav = id => favs.includes(id);
+  let sharedSel = null; // ids from a shared link, when viewing someone's selection
 
   /* ---------- State ---------- */
   const FILMS = window.FILMS || { cinematography: [], direction: [] };
@@ -166,6 +180,30 @@
      ========================================================================== */
   const grid = $("[data-grid]"), index = $("[data-index]"), filtersEl = $("[data-filters]");
   const PATTERN = [7, 5, 4, 4, 4, 5, 7, 12, 6, 6, 4, 4, 4, 8, 4];
+  const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>`;
+  const allFilms = () => { const m = new Map(); [...FILMS.direction, ...FILMS.cinematography].forEach(f => { if (!m.has(f.id)) m.set(f.id, f); }); return m; };
+  const buildSelection = () => { const m = allFilms(); FILMS.selection = (sharedSel || favs).map(id => m.get(id)).filter(Boolean); };
+  const shareURL = () => `${location.origin}${location.pathname}#selection=${(sharedSel || favs).join(".")}`;
+  function updateFavUI() {
+    $$("[data-fav-count]").forEach(e => e.textContent = favs.length);
+    $$("[data-fav]").forEach(e => e.classList.toggle("is-on", isFav(e.dataset.fav)));
+    const lbFav = $('[data-lb="fav"]'); if (lbFav && lbList[lbIdx]) lbFav.classList.toggle("is-on", isFav(lbList[lbIdx].id));
+    const bar = $("[data-selbar]");
+    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; }
+  }
+  function toggleFav(id) {
+    favs = isFav(id) ? favs.filter(x => x !== id) : [...favs, id];
+    saveFavs(); updateFavUI();
+    if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); }
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-fav]"); if (!b) return;
+    e.preventDefault(); e.stopPropagation(); toggleFav(b.dataset.fav);
+  }, true);
+  document.addEventListener("keydown", e => {
+    const b = e.target.closest && e.target.closest("[data-fav]");
+    if (b && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.stopPropagation(); toggleFav(b.dataset.fav); }
+  }, true);
 
   function renderFilters() {
     const all = FILMS[state.mode];
@@ -192,6 +230,7 @@
     const all = FILMS[state.mode];
     state.list = state.filter === "All" ? all : all.filter(f => f.category === state.filter);
     $("[data-count]").textContent = pad(state.list.length);
+    $("[data-sel-empty]").hidden = !(state.mode === "selection" && !state.list.length);
 
     grid.innerHTML = state.list.map((f, i) => {
       const span = state.filter === "All" ? (f.size || PATTERN[i % PATTERN.length]) : [6, 6, 4, 4, 4][i % 5];
@@ -201,6 +240,7 @@
           <img src="${thumb(f, span >= 7 ? "1280x720" : "960x540")}" alt="" loading="lazy">
           <div class="cover"></div>
           <span class="card__num mono">${pad(i + 1)}</span>
+          <span class="card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}" role="button" tabindex="0" aria-label="Add to selection" title="Add to my selection">${HEART}</span>
           <span class="card__dur mono">${fmtDur(f.duration)}</span>
           <span class="card__live mono">Preview</span>
           <div class="card__meta">
@@ -217,6 +257,7 @@
     index.innerHTML = state.list.map((f, i) => `
       <li class="row" data-i="${i}" data-cursor="play" tabindex="0">
         <span class="row__num">${pad(i + 1)}</span>
+        <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}" role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
         <span class="row__client">${esc(f.client)}</span>
         <span class="row__title">${esc(f.title)}</span>
         <span class="row__dir">${esc(f.director ? "Dir. " + f.director : "—")}</span>
@@ -379,6 +420,7 @@
   let lbList = [], lbIdx = 0;
 
   function fillInfo(f) {
+    const lbFav = $('[data-lb="fav"]'); if (lbFav) lbFav.classList.toggle("is-on", isFav(f.id));
     $(".lightbox__cat", lb).textContent = `${pad(lbIdx + 1)} / ${pad(lbList.length)} — ${f.category}${f.year ? " — " + f.year : ""}`;
     $(".lightbox__title", lb).innerHTML = `${esc(f.client)} <em>${esc(f.title)}</em>`;
     const role = state.mode === "direction" ? "Directed & photographed by Seb Trân" : "Cinematography by Seb Trân";
@@ -423,7 +465,10 @@
   }
   lb.addEventListener("click", e => {
     const b = e.target.closest("[data-lb]");
-    if (b) { b.dataset.lb === "close" ? closeLightbox() : stepLightbox(b.dataset.lb === "next" ? 1 : -1); return; }
+    if (b) {
+      if (b.dataset.lb === "fav") { const f = lbList[lbIdx]; if (f) toggleFav(f.id); return; }
+      b.dataset.lb === "close" ? closeLightbox() : stepLightbox(b.dataset.lb === "next" ? 1 : -1); return;
+    }
     if (e.target === lb || e.target.classList.contains("lightbox__stage")) closeLightbox();
   });
   addEventListener("keydown", e => {
@@ -458,36 +503,55 @@
      ========================================================================== */
   const shutter = $(".shutter"), pill = $(".switch__pill");
   function placePill() {
-    const a = $(`.switch__btn[data-mode="${state.mode}"]`); if (!a) return;
+    const a = $(`.switch__btn[data-mode="${state.mode}"]`); if (!a) { pill.style.width = "0px"; return; }
     pill.style.width = a.offsetWidth + "px";
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
   }
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
+    if (mode === "selection") buildSelection();
     state.mode = mode; state.filter = "All";
     document.body.classList.toggle("mode-direction", mode === "direction");
     $$(".switch__btn").forEach(b => { const on = b.dataset.mode === mode; b.classList.toggle("is-active", on); b.setAttribute("aria-selected", on); });
     placePill();
-    $("[data-work-title]").textContent = M.workTitle;
+    $("[data-work-title]").textContent = mode === "selection" && sharedSel ? "Shared Selection" : M.workTitle;
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
     scramble($("[data-role]"), M.role);
     renderAbout(M.about);
     renderFilters(); renderWork();
     if (FILMS[mode][0]) setHero(FILMS[mode][0]);
+    updateFavUI();
   }
   async function setMode(mode, animate = true) {
-    if (!CONFIG.modes[mode] || mode === state.mode) return;
-    history.replaceState(null, "", `#${mode}`);
-    if (!animate || reduced) return applyMode(mode);
+    if (!CONFIG.modes[mode] || (mode === state.mode && mode !== "selection")) return;
+    if (mode !== "selection") sharedSel = null;
+    history.replaceState(null, "", mode === "selection" && sharedSel ? `#selection=${sharedSel.join(".")}` : `#${mode}`);
+    if (!animate || reduced) { applyMode(mode); scrollTo({ top: 0, behavior: "auto" }); return; }
     shutter.classList.add("is-closed");
     await wait(560);
     applyMode(mode);
+    scrollTo({ top: 0, behavior: "auto" });
     await wait(250);
     shutter.classList.remove("is-closed");
   }
   $$(".switch__btn").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
-  addEventListener("hashchange", () => { const m = location.hash.slice(1); if (CONFIG.modes[m]) setMode(m); });
+  addEventListener("hashchange", () => {
+    const [m, ids] = location.hash.slice(1).split("=");
+    if (m === "selection" && ids) { sharedSel = ids.split(".").filter(Boolean); setMode("selection"); }
+    else if (CONFIG.modes[m]) setMode(m);
+  });
+  $$("[data-sel-open]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); sharedSel = null; setMode("selection"); }));
+  $("[data-sel-copy]").addEventListener("click", async () => {
+    const url = shareURL(), msg = $("[data-sel-msg]");
+    try { await navigator.clipboard.writeText(url); msg.textContent = "Link copied"; }
+    catch (e) { prompt("Copy this link:", url); msg.textContent = ""; }
+    setTimeout(() => msg.textContent = "", 2500);
+  });
+  $("[data-sel-save]").addEventListener("click", () => {
+    favs = [...new Set([...favs, ...(sharedSel || [])])]; saveFavs(); sharedSel = null;
+    history.replaceState(null, "", "#selection"); applyMode("selection");
+  });
 
   /* ==========================================================================
      Misc: nav scroll, marquee, contact, footer
@@ -528,7 +592,8 @@
   /* ==========================================================================
      Boot
      ========================================================================== */
-  const hashMode = location.hash.slice(1);
+  const [hashMode, hashIds] = location.hash.slice(1).split("=");
+  if (hashMode === "selection" && hashIds) sharedSel = hashIds.split(".").filter(Boolean);
   Promise.race([resolveThumbs(), wait(2500)]).then(() => {
     applyMode(CONFIG.modes[hashMode] ? hashMode : CONFIG.defaultMode);
   });
