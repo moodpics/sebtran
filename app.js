@@ -248,19 +248,21 @@
     if (reduced) return;
     const f = state.list[+card.dataset.i], cover = $(".cover", card);
     if (cover.firstChild) return;
-    const ifr = makeIframe(vimeo(f, bgParams("540p")), f.client);
+    const ifr = makeIframe(vimeo(f, bgParams("360p")), f.client);
+    const tag = $(".card__live", card); tag.textContent = "Loading";
+    card.classList.add("is-loading");
     cover.appendChild(ifr);
-    onPlay(ifr, () => card.classList.add("is-playing"));
+    onPlay(ifr, () => { card.classList.remove("is-loading"); card.classList.add("is-playing"); tag.textContent = "Preview"; });
     trimLoop(ifr, f);
   }
   function stopPreview(card) {
     if (!card) return;
-    card.classList.remove("is-playing");
+    card.classList.remove("is-playing", "is-loading");
     const cover = $(".cover", card);
     setTimeout(() => { if (!card.classList.contains("is-hover") && !card.classList.contains("is-auto")) cover.innerHTML = ""; }, 600);
   }
   function stopAllPreviews() {
-    $$(".card").forEach(c => { c.classList.remove("is-playing", "is-hover", "is-auto"); const cv = $(".cover", c); if (cv) cv.innerHTML = ""; });
+    $$(".card").forEach(c => { c.classList.remove("is-playing", "is-loading", "is-hover", "is-auto"); const cv = $(".cover", c); if (cv) cv.innerHTML = ""; });
     grid.classList.remove("has-hover"); activeCard = null;
     hideFloat();
   }
@@ -273,7 +275,7 @@
       card.addEventListener("mouseenter", () => {
         if (activeCard && activeCard !== card) { activeCard.classList.remove("is-hover"); stopPreview(activeCard); }
         activeCard = card; card.classList.add("is-hover"); grid.classList.add("has-hover");
-        clearTimeout(hoverTimer); hoverTimer = setTimeout(() => startPreview(card), 140);
+        clearTimeout(hoverTimer); hoverTimer = setTimeout(() => startPreview(card), 40);
       });
       card.addEventListener("mousemove", e => {
         const r = card.getBoundingClientRect();
