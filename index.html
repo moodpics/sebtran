@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://f.vimeocdn.com">
   <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1794845769">
+  <link rel="stylesheet" href="style.css?v=1794847241">
 </head>
 <body class="is-loading">
 
@@ -90,6 +90,7 @@
           <span class="hero__play-ico"></span>
           <span class="hero__play-txt"><em class="mono">Now playing</em><strong data-hero-title></strong></span>
         </button>
+        <p class="hero__hint" data-hero-hint><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg><span>Like the films you love to build a selection you can share.</span></p>
       </div>
       <div class="hero__scroll mono">Scroll</div>
     </section>
@@ -99,6 +100,13 @@
       <div class="work__head">
         <h2 class="work__title"><span data-work-title>Selected Cinematography</span> <sup class="mono" data-count></sup></h2>
         <div class="work__tools">
+          <div class="selbar" data-selbar hidden>
+            <button class="selbtn selbtn--close" data-sel-close>× Close</button>
+            <button class="selbtn" data-sel-copy>Copy link</button>
+            <button class="selbtn" data-sel-save hidden>Save to mine</button>
+            <button class="selbtn" data-sel-rename hidden>Rename</button>
+            <span class="selbar__msg mono" data-sel-msg></span>
+          </div>
           <div class="filters" data-filters></div>
           <div class="views">
             <button class="views__btn is-active" data-view="grid" aria-label="Grid view">Grid</button>
@@ -106,13 +114,6 @@
             <button class="views__btn sel-btn" data-sel-open aria-label="My selection">♥ <span data-fav-count>0</span></button>
           </div>
         </div>
-      </div>
-      <div class="selbar mono" data-selbar hidden>
-        <button class="chip sel-close" data-sel-close>× Close selection</button>
-        <button class="chip" data-sel-copy>Copy link to this selection</button>
-        <button class="chip" data-sel-save hidden>Save to my selection</button>
-        <button class="chip" data-sel-rename hidden>Rename</button>
-        <span data-sel-msg></span>
       </div>
       <p class="sel-empty" data-sel-empty hidden>Your selection is empty. Tap the ♥ on any film to add it, then come back here to copy and share the link.</p>
 
@@ -170,7 +171,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794845769"></script>
-  <script src="app.js?v=1794845769"></script>
+  <script src="films.js?v=1794847241"></script>
+  <script src="app.js?v=1794847241"></script>
 </body>
 </html>

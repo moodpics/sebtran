@@ -14,7 +14,7 @@
     modes: {
       selection: {
         role: "Selection",
-        workTitle: "Your Selection",
+        workTitle: "Selected Films",
         hud: "SELECT · ♥ · 25 FPS",
         about: "A personal *selection* of films by Seb Trân — cinematography and direction. Copy the link to *share* it or come back to it later."
       },
@@ -532,6 +532,7 @@
     pill.style.width = a.offsetWidth + "px";
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
   }
+  const selRole = () => `Selection — ${sharedSel ? (sharedName || "shared") : (favName || "my films")}`;
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
     if (mode === "selection") buildSelection(); else lastMode = mode;
@@ -539,10 +540,11 @@
     document.body.classList.toggle("mode-direction", mode === "direction");
     $$(".switch__btn").forEach(b => { const on = b.dataset.mode === mode; b.classList.toggle("is-active", on); b.setAttribute("aria-selected", on); });
     placePill();
-    $("[data-work-title]").textContent = mode === "selection" ? (sharedSel ? (sharedName || "Shared Selection") : (favName || M.workTitle)) : M.workTitle;
+    $("[data-work-title]").textContent = M.workTitle;
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
-    scramble($("[data-role]"), M.role);
+    scramble($("[data-role]"), mode === "selection" ? selRole() : M.role);
+    $("[data-hero-hint]").hidden = mode === "selection";
     renderAbout(M.about);
     renderFilters(); renderWork();
     if (FILMS[mode][0]) setHero(FILMS[mode][0]);
@@ -573,10 +575,10 @@
     setMode("selection");
   });
   $("[data-sel-close]").addEventListener("click", () => { sharedSel = null; sharedName = ""; setMode(lastMode || CONFIG.defaultMode); });
-  $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); $("[data-work-title]").textContent = favName; }, favName));
+  $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); $("[data-role]").textContent = selRole(); }, favName));
   $("[data-sel-copy]").addEventListener("click", async () => {
     const url = shareURL(), msg = $("[data-sel-msg]");
-    try { await navigator.clipboard.writeText(url); msg.textContent = "Link copied"; }
+    try { await navigator.clipboard.writeText(url); msg.textContent = "Link copied ✓"; toast("Link copied — ready to share"); }
     catch (e) { prompt("Copy this link:", url); msg.textContent = ""; }
     setTimeout(() => msg.textContent = "", 2500);
   });
