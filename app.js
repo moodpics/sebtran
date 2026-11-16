@@ -84,9 +84,12 @@
   const FAV_KEY = "sebtran-selection";
   let favs = [];
   try { favs = JSON.parse(localStorage.getItem(FAV_KEY) || "[]").filter(x => typeof x === "string"); } catch (e) { favs = []; }
-  const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); } catch (e) { /* storage off */ } };
+  const NAME_KEY = "sebtran-selection-name";
+  let favName = ""; try { favName = localStorage.getItem(NAME_KEY) || ""; } catch (e) { /* storage off */ }
+  const saveFavs = () => { try { localStorage.setItem(FAV_KEY, JSON.stringify(favs)); localStorage.setItem(NAME_KEY, favName); } catch (e) { /* storage off */ } };
   const isFav = id => favs.includes(id);
-  let sharedSel = null; // ids from a shared link, when viewing someone's selection
+  let sharedSel = null, sharedName = ""; // a selection opened from a shared link
+  const parseSel = str => { const [ids = "", nm = ""] = str.split("~"); let name = ""; try { name = decodeURIComponent(nm); } catch (e) { name = nm; } return { ids: ids.split(".").filter(Boolean), name }; };
 
   /* ---------- State ---------- */
   const FILMS = window.FILMS || { cinematography: [], direction: [] };
@@ -183,17 +186,38 @@
   const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>`;
   const allFilms = () => { const m = new Map(); [...FILMS.direction, ...FILMS.cinematography].forEach(f => { if (!m.has(f.id)) m.set(f.id, f); }); return m; };
   const buildSelection = () => { const m = allFilms(); FILMS.selection = (sharedSel || favs).map(id => m.get(id)).filter(Boolean); };
-  const shareURL = () => `${location.origin}${location.pathname}#selection=${(sharedSel || favs).join(".")}`;
+  const selHash = (ids, name) => `selection=${ids.join(".")}${name ? "~" + encodeURIComponent(name) : ""}`;
+  const shareURL = () => `${location.origin}${location.pathname}#${sharedSel ? selHash(sharedSel, sharedName) : selHash(favs, favName)}`;
   function updateFavUI() {
     $$("[data-fav-count]").forEach(e => e.textContent = favs.length);
     $$("[data-fav]").forEach(e => e.classList.toggle("is-on", isFav(e.dataset.fav)));
     const lbFav = $('[data-lb="fav"]'); if (lbFav && lbList[lbIdx]) lbFav.classList.toggle("is-on", isFav(lbList[lbIdx].id));
     const bar = $("[data-selbar]");
-    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; }
+    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName; }
+    $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
   }
+  /* ---- Name-your-selection dialog + toast ---- */
+  const dlg = $("[data-sel-dlg]"), dlgIn = $("[data-sel-dlg-input]");
+  let dlgCb = null;
+  function askName(cb, current = "") {
+    dlgCb = cb; dlgIn.value = current; dlg.hidden = false;
+    requestAnimationFrame(() => { dlg.classList.add("is-on"); dlgIn.focus(); dlgIn.select(); });
+  }
+  function closeDlg() { dlg.classList.remove("is-on"); setTimeout(() => dlg.hidden = true, 300); dlgCb = null; }
+  $("[data-sel-dlg-form]").addEventListener("submit", e => {
+    e.preventDefault(); const v = dlgIn.value.trim().slice(0, 60); if (!v) { dlgIn.focus(); return; }
+    const cb = dlgCb; closeDlg(); cb && cb(v);
+  });
+  $("[data-sel-dlg-cancel]").addEventListener("click", closeDlg);
+  dlg.addEventListener("click", e => { if (e.target === dlg) closeDlg(); });
+  let toastT; function toast(html) { const t = $("[data-toast]"); t.innerHTML = html; t.classList.add("is-on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("is-on"), 2600); }
   function toggleFav(id) {
-    favs = isFav(id) ? favs.filter(x => x !== id) : [...favs, id];
+    if (!isFav(id) && !favName) { askName(name => { favName = name; toggleFav(id); }); return; }
+    const adding = !isFav(id);
+    favs = adding ? [...favs, id] : favs.filter(x => x !== id);
     saveFavs(); updateFavUI();
+    const f = allFilms().get(id);
+    toast(`${adding ? "Added to" : "Removed from"} <em>${esc(favName)}</em>${f ? " — " + esc(f.client) : ""} <button data-sel-open-toast>View</button>`);
     if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); }
   }
   document.addEventListener("click", e => {
@@ -514,7 +538,7 @@
     document.body.classList.toggle("mode-direction", mode === "direction");
     $$(".switch__btn").forEach(b => { const on = b.dataset.mode === mode; b.classList.toggle("is-active", on); b.setAttribute("aria-selected", on); });
     placePill();
-    $("[data-work-title]").textContent = mode === "selection" && sharedSel ? "Shared Selection" : M.workTitle;
+    $("[data-work-title]").textContent = mode === "selection" ? (sharedSel ? (sharedName || "Shared Selection") : (favName || M.workTitle)) : M.workTitle;
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
     scramble($("[data-role]"), M.role);
@@ -525,8 +549,8 @@
   }
   async function setMode(mode, animate = true) {
     if (!CONFIG.modes[mode] || (mode === state.mode && mode !== "selection")) return;
-    if (mode !== "selection") sharedSel = null;
-    history.replaceState(null, "", mode === "selection" && sharedSel ? `#selection=${sharedSel.join(".")}` : `#${mode}`);
+    if (mode !== "selection") { sharedSel = null; sharedName = ""; }
+    history.replaceState(null, "", mode === "selection" && sharedSel ? `#${selHash(sharedSel, sharedName)}` : `#${mode}`);
     if (!animate || reduced) { applyMode(mode); scrollTo({ top: 0, behavior: "auto" }); return; }
     shutter.classList.add("is-closed");
     await wait(560);
@@ -537,11 +561,17 @@
   }
   $$(".switch__btn").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
   addEventListener("hashchange", () => {
-    const [m, ids] = location.hash.slice(1).split("=");
-    if (m === "selection" && ids) { sharedSel = ids.split(".").filter(Boolean); setMode("selection"); }
+    const h = location.hash.slice(1), m = h.split("=")[0], rest = h.slice(m.length + 1);
+    if (m === "selection" && rest) { const p = parseSel(rest); sharedSel = p.ids; sharedName = p.name; setMode("selection"); }
     else if (CONFIG.modes[m]) setMode(m);
   });
-  $$("[data-sel-open]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); sharedSel = null; setMode("selection"); }));
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-sel-open], [data-sel-open-toast]"); if (!b) return;
+    e.preventDefault(); sharedSel = null; sharedName = "";
+    if (!lb.hidden) closeLightbox();
+    setMode("selection");
+  });
+  $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); $("[data-work-title]").textContent = favName; }, favName));
   $("[data-sel-copy]").addEventListener("click", async () => {
     const url = shareURL(), msg = $("[data-sel-msg]");
     try { await navigator.clipboard.writeText(url); msg.textContent = "Link copied"; }
@@ -549,7 +579,10 @@
     setTimeout(() => msg.textContent = "", 2500);
   });
   $("[data-sel-save]").addEventListener("click", () => {
-    favs = [...new Set([...favs, ...(sharedSel || [])])]; saveFavs(); sharedSel = null;
+    const ids = sharedSel || [], nm = sharedName;
+    const doSave = () => { favs = [...new Set([...favs, ...ids])]; saveFavs(); sharedSel = null; sharedName = ""; history.replaceState(null, "", "#selection"); applyMode("selection"); };
+    if (!favName) { askName(n => { favName = n; doSave(); }, nm); return; }
+    favs = [...new Set([...favs, ...ids])]; saveFavs(); sharedSel = null; sharedName = "";
     history.replaceState(null, "", "#selection"); applyMode("selection");
   });
 
@@ -592,8 +625,8 @@
   /* ==========================================================================
      Boot
      ========================================================================== */
-  const [hashMode, hashIds] = location.hash.slice(1).split("=");
-  if (hashMode === "selection" && hashIds) sharedSel = hashIds.split(".").filter(Boolean);
+  const hashFull = location.hash.slice(1), hashMode = hashFull.split("=")[0], hashRest = hashFull.slice(hashMode.length + 1);
+  if (hashMode === "selection" && hashRest) { const p = parseSel(hashRest); sharedSel = p.ids; sharedName = p.name; }
   Promise.race([resolveThumbs(), wait(2500)]).then(() => {
     applyMode(CONFIG.modes[hashMode] ? hashMode : CONFIG.defaultMode);
   });

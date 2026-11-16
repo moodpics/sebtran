@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://f.vimeocdn.com">
   <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1794843793">
+  <link rel="stylesheet" href="style.css?v=1794844396">
 </head>
 <body class="is-loading">
 
@@ -36,6 +36,18 @@
 
   <!-- Cursor -->
   <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><em class="cursor__label mono"></em></span></div>
+
+  <!-- Selection: name dialog + toast -->
+  <div class="seldlg" data-sel-dlg hidden role="dialog" aria-modal="true" aria-labelledby="seldlg-t">
+    <form class="seldlg__box" data-sel-dlg-form>
+      <p class="mono seldlg__k">♥ Your selection</p>
+      <h3 id="seldlg-t">Name your selection</h3>
+      <p class="seldlg__s">Every film you like goes into it. You can copy its link to share it or find it again from anywhere.</p>
+      <input data-sel-dlg-input type="text" maxlength="60" placeholder="e.g. Beauty references — Agency X" autocomplete="off">
+      <div class="seldlg__b"><button type="button" class="chip" data-sel-dlg-cancel>Cancel</button><button type="submit" class="chip is-active">Create</button></div>
+    </form>
+  </div>
+  <div class="toast mono" data-toast aria-live="polite"></div>
 
   <!-- Header -->
   <header class="top">
@@ -98,6 +110,7 @@
       <div class="selbar mono" data-selbar hidden>
         <button class="chip" data-sel-copy>Copy link to this selection</button>
         <button class="chip" data-sel-save hidden>Save to my selection</button>
+        <button class="chip" data-sel-rename hidden>Rename</button>
         <span data-sel-msg></span>
       </div>
       <p class="sel-empty" data-sel-empty hidden>Your selection is empty. Tap the ♥ on any film to add it, then come back here to copy and share the link.</p>
@@ -155,7 +168,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794843793"></script>
-  <script src="app.js?v=1794843793"></script>
+  <script src="films.js?v=1794844396"></script>
+  <script src="app.js?v=1794844396"></script>
 </body>
 </html>
