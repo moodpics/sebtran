@@ -64,7 +64,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=1794865888">
+  <link rel="stylesheet" href="style.css?v=1794866924">
 </head>
 <body class="is-loading">
 
@@ -102,7 +102,17 @@
       <span class="switch__pill" aria-hidden="true"></span>
     </div>
 
+
+    <div class="topcats">
+      <div class="filters" data-filters></div>
+      <div class="topviews">
+        <button class="views__btn is-active" data-view="grid" aria-label="Grid view">Grid</button>
+        <button class="views__btn" data-view="index" aria-label="Index view">Index</button>
+      </div>
+    </div>
+
     <div class="top__selgrp">
+      <span class="likehint" data-likehint role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>Like any film to get your selection to share.</span>
       <a class="top__sel" href="#selection" data-sel-open aria-label="Your selection"><svg class="top__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg><span class="top__seltxt">Your selection</span><span class="top__selname" data-sel-name></span> <sup data-fav-count>0</sup></a>
       <div class="titletools" data-titletools hidden>
             <button type="button" class="tt-btn" data-sel-rename hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4.2-1 10-10a2.1 2.1 0 000-3l-.2-.2a2.1 2.1 0 00-3 0l-10 10L4 20z"/></svg>Rename</button>
@@ -126,14 +136,6 @@
             </div>
             <span class="selbar__msg mono" data-sel-msg></span>
           </div>
-    </div>
-
-    <div class="topcats">
-      <div class="filters" data-filters></div>
-      <div class="topviews">
-        <button class="views__btn is-active" data-view="grid" aria-label="Grid view">Grid</button>
-        <button class="views__btn" data-view="index" aria-label="Index view">Index</button>
-      </div>
     </div>
 
     <nav class="top__nav">
@@ -177,9 +179,6 @@
           <h2 class="work__title"><span data-work-title>Selected Cinematography</span> <sup class="mono" data-count></sup></h2>
         </div>
         <div class="work__tools">
-          <div class="views">
-            <span class="likehint" data-likehint role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>Like any film to get your selection to share.</span>
-          </div>
         </div>
       </div>
       <p class="sel-empty" data-sel-empty hidden>Nothing here yet. Like films with the ♥ to build your selection — then share it from this page.</p>
@@ -298,6 +297,6 @@
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="films.js?v=1794863447"></script>
-  <script src="app.js?v=1794865888"></script>
+  <script src="app.js?v=1794866924"></script>
 </body>
 </html>

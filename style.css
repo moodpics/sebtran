@@ -621,3 +621,35 @@ html, body { overflow-x: clip; max-width: 100%; }
   .top .tt-btn, .top .selbtn { height: 28px; padding: 0 10px; font-size: 10px; gap: 6px; }
   .top .tt-btn svg { width: 12px; height: 12px; }
 }
+
+/* ===== v6: order = [All … Grid Index] then Your selection / like-hint ===== */
+.top__selgrp:has(.likehint:not([hidden])) .top__sel { display: none; }
+.top .likehint { padding: 7px 14px; font-size: 11px; }
+@media (min-width: 1301px) {
+  .top { grid-template-columns: auto auto max-content 1fr auto; row-gap: 0; padding: 12px var(--pad); }
+  .top .topcats { grid-column: 3; grid-row: 1; }
+  .top .top__selgrp, .top.in-sel .top__selgrp { grid-column: 4; grid-row: 1; justify-self: start; }
+  .top__nav { grid-column: 5; grid-row: 1; }
+  .top.in-sel .topcats { grid-column: 3; grid-row: 1; }
+  .top:has(.filters:hover .filters__more) .top__nav, .top:has(.filters.is-open) .top__nav,
+  .top:has(.filters:hover .filters__more) .top__selgrp, .top:has(.filters.is-open) .top__selgrp { opacity: 0; pointer-events: none; }
+  .top:has(.filters.is-folded) .top__nav, .top:has(.filters.is-folded) .top__selgrp { opacity: 1; pointer-events: auto; }
+}
+@media (min-width: 1301px) and (max-width: 1499px) { .top.in-sel .top__selgrp { grid-column: 1 / -1; grid-row: 2; } .top.in-sel { row-gap: 10px; } }
+@media (min-width: 901px) and (max-width: 1300px) {
+  .top { grid-template-columns: auto auto 1fr auto; row-gap: 10px; padding: 10px var(--pad); }
+  .top .top__selgrp { grid-column: 3; grid-row: 1; justify-self: start; }
+  .top .topcats { grid-column: 1 / -1; grid-row: 2; }
+  .top__nav { grid-column: 4; grid-row: 1; }
+  .top.in-sel .top__selgrp { grid-column: 1 / -1; grid-row: 2; }
+  .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 3; }
+}
+@media (max-width: 900px) {
+  .top { grid-template-columns: auto 1fr; }
+  .top .topcats { grid-column: 1; grid-row: 2; }
+  .top .top__selgrp { grid-column: 2; grid-row: 2; justify-self: end; }
+  .top .top__selgrp:has(.likehint:not([hidden])) { grid-column: 1 / -1; grid-row: 3; justify-self: start; }
+  .top.in-sel .top__selgrp { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+  .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 3; }
+  .top .likehint { white-space: normal; }
+}
