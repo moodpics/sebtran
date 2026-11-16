@@ -669,3 +669,12 @@ html, body { overflow-x: clip; max-width: 100%; }
 @media (max-width: 560px) { .top__selname { max-width: 14ch; } }
 .top { padding-top: 9px; padding-bottom: 9px; }
 @media (max-width: 1300px) { .top { padding-top: 8px; padding-bottom: 8px; row-gap: 8px; } }
+/* v8: switch labels in their mode colours — Cinematographer yellow, Director red */
+.switch__btn[data-mode="cinematography"] { color: #e0a35c; }
+.switch__btn[data-mode="direction"] { color: #e5483a; }
+.switch__btn { opacity: .62; }
+.switch__btn.is-active { opacity: 1; }
+.switch__btn[data-mode="cinematography"].is-active { color: #e0a35c; }
+.switch__btn[data-mode="direction"].is-active { color: #e5483a; }
+.switch__btn:not(.is-active):hover { opacity: 1; }
+.switch__pill { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px var(--accent); }
