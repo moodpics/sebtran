@@ -632,9 +632,9 @@
   clearBtn.addEventListener("click", () => {
     if (!clearBtn.classList.contains("is-confirm")) {
       clearBtn.classList.add("is-confirm"); clearLbl.textContent = "Sure? Tap again";
-      clearT = setTimeout(() => { clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear hearts"; }, 3000); return;
+      clearT = setTimeout(() => { clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear"; }, 3000); return;
     }
-    clearTimeout(clearT); clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear hearts";
+    clearTimeout(clearT); clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear";
     favs = []; saveFavs(); buildSelection(); renderFilters(); renderWork(); setWorkTitle(); updateFavUI();
     toast("Selection cleared");
   });
