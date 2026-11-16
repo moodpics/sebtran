@@ -197,7 +197,7 @@
     $$("[data-fav]").forEach(e => e.classList.toggle("is-on", isFav(e.dataset.fav)));
     const lbFav = $('[data-lb="fav"]'); if (lbFav && lbList[lbIdx]) lbFav.classList.toggle("is-on", isFav(lbList[lbIdx].id));
     const bar = $("[data-selbar]");
-    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; $("[data-sel-clear]").hidden = !!sharedSel || !favs.length; }
+    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; $("[data-sel-clear]").hidden = !!sharedSel || !favs.length; $("[data-titletools]").hidden = state.mode !== "selection"; }
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
     updateHint();
   }
@@ -628,13 +628,13 @@
   $$("[data-sel-rename], [data-sel-save], [data-sel-close]").forEach(b => b.addEventListener("click", closeShare));
   $$("[data-share]").forEach(l => l.addEventListener("click", () => setTimeout(closeShare, 200)));
   /* ---- Clear hearts (two taps, to avoid wiping a selection by accident) ---- */
-  const clearBtn = $("[data-sel-clear]"); let clearT;
+  const clearBtn = $("[data-sel-clear]"), clearLbl = $("[data-clear-label]"); let clearT;
   clearBtn.addEventListener("click", () => {
     if (!clearBtn.classList.contains("is-confirm")) {
-      clearBtn.classList.add("is-confirm"); clearBtn.textContent = "Sure? Tap again";
-      clearT = setTimeout(() => { clearBtn.classList.remove("is-confirm"); clearBtn.textContent = "Clear hearts"; }, 3000); return;
+      clearBtn.classList.add("is-confirm"); clearLbl.textContent = "Sure? Tap again";
+      clearT = setTimeout(() => { clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear hearts"; }, 3000); return;
     }
-    clearTimeout(clearT); clearBtn.classList.remove("is-confirm"); clearBtn.textContent = "Clear hearts";
+    clearTimeout(clearT); clearBtn.classList.remove("is-confirm"); clearLbl.textContent = "Clear hearts";
     favs = []; saveFavs(); buildSelection(); renderFilters(); renderWork(); setWorkTitle(); updateFavUI();
     toast("Selection cleared");
   });
