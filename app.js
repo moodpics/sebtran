@@ -251,9 +251,9 @@
     sizeFlyout();
   }
   function sizeFlyout() {
-    // Flyout drops under the toolbar and slides sideways; anchor it to whichever side has room
-    const t = filtersEl.parentElement.getBoundingClientRect();
-    filtersEl.classList.toggle("fly-left", t.left < innerWidth * 0.4);
+    // the category flyout opens sideways in the header band; cap its width to what is left on screen
+    const r = filtersEl.getBoundingClientRect();
+    filtersEl.style.setProperty("--avail", Math.max(220, innerWidth - 24 - r.right) + "px");
   }
   filtersEl.addEventListener("pointerenter", sizeFlyout);
   addEventListener("resize", sizeFlyout);
@@ -652,13 +652,17 @@
   $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
     e.preventDefault();
     const t = document.getElementById(a.dataset.scroll);
-    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - 20, behavior: reduced ? "auto" : "smooth" });
+    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - ($(".top").offsetHeight + 12), behavior: reduced ? "auto" : "smooth" });
   }));
   $(".top__name").addEventListener("click", e => {
     if (state.mode !== "selection") return;
     e.stopImmediatePropagation(); e.preventDefault();
     sharedSel = null; sharedName = ""; setMode(lastMode || CONFIG.defaultMode);
   }, true);
+  /* header band height -> CSS var (hero offset, scroll offsets) */
+  const topEl = $(".top"), setTopH = () => document.documentElement.style.setProperty("--topH", topEl.offsetHeight + "px");
+  setTopH(); addEventListener("resize", setTopH); addEventListener("load", setTopH);
+  if (window.ResizeObserver) new ResizeObserver(setTopH).observe(topEl);
   const mq = $("[data-marquee]");
   mq.innerHTML = [...CONFIG.clients, ...CONFIG.clients].map(c => `<span>${esc(c)}</span>`).join("");
   const mail = $("[data-mail]");
