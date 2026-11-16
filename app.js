@@ -235,13 +235,15 @@
     const cats = ["All", ...new Set(all.map(f => f.category))];
     filtersEl.innerHTML = cats.map(c => {
       const n = c === "All" ? all.length : all.filter(f => f.category === c).length;
-      return `<button class="chip${c === state.filter ? " is-active" : ""}" data-filter="${esc(c)}">${esc(c)}<sup>${n}</sup></button>`;
+      return `<button class="chip${c === state.filter ? " is-active" : ""}${c !== "All" ? " chip--sub" : ""}" data-filter="${esc(c)}"${c === "All" ? ' aria-haspopup="true"' : ""}>${esc(c)}<sup>${n}</sup></button>`;
     }).join("");
   }
   filtersEl.addEventListener("click", e => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
+    if (b.dataset.filter === "All") filtersEl.classList.toggle("is-open", state.filter !== "All" || !filtersEl.classList.contains("is-open"));
     state.filter = b.dataset.filter; renderFilters(); renderWork();
   });
+  document.addEventListener("click", e => { if (!e.target.closest("[data-filters]")) filtersEl.classList.remove("is-open"); });
 
   $$("[data-view]").forEach(b => b.addEventListener("click", () => {
     state.view = b.dataset.view;
