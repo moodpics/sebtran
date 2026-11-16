@@ -16,7 +16,7 @@
         role: "Your selection",
         workTitle: "Selected Films",
         hud: "SELECT · ♥ · 25 FPS",
-        about: "A personal *selection* of films by Seb Trân — cinematography and direction. Copy the link to *share* it or come back to it later."
+        about: "A personal *selection* of films by Seb Trân — cinematography and direction. Use Share to send it, or come back to it later."
       },
       cinematography: {
         role: "Cinematographer",
@@ -194,7 +194,7 @@
     $$("[data-fav]").forEach(e => e.classList.toggle("is-on", isFav(e.dataset.fav)));
     const lbFav = $('[data-lb="fav"]'); if (lbFav && lbList[lbIdx]) lbFav.classList.toggle("is-on", isFav(lbList[lbIdx].id));
     const bar = $("[data-selbar]");
-    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; }
+    if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; $("[data-sel-clear]").hidden = !!sharedSel || !favs.length; }
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
     updateHint();
   }
@@ -623,6 +623,17 @@
     shareApps.hidden = !shareApps.hidden;
   });
   $$("[data-share]").forEach(l => l.addEventListener("click", () => setTimeout(closeShare, 200)));
+  /* ---- Clear hearts (two taps, to avoid wiping a selection by accident) ---- */
+  const clearBtn = $("[data-sel-clear]"); let clearT;
+  clearBtn.addEventListener("click", () => {
+    if (!clearBtn.classList.contains("is-confirm")) {
+      clearBtn.classList.add("is-confirm"); clearBtn.textContent = "Sure? Tap again";
+      clearT = setTimeout(() => { clearBtn.classList.remove("is-confirm"); clearBtn.textContent = "Clear hearts"; }, 3000); return;
+    }
+    clearTimeout(clearT); clearBtn.classList.remove("is-confirm"); clearBtn.textContent = "Clear hearts";
+    favs = []; saveFavs(); buildSelection(); renderFilters(); renderWork(); setWorkTitle(); updateFavUI();
+    toast("Selection cleared");
+  });
   $("[data-sel-save]").addEventListener("click", () => {
     const ids = sharedSel || [], nm = sharedName;
     const doSave = () => { favs = [...new Set([...favs, ...ids])]; saveFavs(); sharedSel = null; sharedName = ""; history.replaceState(null, "", "#selection"); applyMode("selection"); };
