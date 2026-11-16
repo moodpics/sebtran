@@ -82,6 +82,7 @@
 
   /* ---------- Favorites (stored in this browser) ---------- */
   const FAV_KEY = "sebtran-selection";
+  let lastMode = null;
   let favs = [];
   try { favs = JSON.parse(localStorage.getItem(FAV_KEY) || "[]").filter(x => typeof x === "string"); } catch (e) { favs = []; }
   const NAME_KEY = "sebtran-selection-name";
@@ -533,7 +534,7 @@
   }
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
-    if (mode === "selection") buildSelection();
+    if (mode === "selection") buildSelection(); else lastMode = mode;
     state.mode = mode; state.filter = "All";
     document.body.classList.toggle("mode-direction", mode === "direction");
     $$(".switch__btn").forEach(b => { const on = b.dataset.mode === mode; b.classList.toggle("is-active", on); b.setAttribute("aria-selected", on); });
@@ -571,6 +572,7 @@
     if (!lb.hidden) closeLightbox();
     setMode("selection");
   });
+  $("[data-sel-close]").addEventListener("click", () => { sharedSel = null; sharedName = ""; setMode(lastMode || CONFIG.defaultMode); });
   $("[data-sel-rename]").addEventListener("click", () => askName(n => { favName = n; saveFavs(); updateFavUI(); $("[data-work-title]").textContent = favName; }, favName));
   $("[data-sel-copy]").addEventListener("click", async () => {
     const url = shareURL(), msg = $("[data-sel-msg]");

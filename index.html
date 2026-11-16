@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://f.vimeocdn.com">
   <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1794844574">
+  <link rel="stylesheet" href="style.css?v=1794845769">
 </head>
 <body class="is-loading">
 
@@ -108,6 +108,7 @@
         </div>
       </div>
       <div class="selbar mono" data-selbar hidden>
+        <button class="chip sel-close" data-sel-close>× Close selection</button>
         <button class="chip" data-sel-copy>Copy link to this selection</button>
         <button class="chip" data-sel-save hidden>Save to my selection</button>
         <button class="chip" data-sel-rename hidden>Rename</button>
@@ -151,6 +152,7 @@
   <!-- Lightbox -->
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Film player" hidden>
     <div class="lightbox__ghost"></div>
+    <button class="lb-x" data-lb="close" aria-label="Close player"><span>×</span> Close</button>
     <div class="lightbox__stage"><div class="lightbox__player"></div></div>
     <div class="lightbox__info">
       <div class="lightbox__meta">
@@ -168,7 +170,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794844574"></script>
-  <script src="app.js?v=1794844574"></script>
+  <script src="films.js?v=1794845769"></script>
+  <script src="app.js?v=1794845769"></script>
 </body>
 </html>
