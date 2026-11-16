@@ -261,7 +261,12 @@
       try {
         const vp = new Vimeo.Player(ifr);
         vp.ready().then(() => gauge(50)).catch(() => {});
-        vp.on("loaded", () => gauge(65));
+        vp.on("loaded", () => {
+          gauge(65);
+          // Vimeo gives no byte progress before the first frame: creep slowly toward 92 until playback starts
+          const t0 = performance.now(), creep = () => { if (gp >= 100 || activeCard !== card) return; gauge(65 + 27 * (1 - Math.exp(-(performance.now() - t0) / 1800))); requestAnimationFrame(creep); };
+          requestAnimationFrame(creep);
+        });
         vp.on("progress", d => gauge(65 + Math.min(1, (d.percent || 0) * 5) * 30));
         vp.on("bufferend", () => gauge(95));
       } catch (e) { /* ignore */ }
