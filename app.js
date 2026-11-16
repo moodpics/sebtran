@@ -566,7 +566,11 @@
   }
   const selRole = () => sharedSel ? "Shared selection" : "Your selection";
   const selTitle = () => sharedSel ? (sharedName || "Shared selection") : (favs.length ? (favName || "My films") : "Empty");
-  const setWorkTitle = () => { $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle; };
+  const setWorkTitle = () => {
+    $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle;
+    const nm = $("[data-sel-name]"); if (nm) nm.textContent = state.mode === "selection" ? selTitle() : "";
+    $(".top").classList.toggle("in-sel", state.mode === "selection");
+  };
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
     if (mode === "selection") buildSelection(); else lastMode = mode;

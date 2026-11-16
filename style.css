@@ -586,3 +586,38 @@ html, body { overflow-x: clip; max-width: 100%; }
   .top .filters:hover .filters__more { max-width: none; }
   .top .filters.is-folded .filters__more { display: none !important; }
 }
+
+/* ===== v5: selection tools live in the header band ===== */
+.top__selgrp { grid-column: 3; grid-row: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.top__sel { grid-column: auto !important; grid-row: auto !important; justify-self: auto !important; padding: 8px 14px; border: 1px solid transparent; border-radius: 99px; white-space: nowrap; transition: background .3s, color .3s; }
+.top__selname { display: none; }
+.top.in-sel .top__sel { background: var(--fg); color: #000; border-color: var(--fg); }
+.top.in-sel .top__sel sup { color: #000; }
+.top.in-sel .top__selname { display: inline; text-transform: none; letter-spacing: .01em; font-weight: 600; max-width: 22ch; overflow: hidden; text-overflow: ellipsis; }
+.top.in-sel .top__selname::before { content: "·"; margin: 0 8px; opacity: .55; }
+.top .titletools { padding: 0; flex-wrap: nowrap; }
+.top .selbar { flex-basis: auto; flex-wrap: nowrap; justify-content: flex-start; }
+.top .selbtn { height: 32px; padding: 0 14px; font-size: 11px; white-space: nowrap; }
+.top .selbar__msg:empty { display: none; }
+.top .sharemenu__pop { right: auto; left: 0; }
+.top.in-sel .top__nav { display: none; }
+.top.in-sel .top__seltxt { display: inline !important; }
+/* selection mode: tools in row 1 on wide screens, otherwise their own row */
+@media (max-width: 1300px) {
+  .top.in-sel .top__selgrp { grid-column: 1 / -1; grid-row: 2; flex-wrap: wrap; }
+  .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 3; }
+}
+@media (max-width: 1470px) and (min-width: 1301px) {
+  .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (max-width: 900px) {
+  .top__selgrp { grid-column: 3; grid-row: 2; justify-self: end; }
+  .top.in-sel .top__selgrp { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+  .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 3; }
+}
+@media (max-width: 560px) {
+  .top.in-sel .top__selgrp { gap: 6px; }
+  .top.in-sel .top__sel { flex-basis: 100%; }
+  .top .tt-btn, .top .selbtn { height: 28px; padding: 0 10px; font-size: 10px; gap: 6px; }
+  .top .tt-btn svg { width: 12px; height: 12px; }
+}

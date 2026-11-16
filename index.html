@@ -64,7 +64,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=1794865367">
+  <link rel="stylesheet" href="style.css?v=1794865888">
 </head>
 <body class="is-loading">
 
@@ -102,7 +102,31 @@
       <span class="switch__pill" aria-hidden="true"></span>
     </div>
 
-    <a class="top__sel" href="#selection" data-sel-open aria-label="Your selection"><svg class="top__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg><span class="top__seltxt">Your selection</span> <sup data-fav-count>0</sup></a>
+    <div class="top__selgrp">
+      <a class="top__sel" href="#selection" data-sel-open aria-label="Your selection"><svg class="top__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg><span class="top__seltxt">Your selection</span><span class="top__selname" data-sel-name></span> <sup data-fav-count>0</sup></a>
+      <div class="titletools" data-titletools hidden>
+            <button type="button" class="tt-btn" data-sel-rename hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4.2-1 10-10a2.1 2.1 0 000-3l-.2-.2a2.1 2.1 0 00-3 0l-10 10L4 20z"/></svg>Rename</button>
+            <button type="button" class="tt-btn" data-sel-clear hidden><span data-clear-label>Clear</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/><path d="M9 9.5l6 6M15 9.5l-6 6"/></svg></button>
+          </div>
+      <div class="selbar" data-selbar hidden>
+            <div class="sharemenu" data-sharemenu>
+              <button class="selbtn" data-share-toggle aria-haspopup="true" aria-expanded="false">Share your selection ▾</button>
+              <div class="sharemenu__pop" data-share-pop hidden>
+                <button type="button" data-sel-copy>Copy link</button>
+                <button type="button" data-share-native>Send via…</button>
+                <div class="sharemenu__apps" data-share-apps hidden>
+                  <a data-share="wa" target="_blank" rel="noopener">WhatsApp</a>
+                  <a data-share="mail">Email</a>
+                  <a data-share="sms">SMS</a>
+                </div>
+                <hr class="sharemenu__sep">
+                <button type="button" data-sel-save hidden>Save to my selection</button>
+                <button type="button" data-sel-close>Close selection</button>
+              </div>
+            </div>
+            <span class="selbar__msg mono" data-sel-msg></span>
+          </div>
+    </div>
 
     <div class="topcats">
       <div class="filters" data-filters></div>
@@ -151,30 +175,8 @@
       <div class="work__head">
         <div class="work__titlewrap">
           <h2 class="work__title"><span data-work-title>Selected Cinematography</span> <sup class="mono" data-count></sup></h2>
-          <div class="titletools" data-titletools hidden>
-            <button type="button" class="tt-btn" data-sel-rename hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4.2-1 10-10a2.1 2.1 0 000-3l-.2-.2a2.1 2.1 0 00-3 0l-10 10L4 20z"/></svg>Rename</button>
-            <button type="button" class="tt-btn" data-sel-clear hidden><span data-clear-label>Clear</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/><path d="M9 9.5l6 6M15 9.5l-6 6"/></svg></button>
-          </div>
         </div>
         <div class="work__tools">
-          <div class="selbar" data-selbar hidden>
-            <div class="sharemenu" data-sharemenu>
-              <button class="selbtn" data-share-toggle aria-haspopup="true" aria-expanded="false">Share your selection ▾</button>
-              <div class="sharemenu__pop" data-share-pop hidden>
-                <button type="button" data-sel-copy>Copy link</button>
-                <button type="button" data-share-native>Send via…</button>
-                <div class="sharemenu__apps" data-share-apps hidden>
-                  <a data-share="wa" target="_blank" rel="noopener">WhatsApp</a>
-                  <a data-share="mail">Email</a>
-                  <a data-share="sms">SMS</a>
-                </div>
-                <hr class="sharemenu__sep">
-                <button type="button" data-sel-save hidden>Save to my selection</button>
-                <button type="button" data-sel-close>Close selection</button>
-              </div>
-            </div>
-            <span class="selbar__msg mono" data-sel-msg></span>
-          </div>
           <div class="views">
             <span class="likehint" data-likehint role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>Like any film to get your selection to share.</span>
           </div>
@@ -296,6 +298,6 @@
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="films.js?v=1794863447"></script>
-  <script src="app.js?v=1794865367"></script>
+  <script src="app.js?v=1794865888"></script>
 </body>
 </html>
