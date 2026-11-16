@@ -326,7 +326,7 @@ window.FILMS = {
       "client": "Prada",
       "title": "Paradoxe Sweet Chemistry — Zendaya",
       "category": "Beauty",
-      "director": null,
+      "director": "Seb Trân",
       "production": "Phantasm",
       "year": null,
       "duration": 6,

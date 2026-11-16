@@ -111,10 +111,10 @@ body.is-settled .bars i { transition: none; }
 .top__nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
 .top__nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 
-.switch { position: relative; display: flex; padding: 4px; border: 1px solid rgba(255,255,255,.45); border-radius: 99px; animation: switchCall 2.4s var(--ease) .8s 2; }
-.switch__btn { position: relative; z-index: 1; padding: 11px 20px; border-radius: 99px; opacity: .75; font-size: 13px; transition: opacity .4s, color .4s; }
+.switch { position: relative; display: flex; padding: 5px; border: 1px solid rgba(255,255,255,.7); border-radius: 99px; background: rgba(255,255,255,.06); animation: switchCall 2.4s var(--ease) .8s 3; }
+.switch__btn { position: relative; z-index: 1; padding: 13px 26px; border-radius: 99px; opacity: .85; font-size: 14px; letter-spacing: .08em; font-weight: 500; transition: opacity .4s, color .4s; }
 .switch__btn:not(.is-active):hover { opacity: 1; }
-@keyframes switchCall { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } 40% { box-shadow: 0 0 0 6px rgba(255,255,255,.18); } }
+@keyframes switchCall { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } 40% { box-shadow: 0 0 0 10px rgba(255,255,255,.28); } }
 .switch__btn.is-active { opacity: 1; color: #000; }
 .switch__pill { position: absolute; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 99px; background: #fff; transition: transform .6s var(--ease), width .6s var(--ease); }
 
@@ -200,10 +200,13 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .card__frame .cover { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease); }
 .card.is-playing .cover { opacity: 1; }
 /* Preview loading: thin sweeping line + "Loading" tag so visitors wait a beat */
-.card__frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; z-index: 4; background: linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent); background-size: 40% 100%; background-repeat: no-repeat; opacity: 0; transition: opacity .3s; pointer-events: none; }
+.card__frame::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 4; background: linear-gradient(90deg, transparent, #fff, transparent); background-size: 40% 100%; background-repeat: no-repeat; opacity: 0; transition: opacity .3s; pointer-events: none; }
 .card.is-loading .card__frame::after { opacity: 1; animation: loadSweep 1s linear infinite; }
 @keyframes loadSweep { from { background-position: -40% 0; } to { background-position: 140% 0; } }
-.card.is-loading .card__live { opacity: .8; }
+.card.is-loading .card__live { opacity: 1; }
+.card__frame::before { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; z-index: 4; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); border-top-color: #fff; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.card.is-loading .card__frame::before { opacity: 1; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .card.is-loading .card__live::before { background: #fff; animation: blink .5s steps(1) infinite; }
 .card__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), transparent 35%); opacity: .85; transition: opacity .6s; pointer-events: none; }
 .card__meta { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 12px; pointer-events: none; }
