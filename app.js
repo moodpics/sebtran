@@ -13,7 +13,7 @@
       "Clarins", "Helena Rubinstein", "Paco Rabanne", "KITH", "Nowness", "La Roche-Posay", "Biotherm"],
     modes: {
       selection: {
-        role: "Selection",
+        role: "Your selection",
         workTitle: "Selected Films",
         hud: "SELECT · ♥ · 25 FPS",
         about: "A personal *selection* of films by Seb Trân — cinematography and direction. Copy the link to *share* it or come back to it later."
@@ -219,7 +219,7 @@
     saveFavs(); updateFavUI();
     const f = allFilms().get(id);
     toast(`${adding ? "Added to" : "Removed from"} <em>${esc(favName)}</em>${f ? " — " + esc(f.client) : ""} <button data-sel-open-toast>View</button>`);
-    if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); }
+    if (state.mode === "selection" && !sharedSel) { buildSelection(); renderFilters(); renderWork(); $("[data-role]").textContent = selRole(); }
   }
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-fav]"); if (!b) return;
@@ -532,7 +532,7 @@
     pill.style.width = a.offsetWidth + "px";
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
   }
-  const selRole = () => `Selection — ${sharedSel ? (sharedName || "shared") : (favName || "my films")}`;
+  const selRole = () => sharedSel ? `Selection — ${sharedName || "shared"}` : (favs.length ? `Your selection — ${favName}` : "Your selection — empty");
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
     if (mode === "selection") buildSelection(); else lastMode = mode;
