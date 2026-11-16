@@ -526,3 +526,29 @@ html, body { overflow-x: clip; max-width: 100%; }
 @media (max-width: 900px) { .top .filters { grid-column: 1 / 3; } .top__sel { grid-column: 3; grid-row: 2; justify-self: end; } }
 @media (max-width: 560px) { .top { grid-template-columns: auto 1fr auto; } .top__sel { display: inline-flex; grid-column: 3; grid-row: 2; font-size: 10px; } .top .filters { grid-column: 1 / 3; } }
 .top__name{white-space:nowrap}
+
+/* ===== v3: black borderless band, Grid/Index in band, heart on Your selection, fold on click ===== */
+.top { background: #000; border-bottom: 0; grid-template-columns: auto auto auto 1fr auto auto; }
+.top .filters { grid-column: 4; }
+.topviews { grid-column: 5; grid-row: 1; display: flex; gap: 6px; justify-self: end; }
+.top__nav { grid-column: 6; }
+.top .filters__more { background: #000; }
+.top__sel { display: inline-flex; align-items: center; gap: 8px; }
+.top__heart { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; flex: none; }
+.top .filters.is-folded .filters__more { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+@media (max-width: 1000px) { .top { grid-template-columns: auto auto auto 1fr auto; } .topviews { grid-column: 5; } }
+@media (max-width: 900px) {
+  .top { grid-template-columns: auto auto 1fr; }
+  .top .filters { grid-column: 1 / 2; grid-row: 2; }
+  .topviews { grid-column: 2; grid-row: 2; justify-self: start; }
+  .top__sel { grid-column: 3; grid-row: 2; justify-self: end; }
+  .top .filters__more { border-bottom: 0; background: #000; }
+}
+@media (max-width: 560px) { .top { grid-template-columns: auto 1fr auto; } .topviews .views__btn { padding: 7px 10px; font-size: 10px; } }
+.top .filters{justify-self:start}
+.top:has(.filters:hover .filters__more) .topviews, .top:has(.filters:hover .filters__more) .top__nav,
+.top:has(.filters.is-open) .topviews, .top:has(.filters.is-open) .top__nav { opacity: 0; pointer-events: none; }
+.topviews, .top__nav { transition: opacity .25s; }
+.top:has(.filters.is-folded) .topviews, .top:has(.filters.is-folded) .top__nav { opacity: 1; pointer-events: auto; }
+@media (max-width: 560px) { .top__seltxt { display: none; } .top__heart { width: 16px; height: 16px; } }
+@media (max-width: 900px) { .top:has(.filters.is-open) .topviews, .top:has(.filters.is-open) .top__nav { opacity: 1; pointer-events: auto; } }

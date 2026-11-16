@@ -256,10 +256,19 @@
     filtersEl.style.setProperty("--avail", Math.max(220, innerWidth - 24 - r.right) + "px");
   }
   filtersEl.addEventListener("pointerenter", sizeFlyout);
+  filtersEl.addEventListener("pointerover", e => { const b = e.target.closest("[data-filter]"); if (b && b.dataset.filter === "All") filtersEl.classList.remove("is-folded"); });
+  filtersEl.addEventListener("pointerleave", () => filtersEl.classList.remove("is-folded"));
   addEventListener("resize", sizeFlyout);
   filtersEl.addEventListener("click", e => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
-    if (b.dataset.filter === "All") filtersEl.classList.toggle("is-open", state.filter !== "All" || !filtersEl.classList.contains("is-open"));
+    const touch = !matchMedia("(hover: hover)").matches;
+    if (b.dataset.filter === "All") {
+      // desktop: clicking All folds the other categories away (hover re-opens them); touch: tap toggles them
+      const wasOpen = filtersEl.classList.contains("is-open");
+      filtersEl.classList.remove("is-open");
+      if (touch && state.filter === "All" && !wasOpen) filtersEl.classList.add("is-open");
+      else filtersEl.classList.add("is-folded");
+    } else { filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded"); }
     state.filter = b.dataset.filter; renderFilters(); renderWork();
   });
   document.addEventListener("click", e => { if (!e.composedPath().includes(filtersEl)) filtersEl.classList.remove("is-open"); });
