@@ -250,19 +250,19 @@
     if (cover.firstChild) return;
     const ifr = makeIframe(vimeo(f, bgParams("360p")), f.client);
     const tag = $(".card__live", card); tag.textContent = "Loading";
-    card.classList.add("is-loading");
+    card.classList.add("is-loading"); cursor.classList.add("is-loading");
     cover.appendChild(ifr);
-    onPlay(ifr, () => { card.classList.remove("is-loading"); card.classList.add("is-playing"); tag.textContent = "Preview"; });
+    onPlay(ifr, () => { card.classList.remove("is-loading"); cursor.classList.remove("is-loading"); card.classList.add("is-playing"); tag.textContent = "Preview"; });
     trimLoop(ifr, f);
   }
   function stopPreview(card) {
     if (!card) return;
-    card.classList.remove("is-playing", "is-loading");
+    card.classList.remove("is-playing", "is-loading"); cursor.classList.remove("is-loading");
     const cover = $(".cover", card);
     setTimeout(() => { if (!card.classList.contains("is-hover") && !card.classList.contains("is-auto")) cover.innerHTML = ""; }, 600);
   }
   function stopAllPreviews() {
-    $$(".card").forEach(c => { c.classList.remove("is-playing", "is-loading", "is-hover", "is-auto"); const cv = $(".cover", c); if (cv) cv.innerHTML = ""; });
+    $$(".card").forEach(c => { c.classList.remove("is-playing", "is-loading", "is-hover", "is-auto"); cursor.classList.remove("is-loading"); const cv = $(".cover", c); if (cv) cv.innerHTML = ""; });
     grid.classList.remove("has-hover"); activeCard = null;
     hideFloat();
   }

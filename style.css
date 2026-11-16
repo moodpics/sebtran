@@ -95,6 +95,9 @@ body.is-settled .bars i { transition: none; }
 .cursor.is-play .cursor__label { opacity: 1; }
 .cursor.is-link .cursor__ring { width: 54px; height: 54px; }
 .cursor.is-hidden { opacity: 0; }
+/* Buffering: a rotating arc around the cursor ring while a hover preview loads */
+.cursor__ring::after { content: ""; position: absolute; inset: -9px; border-radius: 50%; border: 2px solid transparent; border-top-color: #fff; border-right-color: rgba(255,255,255,.35); opacity: 0; transition: opacity .25s; }
+.cursor.is-loading .cursor__ring::after { opacity: 1; animation: spin .8s linear infinite; }
 @media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
 /* ---------- Header ---------- */
@@ -204,8 +207,6 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .card.is-loading .card__frame::after { opacity: 1; animation: loadSweep 1s linear infinite; }
 @keyframes loadSweep { from { background-position: -40% 0; } to { background-position: 140% 0; } }
 .card.is-loading .card__live { opacity: 1; }
-.card__frame::before { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; z-index: 4; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); border-top-color: #fff; opacity: 0; transition: opacity .25s; pointer-events: none; }
-.card.is-loading .card__frame::before { opacity: 1; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .card.is-loading .card__live::before { background: #fff; animation: blink .5s steps(1) infinite; }
 .card__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.5), transparent 35%); opacity: .85; transition: opacity .6s; pointer-events: none; }
