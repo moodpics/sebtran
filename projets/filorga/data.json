@@ -1,7 +1,17 @@
 {
  "v": 1,
- "updated": "2026-11-15T02:50:49.000Z",
+ "updated": "2026-11-16T09:53:43.000Z",
  "log": [
+  {
+   "at": "2026-11-16T09:53:43.000Z",
+   "src": "Effet battery loading",
+   "d": [
+    "lum",
+    "mach"
+   ],
+   "kind": "ajout",
+   "text": "4 images de la déco : coffrage et sol (plateau 4,56 m × 2,03 m, 18 Astera)"
+  },
   {
    "at": "2026-11-14T22:46:00.000Z",
    "src": "Effet filé",
@@ -477,13 +487,13 @@
    "known": [
     {
      "t": "Effet « battery loading » au sol : une vingtaine d'Astera Hyperion",
-     "sub": "Sol surélevé sur plexi frosté (collaboration lumière / déco).",
+     "sub": "Sol surélevé sur plexi frosté (collaboration lumière / déco). Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm.",
      "w": 0,
      "g": "spec",
      "c": [
       "regen"
      ],
-     "go": "ref:lum:0",
+     "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4",
      "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
      "sol": [
       "2 m de large sur 6 m de profondeur (proposition du chef op)",
@@ -558,6 +568,22 @@
      "cap": "Un effet de \"battery loading\" au sol, un chargement de batterie à pouvoir faire évoluer.",
      "link": "",
      "linkText": ""
+    },
+    {
+     "src": "refs/deco-sol-plan.jpg",
+     "cap": "Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera sous le plexi, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm."
+    },
+    {
+     "src": "refs/deco-sol-coffrage.jpg",
+     "cap": "Le coffrage : structure bois avec les tubes Astera glissés entre les chevrons, plateau dessus."
+    },
+    {
+     "src": "refs/deco-sol-dessus.jpg",
+     "cap": "Le sol vu de dessus, plateau fini."
+    },
+    {
+     "src": "refs/deco-sol-raies.jpg",
+     "cap": "Vue de dessus : les 18 raies lumière."
     }
    ],
    "notes": "",
@@ -613,13 +639,13 @@
     },
     {
      "t": "Effet « battery loading » au sol : sol surélevé en plexi frosté, Astera Hyperion (collaboration lumière / déco)",
-     "sub": "",
+     "sub": "Coffrage et sol : voir les plans déco (plateau 4,56 m × 2,03 m, hauteur 186 mm).",
      "w": 0,
      "g": "rig",
      "c": [
       "regen"
      ],
-     "go": "ref:lum:0"
+     "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
     },
     {
      "t": "Film UV : fond gris étale (incrust post-prod)",
