@@ -552,3 +552,37 @@ html, body { overflow-x: clip; max-width: 100%; }
 .top:has(.filters.is-folded) .topviews, .top:has(.filters.is-folded) .top__nav { opacity: 1; pointer-events: auto; }
 @media (max-width: 560px) { .top__seltxt { display: none; } .top__heart { width: 16px; height: 16px; } }
 @media (max-width: 900px) { .top:has(.filters.is-open) .topviews, .top:has(.filters.is-open) .top__nav { opacity: 1; pointer-events: auto; } }
+
+/* ===== v4: Grid/Index glued to "All"; the categories open in-flow and push them right ===== */
+.top { grid-template-columns: auto auto auto 1fr auto; }
+.topcats { grid-column: 4; grid-row: 1; display: flex; align-items: center; gap: 6px; justify-self: start; min-width: 0; }
+.top .filters { grid-column: auto; grid-row: auto; justify-self: auto; position: static; flex-wrap: nowrap; }
+.topviews { grid-column: auto; grid-row: auto; justify-self: auto; margin-left: 10px; }
+.top__nav { grid-column: 5; }
+.top .filters__more { position: static; display: flex; flex-wrap: nowrap; width: auto; max-width: 0; padding: 0; overflow: hidden; background: transparent; transform: none; opacity: 0; visibility: hidden; pointer-events: none; transition: max-width .5s var(--ease), opacity .3s, visibility 0s .5s; }
+.top .filters__more > .chip { flex: none; margin-left: 6px; }
+.top .filters.is-open .filters__more, .top .filters:has(:focus-visible) .filters__more { max-width: 900px; opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+@media (hover: hover) and (min-width: 1001px) { .top .filters:hover .filters__more { max-width: 900px; opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; } }
+.top .filters.is-folded .filters__more { max-width: 0 !important; opacity: 0 !important; visibility: hidden !important; }
+.top:has(.filters:hover .filters__more) .topviews, .top:has(.filters.is-open) .topviews { opacity: 1; pointer-events: auto; }
+.top:has(.filters:hover .filters__more) .top__nav, .top:has(.filters.is-open) .top__nav { opacity: 0; pointer-events: none; }
+.top:has(.filters.is-folded) .top__nav { opacity: 1; pointer-events: auto; }
+@media (max-width: 1000px) { .top { grid-template-columns: auto auto auto 1fr; } }
+/* narrower than this the open flyout would collide with the right edge: put the row under the brand row */
+@media (max-width: 1390px) {
+  .top { grid-template-columns: auto auto auto 1fr; row-gap: 10px; padding: 10px var(--pad); }
+  .topcats { grid-column: 1 / -1; grid-row: 2; }
+  .top__nav { grid-column: 4; }
+  .top:has(.filters:hover .filters__more) .top__nav, .top:has(.filters.is-open) .top__nav { opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 900px) {
+  .top { grid-template-columns: auto auto 1fr; }
+  .topcats { grid-column: 1 / 3; grid-row: 2; position: static; }
+  .top__sel { grid-column: 3; grid-row: 2; justify-self: end; }
+  /* touch/narrow: the categories drop under the band instead of pushing */
+  .top .filters__more { position: absolute; left: 0; right: 0; top: 100%; max-width: none; display: none; flex-wrap: wrap; gap: 6px; padding: 10px var(--pad) 14px; background: #000; overflow: visible; opacity: 1; visibility: visible; pointer-events: auto; }
+  .top .filters__more > .chip { margin-left: 0; }
+  .top .filters.is-open .filters__more { display: flex; max-width: none; }
+  .top .filters:hover .filters__more { max-width: none; }
+  .top .filters.is-folded .filters__more { display: none !important; }
+}
