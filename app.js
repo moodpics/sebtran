@@ -199,6 +199,7 @@
     const bar = $("[data-selbar]");
     if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName || !favs.length; $("[data-sharemenu]").hidden = !sharedSel && !favs.length; $("[data-sel-clear]").hidden = !!sharedSel || !favs.length; $("[data-titletools]").hidden = state.mode !== "selection"; }
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
+    updateSelName();
     updateHint();
   }
   /* ---- "Like any film" invitation: shown whenever nothing is liked, never on the selection page ---- */
@@ -565,10 +566,15 @@
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
   }
   const selRole = () => sharedSel ? "Shared selection" : "Your selection";
+  /* the name of the selection stays visible in the header tab on every page */
+  function updateSelName() {
+    const nm = $("[data-sel-name]"); if (!nm) return;
+    nm.textContent = state.mode === "selection" ? selTitle() : (favs.length && favName ? favName : "");
+  }
   const selTitle = () => sharedSel ? (sharedName || "Shared selection") : (favs.length ? (favName || "My films") : "Empty");
   const setWorkTitle = () => {
     $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle;
-    const nm = $("[data-sel-name]"); if (nm) nm.textContent = state.mode === "selection" ? selTitle() : "";
+    updateSelName();
     $(".top").classList.toggle("in-sel", state.mode === "selection");
   };
   function applyMode(mode) {
