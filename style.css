@@ -653,3 +653,12 @@ html, body { overflow-x: clip; max-width: 100%; }
   .top.in-sel .topcats { grid-column: 1 / -1; grid-row: 3; }
   .top .likehint { white-space: normal; }
 }
+/* v7: counter sits inside the heart */
+.top__heartwrap { position: relative; display: inline-grid; place-items: center; width: 26px; height: 24px; flex: none; }
+.top__heartwrap .top__heart { grid-area: 1 / 1; width: 26px; height: 24px; stroke-width: 1.5; }
+.top__heartwrap b { grid-area: 1 / 1; margin-top: -1px; font: 600 10px/1 var(--sans); letter-spacing: 0; color: inherit; }
+.top.in-sel .top__sel .top__heartwrap b { color: #000; }
+@media (max-width: 560px) { .top__heartwrap .top__heart { width: 30px; height: 28px; } .top__heartwrap { width: 30px; height: 28px; } }
+.top__heartwrap { width: 30px; height: 28px; }
+.top__heartwrap .top__heart { width: 30px; height: 28px; stroke-width: 1.4; }
+.top__heartwrap b { margin-top: 1px; font: 700 11px/1 var(--sans); color: var(--fg); }
