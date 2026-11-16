@@ -569,7 +569,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 .top:has(.filters.is-folded) .top__nav { opacity: 1; pointer-events: auto; }
 @media (max-width: 1000px) { .top { grid-template-columns: auto auto auto 1fr; } }
 /* narrower than this the open flyout would collide with the right edge: put the row under the brand row */
-@media (max-width: 1390px) {
+@media (max-width: 1470px) {
   .top { grid-template-columns: auto auto auto 1fr; row-gap: 10px; padding: 10px var(--pad); }
   .topcats { grid-column: 1 / -1; grid-row: 2; }
   .top__nav { grid-column: 4; }
