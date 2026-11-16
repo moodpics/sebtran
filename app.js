@@ -569,6 +569,7 @@
   /* the name of the selection stays visible in the header tab on every page */
   function updateSelName() {
     const nm = $("[data-sel-name]"); if (!nm) return;
+    const lb = $("[data-sel-label]"); if (lb) lb.textContent = sharedSel ? "Selection" : "Your selection";
     nm.textContent = state.mode === "selection" ? selTitle() : (favs.length && favName ? favName : "");
   }
   const selTitle = () => sharedSel ? (sharedName || "Shared selection") : (favs.length ? (favName || "My films") : "Empty");

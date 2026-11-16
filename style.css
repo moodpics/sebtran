@@ -684,3 +684,11 @@ html, body { overflow-x: clip; max-width: 100%; }
 .switch__btn[data-mode="direction"], .switch__btn[data-mode="direction"].is-active { color: rgba(229,72,58,.85); }
 .switch__btn { opacity: .6; }
 .switch__btn.is-active, .switch__btn:not(.is-active):hover { opacity: 1; }
+/* v10: 50% colours, 50% white highlight on Your selection */
+.switch__btn[data-mode="cinematography"], .switch__btn[data-mode="cinematography"].is-active { color: rgba(224,163,92,.5); }
+.switch__btn[data-mode="direction"], .switch__btn[data-mode="direction"].is-active { color: rgba(229,72,58,.5); }
+.switch__btn { opacity: 1; }
+.switch__btn.is-active, .switch__btn:not(.is-active):hover { opacity: 1; }
+.switch__btn:not(.is-active) { filter: brightness(.8); }
+.switch__btn:not(.is-active):hover { filter: none; }
+.top.in-sel .top__sel { background: rgba(235,232,226,.5); border-color: transparent; }
