@@ -196,7 +196,16 @@
     const bar = $("[data-selbar]");
     if (bar) { bar.hidden = state.mode !== "selection"; $("[data-sel-save]").hidden = !sharedSel; $("[data-sel-rename]").hidden = !!sharedSel || !favName; }
     $$("[data-fav-name]").forEach(e => e.textContent = favName || "Selection");
+    updateHint();
   }
+  /* ---- "Like any film" invitation ---- */
+  const HINT_KEY = "sebtran-hint-off";
+  let hintOff = false; try { hintOff = localStorage.getItem(HINT_KEY) === "1"; } catch (e) { /* storage off */ }
+  function updateHint() {
+    const el = $("[data-likehint]"); if (!el) return;
+    el.hidden = state.mode === "selection" || favs.length > 0 || hintOff;
+  }
+  $("[data-likehint-x]").addEventListener("click", () => { hintOff = true; try { localStorage.setItem(HINT_KEY, "1"); } catch (e) { /* storage off */ } updateHint(); });
   /* ---- Name-your-selection dialog + toast ---- */
   const dlg = $("[data-sel-dlg]"), dlgIn = $("[data-sel-dlg-input]");
   let dlgCb = null;
@@ -233,17 +242,28 @@
   function renderFilters() {
     const all = FILMS[state.mode];
     const cats = ["All", ...new Set(all.map(f => f.category))];
-    filtersEl.innerHTML = cats.map(c => {
+    const chip = (c, extra = "") => {
       const n = c === "All" ? all.length : all.filter(f => f.category === c).length;
-      return `<button class="chip${c === state.filter ? " is-active" : ""}${c !== "All" ? " chip--sub" : ""}" data-filter="${esc(c)}"${c === "All" ? ' aria-haspopup="true"' : ""}>${esc(c)}<sup>${n}</sup></button>`;
-    }).join("");
+      return `<button class="chip${c === state.filter ? " is-active" : ""}${extra}" data-filter="${esc(c)}">${esc(c)}<sup>${n}</sup></button>`;
+    };
+    // "All" stays in place; the other categories live in a flyout that overlays (no layout shift)
+    filtersEl.innerHTML = chip("All") + (state.filter !== "All" ? chip(state.filter) : "") +
+      `<div class="filters__more">${cats.slice(1).filter(c => c !== state.filter).map(c => chip(c)).join("")}</div>`;
+    sizeFlyout();
   }
+  function sizeFlyout() {
+    // Flyout drops under the toolbar and slides sideways; anchor it to whichever side has room
+    const t = filtersEl.parentElement.getBoundingClientRect();
+    filtersEl.classList.toggle("fly-left", t.left < innerWidth * 0.4);
+  }
+  filtersEl.addEventListener("pointerenter", sizeFlyout);
+  addEventListener("resize", sizeFlyout);
   filtersEl.addEventListener("click", e => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
     if (b.dataset.filter === "All") filtersEl.classList.toggle("is-open", state.filter !== "All" || !filtersEl.classList.contains("is-open"));
     state.filter = b.dataset.filter; renderFilters(); renderWork();
   });
-  document.addEventListener("click", e => { if (!e.target.closest("[data-filters]")) filtersEl.classList.remove("is-open"); });
+  document.addEventListener("click", e => { if (!e.composedPath().includes(filtersEl)) filtersEl.classList.remove("is-open"); });
 
   $$("[data-view]").forEach(b => b.addEventListener("click", () => {
     state.view = b.dataset.view;
@@ -546,7 +566,6 @@
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
     scramble($("[data-role]"), mode === "selection" ? selRole() : M.role);
-    $("[data-hero-hint]").hidden = mode === "selection";
     renderAbout(M.about);
     renderFilters(); renderWork();
     if (FILMS[mode][0]) setHero(FILMS[mode][0]);

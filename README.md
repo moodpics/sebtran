@@ -53,3 +53,10 @@ In `app.js`, the `CONFIG` block at the top holds the contact email, the client m
 ## Custom domain
 
 When `sebastien-tran.com` moves off Wix: add a `CNAME` file containing `sebastien-tran.com`, then point the DNS to GitHub Pages (Settings → Pages).
+
+## SEO / GEO
+
+- `index.html` carries the title, description, canonical, Open Graph tags and a JSON-LD `Person` + `WebSite` block.
+- The film catalogue is JavaScript-rendered, so crawlers that don't run JS would see an empty page. `build-seo.mjs` writes a crawlable,
+  visually-hidden film index (by brand) into `index.html`. **After editing `films.js`, run `node build-seo.mjs`.**
+- `sitemap.xml` and `llms.txt` sit next to `index.html`.
