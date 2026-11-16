@@ -185,6 +185,9 @@
   const grid = $("[data-grid]"), index = $("[data-index]"), filtersEl = $("[data-filters]");
   const PATTERN = [7, 5, 4, 4, 4, 5, 7, 12, 6, 6, 4, 4, 4, 8, 4];
   const HEART = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>`;
+  const dirIds = new Set(FILMS.direction.map(f => f.id));
+  // On the selection page, a film from the director list keeps the red heart, a DoP film keeps the yellow one
+  const heartSrc = id => (state.mode === "selection" && dirIds.has(id)) ? ' data-src="dir"' : "";
   const allFilms = () => { const m = new Map(); [...FILMS.direction, ...FILMS.cinematography].forEach(f => { if (!m.has(f.id)) m.set(f.id, f); }); return m; };
   const buildSelection = () => { const m = allFilms(); FILMS.selection = (sharedSel || favs).map(id => m.get(id)).filter(Boolean); };
   const selHash = (ids, name) => `selection=${ids.join(".")}${name ? "~" + encodeURIComponent(name) : ""}`;
@@ -283,7 +286,7 @@
           <img src="${thumb(f, span >= 7 ? "1280x720" : "960x540")}" alt="" loading="lazy">
           <div class="cover"></div>
           <span class="card__num mono">${pad(i + 1)}</span>
-          <span class="card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}" role="button" tabindex="0" aria-label="Add to selection" title="Add to my selection">${HEART}</span>
+          <span class="card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection" title="Add to my selection">${HEART}</span>
           <span class="card__dur mono">${fmtDur(f.duration)}</span>
           <span class="card__live mono">Preview</span>
           <div class="card__meta">
@@ -300,7 +303,7 @@
     index.innerHTML = state.list.map((f, i) => `
       <li class="row" data-i="${i}" data-cursor="play" tabindex="0">
         <span class="row__num">${pad(i + 1)}</span>
-        <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}" role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
+        <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
         <span class="row__client">${esc(f.client)}</span>
         <span class="row__title">${esc(f.title)}</span>
         <span class="row__dir">${esc(f.director ? "Dir. " + f.director : "—")}</span>
@@ -463,7 +466,7 @@
   let lbList = [], lbIdx = 0;
 
   function fillInfo(f) {
-    const lbFav = $('[data-lb="fav"]'); if (lbFav) lbFav.classList.toggle("is-on", isFav(f.id));
+    const lbFav = $('[data-lb="fav"]'); if (lbFav) { lbFav.classList.toggle("is-on", isFav(f.id)); lbFav.dataset.src = (state.mode === "selection" && dirIds.has(f.id)) ? "dir" : ""; }
     $(".lightbox__cat", lb).textContent = `${pad(lbIdx + 1)} / ${pad(lbList.length)} — ${f.category}${f.year ? " — " + f.year : ""}`;
     $(".lightbox__title", lb).innerHTML = `${esc(f.client)} <em>${esc(f.title)}</em>`;
     const role = state.mode === "direction" ? "Directed & photographed by Seb Trân" : "Cinematography by Seb Trân";
@@ -622,6 +625,7 @@
     $('[data-share="sms"]').href = `sms:?&body=${t}%20${u}`;
     shareApps.hidden = !shareApps.hidden;
   });
+  $$("[data-sel-rename], [data-sel-save], [data-sel-close]").forEach(b => b.addEventListener("click", closeShare));
   $$("[data-share]").forEach(l => l.addEventListener("click", () => setTimeout(closeShare, 200)));
   /* ---- Clear hearts (two taps, to avoid wiping a selection by accident) ---- */
   const clearBtn = $("[data-sel-clear]"); let clearT;

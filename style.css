@@ -455,3 +455,10 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .selbtn--ghost.is-confirm { border-color: var(--accent); color: var(--accent); }
 .selbtn--ghost:hover { color: var(--bg); }
 .selbtn--ghost.is-confirm:hover { color: var(--bg); background: var(--accent); }
+
+/* Heart colour follows the job type on the selection page: red = directed, yellow = shot as DoP */
+.card__fav[data-src="dir"].is-on svg, .lb-fav[data-src="dir"].is-on svg { fill: #e5483a; stroke: #e5483a; }
+.sharemenu__pop > button[hidden] { display: none; }
+.sharemenu__sep { height: 1px; margin: 6px 4px; border: 0; background: var(--line); }
+.sharemenu__pop [data-sel-clear].is-confirm { color: var(--accent); }
+.sharemenu__pop [data-sel-close] { color: var(--muted); }

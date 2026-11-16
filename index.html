@@ -64,7 +64,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css?v=1794853933">
+  <link rel="stylesheet" href="style.css?v=1794854139">
 </head>
 <body class="is-loading">
 
@@ -143,7 +143,6 @@
         <h2 class="work__title"><span data-work-title>Selected Cinematography</span> <sup class="mono" data-count></sup></h2>
         <div class="work__tools">
           <div class="selbar" data-selbar hidden>
-            <button class="selbtn selbtn--close" data-sel-close>× Close</button>
             <div class="sharemenu" data-sharemenu>
               <button class="selbtn" data-share-toggle aria-haspopup="true" aria-expanded="false">Share your selection ▾</button>
               <div class="sharemenu__pop" data-share-pop hidden>
@@ -154,11 +153,13 @@
                   <a data-share="mail">Email</a>
                   <a data-share="sms">SMS</a>
                 </div>
+                <hr class="sharemenu__sep">
+                <button type="button" data-sel-save hidden>Save to my selection</button>
+                <button type="button" data-sel-rename hidden>Rename</button>
+                <button type="button" data-sel-clear hidden>Clear hearts</button>
+                <button type="button" data-sel-close>Close selection</button>
               </div>
             </div>
-            <button class="selbtn" data-sel-save hidden>Save to mine</button>
-            <button class="selbtn" data-sel-rename hidden>Rename</button>
-            <button class="selbtn selbtn--ghost" data-sel-clear hidden>Clear hearts</button>
             <span class="selbar__msg mono" data-sel-msg></span>
           </div>
           <div class="filters" data-filters></div>
@@ -285,7 +286,7 @@
   </div>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
-  <script src="films.js?v=1794853933"></script>
-  <script src="app.js?v=1794853933"></script>
+  <script src="films.js?v=1794854139"></script>
+  <script src="app.js?v=1794854139"></script>
 </body>
 </html>
