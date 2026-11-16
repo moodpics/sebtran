@@ -88,7 +88,7 @@
   try {
     const raw = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
     if (raw && Array.isArray(raw.items)) {
-      sels = raw.items.filter(x => x && Array.isArray(x.ids)).map(x => ({ id: String(x.id || uid()), name: String(x.name || ""), ids: x.ids.filter(i => typeof i === "string"), shared: !!x.shared, key: x.key || "" }));
+      sels = raw.items.filter(x => x && Array.isArray(x.ids)).map(x => ({ id: String(x.id || uid()), name: String(x.name || ""), ids: x.ids.filter(i => typeof i === "string"), shared: !!x.shared, key: x.key || "", url: x.url || "" }));
       activeSel = raw.active;
     } else { // migrate the old single selection
       const old = JSON.parse(localStorage.getItem("sebtran-selection") || "[]").filter(i => typeof i === "string");
@@ -202,7 +202,7 @@
   const allFilms = () => { const m = new Map(); [...FILMS.direction, ...FILMS.cinematography].forEach(f => { if (!m.has(f.id)) m.set(f.id, f); }); return m; };
   const buildSelection = () => { const m = allFilms(), c = cur(); FILMS.selection = c ? c.ids.map(id => m.get(id)).filter(Boolean) : []; };
   const selHash = (ids, name) => `selection=${ids.join(".")}${name ? "~" + encodeURIComponent(name) : ""}`;
-  const shareURL = () => { const c = cur(); return `${location.origin}${location.pathname}#${selHash(c ? c.ids : [], c ? c.name : "")}`; };
+  const shareURL = () => { const c = cur(); if (c && c.shared && c.url) return c.url; return `${location.origin}${location.pathname}#${selHash(c ? c.ids : [], c ? c.name : "")}`; };
   const HEART_SM = `<svg class="top__heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C1 8 3 4.5 6.6 4.5c2.1 0 3.6 1.2 5.4 3.2 1.8-2 3.3-3.2 5.4-3.2C21 4.5 23 8 21.6 11.3 19.5 15.9 12 20.5 12 20.5z"/></svg>`;
   function renderSelTabs() {
     const box = $("[data-seltabs]"), link = $("[data-sel-all]"); if (!box || !link) return;
@@ -221,7 +221,7 @@
     const bar = $("[data-selbar]"), c = cur();
     if (bar) {
       bar.hidden = state.mode !== "selection";
-      $("[data-sel-rename]").hidden = !c || c.shared;
+      $("[data-sel-rename]").hidden = !c;
       $("[data-sharemenu]").hidden = !c || !c.ids.length;
       $("[data-sel-clear]").hidden = !c;
       $("[data-titletools]").hidden = state.mode !== "selection";
@@ -232,9 +232,7 @@
     updateHint();
   }
   /* ---- "Like any film" invitation: shown whenever nothing is liked, never on the selection page ---- */
-  function updateHint() {
-    const el = $("[data-likehint]"); if (el) el.hidden = state.mode === "selection" || favCount() > 0;
-  }
+  function updateHint() { /* the "Like & create a Selection" label is permanent now */ }
   /* ---- Name-your-selection dialog + toast ---- */
   const dlg = $("[data-sel-dlg]"), dlgIn = $("[data-sel-dlg-input]");
   let dlgCb = null;
@@ -250,7 +248,17 @@
   $("[data-sel-dlg-cancel]").addEventListener("click", closeDlg);
   dlg.addEventListener("click", e => { if (e.target === dlg) closeDlg(); });
   let toastT; function toast(html) { const t = $("[data-toast]"); t.innerHTML = html; t.classList.add("is-on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("is-on"), 2600); }
-  const refreshSelView = () => { if (state.mode === "selection") { buildSelection(); renderFilters(); renderWork(); setWorkTitle(); } };
+  /* the address bar: a received selection keeps its long link while it is shown, everything else is a plain #page */
+  const hashFor = mode => { const c = cur(); return mode === "selection" && c && c.shared && c.url ? c.url.slice(c.url.indexOf("#")) : `#${mode}`; };
+  const syncURL = () => history.replaceState(null, "", hashFor(state.mode));
+  const refreshSelView = () => { syncURL(); if (state.mode === "selection") { buildSelection(); renderFilters(); renderWork(); setWorkTitle(); } };
+  /* editing a received selection never changes it: it spawns "Name 2", "Name 3"… (or the given name) as the visitor's own */
+  function forkShared(c, name) {
+    const base = c.name || "Selection"; let n = 2;
+    while (sels.some(s => s.name === `${base} ${n}`)) n++;
+    const x = { id: uid(), name: name || `${base} ${n}`, ids: [...c.ids], shared: false, key: "" };
+    sels.push(x); activeSel = x.id; saveSels(); return x;
+  }
   const newSel = name => { const x = { id: uid(), name, ids: [], shared: false, key: "" }; sels.push(x); if (state.mode !== "selection") activeSel = x.id; return x; };
   function addTo(x, id) {
     if (!x.ids.includes(id)) x.ids.push(id);
@@ -297,6 +305,7 @@
     const c = cur();
     // viewing one of my own selections: the heart just takes the film out of it
     if (state.mode === "selection" && c && !c.shared && c.ids.includes(id)) { removeFrom(c, id); return; }
+    if (state.mode === "selection" && c && c.shared && c.ids.includes(id)) { const x = forkShared(c); removeFrom(x, id); return; }
     if (!own().length) { askName(name => addTo(newSel(name), id)); return; }
     openLikePop(id, ev, anchor);
   }
@@ -664,7 +673,7 @@
   }
   async function setMode(mode, animate = true) {
     if (!CONFIG.modes[mode] || (mode === state.mode && mode !== "selection")) return;
-    history.replaceState(null, "", `#${mode}`);
+    history.replaceState(null, "", hashFor(mode));
     if (!animate || reduced) { applyMode(mode); scrollTo({ top: 0, behavior: "auto" }); return; }
     shutter.classList.add("is-closed");
     await wait(560);
@@ -691,13 +700,14 @@
     const p = parseSel(rest); if (!p.ids.length) return;
     const key = p.ids.join(".") + "~" + p.name;
     let x = sels.find(s => s.key === key) || sels.find(s => !s.shared && s.name === p.name && s.ids.join(".") === p.ids.join("."));
-    if (!x) { x = { id: uid(), name: p.name || "Shared selection", ids: p.ids, shared: true, key }; sels.push(x); }
+    if (!x) { x = { id: uid(), name: p.name || "Shared selection", ids: p.ids, shared: true, key, url: `${location.origin}${location.pathname}#selection=${rest}` }; sels.push(x); }
     activeSel = x.id; saveSels();
   }
   /* switch to another selection without the shutter animation */
   function showSel(id) {
     activeSel = id; saveSels();
     if (state.mode !== "selection") { setMode("selection"); return; }
+    syncURL();
     buildSelection(); state.filter = "All"; setWorkTitle(); renderFilters(); renderWork();
     if (FILMS.selection[0]) setHero(FILMS.selection[0]);
     scramble($("[data-role]"), selRole()); updateFavUI(); scrollTo({ top: 0, behavior: "auto" });
@@ -711,7 +721,10 @@
     const t = e.target.closest("[data-sel-pick]"); if (!t) return;
     e.preventDefault(); showSel(t.dataset.selPick);
   });
-  $("[data-sel-rename]").addEventListener("click", () => { const c = cur(); if (c && !c.shared) askName(n => { c.name = n; saveSels(); updateFavUI(); setWorkTitle(); }, c.name); });
+  $("[data-sel-rename]").addEventListener("click", () => { const c = cur(); if (!c) return;
+    if (c.shared) askName(n => { const x = forkShared(c, n); showSel(x.id); }, c.name);
+    else askName(n => { c.name = n; saveSels(); updateFavUI(); setWorkTitle(); }, c.name);
+  });
   /* ---- Share your selection: copy the link, or send it via the system share sheet / WhatsApp / Email / SMS ---- */
   const shareMenu = $("[data-sharemenu]"), sharePop = $("[data-share-pop]"), shareTgl = $("[data-share-toggle]"), shareApps = $("[data-share-apps]");
   const shareName = () => { const c = cur(); return c ? c.name : ""; };
@@ -807,7 +820,7 @@
      Boot
      ========================================================================== */
   const hashFull = location.hash.slice(1), hashMode = hashFull.split("=")[0], hashRest = hashFull.slice(hashMode.length + 1);
-  if (hashMode === "selection" && hashRest) { importShared(hashRest); history.replaceState(null, "", "#selection"); }
+  if (hashMode === "selection" && hashRest) { importShared(hashRest); }
   Promise.race([resolveThumbs(), wait(2500)]).then(() => {
     applyMode(CONFIG.modes[hashMode] ? hashMode : CONFIG.defaultMode);
   });
