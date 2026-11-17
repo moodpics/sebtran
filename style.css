@@ -996,3 +996,10 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
   header.top .top__name { font-size: 14px !important; }
   header.top { padding-left: 12px !important; }
 }
+
+/* Agency logo (bottom of Contact) */
+.contact__agency { display: flex; align-items: center; gap: 16px; margin-top: 56px; }
+.contact__agency .mono { color: var(--muted); }
+.contact__agency a { display: block; opacity: .75; transition: opacity .3s; }
+.contact__agency a:hover { opacity: 1; }
+.contact__agency img { display: block; width: clamp(96px, 11vw, 130px); height: auto; }

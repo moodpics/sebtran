@@ -334,6 +334,18 @@ window.FILMS = {
       "loopEnd": 3.7
     },
     {
+      "id": "1246441569",
+      "h": null,
+      "client": "Prada",
+      "title": "Paradigme — Tom Holland, About the Scent",
+      "category": "Beauty",
+      "director": "Seb Trân",
+      "production": "Psycho",
+      "year": 2026,
+      "duration": 15,
+      "thumb": "https://i.vimeocdn.com/video/2225851238-c297222814ff6ea0c822f2724b69c0100491ca883bb3c80658419f46ac6420a6-d"
+    },
+    {
       "id": "832880593",
       "h": "3745599e26",
       "client": "Big Flo & Oli",
