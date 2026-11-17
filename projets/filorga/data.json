@@ -514,12 +514,7 @@
           "c": [
             "regen"
           ],
-          "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4",
-          "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
-          "sol": [
-            "2 m de large sur 6 m de profondeur (proposition du chef op)",
-            "Bandes noires en travers de la plaque pour délimiter les lignes"
-          ]
+          "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
         },
         {
           "t": "Film UV, plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
