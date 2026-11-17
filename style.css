@@ -785,7 +785,7 @@ body.top-idle .top { opacity: 0; pointer-events: none; transition: opacity 1s ea
 
 /* ===== v17: black layer only once the header film is gone; everything on one row (≥900px) with fluid type ===== */
 .top { background: #000; transition: opacity .5s ease, background-color 1.5s ease; }
-body.at-hero .top { background: rgba(0,0,0,0); }
+body.at-hero .top { background: rgba(0,0,0,.2); }
 body.top-idle .top { transition: opacity 2s ease, background-color 1.5s ease; }
 @media (min-width: 900px) {
   .top { display: flex !important; align-items: center; flex-wrap: nowrap; gap: clamp(10px, 1.5vw, 28px); padding: 9px var(--pad); }
