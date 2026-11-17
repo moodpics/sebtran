@@ -1,834 +1,834 @@
 {
- "v": 1,
- "updated": "2026-11-17T13:29:08.000Z",
- "log": [
-  {
-   "at": "2026-11-17T12:54:49.000Z",
-   "src": "Planning",
-   "d": [],
-   "kind": "ajout",
-   "text": "jeudi 19 : Time Filler puis Regen Peptide · vendredi 20 : NCEF Revitalize puis UV Cellular"
-  },
-  {
-   "at": "2026-11-17T12:24:43.000Z",
-   "src": "Film UV Cellular",
-   "d": [
-    "cam",
-    "lum",
-    "mach"
-   ],
-   "kind": "modif",
-   "text": "ciel bleu en dégradé pour les plans à l'horizon (toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo), bleu incruste pour le sol des top shots"
-  },
-  {
-   "at": "2026-11-16T09:53:43.000Z",
-   "src": "Effet battery loading",
-   "d": [
-    "lum",
-    "mach"
-   ],
-   "kind": "ajout",
-   "text": "4 images de la déco : coffrage et sol (plateau 4,56 m × 2,03 m, 18 Astera)"
-  },
-  {
-   "at": "2026-11-14T22:46:00.000Z",
-   "src": "Effet filé",
-   "d": [
-    "cam"
-   ],
-   "kind": "modif",
-   "text": "2 setups : FPS bas d'un côté, filtre Handheld Split Phantom FX de l'autre"
-  },
-  {
-   "at": "2026-11-14T17:04:14.000Z",
-   "src": "Caméra et Machinerie · listes",
-   "d": [
-    "cam",
-    "mach"
-   ],
-   "kind": "ajout",
-   "text": "Gimbal Ronin 2 et tête 3D Cartoni Lambda 25 ajoutés aux deux listes"
-  },
-  {
-   "at": "2026-11-14T17:01:55.000Z",
-   "src": "Machinerie · Camera Support & Movement",
-   "d": [
-    "mach",
-    "cam"
-   ],
-   "kind": "modif",
-   "text": "Plus de bras Neutron : plan spécial en jib sur dolly avec Ronin 2 (gimbal), autres plans en jib sur dolly avec tête 3D Cartoni Lambda 25"
-  },
-  {
-   "at": "2026-11-14T12:36:54.515Z",
-   "src": "Brief",
-   "d": [
-    "brief",
-    "lum"
-   ],
-   "kind": "modif",
-   "text": "Effet « battery loading » au sol : collaboration lumière / déco, vingtaine d'Astera Hyperion, sol surélevé en plexi frosté"
-  }
- ],
- "shootDate": "2026-11-19",
- "root": {
-  "title": "Filorga",
-  "sub": "Jeudi 19 + vendredi 20 novembre 2026",
-  "facts": [],
-  "crew": [
-   [
-    "Production",
-    "Boner Boner"
-   ],
-   [
-    "Co-réalisation",
-    "Eve Vitré et Ben Fourmi"
-   ],
-   [
-    "Chef opérateur",
-    "Seb Trân"
-   ],
-   [
-    "1er assistant caméra",
-    "Lucas Bidard"
-   ],
-   [
-    "Gaffer",
-    "Nathan Jean-François"
-   ],
-   [
-    "Chef machino",
-    "Nicolas Sommermeyer"
-   ]
+  "v": 1,
+  "updated": "2026-11-17T13:40:00.000Z",
+  "log": [
+    {
+      "at": "2026-11-17T13:40:00.000Z",
+      "src": "Planning",
+      "d": [],
+      "kind": "ajout",
+      "text": "jeudi 19 : Time Filler puis Regen Peptide · vendredi 20 : NCEF Revitalize puis UV Cellular · fond dégradé partout, sauf UV Cellular en incruste"
+    },
+    {
+      "at": "2026-11-17T12:24:43.000Z",
+      "src": "Film UV Cellular",
+      "d": [
+        "cam",
+        "lum",
+        "mach"
+      ],
+      "kind": "modif",
+      "text": "ciel bleu en dégradé pour les plans à l'horizon (toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo), bleu incruste pour le sol des top shots"
+    },
+    {
+      "at": "2026-11-16T09:53:43.000Z",
+      "src": "Effet battery loading",
+      "d": [
+        "lum",
+        "mach"
+      ],
+      "kind": "ajout",
+      "text": "4 images de la déco : coffrage et sol (plateau 4,56 m × 2,03 m, 18 Astera)"
+    },
+    {
+      "at": "2026-11-14T22:46:00.000Z",
+      "src": "Effet filé",
+      "d": [
+        "cam"
+      ],
+      "kind": "modif",
+      "text": "2 setups : FPS bas d'un côté, filtre Handheld Split Phantom FX de l'autre"
+    },
+    {
+      "at": "2026-11-14T17:04:14.000Z",
+      "src": "Caméra et Machinerie · listes",
+      "d": [
+        "cam",
+        "mach"
+      ],
+      "kind": "ajout",
+      "text": "Gimbal Ronin 2 et tête 3D Cartoni Lambda 25 ajoutés aux deux listes"
+    },
+    {
+      "at": "2026-11-14T17:01:55.000Z",
+      "src": "Machinerie · Camera Support & Movement",
+      "d": [
+        "mach",
+        "cam"
+      ],
+      "kind": "modif",
+      "text": "Plus de bras Neutron : plan spécial en jib sur dolly avec Ronin 2 (gimbal), autres plans en jib sur dolly avec tête 3D Cartoni Lambda 25"
+    },
+    {
+      "at": "2026-11-14T12:36:54.515Z",
+      "src": "Brief",
+      "d": [
+        "brief",
+        "lum"
+      ],
+      "kind": "modif",
+      "text": "Effet « battery loading » au sol : collaboration lumière / déco, vingtaine d'Astera Hyperion, sol surélevé en plexi frosté"
+    }
   ],
-  "base": {
-   "t": "Base commune : le fond cyclo blanc",
-   "p": "Tous les films sont tournés sur le fond cyclo blanc. C'est à partir de cette base que chaque fond est travaillé."
-  }
- },
- "brief": {
-  "items": [
-   {
-    "t": "Plans en mouvement beauty sur jib, sur dolly avec tête 3D Cartoni Lambda 25",
-    "b": 1,
-    "sub": [],
-    "img": "",
-    "imgNote": "",
-    "id": "bcxi6x",
-    "to": []
-   },
-   {
-    "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
-    "b": 1,
-    "sub": [
-     "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. ",
-     "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)"
+  "shootDate": "2026-11-19",
+  "root": {
+    "title": "Filorga",
+    "sub": "Jeudi 19 + vendredi 20 novembre 2026",
+    "facts": [],
+    "crew": [
+      [
+        "Production",
+        "Boner Boner"
+      ],
+      [
+        "Co-réalisation",
+        "Eve Vitré et Ben Fourmi"
+      ],
+      [
+        "Chef opérateur",
+        "Seb Trân"
+      ],
+      [
+        "1er assistant caméra",
+        "Lucas Bidard"
+      ],
+      [
+        "Gaffer",
+        "Nathan Jean-François"
+      ],
+      [
+        "Chef machino",
+        "Nicolas Sommermeyer"
+      ]
     ],
-    "img": "refs/mugler-angel-elixir-plan1.gif",
-    "imgNote": "Référence : Mugler Angel Elixir",
-    "id": "bph5qt",
-    "to": []
-   },
-   {
-    "t": "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes #lumiere",
-    "b": 1,
-    "sub": [],
-    "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
-    "imgNote": "",
-    "id": "bpmttl",
-    "to": [
-     {
-      "d": "lum",
-      "s": "Special lighting effect \" battery loading\" au sol"
-     }
+    "base": {
+      "t": "Base commune : le fond cyclo blanc",
+      "p": "Tous les films sont tournés sur le fond cyclo blanc. C'est à partir de cette base que chaque fond est travaillé."
+    }
+  },
+  "brief": {
+    "items": [
+      {
+        "t": "Plans en mouvement beauty sur jib, sur dolly avec tête 3D Cartoni Lambda 25",
+        "b": 1,
+        "sub": [],
+        "img": "",
+        "imgNote": "",
+        "id": "bcxi6x",
+        "to": []
+      },
+      {
+        "t": "1 plan machinerie spécial > la caméra avance vers le talent qui marche vers la caméra. La caméra monte au-dessus du talent. Mouvement clean, robotique.... sans robot",
+        "b": 1,
+        "sub": [
+          "Le mouvement que l'on recherche : la caméra s'arrête au-dessus de la tête. ",
+          "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)"
+        ],
+        "img": "refs/mugler-angel-elixir-plan1.gif",
+        "imgNote": "Référence : Mugler Angel Elixir",
+        "id": "bph5qt",
+        "to": []
+      },
+      {
+        "t": "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes #lumiere",
+        "b": 1,
+        "sub": [],
+        "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
+        "imgNote": "",
+        "id": "bpmttl",
+        "to": [
+          {
+            "d": "lum",
+            "s": "Special lighting effect \" battery loading\" au sol"
+          }
+        ]
+      }
+    ],
+    "source": "Source : note de job Evernote, 13 nov.",
+    "sum": {
+      "t": "Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo",
+      "sub": [
+        "1 campagne par demi-journée : REGEN PEPTIDE, UV CELLULAR, TIME FILLER, NCEF REVITALIZE",
+        "1 mannequin par campagne : plans d'attitude + application des produits"
+      ]
+    }
+  },
+  "mood": {
+    "items": [],
+    "p": "On shoote tout sur le fond cyclo blanc, et on crée les fonds à partir de cette base. Dégradé fait à la lumière : gros travail de contrôle, avec du borniol en top, ajustable.",
+    "moods": [
+      {
+        "id": "mood-bw",
+        "t": "Mood 1 · Black & White",
+        "d": "Background dégradé haut / bas, noir / blanc",
+        "c": [
+          "regen",
+          "time",
+          "ncef"
+        ],
+        "lines": [
+          "Créé à la lumière avec la rangée de Skypanel X Hyperoptics sur le grill",
+          "Dégradé droit"
+        ],
+        "img": "refs/time-ncef-gradient.jpg",
+        "go": ""
+      },
+      {
+        "id": "mood-inc",
+        "t": "Mood 2 · Incruste",
+        "d": "Ciel bleu pour les plans à l'horizon, bleu incruste pour le sol des top shots",
+        "c": [
+          "uv"
+        ],
+        "lines": [
+          "Plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, pour le montage final",
+          "Toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo, mêmes lumières que le N&B (même rangée de Skypanel X Hyperoptics)",
+          "Lumière solaire en keylight",
+          "1 ou 2 plans en top shot (mannequin posée sur un rebord, sol visible derrière) : bleu incruste pour une incrustation future"
+        ],
+        "img": "refs/uv-ref.jpg",
+        "go": ""
+      }
     ]
-   }
+  },
+  "camps": [
+    {
+      "id": "regen",
+      "name": "Regen Peptide",
+      "txt": "REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé droit",
+      "pist": "Effet filé sur film Peptide : slow frame (FPS bas) avec le filtre Handheld Split Phantom FX",
+      "imgs": [
+        {
+          "src": "refs/regen-ref.jpg",
+          "alt": "Regen Peptide : référence (Reveal vidéo)",
+          "cap": "Storyboard"
+        },
+        {
+          "src": "refs/effet-file.jpg",
+          "alt": "Effet filé sur film Peptide",
+          "cap": "Effet recherché pour raconter la vitesse"
+        }
+      ],
+      "lum": [
+        "Fond dégradé haut / bas, noir → blanc",
+        "Dégradé droit",
+        "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
+        "Keylight : beauty light, 2400 + parabolic softbox 140",
+        "Negative fill : floppy, pendrillons. Pas de backlight",
+        "Contrôle de lumière : borniol en top, ajustable",
+        "Effet « battery loading » au sol : vingtaine d'Astera Hyperion, sol surélevé en plexi frosté (collab lumière / déco), visé 2 m de large × 6 m de profondeur (3 m prévus à ce stade), bandes noires en travers pour délimiter les lignes"
+      ],
+      "cam": [
+        "Alexa 35, série Master Primes",
+        "Plans en mouvement beauty sur jib",
+        "Effet filé : slow frame (FPS bas), filtre Handheld Split Phantom FX"
+      ],
+      "mach": [
+        "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
+        "Borniol / top noir en cadre, ajustable"
+      ],
+      "alias": [
+        "Peptide"
+      ],
+      "fond": "grad"
+    },
+    {
+      "id": "time",
+      "name": "Time Filler",
+      "txt": "TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé droit",
+      "pist": "",
+      "imgs": [
+        {
+          "src": "refs/time-ncef-gradient.jpg",
+          "alt": "Dégradé N&B de référence",
+          "cap": "Background recherché"
+        },
+        {
+          "src": "refs/time-ref.jpg",
+          "alt": "Time Filler : références",
+          "cap": "Référence Keylight"
+        }
+      ],
+      "lum": [
+        "Fond dégradé haut / bas, noir → blanc",
+        "Dégradé droit",
+        "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
+        "Keylight : beauty light, 2400 + parabolic softbox 140",
+        "Negative fill : floppy, pendrillons. Pas de backlight",
+        "Contrôle de lumière : borniol en top, ajustable"
+      ],
+      "cam": [
+        "Alexa 35, série Master Primes",
+        "Plans en mouvement beauty sur jib"
+      ],
+      "mach": [
+        "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
+        "Borniol / top noir en cadre, ajustable"
+      ],
+      "alias": [],
+      "fond": "grad"
+    },
+    {
+      "id": "ncef",
+      "name": "NCEF Revitalize",
+      "txt": "NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé droit",
+      "pist": "",
+      "imgs": [
+        {
+          "src": "refs/time-ncef-gradient.jpg",
+          "alt": "Dégradé N&B de référence",
+          "cap": "Background recherché"
+        },
+        {
+          "src": "refs/ncef-ref.jpg",
+          "alt": "NCEF Revitalize : références",
+          "cap": "Référence Keylight"
+        }
+      ],
+      "lum": [
+        "Fond dégradé haut / bas, noir → blanc",
+        "Dégradé droit",
+        "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
+        "Keylight : beauty light, 2400 + parabolic softbox 140",
+        "Negative fill : floppy, pendrillons. Pas de backlight",
+        "Contrôle de lumière : borniol en top, ajustable"
+      ],
+      "cam": [
+        "Alexa 35, série Master Primes",
+        "Plans en mouvement beauty sur jib"
+      ],
+      "mach": [
+        "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
+        "Borniol / top noir en cadre, ajustable"
+      ],
+      "alias": [
+        "NCEF"
+      ],
+      "fond": "grad"
+    },
+    {
+      "id": "uv",
+      "name": "UV Cellular",
+      "txt": "UV CELLULAR (solaire) : ciel bleu en dégradé pour les plans à l'horizon, bleu incruste pour le sol des top shots",
+      "pist": "",
+      "imgs": [
+        {
+          "src": "refs/uv-ref.jpg",
+          "alt": "UV Cellular : références",
+          "cap": "Storyboard pour l'instant"
+        }
+      ],
+      "lum": [
+        "Ciel bleu (plans à l'horizon) : dégradé clair en bas → sombre en haut, même rangée de Skypanel X Hyperoptics que le N&B, sur toile chroma key bleue",
+        "Lumière solaire en keylight : 1 Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4",
+        "Backlight : oui, pour le plan spray du produit (LED 1200, option spotlight)"
+      ],
+      "cam": [
+        "Alexa 35, série Master Primes",
+        "1 ou 2 plans en top shot : mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)"
+      ],
+      "mach": [
+        "Toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo"
+      ],
+      "alias": [
+        "UV"
+      ],
+      "fond": "incrust"
+    }
   ],
-  "source": "Source : note de job Evernote, 13 nov.",
-  "sum": {
-   "t": "Filorga : 4 campagnes, photo + vidéo, en binôme avec Ben Fourmi à la photo",
-   "sub": [
-    "1 campagne par demi-journée : REGEN PEPTIDE, UV CELLULAR, TIME FILLER, NCEF REVITALIZE",
-    "1 mannequin par campagne : plans d'attitude + application des produits"
-   ]
-  }
- },
- "mood": {
-  "items": [],
-  "p": "On shoote tout sur le fond cyclo blanc, et on crée les fonds à partir de cette base. Dégradé fait à la lumière : gros travail de contrôle, avec du borniol en top, ajustable.",
-  "moods": [
-   {
-    "id": "mood-bw",
-    "t": "Mood 1 · Black & White",
-    "d": "Background dégradé haut / bas, noir / blanc",
-    "c": [
-     "regen",
-     "time",
-     "ncef"
-    ],
-    "lines": [
-     "Créé à la lumière avec la rangée de Skypanel X Hyperoptics sur le grill",
-     "Dégradé droit"
-    ],
-    "img": "refs/time-ncef-gradient.jpg",
-    "go": ""
-   },
-   {
-    "id": "mood-inc",
-    "t": "Mood 2 · Incruste",
-    "d": "Ciel bleu pour les plans à l'horizon, bleu incruste pour le sol des top shots",
-    "c": [
-     "uv"
-    ],
-    "lines": [
-     "Plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, pour le montage final",
-     "Toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo, mêmes lumières que le N&B (même rangée de Skypanel X Hyperoptics)",
-     "Lumière solaire en keylight",
-     "1 ou 2 plans en top shot (mannequin posée sur un rebord, sol visible derrière) : bleu incruste pour une incrustation future"
-    ],
-    "img": "refs/uv-ref.jpg",
-    "go": ""
-   }
-  ]
- },
- "camps": [
-  {
-   "id": "regen",
-   "name": "Regen Peptide",
-   "txt": "REGEN PEPTIDE (=réparer la barrière cutanée) fond N&B en dégradé droit",
-   "pist": "Effet filé sur film Peptide : slow frame (FPS bas) avec le filtre Handheld Split Phantom FX",
-   "imgs": [
+  "plan": {
+    "intro": "",
+    "slots": [
+      {
+        "label": "Jeu. 19 nov — matin",
+        "camp": "Time Filler"
+      },
+      {
+        "label": "Jeu. 19 nov — après-midi",
+        "camp": "Regen Peptide"
+      },
+      {
+        "label": "Ven. 20 nov — matin",
+        "camp": "NCEF Revitalize"
+      },
+      {
+        "label": "Ven. 20 nov — après-midi",
+        "camp": "UV Cellular"
+      }
+    ]
+  },
+  "loc": {
+    "name": "Studio de la Montjoie",
+    "link": "https://studiosdelamontjoie.com",
+    "pdf": "refs/plan-plateau-480.pdf",
+    "imgs": [
+      {
+        "src": "refs/montjoie-1.jpg",
+        "alt": "Studio de la Montjoie, plateau 480"
+      },
+      {
+        "src": "refs/montjoie-2.jpg",
+        "alt": "Studio de la Montjoie, plateau 480"
+      },
+      {
+        "src": "refs/plan-plateau-480.jpg",
+        "alt": "Plan plateau 480"
+      }
+    ]
+  },
+  "depts": [
     {
-     "src": "refs/regen-ref.jpg",
-     "alt": "Regen Peptide : référence (Reveal vidéo)",
-     "cap": "Storyboard"
+      "id": "cam",
+      "name": "Caméra",
+      "known": [
+        {
+          "t": "Plans en mouvement beauty sur jib",
+          "sub": "",
+          "w": 0,
+          "g": "conf"
+        },
+        {
+          "t": "Setup de base : jib sur dolly avec tête 3D Cartoni Lambda 25",
+          "sub": "",
+          "w": 0,
+          "g": "conf"
+        },
+        {
+          "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+          "sub": "",
+          "w": 0,
+          "g": "spec",
+          "go": "ref:mach:0",
+          "c": [
+            "regen"
+          ]
+        },
+        {
+          "t": "Effet filé : 2 setups. D'un côté le FPS bas (6 FPS par exemple), de l'autre le filtre Handheld Split Phantom FX (PrismLensFX)",
+          "sub": "",
+          "w": 0,
+          "g": "spec",
+          "c": [
+            "regen"
+          ],
+          "go": "ref:cam:0,ref:cam:1,ref:cam:2",
+          "tag": "À commander"
+        },
+        {
+          "t": "Film UV : 1 ou 2 plans en top shot, mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)",
+          "sub": "",
+          "w": 0,
+          "g": "spec",
+          "c": [
+            "uv"
+          ],
+          "go": ""
+        }
+      ],
+      "todo": [
+        {
+          "t": "Camera body",
+          "done": 0,
+          "lines": [
+            "ALexa 35"
+          ],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Lenses",
+          "done": 0,
+          "lines": [
+            "Serie Master Primes"
+          ],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Special Equipment",
+          "done": 0,
+          "lines": [
+            "Gimbal Ronin 2 (plan spécial)",
+            "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
+          ],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Monitoring",
+          "done": 0,
+          "lines": [],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Luts",
+          "done": 0,
+          "lines": [],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Technical Specs",
+          "done": 0,
+          "lines": [],
+          "fix": [],
+          "ctl": []
+        }
+      ],
+      "refs": [
+        {
+          "src": "refs/effet-file.jpg",
+          "title": "Effet filé · référence film Peptide",
+          "cap": "Référence : l'effet filé recherché.",
+          "link": "",
+          "linkText": ""
+        },
+        {
+          "src": "refs/split-phantom-filtre.jpg",
+          "title": "Filtre Handheld Split Phantom FX (PrismLensFX)",
+          "cap": "Le filtre : prisme en verre convexe tenu devant l'objectif, effet de ghosting / flou de mouvement organique.",
+          "link": "https://prismlensfx.com/collections/handheld-fx-filters/products/handheld-split-phantom-fx-filter",
+          "linkText": "Voir le filtre sur prismlensfx.com"
+        },
+        {
+          "src": "refs/split-phantom-effet.gif",
+          "title": "Effet obtenu avec le filtre",
+          "cap": "Effet obtenu (extrait de la démo du fabricant).",
+          "link": "",
+          "linkText": ""
+        }
+      ],
+      "notes": "",
+      "open": []
     },
     {
-     "src": "refs/effet-file.jpg",
-     "alt": "Effet filé sur film Peptide",
-     "cap": "Effet recherché pour raconter la vitesse"
+      "id": "lum",
+      "name": "Lumière",
+      "known": [
+        {
+          "t": "Effet « battery loading » au sol : une vingtaine d'Astera Hyperion",
+          "sub": "Sol surélevé sur plexi frosté (collaboration lumière / déco). Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm.",
+          "w": 0,
+          "g": "spec",
+          "c": [
+            "regen"
+          ],
+          "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4",
+          "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
+          "sol": [
+            "2 m de large sur 6 m de profondeur (proposition du chef op)",
+            "Bandes noires en travers de la plaque pour délimiter les lignes"
+          ]
+        },
+        {
+          "t": "Film UV, plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
+          "sub": "",
+          "w": 0,
+          "g": "conf",
+          "c": [
+            "uv"
+          ],
+          "go": ""
+        }
+      ],
+      "todo": [
+        {
+          "t": "Keylight",
+          "done": 1,
+          "lines": [
+            "mood B&W : Beauty light, 2400 + Parabolic softbox 140",
+            "mood incrust : (solaire) 1 mole Richardson 10K + 2400 Daylight dans cadre diff 1/2 4x4"
+          ],
+          "fix": [
+            "1 x Evoke 2400 B + 1 Mole Richardson 10K"
+          ],
+          "ctl": [
+            "mamas, cadres 120 de diff"
+          ]
+        },
+        {
+          "t": "Fill in / Negativ fill",
+          "done": 1,
+          "lines": [
+            "Negativ fill : floppy, pendrillons"
+          ],
+          "fix": [],
+          "ctl": [
+            "borniol, floppys"
+          ]
+        },
+        {
+          "t": "Backlight",
+          "done": 1,
+          "lines": [
+            "mood B&W : non",
+            "mood incrust : (solaire) oui pour le plan spray du produit pour mettre le produit en valeur"
+          ],
+          "fix": [
+            "1 LED 1200, option spotligth"
+          ],
+          "ctl": []
+        },
+        {
+          "t": "Background",
+          "done": 1,
+          "lines": [
+            "mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril",
+            "mood incrust : ciel bleu en dégradé (clair en bas → sombre en haut), même rangée de Skypanel X Hyperoptics, sur toile chroma key bleue"
+          ],
+          "fix": [
+            "10 skypanel X Hyperoptics"
+          ],
+          "ctl": []
+        },
+        {
+          "t": "Special lighting effect \" battery loading\" au sol ",
+          "done": 0,
+          "lines": [
+            "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes"
+          ],
+          "fix": [],
+          "ctl": []
+        }
+      ],
+      "refs": [
+        {
+          "src": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gr7s.jpg",
+          "title": "Nouvelle référence",
+          "cap": "Un effet de \"battery loading\" au sol, un chargement de batterie à pouvoir faire évoluer.",
+          "link": "",
+          "linkText": ""
+        },
+        {
+          "src": "refs/deco-sol-plan.jpg",
+          "cap": "Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera sous le plexi, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm."
+        },
+        {
+          "src": "refs/deco-sol-coffrage.jpg",
+          "cap": "Le coffrage : structure bois avec les tubes Astera glissés entre les chevrons, plateau dessus."
+        },
+        {
+          "src": "refs/deco-sol-dessus.jpg",
+          "cap": "Le sol vu de dessus, plateau fini."
+        },
+        {
+          "src": "refs/deco-sol-raies.jpg",
+          "cap": "Vue de dessus : les 18 raies lumière."
+        }
+      ],
+      "notes": "",
+      "open": []
+    },
+    {
+      "id": "mach",
+      "name": "Machinerie",
+      "known": [
+        {
+          "t": "Plans en mouvement beauty sur jib",
+          "sub": "",
+          "w": 0,
+          "g": "mvt"
+        },
+        {
+          "t": "Setup : jib sur dolly avec tête 3D Cartoni Lambda 25, pour tous les plans sauf le plan spécial",
+          "sub": "",
+          "w": 0,
+          "g": "mvt"
+        },
+        {
+          "t": "Plan machinerie spécial : la caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus du talent. Mouvement clean, robotique… sans robot",
+          "sub": "Bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
+          "w": 0,
+          "g": "mvt",
+          "c": [
+            "regen"
+          ],
+          "go": "ref:mach:0"
+        },
+        {
+          "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable",
+          "sub": "",
+          "w": 0,
+          "g": "rig",
+          "c": [
+            "regen",
+            "time",
+            "ncef"
+          ]
+        },
+        {
+          "t": "On shoote tout sur le fond cyclo blanc, et on crée ce dégradé à la lumière : gros travail de contrôle de lumière, avec du borniol en top, ajustable.",
+          "sub": "",
+          "w": 0,
+          "g": "rig",
+          "c": [
+            "regen",
+            "time",
+            "ncef"
+          ]
+        },
+        {
+          "t": "Effet « battery loading » au sol : sol surélevé en plexi frosté, Astera Hyperion (collaboration lumière / déco)",
+          "sub": "Coffrage et sol : voir les plans déco (plateau 4,56 m × 2,03 m, hauteur 186 mm).",
+          "w": 0,
+          "g": "rig",
+          "c": [
+            "regen"
+          ],
+          "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
+        },
+        {
+          "t": "Film UV : toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo (ciel bleu des plans à l'horizon, voir Lumière)",
+          "sub": "",
+          "w": 0,
+          "g": "rig",
+          "c": [
+            "uv"
+          ],
+          "go": ""
+        },
+        {
+          "t": "Film UV, plans en top shot : sol visible derrière le mannequin en bleu incruste",
+          "sub": "",
+          "w": 0,
+          "g": "rig",
+          "c": [
+            "uv"
+          ],
+          "go": ""
+        }
+      ],
+      "todo": [
+        {
+          "t": "Camera Support & Movement",
+          "done": 0,
+          "lines": [
+            "Setup 1 (plan spécial) : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal), manivelles, rail",
+            "Setup 2 (tous les autres plans) : jib sur dolly avec tête 3D Cartoni Lambda 25"
+          ],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Rigging & mounting",
+          "done": 0,
+          "lines": [
+            "Rangée de Skypanel X Hyperoptics sur grill, sûrement top noir en cadre.",
+            "Accroche de vidéo projecteur en top shot pour projection lumineuse au sol."
+          ],
+          "fix": [],
+          "ctl": []
+        },
+        {
+          "t": "Special Rigs",
+          "done": 0,
+          "lines": [
+            "Gimbal Ronin 2 (plan spécial)",
+            "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
+          ],
+          "fix": [],
+          "ctl": []
+        }
+      ],
+      "refs": [
+        {
+          "src": "refs/mugler-angel-elixir-plan1.gif",
+          "title": "Plan machinerie spécial · référence",
+          "cap": "Référence de mouvement : pub Mugler Angel Elixir. La caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus d'elle et s'arrête au-dessus de la tête.",
+          "link": "https://www.youtube.com/watch?v=OE999ilxDNk",
+          "linkText": "Voir la pub complète"
+        },
+        {
+          "src": "refs/plan-plateau-480.jpg",
+          "title": "Plan du plateau 480",
+          "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
+          "link": "refs/plan-plateau-480.pdf",
+          "linkText": "Plan en PDF"
+        }
+      ],
+      "notes": "",
+      "open": []
     }
-   ],
-   "lum": [
-    "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé droit",
-    "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
-    "Keylight : beauty light, 2400 + parabolic softbox 140",
-    "Negative fill : floppy, pendrillons. Pas de backlight",
-    "Contrôle de lumière : borniol en top, ajustable",
-    "Effet « battery loading » au sol : vingtaine d'Astera Hyperion, sol surélevé en plexi frosté (collab lumière / déco), visé 2 m de large × 6 m de profondeur (3 m prévus à ce stade), bandes noires en travers pour délimiter les lignes"
-   ],
-   "cam": [
-    "Alexa 35, série Master Primes",
-    "Plans en mouvement beauty sur jib",
-    "Effet filé : slow frame (FPS bas), filtre Handheld Split Phantom FX"
-   ],
-   "mach": [
-    "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
-    "Borniol / top noir en cadre, ajustable"
-   ],
-   "alias": [
-    "Peptide"
-   ],
-   "fond": "grad"
-  },
-  {
-   "id": "time",
-   "name": "Time Filler",
-   "txt": "TIME FILLER (= 40 ans +, anti rides) fond N&B en dégradé droit",
-   "pist": "",
-   "imgs": [
+  ],
+  "team": [
     {
-     "src": "refs/time-ncef-gradient.jpg",
-     "alt": "Dégradé N&B de référence",
-     "cap": "Background recherché"
+      "role": "Prod",
+      "name": "Boner Boner"
     },
     {
-     "src": "refs/time-ref.jpg",
-     "alt": "Time Filler : références",
-     "cap": "Référence Keylight"
+      "role": "Co-réal",
+      "name": "Eve Vitré et Ben Fourmi"
+    },
+    {
+      "role": "Photographe",
+      "name": "Ben Fourmi"
+    },
+    {
+      "role": "DOP",
+      "name": "Seb Trân"
+    },
+    {
+      "role": "1st AC",
+      "name": "Lucas Bidard"
+    },
+    {
+      "role": "Gaffer",
+      "name": "Nathan Jean-François"
+    },
+    {
+      "role": "Grip",
+      "name": "Nicolas Sommermeyer"
+    },
+    {
+      "role": "Talent",
+      "name": "1 mannequin par campagne"
+    },
+    {
+      "role": "Producer",
+      "name": "Augustin Grégoire"
+    },
+    {
+      "role": "Line Producer",
+      "name": "Philippe Devallez"
+    },
+    {
+      "role": "Régisseur Gé",
+      "name": ""
+    },
+    {
+      "role": "Prod exe",
+      "name": ""
+    },
+    {
+      "role": "Agence",
+      "name": "Camelia"
+    },
+    {
+      "role": "DA",
+      "name": "Eve Vitré"
+    },
+    {
+      "role": "Hotel",
+      "name": ""
+    },
+    {
+      "role": "1st AD",
+      "name": ""
+    },
+    {
+      "role": "2nd AC",
+      "name": ""
+    },
+    {
+      "role": "DIT",
+      "name": ""
+    },
+    {
+      "role": "Loueur matos",
+      "name": ""
     }
-   ],
-   "lum": [
-    "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé droit",
-    "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
-    "Keylight : beauty light, 2400 + parabolic softbox 140",
-    "Negative fill : floppy, pendrillons. Pas de backlight",
-    "Contrôle de lumière : borniol en top, ajustable"
-   ],
-   "cam": [
-    "Alexa 35, série Master Primes",
-    "Plans en mouvement beauty sur jib"
-   ],
-   "mach": [
-    "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
-    "Borniol / top noir en cadre, ajustable"
-   ],
-   "alias": [],
-   "fond": "grad"
-  },
-  {
-   "id": "ncef",
-   "name": "NCEF Revitalize",
-   "txt": "NCEF REVITALIZE (=serum anti âge mais pour jeunes 25ans , glow) fond N&B en dégradé droit",
-   "pist": "",
-   "imgs": [
-    {
-     "src": "refs/time-ncef-gradient.jpg",
-     "alt": "Dégradé N&B de référence",
-     "cap": "Background recherché"
-    },
-    {
-     "src": "refs/ncef-ref.jpg",
-     "alt": "NCEF Revitalize : références",
-     "cap": "Référence Keylight"
-    }
-   ],
-   "lum": [
-    "Fond dégradé haut / bas, noir → blanc",
-    "Dégradé droit",
-    "Rangée d'une dizaine de Skypanel X Hyperoptics sur grill, peu de distance entre chaque, diffusée au 1/4 ou 1/8 pour adoucir le dégradé",
-    "Keylight : beauty light, 2400 + parabolic softbox 140",
-    "Negative fill : floppy, pendrillons. Pas de backlight",
-    "Contrôle de lumière : borniol en top, ajustable"
-   ],
-   "cam": [
-    "Alexa 35, série Master Primes",
-    "Plans en mouvement beauty sur jib"
-   ],
-   "mach": [
-    "Rangée de Skypanel X Hyperoptics accrochée sur le grill",
-    "Borniol / top noir en cadre, ajustable"
-   ],
-   "alias": [
-    "NCEF"
-   ],
-   "fond": "grad"
-  },
-  {
-   "id": "uv",
-   "name": "UV Cellular",
-   "txt": "UV CELLULAR (solaire) : ciel bleu en dégradé pour les plans à l'horizon, bleu incruste pour le sol des top shots",
-   "pist": "",
-   "imgs": [
-    {
-     "src": "refs/uv-ref.jpg",
-     "alt": "UV Cellular : références",
-     "cap": "Storyboard pour l'instant"
-    }
-   ],
-   "lum": [
-    "Ciel bleu (plans à l'horizon) : dégradé clair en bas → sombre en haut, même rangée de Skypanel X Hyperoptics que le N&B, sur toile chroma key bleue",
-    "Lumière solaire en keylight : 1 Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4",
-    "Backlight : oui, pour le plan spray du produit (LED 1200, option spotlight)"
-   ],
-   "cam": [
-    "Alexa 35, série Master Primes",
-    "1 ou 2 plans en top shot : mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)"
-   ],
-   "mach": [
-    "Toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo"
-   ],
-   "alias": [
-    "UV"
-   ],
-   "fond": "incrust"
-  }
- ],
- "plan": {
-  "intro": "",
-  "slots": [
-   {
-    "label": "Jeu. 19 nov — matin",
-    "camp": "Time Filler"
-   },
-   {
-    "label": "Jeu. 19 nov — après-midi",
-    "camp": "Regen Peptide"
-   },
-   {
-    "label": "Ven. 20 nov — matin",
-    "camp": "NCEF Revitalize"
-   },
-   {
-    "label": "Ven. 20 nov — après-midi",
-    "camp": "UV Cellular"
-   }
-  ]
- },
- "loc": {
-  "name": "Studio de la Montjoie",
-  "link": "https://studiosdelamontjoie.com",
-  "pdf": "refs/plan-plateau-480.pdf",
-  "imgs": [
-   {
-    "src": "refs/montjoie-1.jpg",
-    "alt": "Studio de la Montjoie, plateau 480"
-   },
-   {
-    "src": "refs/montjoie-2.jpg",
-    "alt": "Studio de la Montjoie, plateau 480"
-   },
-   {
-    "src": "refs/plan-plateau-480.jpg",
-    "alt": "Plan plateau 480"
-   }
-  ]
- },
- "depts": [
-  {
-   "id": "cam",
-   "name": "Caméra",
-   "known": [
-    {
-     "t": "Plans en mouvement beauty sur jib",
-     "sub": "",
-     "w": 0,
-     "g": "conf"
-    },
-    {
-     "t": "Setup de base : jib sur dolly avec tête 3D Cartoni Lambda 25",
-     "sub": "",
-     "w": 0,
-     "g": "conf"
-    },
-    {
-     "t": "Plan spécial : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
-     "sub": "",
-     "w": 0,
-     "g": "spec",
-     "go": "ref:mach:0",
-     "c": [
-      "regen"
-     ]
-    },
-    {
-     "t": "Effet filé : 2 setups. D'un côté le FPS bas (6 FPS par exemple), de l'autre le filtre Handheld Split Phantom FX (PrismLensFX)",
-     "sub": "",
-     "w": 0,
-     "g": "spec",
-     "c": [
-      "regen"
-     ],
-     "go": "ref:cam:0,ref:cam:1,ref:cam:2",
-     "tag": "À commander"
-    },
-    {
-     "t": "Film UV : 1 ou 2 plans en top shot, mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)",
-     "sub": "",
-     "w": 0,
-     "g": "spec",
-     "c": [
-      "uv"
-     ],
-     "go": ""
-    }
-   ],
-   "todo": [
-    {
-     "t": "Camera body",
-     "done": 0,
-     "lines": [
-      "ALexa 35"
-     ],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Lenses",
-     "done": 0,
-     "lines": [
-      "Serie Master Primes"
-     ],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Special Equipment",
-     "done": 0,
-     "lines": [
-      "Gimbal Ronin 2 (plan spécial)",
-      "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
-     ],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Monitoring",
-     "done": 0,
-     "lines": [],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Luts",
-     "done": 0,
-     "lines": [],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Technical Specs",
-     "done": 0,
-     "lines": [],
-     "fix": [],
-     "ctl": []
-    }
-   ],
-   "refs": [
-    {
-     "src": "refs/effet-file.jpg",
-     "title": "Effet filé · référence film Peptide",
-     "cap": "Référence : l'effet filé recherché.",
-     "link": "",
-     "linkText": ""
-    },
-    {
-     "src": "refs/split-phantom-filtre.jpg",
-     "title": "Filtre Handheld Split Phantom FX (PrismLensFX)",
-     "cap": "Le filtre : prisme en verre convexe tenu devant l'objectif, effet de ghosting / flou de mouvement organique.",
-     "link": "https://prismlensfx.com/collections/handheld-fx-filters/products/handheld-split-phantom-fx-filter",
-     "linkText": "Voir le filtre sur prismlensfx.com"
-    },
-    {
-     "src": "refs/split-phantom-effet.gif",
-     "title": "Effet obtenu avec le filtre",
-     "cap": "Effet obtenu (extrait de la démo du fabricant).",
-     "link": "",
-     "linkText": ""
-    }
-   ],
-   "notes": "",
-   "open": []
-  },
-  {
-   "id": "lum",
-   "name": "Lumière",
-   "known": [
-    {
-     "t": "Effet « battery loading » au sol : une vingtaine d'Astera Hyperion",
-     "sub": "Sol surélevé sur plexi frosté (collaboration lumière / déco). Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm.",
-     "w": 0,
-     "g": "spec",
-     "c": [
-      "regen"
-     ],
-     "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4",
-     "ch": "Surface : 2 m de large sur 3 m de profondeur prévus pour l'instant, beaucoup trop petit.",
-     "sol": [
-      "2 m de large sur 6 m de profondeur (proposition du chef op)",
-      "Bandes noires en travers de la plaque pour délimiter les lignes"
-     ]
-    },
-    {
-     "t": "Film UV, plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
-     "sub": "",
-     "w": 0,
-     "g": "conf",
-     "c": [
-      "uv"
-     ],
-     "go": ""
-    }
-   ],
-   "todo": [
-    {
-     "t": "Keylight",
-     "done": 1,
-     "lines": [
-      "mood B&W : Beauty light, 2400 + Parabolic softbox 140",
-      "mood incrust : (solaire) 1 mole Richardson 10K + 2400 Daylight dans cadre diff 1/2 4x4"
-     ],
-     "fix": [
-      "1 x Evoke 2400 B + 1 Mole Richardson 10K"
-     ],
-     "ctl": [
-      "mamas, cadres 120 de diff"
-     ]
-    },
-    {
-     "t": "Fill in / Negativ fill",
-     "done": 1,
-     "lines": [
-      "Negativ fill : floppy, pendrillons"
-     ],
-     "fix": [],
-     "ctl": [
-      "borniol, floppys"
-     ]
-    },
-    {
-     "t": "Backlight",
-     "done": 1,
-     "lines": [
-      "mood B&W : non",
-      "mood incrust : (solaire) oui pour le plan spray du produit pour mettre le produit en valeur"
-     ],
-     "fix": [
-      "1 LED 1200, option spotligth"
-     ],
-     "ctl": []
-    },
-    {
-     "t": "Background",
-     "done": 1,
-     "lines": [
-      "mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril",
-      "mood incrust : ciel bleu en dégradé (clair en bas → sombre en haut), même rangée de Skypanel X Hyperoptics, sur toile chroma key bleue"
-     ],
-     "fix": [
-      "10 skypanel X Hyperoptics"
-     ],
-     "ctl": []
-    },
-    {
-     "t": "Special lighting effect \" battery loading\" au sol ",
-     "done": 0,
-     "lines": [
-      "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes"
-     ],
-     "fix": [],
-     "ctl": []
-    }
-   ],
-   "refs": [
-    {
-     "src": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gr7s.jpg",
-     "title": "Nouvelle référence",
-     "cap": "Un effet de \"battery loading\" au sol, un chargement de batterie à pouvoir faire évoluer.",
-     "link": "",
-     "linkText": ""
-    },
-    {
-     "src": "refs/deco-sol-plan.jpg",
-     "cap": "Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, 18 Astera sous le plexi, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm."
-    },
-    {
-     "src": "refs/deco-sol-coffrage.jpg",
-     "cap": "Le coffrage : structure bois avec les tubes Astera glissés entre les chevrons, plateau dessus."
-    },
-    {
-     "src": "refs/deco-sol-dessus.jpg",
-     "cap": "Le sol vu de dessus, plateau fini."
-    },
-    {
-     "src": "refs/deco-sol-raies.jpg",
-     "cap": "Vue de dessus : les 18 raies lumière."
-    }
-   ],
-   "notes": "",
-   "open": []
-  },
-  {
-   "id": "mach",
-   "name": "Machinerie",
-   "known": [
-    {
-     "t": "Plans en mouvement beauty sur jib",
-     "sub": "",
-     "w": 0,
-     "g": "mvt"
-    },
-    {
-     "t": "Setup : jib sur dolly avec tête 3D Cartoni Lambda 25, pour tous les plans sauf le plan spécial",
-     "sub": "",
-     "w": 0,
-     "g": "mvt"
-    },
-    {
-     "t": "Plan machinerie spécial : la caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus du talent. Mouvement clean, robotique… sans robot",
-     "sub": "Bras déporté, jib sur dolly avec tête Ronin 2 (gimbal)",
-     "w": 0,
-     "g": "mvt",
-     "c": [
-      "regen"
-     ],
-     "go": "ref:mach:0"
-    },
-    {
-     "t": "Rangée de Skypanel X Hyperoptics accrochée sur le grill, borniol / top noir en cadre, ajustable",
-     "sub": "",
-     "w": 0,
-     "g": "rig",
-     "c": [
-      "regen",
-      "time",
-      "ncef"
-     ]
-    },
-    {
-     "t": "On shoote tout sur le fond cyclo blanc, et on crée ce dégradé à la lumière : gros travail de contrôle de lumière, avec du borniol en top, ajustable.",
-     "sub": "",
-     "w": 0,
-     "g": "rig",
-     "c": [
-      "regen",
-      "time",
-      "ncef"
-     ]
-    },
-    {
-     "t": "Effet « battery loading » au sol : sol surélevé en plexi frosté, Astera Hyperion (collaboration lumière / déco)",
-     "sub": "Coffrage et sol : voir les plans déco (plateau 4,56 m × 2,03 m, hauteur 186 mm).",
-     "w": 0,
-     "g": "rig",
-     "c": [
-      "regen"
-     ],
-     "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
-    },
-    {
-     "t": "Film UV : toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo (ciel bleu des plans à l'horizon, voir Lumière)",
-     "sub": "",
-     "w": 0,
-     "g": "rig",
-     "c": [
-      "uv"
-     ],
-     "go": ""
-    },
-    {
-     "t": "Film UV, plans en top shot : sol visible derrière le mannequin en bleu incruste",
-     "sub": "",
-     "w": 0,
-     "g": "rig",
-     "c": [
-      "uv"
-     ],
-     "go": ""
-    }
-   ],
-   "todo": [
-    {
-     "t": "Camera Support & Movement",
-     "done": 0,
-     "lines": [
-      "Setup 1 (plan spécial) : bras déporté, jib sur dolly avec tête Ronin 2 (gimbal), manivelles, rail",
-      "Setup 2 (tous les autres plans) : jib sur dolly avec tête 3D Cartoni Lambda 25"
-     ],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Rigging & mounting",
-     "done": 0,
-     "lines": [
-      "Rangée de Skypanel X Hyperoptics sur grill, sûrement top noir en cadre.",
-      "Accroche de vidéo projecteur en top shot pour projection lumineuse au sol."
-     ],
-     "fix": [],
-     "ctl": []
-    },
-    {
-     "t": "Special Rigs",
-     "done": 0,
-     "lines": [
-      "Gimbal Ronin 2 (plan spécial)",
-      "Tête 3D Cartoni Lambda 25 (tous les autres plans)"
-     ],
-     "fix": [],
-     "ctl": []
-    }
-   ],
-   "refs": [
-    {
-     "src": "refs/mugler-angel-elixir-plan1.gif",
-     "title": "Plan machinerie spécial · référence",
-     "cap": "Référence de mouvement : pub Mugler Angel Elixir. La caméra avance vers le talent qui marche vers la caméra, puis monte au-dessus d'elle et s'arrête au-dessus de la tête.",
-     "link": "https://www.youtube.com/watch?v=OE999ilxDNk",
-     "linkText": "Voir la pub complète"
-    },
-    {
-     "src": "refs/plan-plateau-480.jpg",
-     "title": "Plan du plateau 480",
-     "cap": "Plateau 480 : 37 m x 13,3 m, cyclo 3 faces de 5,50 m de haut.",
-     "link": "refs/plan-plateau-480.pdf",
-     "linkText": "Plan en PDF"
-    }
-   ],
-   "notes": "",
-   "open": []
-  }
- ],
- "team": [
-  {
-   "role": "Prod",
-   "name": "Boner Boner"
-  },
-  {
-   "role": "Co-réal",
-   "name": "Eve Vitré et Ben Fourmi"
-  },
-  {
-   "role": "Photographe",
-   "name": "Ben Fourmi"
-  },
-  {
-   "role": "DOP",
-   "name": "Seb Trân"
-  },
-  {
-   "role": "1st AC",
-   "name": "Lucas Bidard"
-  },
-  {
-   "role": "Gaffer",
-   "name": "Nathan Jean-François"
-  },
-  {
-   "role": "Grip",
-   "name": "Nicolas Sommermeyer"
-  },
-  {
-   "role": "Talent",
-   "name": "1 mannequin par campagne"
-  },
-  {
-   "role": "Producer",
-   "name": "Augustin Grégoire"
-  },
-  {
-   "role": "Line Producer",
-   "name": "Philippe Devallez"
-  },
-  {
-   "role": "Régisseur Gé",
-   "name": ""
-  },
-  {
-   "role": "Prod exe",
-   "name": ""
-  },
-  {
-   "role": "Agence",
-   "name": "Camelia"
-  },
-  {
-   "role": "DA",
-   "name": "Eve Vitré"
-  },
-  {
-   "role": "Hotel",
-   "name": ""
-  },
-  {
-   "role": "1st AD",
-   "name": ""
-  },
-  {
-   "role": "2nd AC",
-   "name": ""
-  },
-  {
-   "role": "DIT",
-   "name": ""
-  },
-  {
-   "role": "Loueur matos",
-   "name": ""
-  }
- ],
- "qs": [],
- "pos": {}
+  ],
+  "qs": [],
+  "pos": {}
 }
