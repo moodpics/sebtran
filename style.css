@@ -966,3 +966,7 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: hidden; }
 header.top .top__nav { margin-left: auto; }
 .work { scroll-margin-top: calc(var(--pin, 80px) + var(--catH, 56px)); }
 @media (max-width: 899px) { header.top { row-gap: 0 !important; } }
+
+/* v29: the "Like & create a ↑" hint always travels with the band, in a reserved strip under it (never over the big "Seb Trân") */
+header.top { padding-bottom: 30px !important; }
+body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
