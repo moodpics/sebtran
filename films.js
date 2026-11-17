@@ -491,6 +491,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2225851238-c297222814ff6ea0c822f2724b69c0100491ca883bb3c80658419f46ac6420a6-d"
     },
     {
+      "id": "1246439332",
+      "h": null,
+      "client": "Miu Miu",
+      "title": "Miutine — Emma Corrin, Social Advocacy — Name Viralization",
+      "category": "Beauty",
+      "director": "Seb Trân",
+      "production": "Psycho",
+      "year": 2026,
+      "duration": 15,
+      "thumb": "https://i.vimeocdn.com/video/2225881560-f52f04db185edbc8ae2e6babfc2eebb20780ffacfd27b87c01c98aac07ea7338-d"
+    },
+    {
       "id": "832589497",
       "h": null,
       "client": "Akinom",
