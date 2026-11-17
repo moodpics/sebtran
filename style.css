@@ -1021,3 +1021,16 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
   .hero__play-txt { max-width: 30vw; min-width: 0; }
   .hero__play-txt strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
+
+/* v35: phone in landscape — the "Like & create a" hint moves inside the discipline pill, right before "Selection" → tighter band */
+.switch__hint { display: none; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .switch__hint { display: inline-flex; align-items: center; gap: 5px; padding: 0 6px 0 10px; font: 400 8.5px/1 var(--sans); letter-spacing: .03em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .switch__hint .top__heart { width: 14px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+  .top.in-sel .switch__hint { display: none; }
+  .switchwrap .top__selpre { display: none !important; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  header.top { padding-top: 6px !important; padding-bottom: 6px !important; }
+  header.top .top__contact { top: 50%; transform: translateY(-50%); }
+}
