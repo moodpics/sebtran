@@ -1,7 +1,18 @@
 {
  "v": 1,
- "updated": "2026-11-16T09:53:43.000Z",
+ "updated": "2026-11-17T12:24:43.000Z",
  "log": [
+  {
+   "at": "2026-11-17T12:24:43.000Z",
+   "src": "Film UV Cellular",
+   "d": [
+    "cam",
+    "lum",
+    "mach"
+   ],
+   "kind": "modif",
+   "text": "fond bleu dégradé sur toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo ; 1 à 2 plans en top shot avec sol en bleu incrust"
+  },
   {
    "at": "2026-11-16T09:53:43.000Z",
    "src": "Effet battery loading",
@@ -167,13 +178,16 @@
    },
    {
     "id": "mood-inc",
-    "t": "Mood 2 · Incrust",
-    "d": "Background gris étale, sur la base du cyclo blanc (incrust post-prod)",
+    "t": "Mood 2 · Bleu incruste",
+    "d": "Fond bleu dégradé, clair en bas vers plus sombre en haut, pour le montage final",
     "c": [
      "uv"
     ],
     "lines": [
-     "Lumière solaire en keylight"
+     "Toile chroma key bleue d'environ 8 × 6 m, accrochée par-dessus le cyclo",
+     "Mêmes lumières que le N&B : même rangée de Skypanel X Hyperoptics",
+     "Lumière solaire en keylight",
+     "1 ou 2 plans en top shot (mannequin posée sur un rebord, sol visible derrière) : sol en bleu incrust pour une incrustation future"
     ],
     "img": "refs/uv-ref.jpg",
     "go": ""
@@ -298,7 +312,7 @@
   {
    "id": "uv",
    "name": "UV Cellular",
-   "txt": "UV CELLULAR (solaire), ce sera de l'incrustation post-prod, sur fond gris étale",
+   "txt": "UV CELLULAR (solaire) fond bleu dégradé, clair en bas vers plus sombre en haut, pour le montage final",
    "pist": "",
    "imgs": [
     {
@@ -308,16 +322,16 @@
     }
    ],
    "lum": [
-    "Fond gris étale",
+    "Fond bleu dégradé, clair en bas → sombre en haut : même rangée de Skypanel X Hyperoptics que le N&B, sur toile chroma key bleue",
     "Lumière solaire en keylight : 1 Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4",
     "Backlight : oui, pour le plan spray du produit (LED 1200, option spotlight)"
    ],
    "cam": [
     "Alexa 35, série Master Primes",
-    "Fond propre et cadrage prévus pour l'incrustation post-prod"
+    "1 ou 2 plans en top shot : mannequin posée sur un rebord, sol visible derrière elle en bleu incrust (incrustation future)"
    ],
    "mach": [
-    "Fond gris étale (incrust post-prod)"
+    "Toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo"
    ],
    "alias": [
     "UV"
@@ -402,6 +416,16 @@
      ],
      "go": "ref:cam:0,ref:cam:1,ref:cam:2",
      "tag": "À commander"
+    },
+    {
+     "t": "Film UV : 1 ou 2 plans en top shot, mannequin posée sur un rebord, sol visible derrière elle en bleu incrust (incrustation future)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "uv"
+     ],
+     "go": ""
     }
    ],
    "todo": [
@@ -499,6 +523,16 @@
       "2 m de large sur 6 m de profondeur (proposition du chef op)",
       "Bandes noires en travers de la plaque pour délimiter les lignes"
      ]
+    },
+    {
+     "t": "Film UV : fond bleu dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
+     "sub": "",
+     "w": 0,
+     "g": "conf",
+     "c": [
+      "uv"
+     ],
+     "go": ""
     }
    ],
    "todo": [
@@ -544,7 +578,7 @@
      "done": 1,
      "lines": [
       "mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril",
-      "mood incrust : à voir, mais quelque chose d'étal"
+      "mood incrust : fond bleu dégradé (clair en bas → sombre en haut), même rangée de Skypanel X Hyperoptics, sur toile chroma key bleue"
      ],
      "fix": [
       "10 skypanel X Hyperoptics"
@@ -648,7 +682,17 @@
      "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
     },
     {
-     "t": "Film UV : fond gris étale (incrust post-prod)",
+     "t": "Film UV : toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo (fond bleu dégradé, voir Lumière)",
+     "sub": "",
+     "w": 0,
+     "g": "rig",
+     "c": [
+      "uv"
+     ],
+     "go": ""
+    },
+    {
+     "t": "Film UV, plans en top shot : sol visible derrière le mannequin en bleu incrust",
      "sub": "",
      "w": 0,
      "g": "rig",

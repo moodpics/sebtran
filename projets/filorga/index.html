@@ -375,7 +375,7 @@ body.m .cvp .refs img{height:auto}
 .cf{display:flex;align-items:center;gap:7px;font-size:11px;padding:6px 12px 0;color:#555}
 .cf i{display:block;width:34px;height:8px;border-radius:2px;border:1px solid rgba(0,0,0,.25)}
 .fbar.grad,.cf.grad i{background:linear-gradient(180deg,#000,#fff)}
-.fbar.incrust,.cf.incrust i{background:repeating-linear-gradient(45deg,#bdbdbd 0 4px,#d9d9d9 4px 8px)}
+.fbar.incrust,.cf.incrust i{background:linear-gradient(180deg,#0b3d91,#6fb1ff)}
 .fl3{margin-top:14px;display:grid;gap:10px}
 .fg{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.35}
 .fg .fbar{flex:none;width:12px;height:36px;border-radius:3px;border:1px solid rgba(0,0,0,.25);margin-top:2px}
@@ -620,8 +620,8 @@ function campChips(ids){const cs=DATA.camps;ids=(ids||[]).filter(id=>cs.some(c=>
  if(grp.length>1&&grp.length===ids.length&&grp.every(x=>ids.includes(x)))return `<span class="cpg">${grp.map(g=>campChip(cs.findIndex(c=>c.id===g))).join("")}<em>même fond</em></span>`;
  return ids.map(id=>campChip(cs.findIndex(c=>c.id===id))).join("")}
 const campTog=(path,ids)=>EDIT?`<div class="ctg">${DATA.camps.map((c,i)=>`<button class="cp cc${i%4}${(ids||[]).includes(c.id)?" on":""}" data-ctog="${path}" data-cid="${c.id}">${esc(c.name)}</button>`).join("")}<span class="sub">(aucun = tous les films)</span></div>`:"";
-const MOODN={grad:"Mood noir et blanc dégradé",incrust:"Mood incruste"};
-const FOND={grad:{n:"Fond dégradé",g:"{n} {f} · fond dégradé noir → blanc",d:"Haut / bas, créé à la lumière : rangée de Skypanel X Hyperoptics sur le grill, borniol en top."},incrust:{n:"Fond gris étale",g:"{n} {f} · fond gris étale",d:"Fond gris uni, à partir du même cyclo blanc (incrust post-prod)."}};
+const MOODN={grad:"Mood noir et blanc dégradé",incrust:"Mood bleu incruste"};
+const FOND={grad:{n:"Fond dégradé",g:"{n} {f} · fond dégradé noir → blanc",d:"Haut / bas, créé à la lumière : rangée de Skypanel X Hyperoptics sur le grill, borniol en top."},incrust:{n:"Fond bleu dégradé",g:"{n} {f} · fond bleu dégradé",d:"Toile chroma key bleue d'environ 8 × 6 m accrochée par-dessus le cyclo : dégradé clair en bas, plus sombre en haut, pour le montage final."}};
 function baseBlock(){const cs=DATA.camps,R=(DATA.root&&DATA.root.base)||{t:"",p:""};return `<div class="base"><div class="b0"><i class="bbar"></i><div><b>${ed("root.base.t","span","",R.t,"Base commune")}</b><div class="bp0">${ed("root.base.p","span","",R.p,"Explication")}</div></div></div><div class="bsplit">${["grad","incrust"].map(k=>{const m=cs.map((c,i)=>[c,i]).filter(([c])=>c.fond===k);if(!m.length)return "";return `<div class="bf"><i class="fbar ${k}"></i><div><b>${esc(MOODN[k])} · ${m.length} ${m.length>1?"films":"film"}</b><span class="d">${esc(FOND[k].d)}</span><div class="fgc">${m.map(([c,i])=>campChip(i)).join("")}</div>${(()=>{const mm=((DATA.mood||{}).moods||[])[k==="grad"?0:1],im=mm&&mm.img;return im?`<img class="bfimg ${k}" data-zoom src="${esc(imgSrc(im))}" alt="${esc(MOODN[k])}" loading="lazy"><span class="bfc">${k==="grad"?"Référence du fond":"Storyboard pour l'instant"} · clique pour agrandir</span>`:""})()}</div></div>`}).join("")}</div></div>`}
 function fixData(d){(d.depts||[]).forEach(x=>{x.open=x.open||[];x.open.forEach(o=>{o.c=o.c||[];o.sol=o.sol||[]});});(d.camps||[]).forEach(c=>{c.alias=c.alias||[]});d.root=d.root||{};d.root.base=d.root.base||{t:"Base commune : le fond cyclo blanc",p:"Tous les films sont tournés sur le fond cyclo blanc. C'est à partir de cette base que chaque fond est travaillé."};if(d.mood){d.mood.moods=d.mood.moods||[];d.mood.moods.forEach(m=>{m.c=m.c||[];m.lines=m.lines||[]})}return d}
 
@@ -898,7 +898,7 @@ function cvBody(i){
  return `<div class="cvh cc${i%4}" style="background:${CT[i%4]}"><div><span class="cvn">Campagne 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
  <div class="cvbd"><p class="sub">${slot?"Tournage : "+esc(slot.label):"Créneau : à définir (voir Planning provisoire)"}</p>
  ${ed(P+".txt","p","v",c.txt)}
- ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Gris étale (incrust post-prod)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
+ ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Bleu dégradé (toile chroma key)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
  ${(c.pist||EDIT)?ed(P+".pist","span","tag k",c.pist,"piste DoP"):""}
  ${imgs(P+".imgs",c.imgs)}
  <h4>Déclinaison par département</h4><div class="cvg">${[["lum","Lumière"],["cam","Caméra"],["mach","Machinerie"]].map(([k,n])=>`<div class="d-${k}"><h5>${n}</h5>${EDIT?edj(`${P}.${k}`,"div","cvl",c[k],"\n","Une ligne par point"):((c[k]&&c[k].length)?`<ul>${c[k].map(l=>`<li>${esc(l)}</li>`).join("")}</ul>`:`<p class="sub" style="margin:0">À définir</p>`)}</div>`).join("")}</div>
