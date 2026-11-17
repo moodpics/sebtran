@@ -709,7 +709,7 @@
   const setWorkTitle = () => {
     $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle;
     updateSelName();
-    $(".top").classList.toggle("in-sel", state.mode === "selection");
+    $$(".top").forEach(t => t.classList.toggle("in-sel", state.mode === "selection"));
     const role = $("[data-role]"); role.style.color = state.mode === "selection" ? roleColor() : "";
     if (state.mode === "selection") role.textContent = heroSelText();
   };
@@ -835,7 +835,7 @@
   $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
     e.preventDefault();
     const t = document.getElementById(a.dataset.scroll);
-    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || $(".top").offsetHeight) - 12, behavior: reduced ? "auto" : "smooth" });
+    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || $(".top").offsetHeight) - ($("[data-catbar]").offsetHeight || 0) - 12, behavior: reduced ? "auto" : "smooth" });
   }));
   $(".top__name").addEventListener("click", e => {
     if (state.mode !== "selection") return;
@@ -857,12 +857,13 @@
       const visBottom = boxBottom + 8;
       pin = topH + 2 + (visBottom - titleTop); heroTop = topH + 2 - titleTop; clipB = Math.max(0, H - visBottom);
     } else { pin = topH + (H - titleTop) + 10; heroTop = pin - H; }
+    r.setProperty("--catH", ($("[data-catbar]").offsetHeight || 0) + "px");
     r.setProperty("--pin", pin + "px"); r.setProperty("--heroTop", heroTop + "px"); r.setProperty("--clipB", clipB + "px");
     r.setProperty("--pinStart", (-heroTop) + "px");
   };
   setPin(); addEventListener("resize", setPin); addEventListener("scroll", () => { if (scrollY < innerHeight) setPin(); }, { passive: true }); addEventListener("load", setPin);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(setPin);
-  if (window.ResizeObserver) { const ro = new ResizeObserver(setPin); ro.observe(topEl); ro.observe(pinEl); ro.observe(pinBox); }
+  if (window.ResizeObserver) { const ro = new ResizeObserver(setPin); ro.observe(topEl); ro.observe(pinEl); ro.observe(pinBox); ro.observe($("[data-catbar]")); }
   /* top band: hidden on arrival, fades in (0.5 s) on any touch / mouse move, fades out (1 s) after 3 s of calm;
      once the header film has scrolled away it stays put */
   const heroEl = $(".hero"); let lastAct = performance.now();

@@ -958,3 +958,11 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: hidden; }
   .hero { transition: clip-path .3s ease; }
   body:not(.at-hero) .hero { clip-path: inset(0 0 var(--clipB, 0px) 0); }
 }
+
+/* v28: the category / Grid-Index / selection row leaves the band: black strip under the header film */
+.top.catbar { position: sticky !important; top: var(--pin, 0px); left: auto; right: auto; width: auto; z-index: 25; display: flex !important; align-items: center; background: #000 !important; opacity: 1 !important; pointer-events: auto !important; transition: none !important; text-shadow: none; padding: 10px var(--pad); min-height: 0; border: 0; grid-template-columns: none; }
+.top.catbar .topcats { flex: 1 1 auto; min-width: 0; }
+.top.catbar .top__selgrp { margin-left: 0; }
+header.top .top__nav { margin-left: auto; }
+.work { scroll-margin-top: calc(var(--pin, 80px) + var(--catH, 56px)); }
+@media (max-width: 899px) { header.top { row-gap: 0 !important; } }
