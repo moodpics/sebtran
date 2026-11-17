@@ -376,9 +376,15 @@
     state.list = state.filter === "All" ? all : all.filter(f => f.category === state.filter);
     $("[data-count]").textContent = pad(state.list.length);
     $("[data-sel-empty]").hidden = !(state.mode === "selection" && !state.list.length);
+    // the header film follows the category; it is not repeated below (but stays in the numbering / counts)
+    const heroF = state.list[0];
+    if (heroF && (!heroFilm || heroFilm.id !== heroF.id)) setHero(heroF);
+    const skipHero = state.mode !== "selection" ? 1 : 0;
 
     grid.innerHTML = state.list.map((f, i) => {
-      const span = state.filter === "All" ? (f.size || PATTERN[i % PATTERN.length]) : [6, 6, 4, 4, 4][i % 5];
+      if (i < skipHero) return "";
+      const j = i - skipHero;
+      const span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
         <div class="card__frame">
@@ -399,7 +405,7 @@
       </button>`;
     }).join("");
 
-    index.innerHTML = state.list.map((f, i) => `
+    index.innerHTML = state.list.map((f, i) => i < skipHero ? "" : `
       <li class="row" data-i="${i}" data-cursor="play" tabindex="0">
         <span class="row__num">${pad(i + 1)}</span>
         <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
@@ -683,7 +689,6 @@
     scramble($("[data-role]"), mode === "selection" ? heroSelText() : M.role);
     renderAbout(M.about);
     renderFilters(); renderWork();
-    if (FILMS[mode][0]) setHero(FILMS[mode][0]);
     updateFavUI();
     hideTopOnArrival();
   }
@@ -726,7 +731,6 @@
     if (state.mode !== "selection") { setMode("selection"); return; }
     syncURL();
     buildSelection(); state.filter = "All"; setWorkTitle(); renderFilters(); renderWork();
-    if (FILMS.selection[0]) setHero(FILMS.selection[0]);
     scramble($("[data-role]"), heroSelText()); updateFavUI(); scrollTo({ top: 0, behavior: "auto" });
   }
   document.addEventListener("click", e => {
