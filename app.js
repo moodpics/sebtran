@@ -676,6 +676,24 @@
     const a = $(`.switch__btn[data-mode="${state.mode}"]`); if (!a) { pill.style.width = "0px"; return; }
     pill.style.width = a.offsetWidth + "px";
     pill.style.transform = `translateX(${a.offsetLeft}px)`;
+    placeHint();
+  }
+  /* hint arrow: leaves the text horizontally, then turns up (right angle) to the word "Selection" */
+  function placeHint() {
+    const hint = $(".switchwrap .top__selpre"), sv = hint && hint.querySelector(".hint__arrow"), sb = $('.switch__btn[data-mode="selection"]');
+    if (!hint || !sv || !sb) return;
+    const sw = sb.parentElement;
+    if (!hint.offsetWidth || !sb.offsetWidth) return;
+    // offset* values ignore the switch's call-to-action animation (transforms)
+    const gap = 4, cx = sw.offsetLeft + sb.offsetLeft + sb.offsetWidth / 2;
+    // the text stops ~24px left of the word "Selection": the arrow runs right, then turns up
+    hint.style.right = Math.max(0, hint.parentElement.offsetWidth - (cx - 24 - gap)) + "px";
+    const hr = { top: hint.offsetTop, right: hint.offsetLeft + hint.offsetWidth, height: hint.offsetHeight }, midY = hr.top + hr.height / 2;
+    const ty = sw.offsetTop + sb.offsetTop + sb.offsetHeight / 2 + parseFloat(getComputedStyle(sb).fontSize) * .5 + 4;
+    const dx = Math.max(10, cx - hr.right - gap), dy = Math.max(10, midY - ty);
+    sv.setAttribute("viewBox", `0 0 ${dx + 4} ${dy + 2}`); sv.setAttribute("width", dx + 4); sv.setAttribute("height", dy + 2);
+    sv.querySelector("path").setAttribute("d", `M0 ${dy + 1} H${dx} V2 M${dx - 3.5} 5.5 L${dx} 1.5 L${dx + 3.5} 5.5`);
+    sv.style.cssText = `position:absolute;left:calc(100% + ${gap}px);top:${(ty - hr.top) - 1}px;overflow:visible;width:${dx + 4}px;height:${dy + 2}px`;
   }
   const selRole = () => { const c = cur(); return c && c.shared ? "Shared selection" : "Your selection"; };
   const updateSelName = () => renderSelTabs();
@@ -836,16 +854,26 @@
     !!$(".selpick.is-open") || !$("[data-share-pop]").hidden || !likePop.hidden || !$("[data-sel-dlg]").hidden;
   let arriveUntil = 0;
   const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
-  ["pointermove", "pointerdown", "touchstart", "wheel", "keydown"].forEach(ev => addEventListener(ev, showTop, { passive: true }));
+  ["pointermove", "pointerdown", "keydown"].forEach(ev => addEventListener(ev, e => { if (e.pointerType === "touch" && scrollY <= 2) return; showTop(); }, { passive: true }));
   const syncHeroMode = () => document.body.classList.toggle("at-hero", !pastHero());
   /* once shown, the band stays; it only goes away when the visitor scrolls up and reaches the very top */
-  let lastY = scrollY;
+  let lastY = scrollY, atTop = scrollY <= 2, bounceAt = 0;
+  /* each time the page bounces against the top, the band toggles: hidden, then shown on the next bounce */
+  const bounceTop = () => {
+    const t = performance.now(); if (t - bounceAt < 700) return; bounceAt = t;
+    arriveUntil = t + 400; document.body.classList.toggle("top-idle");
+  };
   addEventListener("scroll", () => {
     syncHeroMode();
     const goingUp = scrollY < lastY; lastY = scrollY;
-    if (scrollY <= 2 && goingUp) { arriveUntil = performance.now() + 400; document.body.classList.add("top-idle"); }
-    else pastHero() ? document.body.classList.remove("top-idle") : showTop();
+    if (scrollY <= 2) { if (goingUp && !atTop) bounceTop(); atTop = true; }
+    else { atTop = false; pastHero() ? document.body.classList.remove("top-idle") : showTop(); }
   }, { passive: true });
+  /* already at the very top: another scroll-up (wheel / pull) is a bounce too */
+  addEventListener("wheel", e => { if (scrollY <= 2 && e.deltaY < 0) bounceTop(); }, { passive: true });
+  let ty0 = 0;
+  addEventListener("touchstart", e => { ty0 = e.touches[0].clientY; }, { passive: true });
+  addEventListener("touchmove", e => { if (scrollY <= 2 && e.touches[0].clientY - ty0 > 40) { ty0 = e.touches[0].clientY; bounceTop(); } }, { passive: true });
   addEventListener("resize", syncHeroMode);
   setInterval(() => {
     if (document.body.classList.contains("is-loading")) return;
@@ -879,6 +907,8 @@
 
   addEventListener("scroll", () => { letterbox(); litAbout(); }, { passive: true });
   addEventListener("resize", () => { letterbox(); placePill(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placePill);
+  addEventListener("load", placePill);
 
   /* ==========================================================================
      Boot
