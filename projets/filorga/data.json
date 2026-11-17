@@ -1,7 +1,14 @@
 {
  "v": 1,
- "updated": "2026-11-17T12:24:43.000Z",
+ "updated": "2026-11-17T12:54:49.000Z",
  "log": [
+  {
+   "at": "2026-11-17T12:54:49.000Z",
+   "src": "Planning",
+   "d": [],
+   "kind": "ajout",
+   "text": "jeudi après-midi : Regen Peptide · vendredi après-midi : UV Cellular · matinées jeudi et vendredi : Time Filler et NCEF Revitalize (fond gris)"
+  },
   {
    "at": "2026-11-17T12:24:43.000Z",
    "src": "Film UV Cellular",
@@ -330,23 +337,25 @@
   }
  ],
  "plan": {
-  "intro": "Ordre des 4 campagnes : question ouverte.",
+  "intro": "Les matinées : Time Filler et NCEF Revitalize. Les après-midis : Regen Peptide, puis UV Cellular.",
   "slots": [
    {
     "label": "Jeu. 19 nov — matin",
-    "camp": ""
+    "camp": "Time Filler / NCEF Revitalize",
+    "note": "Fond gris (dégradé N&B) · ordre des deux à définir"
    },
    {
     "label": "Jeu. 19 nov — après-midi",
-    "camp": ""
+    "camp": "Regen Peptide"
    },
    {
     "label": "Ven. 20 nov — matin",
-    "camp": ""
+    "camp": "Time Filler / NCEF Revitalize",
+    "note": "Fond gris (dégradé N&B) · ordre des deux à définir"
    },
    {
     "label": "Ven. 20 nov — après-midi",
-    "camp": ""
+    "camp": "UV Cellular"
    }
   ]
  },
