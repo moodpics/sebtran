@@ -928,3 +928,9 @@ body.top-idle .top, body.at-hero.top-idle .top { transition: opacity 2s ease, ba
   body.top-idle .top, body.at-hero.top-idle .top { opacity: 1 !important; pointer-events: auto !important; transition: background-color .5s ease; }
   .top, body.at-hero .top { transition: background-color .5s ease; }
 }
+
+/* v25: scrolling down, the header film pins under the band from "Seb Trân" down; the videos slide under that block */
+.hero { position: sticky; top: var(--heroTop, 0px); z-index: 30; }
+.work { position: relative; z-index: 1; scroll-margin-top: var(--pin, 80px); }
+body:not(.at-hero) .hero__scroll { opacity: 0; }
+body:not(.at-hero) .switchwrap .top__selpre { visibility: hidden; }

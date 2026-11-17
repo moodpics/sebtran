@@ -835,7 +835,7 @@
   $$("[data-scroll]").forEach(a => a.addEventListener("click", e => {
     e.preventDefault();
     const t = document.getElementById(a.dataset.scroll);
-    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - ($(".top").offsetHeight + 12), behavior: reduced ? "auto" : "smooth" });
+    t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || $(".top").offsetHeight) - 12, behavior: reduced ? "auto" : "smooth" });
   }));
   $(".top__name").addEventListener("click", e => {
     if (state.mode !== "selection") return;
@@ -844,12 +844,21 @@
   }, true);
   /* header band height -> CSS var (hero offset, scroll offsets) */
   const topEl = $(".top"), setTopH = () => document.documentElement.style.setProperty("--topH", topEl.offsetHeight + "px");
-  setTopH(); addEventListener("resize", setTopH); addEventListener("load", setTopH);
-  if (window.ResizeObserver) new ResizeObserver(setTopH).observe(topEl);
+  /* the header film pins under the band from the big "Seb Trân" down: --pin = band + that strip */
+  const pinEl = $(".hero"), pinTitle = $(".hero__title"), pinBox = $(".hero__content");
+  const setPin = () => {
+    setTopH();
+    const H = pinEl.offsetHeight, strip = H - (pinBox.offsetTop + pinTitle.offsetTop) + 10, pin = topEl.offsetHeight + strip;
+    document.documentElement.style.setProperty("--pin", pin + "px");
+    document.documentElement.style.setProperty("--heroTop", (pin - H) + "px");
+  };
+  setPin(); addEventListener("resize", setPin); addEventListener("load", setPin);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setPin);
+  if (window.ResizeObserver) { const ro = new ResizeObserver(setPin); ro.observe(topEl); ro.observe(pinEl); ro.observe(pinBox); }
   /* top band: hidden on arrival, fades in (0.5 s) on any touch / mouse move, fades out (1 s) after 3 s of calm;
      once the header film has scrolled away it stays put */
   const heroEl = $(".hero"); let lastAct = performance.now();
-  const pastHero = () => scrollY > heroEl.offsetHeight - topEl.offsetHeight - 24;
+  const pastHero = () => scrollY > heroEl.offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || topEl.offsetHeight) - 24;
   const keepTop = () => topEl.matches(":hover") || topEl.contains(document.activeElement) || filtersEl.classList.contains("is-open") ||
     !!$(".selpick.is-open") || !$("[data-share-pop]").hidden || !likePop.hidden || !$("[data-sel-dlg]").hidden;
   let arriveUntil = 0;
