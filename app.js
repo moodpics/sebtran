@@ -654,11 +654,21 @@
   }
   const selRole = () => { const c = cur(); return c && c.shared ? "Shared selection" : "Your selection"; };
   const updateSelName = () => renderSelTabs();
+  /* hero line under "Seb Trân" on the selection page: "<Your selection | Selection…> · <name>", coloured by the kind of films inside */
+  const cineIds = new Set(FILMS.cinematography.map(f => f.id));
+  const heroSelText = () => { const c = cur(); return c && c.name ? `${selRole()} · ${c.name}` : selRole(); };
+  const roleColor = () => {
+    const ids = (cur() || { ids: [] }).ids;
+    const dir = ids.some(i => dirIds.has(i) && !cineIds.has(i)), cine = ids.some(i => cineIds.has(i) && !dirIds.has(i));
+    return dir && cine ? "var(--fg)" : dir ? "#e5483a" : cine ? "#e0a35c" : "var(--fg)";
+  };
   const selTitle = () => { const c = cur(); return c ? (c.name || "My films") : "Empty"; };
   const setWorkTitle = () => {
     $("[data-work-title]").textContent = state.mode === "selection" ? selTitle() : CONFIG.modes[state.mode].workTitle;
     updateSelName();
     $(".top").classList.toggle("in-sel", state.mode === "selection");
+    const role = $("[data-role]"); role.style.color = state.mode === "selection" ? roleColor() : "";
+    if (state.mode === "selection") role.textContent = heroSelText();
   };
   function applyMode(mode) {
     const M = CONFIG.modes[mode];
@@ -670,7 +680,7 @@
     setWorkTitle();
     $(".hud__meta").textContent = M.hud;
     document.title = `Seb Trân — ${M.role}`;
-    scramble($("[data-role]"), mode === "selection" ? selRole() : M.role);
+    scramble($("[data-role]"), mode === "selection" ? heroSelText() : M.role);
     renderAbout(M.about);
     renderFilters(); renderWork();
     if (FILMS[mode][0]) setHero(FILMS[mode][0]);
@@ -717,7 +727,7 @@
     syncURL();
     buildSelection(); state.filter = "All"; setWorkTitle(); renderFilters(); renderWork();
     if (FILMS.selection[0]) setHero(FILMS.selection[0]);
-    scramble($("[data-role]"), selRole()); updateFavUI(); scrollTo({ top: 0, behavior: "auto" });
+    scramble($("[data-role]"), heroSelText()); updateFavUI(); scrollTo({ top: 0, behavior: "auto" });
   }
   document.addEventListener("click", e => {
     const tg = e.target.closest("[data-sel-toggle]");

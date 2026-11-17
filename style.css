@@ -778,3 +778,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 .top { transition: opacity .5s ease; }
 body.top-idle .top { opacity: 0; pointer-events: none; transition: opacity 1s ease; }
 .hero { margin-top: 0; height: 100svh; min-height: 560px; }
+
+/* v16: no "Selected …" / selection-name headline above the grid (the hero line carries it) */
+.work__head { display: none; }
+.work { padding-top: clamp(28px, 4vw, 56px); }
