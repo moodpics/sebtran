@@ -22,7 +22,7 @@ fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
 // 1. fichiers copiés tels quels
-for (const f of ["style.css", "README.md", "apple-touch-icon.png", "favicon-32.png", "favicon.ico", "favicon.svg", "icon-512.png"]) {
+for (const f of ["style.css", "README.md", "apple-touch-icon.png", "favicon-32.png", "favicon.ico", "favicon.svg", "icon-512.png", "icon-192.png", "site.webmanifest"]) {
   fs.copyFileSync(f, path.join(OUT, f));
 }
 write("CNAME", DOMAIN + "\n");
