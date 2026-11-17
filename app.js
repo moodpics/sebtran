@@ -603,7 +603,15 @@
   function loadPlayer(f) {
     lbPlayer.innerHTML = "";
     const accent = getComputedStyle(document.body).getPropertyValue("--accent").trim().replace("#", "");
-    lbPlayer.appendChild(makeIframe(vimeo(f, { autoplay: 1, loop: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`));
+    const ifr = makeIframe(vimeo(f, { autoplay: 1, muted: 0, loop: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`);
+    lbPlayer.appendChild(ifr);
+    /* sound on by default: the iframe is created inside the user's tap/click, and we make sure it isn't left muted */
+    if (window.Vimeo && Vimeo.Player) {
+      try {
+        const p = new Vimeo.Player(ifr);
+        p.on("play", () => { p.getMuted().then(m => { if (m) p.setMuted(false); }).catch(() => {}); p.setVolume(1).catch(() => {}); });
+      } catch (e) { /* ignore */ }
+    }
   }
   async function openLightbox(list, i, fromEl) {
     lbList = list; lbIdx = i;
@@ -612,6 +620,7 @@
     heroVideo.querySelector("iframe")?.setAttribute("data-paused", "1");
     lb.hidden = false; document.body.style.overflow = "hidden"; cursor.classList.add("is-hidden");
     fillInfo(f);
+    loadPlayer(f); // created right now, inside the tap/click → browsers allow sound; it stays hidden until the zoom animation ends
     // FLIP ghost from the clicked frame to the player box
     const from = (fromEl || lbPlayer).getBoundingClientRect();
     Object.assign(ghost.style, { transition: "none", left: from.left + "px", top: from.top + "px", width: from.width + "px", height: from.height + "px", opacity: 1, backgroundImage: `url("${thumb(f)}")` });
@@ -623,7 +632,6 @@
       });
     });
     await wait(reduced ? 0 : 820);
-    loadPlayer(f);
     lb.classList.add("is-ready");
     await wait(900); ghost.style.opacity = 0;
   }
