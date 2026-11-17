@@ -773,3 +773,8 @@ html, body { overflow-x: clip; max-width: 100%; }
   .top:not(.in-sel):has(.filters.is-folded) .top__selgrp { display: flex; }
 }
 @media (max-width: 900px) { .top:not(.in-sel) .topcats { grid-column: 1 / -1 !important; grid-row: 2 !important; } }
+
+/* v15: band fades in/out; the header film now runs full-screen beneath it */
+.top { transition: opacity .5s ease; }
+body.top-idle .top { opacity: 0; pointer-events: none; transition: opacity 1s ease; }
+.hero { margin-top: 0; height: 100svh; min-height: 560px; }

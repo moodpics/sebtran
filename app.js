@@ -355,7 +355,12 @@
       } else filtersEl.classList.add("is-open"); // touch: tap opens them
     } else { filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded"); }
     state.filter = b.dataset.filter; renderFilters(); renderWork();
+    armCatTimer();
   });
+  /* opened by a click and left alone for 3 s -> the categories fold away again */
+  let catT;
+  function armCatTimer() { clearTimeout(catT); if (filtersEl.classList.contains("is-open")) catT = setTimeout(() => filtersEl.classList.remove("is-open"), 3000); }
+  ["pointermove", "pointerdown", "touchstart", "keydown"].forEach(ev => filtersEl.addEventListener(ev, armCatTimer, { passive: true }));
   document.addEventListener("click", e => { if (!e.composedPath().includes(filtersEl)) filtersEl.classList.remove("is-open"); });
 
   $$("[data-view]").forEach(b => b.addEventListener("click", () => {
@@ -670,15 +675,17 @@
     renderFilters(); renderWork();
     if (FILMS[mode][0]) setHero(FILMS[mode][0]);
     updateFavUI();
+    hideTopOnArrival();
   }
   async function setMode(mode, animate = true) {
     if (!CONFIG.modes[mode] || (mode === state.mode && mode !== "selection")) return;
     history.replaceState(null, "", hashFor(mode));
-    if (!animate || reduced) { applyMode(mode); scrollTo({ top: 0, behavior: "auto" }); return; }
+    if (!animate || reduced) { applyMode(mode); scrollTo({ top: 0, behavior: "auto" }); hideTopOnArrival(); return; }
     shutter.classList.add("is-closed");
     await wait(560);
     applyMode(mode);
     scrollTo({ top: 0, behavior: "auto" });
+    hideTopOnArrival();
     await wait(250);
     shutter.classList.remove("is-closed");
   }
@@ -788,6 +795,22 @@
   const topEl = $(".top"), setTopH = () => document.documentElement.style.setProperty("--topH", topEl.offsetHeight + "px");
   setTopH(); addEventListener("resize", setTopH); addEventListener("load", setTopH);
   if (window.ResizeObserver) new ResizeObserver(setTopH).observe(topEl);
+  /* top band: hidden on arrival, fades in (0.5 s) on any touch / mouse move, fades out (1 s) after 3 s of calm;
+     once the header film has scrolled away it stays put */
+  const heroEl = $(".hero"); let lastAct = performance.now();
+  const pastHero = () => scrollY > heroEl.offsetHeight - topEl.offsetHeight - 24;
+  const keepTop = () => topEl.matches(":hover") || topEl.contains(document.activeElement) || filtersEl.classList.contains("is-open") ||
+    !!$(".selpick.is-open") || !$("[data-share-pop]").hidden || !likePop.hidden || !$("[data-sel-dlg]").hidden;
+  let arriveUntil = 0;
+  const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
+  ["pointermove", "pointerdown", "touchstart", "wheel", "keydown"].forEach(ev => addEventListener(ev, showTop, { passive: true }));
+  addEventListener("scroll", () => { pastHero() ? document.body.classList.remove("top-idle") : showTop(); }, { passive: true });
+  setInterval(() => {
+    if (document.body.classList.contains("is-loading")) return;
+    if (pastHero() || keepTop()) { if (keepTop()) lastAct = performance.now(); return; }
+    if (performance.now() - lastAct > 3000) document.body.classList.add("top-idle");
+  }, 250);
+  const hideTopOnArrival = () => { arriveUntil = performance.now() + 700; lastAct = performance.now() - 5000; if (!pastHero()) document.body.classList.add("top-idle"); };
   const mq = $("[data-marquee]");
   mq.innerHTML = [...CONFIG.clients, ...CONFIG.clients].map(c => `<span>${esc(c)}</span>`).join("");
   const mail = $("[data-mail]");
