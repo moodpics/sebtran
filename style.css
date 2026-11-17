@@ -785,7 +785,7 @@ body.top-idle .top { opacity: 0; pointer-events: none; transition: opacity 1s ea
 
 /* ===== v17: black layer only once the header film is gone; everything on one row (≥900px) with fluid type ===== */
 .top { background: #000; transition: opacity .5s ease, background-color 1.5s ease; }
-body.at-hero .top { background: rgba(0,0,0,.2); }
+body.at-hero .top { background: rgba(0,0,0,.2); }  /* superseded by v20 */
 body.top-idle .top { transition: opacity 2s ease, background-color 1.5s ease; }
 @media (min-width: 900px) {
   .top { display: flex !important; align-items: center; flex-wrap: nowrap; gap: clamp(10px, 1.5vw, 28px); padding: 9px var(--pad); }
@@ -871,3 +871,28 @@ body.at-hero .top .switch__btn { text-shadow: 0 1px 8px rgba(0,0,0,.8), 0 0 2px 
   .top.in-sel .top__seltab, .top.in-sel .top__sel { flex-shrink: 0; }
   .top.in-sel .top__selgrp { gap: 4px; }
 }
+
+/* ===== v20: Selection joins the switch; hint under it; white typography over the header film ===== */
+.top .top__sel[data-sel-all] { display: none !important; }
+.switchwrap { position: relative; flex: none; }
+.switch__btn[data-mode="selection"], .switch__btn[data-mode="selection"].is-active { color: #fff; filter: none; }
+.switchwrap .top__selpre { position: absolute !important; top: 100%; right: 6px; margin: 5px 0 0 !important; display: flex !important; flex-direction: row !important; align-items: center; gap: 6px !important; font: 400 clamp(8.5px, .72vw, 11px)/1 var(--sans) !important; letter-spacing: .03em; white-space: nowrap; color: var(--fg); opacity: .85; }
+.top.in-sel .switchwrap .top__selpre { display: none !important; }
+.switchwrap .top__selpre .top__heartwrap, .switchwrap .top__selpre .top__heartwrap .top__heart { width: 18px !important; height: 16px !important; }
+.switchwrap .top__selpre .top__heartwrap b { font-size: 8px !important; }
+.hint__arrow { width: 9px; height: 11px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* colours back to the 50% yellow / red once the header film is gone; black layer fades in over 0.5 s */
+.switch__btn[data-mode="cinematography"], .switch__btn[data-mode="cinematography"].is-active { color: rgba(224,163,92,.5); }
+.switch__btn[data-mode="direction"], .switch__btn[data-mode="direction"].is-active { color: rgba(229,72,58,.5); }
+.switch__btn[data-mode="cinematography"]:not(.is-active), .switch__btn[data-mode="direction"]:not(.is-active) { filter: brightness(.8); }
+.switch__btn:not(.is-active):hover { filter: none; }
+.top { background: #000; transition: opacity .5s ease, background-color .5s ease; }
+body.top-idle .top { transition: opacity 2s ease, background-color .5s ease; }
+/* header film: white 100% typography, no shadows, 35% black layer (fades in over 1.5 s on the way back up) */
+body.at-hero .top { background: rgba(0,0,0,.35); text-shadow: none; transition: opacity .5s ease, background-color 1.5s ease; }
+body.at-hero .top svg { filter: none; }
+body.at-hero .top .switch__btn, body.at-hero .top .switch__btn.is-active, body.at-hero .top .switch__btn:not(.is-active) { color: #fff !important; filter: none; text-shadow: none; }
+body.at-hero .top .top__name, body.at-hero .top a, body.at-hero .top .chip:not(.is-active), body.at-hero .top .views__btn:not(.is-active), body.at-hero .top .tt-btn, body.at-hero .top .selbtn { color: #fff; opacity: 1; text-shadow: none; }
+body.at-hero .top .switchwrap .top__selpre { color: #fff; opacity: 1; }
+@media (max-width: 899px) { .top { row-gap: 22px; } }

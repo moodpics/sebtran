@@ -838,12 +838,18 @@
   const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
   ["pointermove", "pointerdown", "touchstart", "wheel", "keydown"].forEach(ev => addEventListener(ev, showTop, { passive: true }));
   const syncHeroMode = () => document.body.classList.toggle("at-hero", !pastHero());
-  addEventListener("scroll", () => { syncHeroMode(); pastHero() ? document.body.classList.remove("top-idle") : showTop(); }, { passive: true });
+  /* once shown, the band stays; it only goes away when the visitor scrolls up and reaches the very top */
+  let lastY = scrollY;
+  addEventListener("scroll", () => {
+    syncHeroMode();
+    const goingUp = scrollY < lastY; lastY = scrollY;
+    if (scrollY <= 2 && goingUp) { arriveUntil = performance.now() + 400; document.body.classList.add("top-idle"); }
+    else pastHero() ? document.body.classList.remove("top-idle") : showTop();
+  }, { passive: true });
   addEventListener("resize", syncHeroMode);
   setInterval(() => {
     if (document.body.classList.contains("is-loading")) return;
     if (pastHero() || keepTop()) { if (keepTop()) lastAct = performance.now(); return; }
-    if (performance.now() - lastAct > 2000) document.body.classList.add("top-idle");
   }, 250);
   const hideTopOnArrival = () => { syncHeroMode(); arriveUntil = performance.now() + 700; lastAct = performance.now() - 5000; if (!pastHero()) document.body.classList.add("top-idle"); };
   const mq = $("[data-marquee]");
