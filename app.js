@@ -848,17 +848,25 @@
   const pinEl = $(".hero"), pinTitle = $(".hero__title"), pinBox = $(".hero__content");
   const setPin = () => {
     setTopH();
-    const H = pinEl.offsetHeight, strip = H - (pinBox.offsetTop + pinTitle.offsetTop) + 10, pin = topEl.offsetHeight + strip;
-    document.documentElement.style.setProperty("--pin", pin + "px");
-    document.documentElement.style.setProperty("--heroTop", (pin - H) + "px");
+    const r = document.documentElement.style, topH = topEl.offsetHeight, H = pinEl.offsetHeight, lb = parseFloat(r.getPropertyValue("--lb")) || 0;
+    /* measured as if the letterbox were fully open (--lb = 0): that is the state once the film is pinned */
+    const titleTop = pinBox.offsetTop + pinTitle.offsetTop + lb, boxBottom = pinBox.offsetTop + pinBox.offsetHeight + lb;
+    let pin, heroTop, clipB = 0;
+    if (matchMedia("(min-width: 900px)").matches) {
+      /* desktop: title right under the band, block ends right under the title row (the rest of the film is cut) */
+      const visBottom = boxBottom + 8;
+      pin = topH + 2 + (visBottom - titleTop); heroTop = topH + 2 - titleTop; clipB = Math.max(0, H - visBottom);
+    } else { pin = topH + (H - titleTop) + 10; heroTop = pin - H; }
+    r.setProperty("--pin", pin + "px"); r.setProperty("--heroTop", heroTop + "px"); r.setProperty("--clipB", clipB + "px");
+    r.setProperty("--pinStart", (-heroTop) + "px");
   };
-  setPin(); addEventListener("resize", setPin); addEventListener("load", setPin);
+  setPin(); addEventListener("resize", setPin); addEventListener("scroll", () => { if (scrollY < innerHeight) setPin(); }, { passive: true }); addEventListener("load", setPin);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(setPin);
   if (window.ResizeObserver) { const ro = new ResizeObserver(setPin); ro.observe(topEl); ro.observe(pinEl); ro.observe(pinBox); }
   /* top band: hidden on arrival, fades in (0.5 s) on any touch / mouse move, fades out (1 s) after 3 s of calm;
      once the header film has scrolled away it stays put */
   const heroEl = $(".hero"); let lastAct = performance.now();
-  const pastHero = () => scrollY > heroEl.offsetHeight - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || topEl.offsetHeight) - 24;
+  const pastHero = () => scrollY > (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pinStart")) || heroEl.offsetHeight - topEl.offsetHeight) - 24;
   const keepTop = () => topEl.matches(":hover") || topEl.contains(document.activeElement) || filtersEl.classList.contains("is-open") ||
     !!$(".selpick.is-open") || !$("[data-share-pop]").hidden || !likePop.hidden || !$("[data-sel-dlg]").hidden;
   let arriveUntil = 0;

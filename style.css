@@ -952,3 +952,9 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: hidden; }
   .hero__role { font-size: clamp(14px, 4.2vw, 18px); margin: 0 0 1.6vw; }
   .hero__play { grid-column: 1 / -1; grid-row: 2; margin: 14px 0 0; }
 }
+
+/* v27: desktop — pinned header block hugs the band and stops under the title row */
+@media (min-width: 900px) {
+  .hero { transition: clip-path .3s ease; }
+  body:not(.at-hero) .hero { clip-path: inset(0 0 var(--clipB, 0px) 0); }
+}
