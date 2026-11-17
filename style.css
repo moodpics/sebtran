@@ -978,3 +978,10 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 
 /* v31: the progress ring around the hero play button on desktop too */
 .hero__play.is-buffering .hero__play-ico::before { opacity: 1; }
+
+/* v32: mobile / tablet (nav hidden): a "Contact" tab at the far right of the band, jumps to the very bottom */
+.top__contact { display: none; }
+@media (max-width: 899px) {
+  header.top .top__contact { display: block; position: absolute; right: var(--pad); top: 12px; font: 400 9.6px/1 var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--fg); opacity: .85; padding: 6px 0 6px 8px; z-index: 2; }
+  header.top.in-sel .top__contact { display: none; }
+}

@@ -841,6 +841,10 @@
     const t = document.getElementById(a.dataset.scroll);
     t && scrollTo({ top: a.dataset.scroll === "hero" ? 0 : t.offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pin")) || $(".top").offsetHeight) - ($("[data-catbar]").offsetHeight || 0) - 12, behavior: reduced ? "auto" : "smooth" });
   }));
+  $$("[data-to-bottom]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    scrollTo({ top: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) });
+  }));
   $(".top__name").addEventListener("click", e => {
     if (state.mode !== "selection") return;
     e.stopImmediatePropagation(); e.preventDefault();
