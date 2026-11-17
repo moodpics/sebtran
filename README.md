@@ -65,8 +65,8 @@ When `sebastien-tran.com` moves off Wix: add a `CNAME` file containing `sebastie
 
 - **`moodpics/sebtran`** (ce dépôt) est la **seule source**. On y modifie tout : films, textes, design.
 - **`moodpics/sebtran-CinematographerOnly`** est **généré automatiquement** : c'est la version « Cinematography seule » servie sur **sebastien-tran.com**. Ne jamais l'éditer à la main, tout y est écrasé.
-- À chaque push sur `main` de ce dépôt, le workflow `.github/workflows/sync-cinematographer.yml` lance `scripts/build-cinematographer.mjs` et pousse le résultat dans l'autre dépôt (liste « direction » vidée, bouton Director retiré, URLs et SEO au nom du domaine, `CNAME`).
+- **Flux normal** : Claude modifie `sebtran`, puis lance `scripts/sync-cinematographer.sh`, qui génère la version domaine (`scripts/build-cinematographer.mjs` : liste « direction » vidée, bouton Director retiré, URLs et SEO au nom du domaine, `CNAME`) et la pousse dans l'autre dépôt. Aucun jeton nécessaire.
+- **Filet optionnel** : `.github/workflows/sync-cinematographer.yml` fait la même chose automatiquement à chaque push, mais seulement si le secret `CINE_REPO_TOKEN` existe (jeton fine-grained, « Contents : Read and write » sur `sebtran-CinematographerOnly`). Sans secret, il ne fait rien. Utile uniquement pour les modifs faites hors Claude.
 - Test en local : `node scripts/build-cinematographer.mjs dist-cine`.
 - Le build échoue volontairement si un motif attendu a disparu du source (pour ne jamais publier une version cassée sans le voir) : il suffit alors d'adapter le script.
-- **Prérequis unique** : secret `CINE_REPO_TOKEN` dans Settings → Secrets and variables → Actions de ce dépôt (jeton fine-grained avec « Contents : Read and write » sur `sebtran-CinematographerOnly`).
 - Penser à `node build-seo.mjs` après toute modification de `films.js` (l'index SEO se régénère dans le site complet ; la version domaine en est dérivée).

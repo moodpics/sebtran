@@ -1,5 +1,6 @@
-# À chaque push sur main de ce dépôt (sebtran), régénère la version « Cinematography seule »
-# et la publie sur moodpics/sebtran-CinematographerOnly (= sebastien-tran.com).
+# OPTIONNEL. Filet de sécurité pour les modifs faites hors Claude (ex. édition directe sur github.com).
+# Sans le secret CINE_REPO_TOKEN, ce workflow ne fait rien (il ne plante pas).
+# Le flux normal : Claude modifie sebtran puis lance scripts/sync-cinematographer.sh.
 name: Sync sebastien-tran.com
 
 on:
@@ -16,16 +17,27 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Jeton présent ?
+        id: chk
+        env:
+          T: ${{ secrets.CINE_REPO_TOKEN }}
+        run: |
+          if [ -z "$T" ]; then echo "Pas de CINE_REPO_TOKEN : synchro automatique désactivée."; echo "on=false" >> "$GITHUB_OUTPUT"; else echo "on=true" >> "$GITHUB_OUTPUT"; fi
 
-      - uses: actions/setup-node@v4
+      - if: steps.chk.outputs.on == 'true'
+        uses: actions/checkout@v4
+
+      - if: steps.chk.outputs.on == 'true'
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Générer la version cinématographie
+        if: steps.chk.outputs.on == 'true'
         run: node scripts/build-cinematographer.mjs dist-cine
 
       - name: Récupérer le dépôt du domaine
+        if: steps.chk.outputs.on == 'true'
         uses: actions/checkout@v4
         with:
           repository: moodpics/sebtran-CinematographerOnly
@@ -33,6 +45,7 @@ jobs:
           path: target
 
       - name: Copier et pousser si changement
+        if: steps.chk.outputs.on == 'true'
         run: |
           rsync -a --delete --exclude='.git' dist-cine/ target/
           cd target
