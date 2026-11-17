@@ -975,3 +975,6 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 @media (min-width: 900px) {
   body:not(.is-loading) .bars__top { height: 0; }
 }
+
+/* v31: the progress ring around the hero play button on desktop too */
+.hero__play.is-buffering .hero__play-ico::before { opacity: 1; }
