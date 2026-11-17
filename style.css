@@ -808,3 +808,25 @@ body.top-idle .top { transition: opacity 2s ease, background-color 1.5s ease; }
   .top .tt-btn, .top .selbtn { font-size: clamp(9px, .78vw, 11px); height: clamp(26px, 2.1vw, 32px); padding: 0 clamp(8px, .9vw, 14px); }
   .top .filters { flex: none; }
 }
+
+/* ===== v18: text shadows over the film, one-line tab row on phones/tablets, buffering ring on the play button ===== */
+body.at-hero .top { text-shadow: 0 1px 10px rgba(0,0,0,.65), 0 0 3px rgba(0,0,0,.45); }
+body.at-hero .top svg { filter: drop-shadow(0 1px 5px rgba(0,0,0,.6)); }
+body.at-hero .top .chip.is-active, body.at-hero .top .views__btn.is-active, body.at-hero .top__sel[data-sel-all], body.at-hero .top__seltab.is-active { text-shadow: none; }
+@media (max-width: 899px) {
+  .top:not(.in-sel) .topcats { flex-wrap: nowrap !important; gap: 5px; align-items: center; }
+  .top:not(.in-sel) .topviews { margin-left: 4px; gap: 4px; }
+  .top:not(.in-sel) .chip, .top:not(.in-sel) .views__btn { font-size: clamp(10px, 2.9vw, 12.5px); padding: 6px clamp(8px, 2.4vw, 13px); }
+  .top:not(.in-sel) .top__selgrp { margin-left: auto; gap: 7px; flex-wrap: nowrap; }
+  .top:not(.in-sel) .top__selpre { flex-direction: column-reverse; align-items: center; gap: 1px; font-size: clamp(7px, 2vw, 10px); line-height: 1.15; text-align: center; white-space: nowrap; }
+  .top:not(.in-sel) .top__selpre .top__heartwrap, .top:not(.in-sel) .top__selpre .top__heartwrap .top__heart { width: 20px; height: 18px; }
+  .top:not(.in-sel) .top__selpre .top__heartwrap b { font-size: 8px; }
+  .top:not(.in-sel) .top__sel[data-sel-all] { font-size: clamp(10px, 2.9vw, 12.5px); padding: 7px clamp(9px, 2.6vw, 14px); }
+  .top:not(.in-sel) .top__selname { display: none; }
+}
+/* buffering ring while the header film loads (touch devices have no custom cursor) */
+.hero__play-ico::before { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid transparent; border-top-color: var(--accent); border-right-color: rgba(235,232,226,.35); opacity: 0; transition: opacity .3s; }
+@media (hover: none), (pointer: coarse) {
+  .hero__play.is-buffering .hero__play-ico::before { opacity: 1; animation: heroBuf 1s linear infinite; }
+}
+@keyframes heroBuf { to { transform: rotate(360deg); } }

@@ -173,18 +173,20 @@
      Hero
      ========================================================================== */
   const heroPoster = $(".hero__poster"), heroVideo = $(".hero__video"), heroTitle = $("[data-hero-title]");
-  let heroFilm = null;
+  let heroFilm = null, bufT;
   function setHero(f) {
     heroFilm = f;
+    const playBtn = $("[data-hero-play]"); playBtn.classList.add("is-buffering");
+    clearTimeout(bufT); bufT = setTimeout(() => playBtn.classList.remove("is-buffering"), 15000);
     heroPoster.src = thumb(f, "1920x1080");
     heroTitle.textContent = `${f.client} — ${f.title}`;
     heroVideo.classList.remove("is-on");
     const old = heroVideo.querySelector("iframe");
     setTimeout(() => old && old.remove(), 1400);
-    if (reduced) return;
+    if (reduced) { playBtn.classList.remove("is-buffering"); return; }
     const ifr = makeIframe(vimeo(f, bgParams()), `${f.client} — ${f.title}`);
     heroVideo.appendChild(ifr);
-    onPlay(ifr, () => heroVideo.classList.add("is-on"));
+    onPlay(ifr, () => { heroVideo.classList.add("is-on"); clearTimeout(bufT); playBtn.classList.remove("is-buffering"); });
     trimLoop(ifr, f);
   }
   $("[data-hero-play]").addEventListener("click", () => heroFilm && openLightbox(state.list.indexOf(heroFilm) >= 0 ? state.list : [heroFilm], Math.max(0, state.list.indexOf(heroFilm)), heroPoster));
