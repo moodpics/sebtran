@@ -1034,3 +1034,6 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
   header.top { padding-top: 6px !important; padding-bottom: 6px !important; }
   header.top .top__contact { top: 50%; transform: translateY(-50%); }
 }
+@media (orientation: landscape) and (max-height: 500px) {
+  .switch__hint { padding: 0 0 0 10px; margin-right: -4px; gap: 4px; color: rgba(235,232,226,.7); }
+}
