@@ -507,7 +507,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 /* flyout: slides out sideways, to the right of "All", over the nav (opaque so nothing shows through) */
 .top .filters__more { position: absolute; left: 100%; right: auto; top: 50%; z-index: 5; display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; width: max-content; max-width: var(--avail, 640px); padding: 6px 0 6px 10px; background: var(--bg); transform: translate(-12px, -50%); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .3s, transform .5s var(--ease), visibility 0s .3s; }
 .top .filters.is-open .filters__more, .top .filters:has(:focus-visible) .filters__more { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(0, -50%); transition-delay: 0s; }
-@media (hover: hover) and (min-width: 1001px) {
+@media (hover: hover) and (min-width: 900px) {
   .top .filters:hover .filters__more { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(0, -50%); transition-delay: 0s; }
 }
 .top .filters__more .chip { background: rgba(255,255,255,.04); }
@@ -562,7 +562,7 @@ html, body { overflow-x: clip; max-width: 100%; }
 .top .filters__more { position: static; display: flex; flex-wrap: nowrap; width: auto; max-width: 0; padding: 0; overflow: hidden; background: transparent; transform: none; opacity: 0; visibility: hidden; pointer-events: none; transition: max-width .5s var(--ease), opacity .3s, visibility 0s .5s; }
 .top .filters__more > .chip { flex: none; margin-left: 6px; }
 .top .filters.is-open .filters__more, .top .filters:has(:focus-visible) .filters__more { max-width: 900px; opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
-@media (hover: hover) and (min-width: 1001px) { .top .filters:hover .filters__more { max-width: 900px; opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; } }
+@media (hover: hover) and (min-width: 900px) { .top .filters:hover .filters__more { max-width: 900px; opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; } }
 .top .filters.is-folded .filters__more { max-width: 0 !important; opacity: 0 !important; visibility: hidden !important; }
 .top:has(.filters:hover .filters__more) .topviews, .top:has(.filters.is-open) .topviews { opacity: 1; pointer-events: auto; }
 .top:has(.filters:hover .filters__more) .top__nav, .top:has(.filters.is-open) .top__nav { opacity: 0; pointer-events: none; }
@@ -782,3 +782,29 @@ body.top-idle .top { opacity: 0; pointer-events: none; transition: opacity 1s ea
 /* v16: no "Selected …" / selection-name headline above the grid (the hero line carries it) */
 .work__head { display: none; }
 .work { padding-top: clamp(28px, 4vw, 56px); }
+
+/* ===== v17: black layer only once the header film is gone; everything on one row (≥900px) with fluid type ===== */
+.top { background: #000; transition: opacity .5s ease, background-color 1.5s ease; }
+body.at-hero .top { background: rgba(0,0,0,0); }
+body.top-idle .top { transition: opacity 2s ease, background-color 1.5s ease; }
+@media (min-width: 900px) {
+  .top { display: flex !important; align-items: center; flex-wrap: nowrap; gap: clamp(10px, 1.5vw, 28px); padding: 9px var(--pad); }
+  .top .topcats { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; flex-wrap: nowrap !important; gap: clamp(4px, .5vw, 8px); grid-column: auto !important; grid-row: auto !important; }
+  .top .top__selgrp, .top.in-sel .top__selgrp { flex: 0 0 auto; flex-wrap: nowrap !important; flex-basis: auto !important; gap: clamp(5px, .6vw, 10px); }
+  .top.in-sel .top__selgrp { order: -1; margin-left: 0; padding-left: 0; padding-right: clamp(8px, 1vw, 20px); }
+  .top .top__selgrp { margin-left: auto; }
+  .top__nav { display: flex; gap: clamp(12px, 1.6vw, 28px); flex: none; }
+  .top.in-sel .top__nav { display: none; }
+  .top__name { font-size: clamp(16px, 1.55vw, 22px); flex: none; }
+  .switch { flex: none; padding: 4px; }
+  .switch__btn { font-size: clamp(9px, .9vw, 13px); padding: clamp(6px, .62vw, 10px) clamp(9px, 1.35vw, 22px); letter-spacing: .05em; }
+  .top .chip, .top .views__btn { font-size: clamp(10px, .85vw, 13px); padding: clamp(6px, .6vw, 9px) clamp(9px, 1vw, 16px); }
+  .top__nav a { font-size: clamp(9px, .85vw, 12px); }
+  .top__selpre { font-size: clamp(9px, .8vw, 12px); gap: clamp(5px, .6vw, 10px); }
+  .top__selpre .top__heartwrap, .top__selpre .top__heartwrap .top__heart { width: clamp(22px, 1.9vw, 30px); height: clamp(20px, 1.75vw, 28px); }
+  .top__sel[data-sel-all] { font-size: clamp(10px, .9vw, 13px); padding: clamp(6px, .65vw, 9px) clamp(11px, 1.2vw, 18px); }
+  .top__seltab { font-size: clamp(9px, .8vw, 12px); padding: clamp(5px, .55vw, 8px) clamp(9px, 1vw, 14px); }
+  .top__seltab .top__heartwrap, .top__seltab .top__heartwrap .top__heart { width: clamp(20px, 1.7vw, 26px); height: clamp(18px, 1.55vw, 24px); }
+  .top .tt-btn, .top .selbtn { font-size: clamp(9px, .78vw, 11px); height: clamp(26px, 2.1vw, 32px); padding: 0 clamp(8px, .9vw, 14px); }
+  .top .filters { flex: none; }
+}

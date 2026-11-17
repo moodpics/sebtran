@@ -814,13 +814,15 @@
   let arriveUntil = 0;
   const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
   ["pointermove", "pointerdown", "touchstart", "wheel", "keydown"].forEach(ev => addEventListener(ev, showTop, { passive: true }));
-  addEventListener("scroll", () => { pastHero() ? document.body.classList.remove("top-idle") : showTop(); }, { passive: true });
+  const syncHeroMode = () => document.body.classList.toggle("at-hero", !pastHero());
+  addEventListener("scroll", () => { syncHeroMode(); pastHero() ? document.body.classList.remove("top-idle") : showTop(); }, { passive: true });
+  addEventListener("resize", syncHeroMode);
   setInterval(() => {
     if (document.body.classList.contains("is-loading")) return;
     if (pastHero() || keepTop()) { if (keepTop()) lastAct = performance.now(); return; }
-    if (performance.now() - lastAct > 3000) document.body.classList.add("top-idle");
+    if (performance.now() - lastAct > 2000) document.body.classList.add("top-idle");
   }, 250);
-  const hideTopOnArrival = () => { arriveUntil = performance.now() + 700; lastAct = performance.now() - 5000; if (!pastHero()) document.body.classList.add("top-idle"); };
+  const hideTopOnArrival = () => { syncHeroMode(); arriveUntil = performance.now() + 700; lastAct = performance.now() - 5000; if (!pastHero()) document.body.classList.add("top-idle"); };
   const mq = $("[data-marquee]");
   mq.innerHTML = [...CONFIG.clients, ...CONFIG.clients].map(c => `<span>${esc(c)}</span>`).join("");
   const mail = $("[data-mail]");
