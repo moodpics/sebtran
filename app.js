@@ -374,6 +374,10 @@
       } else filtersEl.classList.add("is-open"); // touch: tap opens them
     } else { filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded"); }
     state.filter = b.dataset.filter; renderFilters(); renderWork();
+    /* new category: back to the top of the video list */
+    const wk = $("#work"), cs = getComputedStyle(document.documentElement);
+    const top = wk.offsetTop - (parseFloat(cs.getPropertyValue("--pin")) || 0) - (parseFloat(cs.getPropertyValue("--catH")) || 0);
+    if (scrollY > top) scrollTo({ top, behavior: reduced ? "auto" : "smooth" });
     armCatTimer();
   });
   /* opened by a click and left alone for 3 s -> the categories fold away again */
