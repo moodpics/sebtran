@@ -741,3 +741,35 @@ html, body { overflow-x: clip; max-width: 100%; }
   .top:not(.in-sel) .top__selgrp { grid-column: 1 / -1 !important; grid-row: 3 !important; justify-self: start !important; }
 }
 @media (max-width: 560px) { .top__selpre { font-size: 10px; } .top:not(.in-sel) .top__seltxt { display: inline; } }
+
+/* ===== v14: "♥ Like & create a [Selection]" sits at the right end of the All/Grid/Index row ===== */
+.top .topcats { flex-wrap: nowrap; }
+.top .top__selgrp { margin-left: auto; padding-left: 24px; align-self: center; }
+.top__selpre { display: inline-flex; align-items: center; gap: 10px; }
+.top__selpre .top__heartwrap { width: 30px; height: 28px; }
+.top__sel[data-sel-all] { padding: 9px 18px; border-radius: 99px; background: var(--fg); border: 1px solid var(--fg); color: var(--bg); font: 400 13px/1 var(--sans); letter-spacing: 0; text-transform: none; }
+.top__sel[data-sel-all] .top__seltxt { display: inline; }
+.top__sel[data-sel-all] .top__selname { max-width: 18ch; }
+.top__sel[data-sel-all]:hover { background: transparent; color: var(--fg); }
+@media (min-width: 1301px) {
+  .top .topcats { grid-column: 3 / 5 !important; grid-row: 1 !important; justify-self: stretch; }
+  .top .top__selgrp, .top.in-sel .top__selgrp { grid-column: auto !important; grid-row: auto !important; }
+}
+@media (min-width: 901px) and (max-width: 1300px) {
+  .top:has(.filters:hover .filters__more) .top__selgrp, .top:has(.filters.is-open) .top__selgrp { opacity: 0; pointer-events: none; }
+  .top:has(.filters.is-folded) .top__selgrp { opacity: 1; pointer-events: auto; }
+}
+@media (max-width: 900px) { .top .topcats { flex-wrap: wrap; row-gap: 10px; } .top .top__selgrp { padding-left: 0; } .top:not(.in-sel) .top__selgrp { justify-self: auto !important; grid-row: auto !important; grid-column: auto !important; } }
+@media (max-width: 560px) { .top__selpre { font-size: 9.5px; gap: 6px; } .top__selpre .top__heartwrap { width: 24px; height: 22px; } .top__selpre .top__heartwrap .top__heart { width: 24px; height: 22px; } .top__sel[data-sel-all] { padding: 8px 12px; font-size: 12px; } .top__selname { display: none; } .top.in-sel .top__selname { display: inline; } }
+/* selection page: tabs + tools take a full row above All / Grid / Index */
+.top.in-sel .topcats { grid-column: 1 / -1 !important; grid-row: 2 !important; flex-wrap: wrap; row-gap: 10px; }
+.top.in-sel .top__selgrp { order: -1; flex-basis: 100%; margin-left: 0; padding-left: 0; }
+.top.in-sel:has(.filters:hover .filters__more) .top__selgrp, .top.in-sel:has(.filters.is-open) .top__selgrp { opacity: 1; pointer-events: auto; }
+.top .topcats { justify-self: stretch !important; }
+.top .filters, .top .topviews { flex: none; }
+.top__sel[data-sel-all] { opacity: 1; }
+@media (min-width: 901px) {
+  .top:not(.in-sel):has(.filters:hover .filters__more) .top__selgrp, .top:not(.in-sel):has(.filters.is-open) .top__selgrp { display: none; }
+  .top:not(.in-sel):has(.filters.is-folded) .top__selgrp { display: flex; }
+}
+@media (max-width: 900px) { .top:not(.in-sel) .topcats { grid-column: 1 / -1 !important; grid-row: 2 !important; } }
