@@ -11,7 +11,7 @@
     "mach"
    ],
    "kind": "modif",
-   "text": "fond bleu dégradé sur toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo ; 1 à 2 plans en top shot avec sol en bleu incrust"
+   "text": "ciel bleu en dégradé pour les plans à l'horizon (toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo), bleu incruste pour le sol des top shots"
   },
   {
    "at": "2026-11-16T09:53:43.000Z",
@@ -31,16 +31,6 @@
    ],
    "kind": "modif",
    "text": "2 setups : FPS bas d'un côté, filtre Handheld Split Phantom FX de l'autre"
-  },
-  {
-   "at": "2026-11-14T22:30:00.000Z",
-   "src": "Film UV Cellular",
-   "d": [
-    "lum",
-    "mach"
-   ],
-   "kind": "modif",
-   "text": "background gris étale pour une incrust post-prod (fond cyclo blanc)"
   },
   {
    "at": "2026-11-14T17:04:14.000Z",
@@ -178,16 +168,16 @@
    },
    {
     "id": "mood-inc",
-    "t": "Mood 2 · Bleu incruste",
-    "d": "Fond bleu dégradé, clair en bas vers plus sombre en haut, pour le montage final",
+    "t": "Mood 2 · Incruste",
+    "d": "Ciel bleu pour les plans à l'horizon, bleu incruste pour le sol des top shots",
     "c": [
      "uv"
     ],
     "lines": [
-     "Toile chroma key bleue d'environ 8 × 6 m, accrochée par-dessus le cyclo",
-     "Mêmes lumières que le N&B : même rangée de Skypanel X Hyperoptics",
+     "Plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, pour le montage final",
+     "Toile chroma key bleue d'environ 8 × 6 m par-dessus le cyclo, mêmes lumières que le N&B (même rangée de Skypanel X Hyperoptics)",
      "Lumière solaire en keylight",
-     "1 ou 2 plans en top shot (mannequin posée sur un rebord, sol visible derrière) : sol en bleu incrust pour une incrustation future"
+     "1 ou 2 plans en top shot (mannequin posée sur un rebord, sol visible derrière) : bleu incruste pour une incrustation future"
     ],
     "img": "refs/uv-ref.jpg",
     "go": ""
@@ -312,7 +302,7 @@
   {
    "id": "uv",
    "name": "UV Cellular",
-   "txt": "UV CELLULAR (solaire) fond bleu dégradé, clair en bas vers plus sombre en haut, pour le montage final",
+   "txt": "UV CELLULAR (solaire) : ciel bleu en dégradé pour les plans à l'horizon, bleu incruste pour le sol des top shots",
    "pist": "",
    "imgs": [
     {
@@ -322,13 +312,13 @@
     }
    ],
    "lum": [
-    "Fond bleu dégradé, clair en bas → sombre en haut : même rangée de Skypanel X Hyperoptics que le N&B, sur toile chroma key bleue",
+    "Ciel bleu (plans à l'horizon) : dégradé clair en bas → sombre en haut, même rangée de Skypanel X Hyperoptics que le N&B, sur toile chroma key bleue",
     "Lumière solaire en keylight : 1 Mole Richardson 10K + 2400 Daylight dans un cadre de diffusion 1/2, 4x4",
     "Backlight : oui, pour le plan spray du produit (LED 1200, option spotlight)"
    ],
    "cam": [
     "Alexa 35, série Master Primes",
-    "1 ou 2 plans en top shot : mannequin posée sur un rebord, sol visible derrière elle en bleu incrust (incrustation future)"
+    "1 ou 2 plans en top shot : mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)"
    ],
    "mach": [
     "Toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo"
@@ -418,7 +408,7 @@
      "tag": "À commander"
     },
     {
-     "t": "Film UV : 1 ou 2 plans en top shot, mannequin posée sur un rebord, sol visible derrière elle en bleu incrust (incrustation future)",
+     "t": "Film UV : 1 ou 2 plans en top shot, mannequin posée sur un rebord, sol visible derrière elle en bleu incruste (incrustation future)",
      "sub": "",
      "w": 0,
      "g": "spec",
@@ -525,7 +515,7 @@
      ]
     },
     {
-     "t": "Film UV : fond bleu dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
+     "t": "Film UV, plans à l'horizon : ciel bleu en dégradé, clair en bas → sombre en haut, avec la même rangée de Skypanel X Hyperoptics que le N&B",
      "sub": "",
      "w": 0,
      "g": "conf",
@@ -578,7 +568,7 @@
      "done": 1,
      "lines": [
       "mood B&W : background dégradé Haut/ Bas, Noir/ blanc. Une rangée de sypanel X Hyperoptics, peu de distance entre chaque, une dizaine. Diffé au 1/4 ou 1/8 pour adoucir le dégradé. Sur gril",
-      "mood incrust : fond bleu dégradé (clair en bas → sombre en haut), même rangée de Skypanel X Hyperoptics, sur toile chroma key bleue"
+      "mood incrust : ciel bleu en dégradé (clair en bas → sombre en haut), même rangée de Skypanel X Hyperoptics, sur toile chroma key bleue"
      ],
      "fix": [
       "10 skypanel X Hyperoptics"
@@ -682,7 +672,7 @@
      "go": "ref:lum:0,ref:lum:1,ref:lum:2,ref:lum:3,ref:lum:4"
     },
     {
-     "t": "Film UV : toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo (fond bleu dégradé, voir Lumière)",
+     "t": "Film UV : toile chroma key bleue d'environ 8 × 6 m à accrocher par-dessus le cyclo (ciel bleu des plans à l'horizon, voir Lumière)",
      "sub": "",
      "w": 0,
      "g": "rig",
@@ -692,7 +682,7 @@
      "go": ""
     },
     {
-     "t": "Film UV, plans en top shot : sol visible derrière le mannequin en bleu incrust",
+     "t": "Film UV, plans en top shot : sol visible derrière le mannequin en bleu incruste",
      "sub": "",
      "w": 0,
      "g": "rig",
