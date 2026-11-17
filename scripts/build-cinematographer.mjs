@@ -51,6 +51,8 @@ html = sub(html, /\s*<button[^>]*data-mode="direction">Director<\/button>/, "", 
 html = sub(html, /\s*<h3>Direction — [\s\S]*?<\/ul>/, "", "SEO direction");
 html = html.split(" Also a director.").join("");
 html = html.split(", also a director").join("");
+html = html.split(" Il est aussi réalisateur.").join("");
+html = html.split(", and also directs.").join(".");
 // cache-busting : ?v= = empreinte du contenu, donc les navigateurs rechargent dès que le CSS/JS change
 const stamp = f => crypto.createHash("sha1").update(fs.readFileSync(path.join(OUT, f))).digest("hex").slice(0, 8);
 for (const f of ["style.css", "app.js", "films.js"]) html = html.replace(new RegExp(`(${f.replace(".", "\\.")}\\?v=)[^"']+`), (_, a) => a + stamp(f));
