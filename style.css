@@ -970,3 +970,8 @@ header.top .top__nav { margin-left: auto; }
 /* v29: the "Like & create a ↑" hint always travels with the band, in a reserved strip under it (never over the big "Seb Trân") */
 header.top { padding-bottom: 30px !important; }
 body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
+
+/* v30: desktop — less black between the band and the header film (top letterbox bar capped just under the band) */
+@media (min-width: 900px) {
+  body:not(.is-loading) .bars__top { height: 0; }
+}
