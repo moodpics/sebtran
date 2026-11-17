@@ -904,3 +904,10 @@ body.at-hero .top .switchwrap .top__selpre { color: #fff; opacity: 1; }
   .top.in-sel .top__selgrp { grid-row: 1; min-width: 0; }
   .top.in-sel .selpick__menu { z-index: 60; }
 }
+
+/* v22: the word of the current page is slightly bolder, in its colour (Selection stays white) */
+.switch__btn { font-weight: 500; }
+body .top .switch__btn.is-active { font-weight: 700; filter: none; }
+body .top .switch__btn[data-mode="cinematography"].is-active { color: #e0a35c !important; }
+body .top .switch__btn[data-mode="direction"].is-active { color: #e5483a !important; }
+body .top .switch__btn[data-mode="selection"].is-active { color: #fff !important; }
