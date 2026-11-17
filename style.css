@@ -896,3 +896,11 @@ body.at-hero .top .switch__btn, body.at-hero .top .switch__btn.is-active, body.a
 body.at-hero .top .top__name, body.at-hero .top a, body.at-hero .top .chip:not(.is-active), body.at-hero .top .views__btn:not(.is-active), body.at-hero .top .tt-btn, body.at-hero .top .selbtn { color: #fff; opacity: 1; text-shadow: none; }
 body.at-hero .top .switchwrap .top__selpre { color: #fff; opacity: 1; }
 @media (max-width: 899px) { .top { row-gap: 22px; } }
+
+/* v21: selection page on phones — dropdown no longer clipped, Grid/Index on its own second line */
+@media (max-width: 899px) {
+  .top.in-sel .topcats { display: grid !important; grid-template-columns: minmax(0, 1fr); row-gap: 8px; overflow: visible !important; }
+  .top.in-sel .topviews { margin-left: 0 !important; justify-self: start; grid-row: 2; }
+  .top.in-sel .top__selgrp { grid-row: 1; min-width: 0; }
+  .top.in-sel .selpick__menu { z-index: 60; }
+}
