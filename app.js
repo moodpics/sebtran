@@ -855,7 +855,13 @@
   let arriveUntil = 0;
   const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
   ["pointermove", "pointerdown", "keydown"].forEach(ev => addEventListener(ev, e => { if (e.pointerType === "touch" && scrollY <= 2) return; showTop(); }, { passive: true }));
-  const syncHeroMode = () => document.body.classList.toggle("at-hero", !pastHero());
+  let autoHide = false; // set when the visitor comes back up from the videos to the header film
+  const syncHeroMode = () => {
+    const was = document.body.classList.contains("at-hero"), now = !pastHero();
+    document.body.classList.toggle("at-hero", now);
+    if (now && !was) { autoHide = true; lastAct = performance.now(); document.body.classList.remove("top-idle"); }
+    if (!now) autoHide = false;
+  };
   /* once shown, the band stays; it only goes away when the visitor scrolls up and reaches the very top */
   let lastY = scrollY, atTop = scrollY <= 2, bounceAt = 0;
   /* each time the page bounces against the top, the band toggles: hidden, then shown on the next bounce */
@@ -864,6 +870,7 @@
     arriveUntil = t + 400; document.body.classList.toggle("top-idle");
   };
   addEventListener("scroll", () => {
+    lastAct = performance.now();
     syncHeroMode();
     const goingUp = scrollY < lastY; lastY = scrollY;
     if (scrollY <= 2) { if (goingUp && !atTop) bounceTop(); atTop = true; }
@@ -878,6 +885,8 @@
   setInterval(() => {
     if (document.body.classList.contains("is-loading")) return;
     if (pastHero() || keepTop()) { if (keepTop()) lastAct = performance.now(); return; }
+    /* coming back up to the header: the band stays, then fades away after 1.5 s without any touch */
+    if (autoHide && performance.now() - lastAct > 1500) { autoHide = false; document.body.classList.add("top-idle"); }
   }, 250);
   const hideTopOnArrival = () => { syncHeroMode(); arriveUntil = performance.now() + 700; lastAct = performance.now() - 5000; if (!pastHero()) document.body.classList.add("top-idle"); };
   const mq = $("[data-marquee]");
