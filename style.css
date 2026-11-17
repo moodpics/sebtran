@@ -1037,3 +1037,6 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 @media (orientation: landscape) and (max-height: 500px) {
   .switch__hint { padding: 0 0 0 10px; margin-right: -4px; gap: 4px; color: rgba(235,232,226,.7); }
 }
+
+/* v36: close button in the player window — a true circle, same height as the other round buttons */
+.lightbox__nav .lb-x { min-width: 46px; width: 46px; height: 46px; padding: 0; flex: none; border-radius: 50%; }
