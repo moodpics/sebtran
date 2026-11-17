@@ -1,7 +1,16 @@
 {
   "v": 1,
-  "updated": "2026-11-17T13:40:00.000Z",
+  "updated": "2026-11-17T23:40:00.000Z",
   "log": [
+    {
+      "at": "2026-11-17T23:40:00.000Z",
+      "src": "Plans de feu de Nathan",
+      "d": [
+        "lum"
+      ],
+      "kind": "ajout",
+      "text": "Time Filler / NCEF Revitalize (setup A), Regen Peptide (setups A et B), UV Cellular (setup A), à retrouver dans chaque film"
+    },
     {
       "at": "2026-11-17T13:40:00.000Z",
       "src": "Planning",
@@ -130,7 +139,7 @@
         "to": []
       },
       {
-        "t": "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes #lumiere",
+        "t": "Effet « battery loading » au sol : collaboration lumière / déco, 18 Astera Hyperion sous un sol surélevé en plexi frosté. Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm. #lumiere",
         "b": 1,
         "sub": [],
         "img": "refs/22d00556-db5f-4b0a-b3de-9e4eb95c17dc-mwf5gfvg.jpg",
@@ -207,6 +216,14 @@
           "src": "refs/effet-file.jpg",
           "alt": "Effet filé sur film Peptide",
           "cap": "Effet recherché pour raconter la vitesse"
+        },
+        {
+          "src": "refs/plan-feu-regen-a.jpg",
+          "cap": "Plan de feu (Nathan) · Setup A : 10 SkyPanel X21 HyperOptic en fond, Evoke 2400B en keylight, 12×12 Neg"
+        },
+        {
+          "src": "refs/plan-feu-regen-b.jpg",
+          "cap": "Plan de feu (Nathan) · Setup B : même éclairage, sur podium plexi frosté 30 %"
         }
       ],
       "lum": [
@@ -216,7 +233,7 @@
         "Keylight : beauty light, 2400 + parabolic softbox 140",
         "Negative fill : floppy, pendrillons. Pas de backlight",
         "Contrôle de lumière : borniol en top, ajustable",
-        "Effet « battery loading » au sol : vingtaine d'Astera Hyperion, sol surélevé en plexi frosté (collab lumière / déco), visé 2 m de large × 6 m de profondeur (3 m prévus à ce stade), bandes noires en travers pour délimiter les lignes"
+        "Effet « battery loading » au sol : 18 Astera Hyperion sous un sol surélevé en plexi frosté (collab lumière / déco), plateau 4,56 m × 2,03 m, raies d'adhésif blanc de 200 mm entre les raies lumière"
       ],
       "cam": [
         "Alexa 35, série Master Primes",
@@ -247,6 +264,10 @@
           "src": "refs/time-ref.jpg",
           "alt": "Time Filler : références",
           "cap": "Référence Keylight"
+        },
+        {
+          "src": "refs/plan-feu-timefiller-ncef-a.jpg",
+          "cap": "Plan de feu (Nathan) · Setup A (identique à NCEF Revitalize) : 10 SkyPanel X21 HyperOptic en fond, Evoke 2400B en keylight, 12×12 Neg"
         }
       ],
       "lum": [
@@ -283,6 +304,10 @@
           "src": "refs/ncef-ref.jpg",
           "alt": "NCEF Revitalize : références",
           "cap": "Référence Keylight"
+        },
+        {
+          "src": "refs/plan-feu-timefiller-ncef-a.jpg",
+          "cap": "Plan de feu (Nathan) · Setup A (identique à Time Filler) : 10 SkyPanel X21 HyperOptic en fond, Evoke 2400B en keylight, 12×12 Neg"
         }
       ],
       "lum": [
@@ -316,6 +341,10 @@
           "src": "refs/uv-ref.jpg",
           "alt": "UV Cellular : références",
           "cap": "Storyboard pour l'instant"
+        },
+        {
+          "src": "refs/plan-feu-uv-a.jpg",
+          "cap": "Plan de feu (Nathan) · Setup A : fond bleu ciel, Mole Richardson 10 kW, Evoke 1200B, Evoke 2400B en réflecteur 45°, 12×12 ½ Grid, 12×12 Neg"
         }
       ],
       "lum": [
@@ -581,7 +610,7 @@
           "t": "Special lighting effect \" battery loading\" au sol ",
           "done": 0,
           "lines": [
-            "Effet de \"battery loading\" au sol : Collaboration lumière / déco. Vingtaine d' Astera Hyperion. La déco va preparer un sol surelevé , en plexi frosté. Pour le moment, 2m de large sur 3m en profonder: beaucoup trop petit selon moi. Je tente 2m de large sur 6m en profondeur. La plaque aura des bandes noires en travers pour délimiter les lignes"
+            "Effet « battery loading » au sol : collaboration lumière / déco, 18 Astera Hyperion sous un sol surélevé en plexi frosté. Plan déco : plateau 4,56 m × 2,03 m, hauteur 186 mm, raies lumière de 50 mm, raies d'adhésif blanc de 200 mm."
           ],
           "fix": [],
           "ctl": []
