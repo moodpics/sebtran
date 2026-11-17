@@ -1,7 +1,14 @@
 {
   "v": 1,
-  "updated": "2026-11-17T13:40:00.000Z",
+  "updated": "2026-11-17T13:45:00.000Z",
   "log": [
+    {
+      "at": "2026-11-17T13:45:00.000Z",
+      "src": "Latest news",
+      "d": [],
+      "kind": "modif",
+      "text": "les nouveautés des dernières 48 h sont en avant, les plus anciennes sont dans un menu déroulant"
+    },
     {
       "at": "2026-11-17T13:40:00.000Z",
       "src": "Planning",

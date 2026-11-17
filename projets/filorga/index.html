@@ -561,6 +561,12 @@ body:not(.m) .node.newsn{z-index:4}
 #drawer.on+#dgrip{display:block}
 body.m #dgrip{display:none!important}body.m #drawer{width:100vw}
 body.rs #drawer{transition:none}
+.news .nold{margin-top:6px;border-top:1px solid rgba(214,84,84,.22)}
+.news .nold summary{cursor:pointer;list-style:none;padding:8px 0 2px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.news .nold summary::-webkit-details-marker{display:none}
+.news .nold summary::before{content:"▸ "}.news .nold[open] summary::before{content:"▾ "}
+.news .nrec li{font-weight:500}
+.news .nold ul{opacity:.85;margin-top:2px}
 </style>
 </head>
 <body>
@@ -732,7 +738,7 @@ function body(n){
  if(n.id==="root"){const r=DATA.root;return `<h2 class="pl">${ed("root.title","span","",r.title)}</h2>
   ${ed("root.sub","p","sub",r.sub)}
   <div class="facts crew">${(r.crew||[]).map((f,i)=>`<div>${ed(`root.crew.${i}.0`,"span","",f[0])}${ed(`root.crew.${i}.1`,"b","",f[1])}</div>`).join("")}</div>`;}
- if(n.id==="news")return `<div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(DATA.log||[]).length?`<ul>${newsList(DATA.log,5)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau depuis la mise en ligne.</p>`}</div>`;
+ if(n.id==="news")return `<div class="news"><div class="nt"><i class="pd"></i><b>Dernières nouvelles</b><span>Mise à jour du ${esc(fmtAt(DATA.updated))}</span></div>${(()=>{const L=(DATA.log||[]).filter(c=>c.kind!=="retrait"),cut=Date.now()-48*36e5,nw=L.filter(c=>new Date(c.at).getTime()>=cut),old=L.filter(c=>new Date(c.at).getTime()<cut);return (nw.length?`<ul class="nrec">${newsList(nw,50)}</ul>`:`<p class="sub" style="margin:6px 0 0">Rien de nouveau ces dernières 48 h.</p>`)+(old.length?`<details class="nold"><summary>Plus anciennes (${old.length})</summary><ul>${newsList(old,50)}</ul></details>`:"")})()}</div>`;
 
  if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief général équipe</b><span class="cgo">Ouvrir ›</span></div>`;
  if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${CT[i%4]}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${c.imgs&&c.imgs.length?`<img src="${esc(imgSrc(c.imgs[c.imgs.length-1].src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
@@ -775,6 +781,7 @@ function autoLayout(){
   fitStage();drawEdges();
  });
 }
+document.addEventListener("toggle",e=>{if(e.target.classList&&e.target.classList.contains("nold"))autoLayout()},true);
 document.addEventListener("load",e=>{if(e.target.tagName==="IMG")autoLayout()},true);
 function place(n){const p=pos(n);el[n.id].style.left=p.x+"px";el[n.id].style.top=p.y+"px"}
 function countdown(){
