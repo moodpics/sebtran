@@ -60,3 +60,13 @@ When `sebastien-tran.com` moves off Wix: add a `CNAME` file containing `sebastie
 - The film catalogue is JavaScript-rendered, so crawlers that don't run JS would see an empty page. `build-seo.mjs` writes a crawlable,
   visually-hidden film index (by brand) into `index.html`. **After editing `films.js`, run `node build-seo.mjs`.**
 - `sitemap.xml` and `llms.txt` sit next to `index.html`.
+
+## Deux sites, un seul code (sebastien-tran.com)
+
+- **`moodpics/sebtran`** (ce dépôt) est la **seule source**. On y modifie tout : films, textes, design.
+- **`moodpics/sebtran-CinematographerOnly`** est **généré automatiquement** : c'est la version « Cinematography seule » servie sur **sebastien-tran.com**. Ne jamais l'éditer à la main, tout y est écrasé.
+- À chaque push sur `main` de ce dépôt, le workflow `.github/workflows/sync-cinematographer.yml` lance `scripts/build-cinematographer.mjs` et pousse le résultat dans l'autre dépôt (liste « direction » vidée, bouton Director retiré, URLs et SEO au nom du domaine, `CNAME`).
+- Test en local : `node scripts/build-cinematographer.mjs dist-cine`.
+- Le build échoue volontairement si un motif attendu a disparu du source (pour ne jamais publier une version cassée sans le voir) : il suffit alors d'adapter le script.
+- **Prérequis unique** : secret `CINE_REPO_TOKEN` dans Settings → Secrets and variables → Actions de ce dépôt (jeton fine-grained avec « Contents : Read and write » sur `sebtran-CinematographerOnly`).
+- Penser à `node build-seo.mjs` après toute modification de `films.js` (l'index SEO se régénère dans le site complet ; la version domaine en est dérivée).
