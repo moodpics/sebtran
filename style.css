@@ -934,3 +934,21 @@ body.top-idle .top, body.at-hero.top-idle .top { transition: opacity 2s ease, ba
 .work { position: relative; z-index: 1; scroll-margin-top: var(--pin, 80px); }
 body:not(.at-hero) .hero__scroll { opacity: 0; }
 body:not(.at-hero) .switchwrap .top__selpre { visibility: hidden; }
+
+/* v26: page name sits to the right of "Seb Trân", title lower → the pinned header strip is shorter */
+.switchwrap { width: max-content; max-width: 100%; justify-self: start; }
+.switchwrap .switch { width: max-content; max-width: 100%; }
+.hero__content { bottom: calc(var(--lb) + clamp(18px, 3.5vh, 44px)); grid-template-columns: auto 1fr auto; column-gap: clamp(18px, 2.4vw, 40px); }
+.hero__title { grid-column: 1; }
+.hero__role { grid-column: 2; align-self: end; margin: 0 0 calc(clamp(64px, 14.5vw, 260px) * .09); line-height: 1.05; }
+.hero__play { grid-column: 3; align-self: end; margin: 0 0 calc(clamp(64px, 14.5vw, 260px) * .07); }
+@media (max-width: 899px) {
+  .hero__content { grid-template-columns: auto 1fr; }
+  .hero__play { grid-column: 1 / -1; grid-row: 2; justify-self: start; margin: 14px 0 0; }
+}
+@media (max-width: 600px) {
+  .hero__content { grid-template-columns: auto 1fr; column-gap: 10px; }
+  .hero__title { font-size: 15vw; }
+  .hero__role { font-size: clamp(14px, 4.2vw, 18px); margin: 0 0 1.6vw; }
+  .hero__play { grid-column: 1 / -1; grid-row: 2; margin: 14px 0 0; }
+}
