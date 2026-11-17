@@ -642,7 +642,38 @@
         }
       ],
       "notes": "",
-      "open": []
+      "open": [],
+      "plans": [
+        {
+          "c": [
+            "time",
+            "ncef"
+          ],
+          "src": "refs/plan-feu-timefiller-ncef-a.jpg",
+          "cap": "Setup A · 10 SkyPanel X21 HyperOptic au fond (70 %), Evoke 2400B keylight en Light Dome (40 %), 12×12 Neg"
+        },
+        {
+          "c": [
+            "regen"
+          ],
+          "src": "refs/plan-feu-regen-a.jpg",
+          "cap": "Setup A · même éclairage, sol noir (Black-Solid 6 × 6 m)"
+        },
+        {
+          "c": [
+            "regen"
+          ],
+          "src": "refs/plan-feu-regen-b.jpg",
+          "cap": "Setup B · même éclairage, avec podium plexi frosté 30 %"
+        },
+        {
+          "c": [
+            "uv"
+          ],
+          "src": "refs/plan-feu-uv-a.jpg",
+          "cap": "Setup A · fond bleu ciel (SkyPanel éteints), Mole Richardson 10 kW en solaire, Evoke 1200B, Evoke 2400B en réflecteur 45°, 12×12 ½ Grid et Neg"
+        }
+      ]
     },
     {
       "id": "mach",
