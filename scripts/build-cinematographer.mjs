@@ -26,6 +26,9 @@ for (const f of ["style.css", "README.md", "apple-touch-icon.png", "favicon-32.p
   fs.copyFileSync(f, path.join(OUT, f));
 }
 write("CNAME", DOMAIN + "\n");
+// anciennes adresses du site Wix (ex. /beauty) : redirection vers l'accueil + page 404 qui ramène à l'accueil
+write("beauty/index.html", read("beauty/index.html").split(SRC_URL).join(`https://${DOMAIN}/`));
+write("404.html", read("404.html"));
 
 // 2. films.js : la liste « direction » est vidée
 const filmsSrc = read("films.js");
