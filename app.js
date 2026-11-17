@@ -176,7 +176,11 @@
   let heroFilm = null, bufT;
   function setHero(f) {
     heroFilm = f;
-    const playBtn = $("[data-hero-play]"); playBtn.classList.add("is-buffering");
+    const playBtn = $("[data-hero-play]"), pico = playBtn.querySelector(".hero__play-ico");
+    const hg = n => { hp = Math.max(hp, n); pico.style.setProperty("--hp", hp); };
+    let hp = 0; pico.style.transition = "none"; pico.style.setProperty("--hp", 0); void pico.offsetWidth; pico.style.transition = "";
+    const myFilm = f, done = () => { hg(100); clearTimeout(bufT); setTimeout(() => { if (heroFilm === myFilm) playBtn.classList.remove("is-buffering"); }, 380); };
+    playBtn.classList.add("is-buffering"); setTimeout(() => hg(8), 30);
     clearTimeout(bufT); bufT = setTimeout(() => playBtn.classList.remove("is-buffering"), 15000);
     heroPoster.src = thumb(f, "1920x1080");
     heroTitle.textContent = `${f.client} — ${f.title}`;
@@ -185,8 +189,21 @@
     setTimeout(() => old && old.remove(), 1400);
     if (reduced) { playBtn.classList.remove("is-buffering"); return; }
     const ifr = makeIframe(vimeo(f, bgParams()), `${f.client} — ${f.title}`);
+    ifr.addEventListener("load", () => hg(30));
     heroVideo.appendChild(ifr);
-    onPlay(ifr, () => { heroVideo.classList.add("is-on"); clearTimeout(bufT); playBtn.classList.remove("is-buffering"); });
+    if (window.Vimeo && Vimeo.Player) {
+      try {
+        const vp = new Vimeo.Player(ifr);
+        vp.ready().then(() => hg(50)).catch(() => {});
+        vp.on("loaded", () => {
+          hg(65);
+          const t0 = performance.now(), creep = () => { if (hp >= 100 || heroFilm !== myFilm) return; hg(65 + 27 * (1 - Math.exp(-(performance.now() - t0) / 1800))); requestAnimationFrame(creep); };
+          requestAnimationFrame(creep);
+        });
+        vp.on("progress", d => hg(65 + Math.min(1, (d.percent || 0) * 5) * 30));
+      } catch (e) { /* ignore */ }
+    }
+    onPlay(ifr, () => { heroVideo.classList.add("is-on"); done(); });
     trimLoop(ifr, f);
   }
   $("[data-hero-play]").addEventListener("click", () => heroFilm && openLightbox(state.list.indexOf(heroFilm) >= 0 ? state.list : [heroFilm], Math.max(0, state.list.indexOf(heroFilm)), heroPoster));
