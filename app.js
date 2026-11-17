@@ -603,7 +603,9 @@
   function loadPlayer(f) {
     lbPlayer.innerHTML = "";
     const accent = getComputedStyle(document.body).getPropertyValue("--accent").trim().replace("#", "");
-    const ifr = makeIframe(vimeo(f, { autoplay: 1, muted: 0, loop: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`);
+    /* Safari / iPhone never allow sound in an auto-started iframe (Vimeo then shows "restore sound"): there the player starts on Vimeo's own play button, so the tap lands inside the player and the sound comes with it */
+    const noSoundAutoplay = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) || /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+    const ifr = makeIframe(vimeo(f, { autoplay: noSoundAutoplay ? 0 : 1, muted: 0, loop: 1, title: 0, byline: 0, portrait: 0, color: accent }), `${f.client} — ${f.title}`);
     lbPlayer.appendChild(ifr);
     /* sound on by default: the iframe is created inside the user's tap/click, and we make sure it isn't left muted */
     if (window.Vimeo && Vimeo.Player) {
