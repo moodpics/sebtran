@@ -25,7 +25,7 @@
         about: "More than ten years behind the camera, lighting *luxury*, *beauty* and *fashion* for houses like Cartier, Yves Saint Laurent, Chanel and Lancôme — and music videos and short films when the story calls for it. Based in Paris, I work closely with directors to build images where light feels like *skin* and every frame holds a breath longer than expected."
       },
       direction: {
-        role: "Director",
+        role: "Director / DP",
         workTitle: "Directed Films",
         hud: "SC 01 · TK 03 · REC · 25 FPS",
         about: "As a director I start from the *light* and build outward — fragrance, beauty and fashion films for Prada, Miu Miu, Armani Beauty and L'Oréal Paris, shot with the eye of a cinematographer and cut with an obsession for *texture*, *rhythm* and *intimacy*. Small crews, precise images, faces that stay with you."
