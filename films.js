@@ -741,6 +741,7 @@ window.FILMS = {
       "production": "Instant Films",
       "year": null,
       "duration": 140,
+      "badge": "nikon",
       "thumb": "https://i.vimeocdn.com/video/1678554859-3a9f7cd9bf5d6197b16414acb625fbf59672d20c9dd438784e7b9f53e7aa8ef8-d"
     },
     {

@@ -1057,4 +1057,6 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 .lightbox__sp { margin-top: 14px; }
 .lightbox__sp:empty { display: none; }
 .lightbox__sp .badge img { height: 40px; }
-@media (max-width: 899px) { .card .badge { top: 32px; right: 12px; } .card.card .card__frame .badge img { height: 24px; } }
+.card.card .card__frame .badge--nikon img { height: 24px; }
+.lightbox__sp .badge--nikon img { height: 34px; }
+@media (max-width: 899px) { .card .badge { top: 32px; right: 12px; } .card.card .card__frame .badge img { height: 24px; } .card.card .card__frame .badge--nikon img { height: 19px; } }
