@@ -1040,3 +1040,11 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 
 /* v36: close button in the player window — a true circle, same height as the other round buttons */
 .lightbox__nav .lb-x { min-width: 46px; width: 46px; height: 46px; padding: 0; flex: none; border-radius: 50%; }
+
+/* v37: desktop — same as phone landscape: "Like & create a" lives inside the discipline pill, right before "Selection", with a small gap after Cinematographer / Director */
+@media (min-width: 901px) and (min-height: 501px) {
+  .switch__hint { display: inline-flex; align-items: center; gap: 5px; margin-left: 14px; padding: 0 0 0 10px; margin-right: -4px; font: 400 9.5px/1 var(--sans); letter-spacing: .03em; text-transform: uppercase; color: rgba(235,232,226,.7); white-space: nowrap; border-left: 1px solid rgba(255,255,255,.22); }
+  .switch__hint .top__heart { width: 15px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+  .top.in-sel .switch__hint { display: none; }
+  .switchwrap .top__selpre { display: none !important; }
+}
