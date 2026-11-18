@@ -445,8 +445,8 @@ window.FILMS = {
     {
       "id": "832608992",
       "h": "c421d0dea4",
-      "client": "Nowness",
-      "title": "What Comes Next",
+      "client": "What Comes Next",
+      "title": "Short film — Nowness Picks",
       "category": "Narrative",
       "director": "Julien Vallon",
       "production": "Les Films de l'Instant",
