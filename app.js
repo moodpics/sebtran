@@ -394,8 +394,17 @@
   }));
 
   /* publisher badge — shown on the card and in the player window for films flagged `badge: "nowness"` in films.js */
-  const BADGES = { nowness: { label: "Selected by NOWNESS Picks", img: "nowness-picks.svg" }, nikon: { label: "Nikon Film Festival — Finalist", img: "nikon-finalist.svg" } };
-  const badgeHtml = f => { const b = f && BADGES[f.badge]; return b ? `<span class="badge badge--${f.badge}" title="${b.label}"><img src="${b.img}?v=1" alt="${b.label}" width="174" height="79"></span>` : ""; };
+  const BADGES = {
+    nowness: { label: "Selected by NOWNESS Picks", img: "nowness-picks.svg" },
+    nikon: { label: "Finalist — Nikon Film Festival", img: "award-nikon.svg", laurel: 1 },
+    frejus: { label: "Fréjus Festival Court Métrage", img: "award-frejus.svg", laurel: 1 },
+    prix: { label: "2024 — Best Actor Award (Léo Angel), Fiction Selection", img: "award-prix.svg", laurel: 1 },
+    sens: { label: "Finalist — SensCritique", img: "award-sens.svg", laurel: 1 }
+  };
+  const badgeHtml = f => {
+    const list = [].concat((f && f.badge) || []).map(k => BADGES[k] && { k, ...BADGES[k] }).filter(Boolean);
+    return list.length ? `<span class="badges">${list.map(b => `<span class="badge badge--${b.k}${b.laurel ? " badge--laurel" : ""}" title="${b.label}"><img src="${b.img}?v=1" alt="${b.label}" width="${b.laurel ? 100 : 174}" height="${b.laurel ? 100 : 79}"></span>`).join("")}</span>` : "";
+  };
 
   function renderWork() {
     stopAllPreviews();

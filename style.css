@@ -1052,11 +1052,13 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 /* v37: publisher badge (NOWNESS) — wordmark pill on the card and in the player window */
 .badge { display: inline-flex; align-items: center; pointer-events: none; }
 .badge img { display: block; height: 30px; width: auto; filter: drop-shadow(0 1px 8px rgba(0,0,0,.55)); }
-.card .badge { position: absolute; top: 36px; right: 14px; z-index: 3; }
+.badges { display: flex; align-items: center; justify-content: flex-end; gap: 10px; pointer-events: none; }
+.card .badges { position: absolute; top: 36px; right: 14px; z-index: 3; }
 .card.card .card__frame .badge img { position: static; inset: auto; width: auto; height: 30px; object-fit: contain; transform: none; transition: none; filter: drop-shadow(0 1px 8px rgba(0,0,0,.55)); opacity: 1; }
 .lightbox__sp { margin-top: 14px; }
 .lightbox__sp:empty { display: none; }
 .lightbox__sp .badge img { height: 40px; }
-.card.card .card__frame .badge--nikon img { height: 24px; }
-.lightbox__sp .badge--nikon img { height: 34px; }
-@media (max-width: 899px) { .card .badge { top: 32px; right: 12px; } .card.card .card__frame .badge img { height: 24px; } .card.card .card__frame .badge--nikon img { height: 19px; } }
+.card.card .card__frame .badge--laurel img { height: 44px; }
+.lightbox__sp .badges { justify-content: flex-start; gap: 18px; flex-wrap: wrap; }
+.lightbox__sp .badge--laurel img { height: 72px; }
+@media (max-width: 899px) { .card .badges { top: 32px; right: 12px; gap: 6px; } .card.card .card__frame .badge img { height: 24px; } .card.card .card__frame .badge--laurel img { height: 32px; } .lightbox__sp .badges { gap: 10px; } .lightbox__sp .badge--laurel img { height: 58px; } }
