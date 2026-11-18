@@ -452,7 +452,7 @@ window.FILMS = {
       "production": "Les Films de l'Instant",
       "year": null,
       "duration": 296,
-      "staffPick": true,
+      "badge": "nowness",
       "thumb": "https://i.vimeocdn.com/video/1678548682-821e90e6085ee5033c8a3215af3d1aa3db22c275c41cd7fa43d88934cddeeb11-d"
     },
     {
