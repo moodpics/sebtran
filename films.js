@@ -34,7 +34,7 @@ window.FILMS = {
       "id": "1200611767",
       "h": "1a45841cfb",
       "client": "L'Oréal Paris",
-      "title": "Glycolic Bright — ASMR Routine",
+      "title": "Glycolic Bright — ASMR Routine with Nychaa",
       "category": "Beauty",
       "director": null,
       "production": "U-Turn",
