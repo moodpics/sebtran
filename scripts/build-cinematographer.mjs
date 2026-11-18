@@ -49,6 +49,7 @@ let html = read("index.html");
 html = html.split(SRC_URL).join(`https://${DOMAIN}/`);
 html = sub(html, /\s*<button[^>]*data-mode="direction">Director<\/button>/, "", "switch Director");
 html = sub(html, /\s*<h3>Direction — [\s\S]*?<\/ul>/, "", "SEO direction");
+html = html.split(" Also a director / DP.").join("");
 html = html.split(" Also a director.").join("");
 html = html.split(", also a director").join("");
 html = html.split(" Il est aussi réalisateur.").join("");
