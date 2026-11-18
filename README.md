@@ -1,4 +1,4 @@
-# Seb Trân — Cinematographer & Director
+# Seb Trân — Cinematographer & Director / DP
 
 Portfolio site. Static HTML/CSS/JS, hosted on GitHub Pages. No build step.
 

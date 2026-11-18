@@ -28,7 +28,7 @@
         role: "Director / DP",
         workTitle: "Directed Films",
         hud: "SC 01 · TK 03 · REC · 25 FPS",
-        about: "As a director I start from the *light* and build outward — fragrance, beauty and fashion films for Prada, Miu Miu, Armani Beauty and L'Oréal Paris, shot with the eye of a cinematographer and cut with an obsession for *texture*, *rhythm* and *intimacy*. Small crews, precise images, faces that stay with you."
+        about: "As a director / DP I start from the *light* and build outward — fragrance, beauty and fashion films for Prada, Miu Miu, Armani Beauty and L'Oréal Paris, shot with the eye of a cinematographer and cut with an obsession for *texture*, *rhythm* and *intimacy*. Small crews, precise images, faces that stay with you."
       }
     }
   };
