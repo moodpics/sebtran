@@ -394,8 +394,8 @@
   }));
 
   /* publisher badge — shown on the card and in the player window for films flagged `badge: "nowness"` in films.js */
-  const BADGES = { nowness: { label: "Published by NOWNESS", text: "NOWNESS" } };
-  const badgeHtml = f => { const b = f && BADGES[f.badge]; return b ? `<span class="badge badge--${f.badge}" title="${b.label}" aria-label="${b.label}">${b.text}</span>` : ""; };
+  const BADGES = { nowness: { label: "Selected by NOWNESS Picks", img: "nowness-picks.svg" } };
+  const badgeHtml = f => { const b = f && BADGES[f.badge]; return b ? `<span class="badge badge--${f.badge}" title="${b.label}"><img src="${b.img}?v=1" alt="${b.label}" width="174" height="79"></span>` : ""; };
 
   function renderWork() {
     stopAllPreviews();

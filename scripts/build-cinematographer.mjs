@@ -19,7 +19,7 @@ fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
 // 1. fichiers copiés tels quels (code complet : films, app, styles)
-for (const f of ["style.css", "app.js", "films.js", "apple-touch-icon.png", "favicon-32.png", "favicon.ico", "favicon.svg", "icon-512.png", "icon-192.png", "site.webmanifest", "operandi-logo.png"]) {
+for (const f of ["style.css", "app.js", "films.js", "apple-touch-icon.png", "favicon-32.png", "favicon.ico", "favicon.svg", "icon-512.png", "icon-192.png", "site.webmanifest", "operandi-logo.png", "nowness-picks.svg"]) {
   fs.copyFileSync(f, path.join(OUT, f));
 }
 write("CNAME", DOMAIN + "\n");
