@@ -6,7 +6,7 @@
 
   /* ---------- Config: edit these ---------- */
   const CONFIG = {
-    email: "sebastientrandop@gmail.com",
+    email: "",
     defaultMode: "cinematography",
     clients: ["Cartier", "Yves Saint Laurent", "Prada", "Miu Miu", "Lancôme", "Chanel", "Balmain", "L'Oréal Paris",
       "Armani Beauty", "Maison Margiela", "Off-White", "Chaumet", "Kérastase", "AMI Paris", "Salomon",
@@ -928,7 +928,7 @@
   const mq = $("[data-marquee]");
   mq.innerHTML = [...CONFIG.clients, ...CONFIG.clients].map(c => `<span>${esc(c)}</span>`).join("");
   const mail = $("[data-mail]");
-  mail.href = `mailto:${CONFIG.email}`; $("[data-mail-txt]").textContent = CONFIG.email;
+  if (CONFIG.email) { mail.href = `mailto:${CONFIG.email}`; $("[data-mail-txt]").textContent = CONFIG.email; } else { mail.hidden = true; }
   $("[data-year]").textContent = new Date().getFullYear();
 
   /* ==========================================================================
