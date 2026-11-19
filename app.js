@@ -344,10 +344,8 @@
       const n = c === "All" ? all.length : all.filter(f => f.category === c).length;
       return `<button class="chip${c === state.filter ? " is-active" : ""}${extra}" data-filter="${esc(c)}">${esc(c)}<sup>${n}</sup></button>`;
     };
-    // "All" stays in place; the other categories live in a flyout that overlays (no layout shift)
-    filtersEl.innerHTML = chip("All") + (state.filter !== "All" ? chip(state.filter) : "") +
-      `<div class="filters__more">${cats.slice(1).filter(c => c !== state.filter).map(c => chip(c)).join("")}</div>`;
-    sizeFlyout();
+    // every category is always visible, in a fixed order, on the same line as "All"
+    filtersEl.innerHTML = cats.map(c => chip(c)).join("");
   }
   function sizeFlyout() {
     // the category flyout opens sideways in the header band; cap its width to what is left on screen
@@ -361,18 +359,6 @@
   addEventListener("resize", sizeFlyout);
   filtersEl.addEventListener("click", e => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
-    foldUntil = performance.now() + 500;
-    const touch = !matchMedia("(hover: hover)").matches;
-    if (b.dataset.filter === "All") {
-      const visible = filtersEl.classList.contains("is-open") || (!touch && !filtersEl.classList.contains("is-folded"));
-      if (state.filter !== "All") {
-        // a category was active: "All" resets it and offers every category again
-        filtersEl.classList.remove("is-folded"); filtersEl.classList.add("is-open");
-      } else if (visible) {
-        // categories are showing: a second click on "All" folds them away
-        filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded");
-      } else filtersEl.classList.add("is-open"); // touch: tap opens them
-    } else { filtersEl.classList.remove("is-open"); filtersEl.classList.add("is-folded"); }
     state.filter = b.dataset.filter; renderFilters(); renderWork();
     /* new category: back to the top of the video list */
     const wk = $("#work"), cs = getComputedStyle(document.documentElement);

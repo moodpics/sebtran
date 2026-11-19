@@ -921,7 +921,7 @@ body .top .switch__btn[data-mode="selection"].is-active { color: #fff !important
 /* band fades in in 0.3 s */
 .top { transition: opacity .3s ease, background-color .5s ease; }
 body.at-hero .top { transition: opacity .3s ease, background-color 1.5s ease; }
-body.top-idle .top, body.at-hero.top-idle .top { transition: opacity 1s ease, background-color .75s ease; }
+body.top-idle .top, body.at-hero.top-idle .top { transition: opacity .5s ease, background-color .4s ease; }
 
 /* v24: desktop (mouse) — the band is always there, no fade in/out; only its black layer changes (35% over the header film, 100% below) */
 @media (hover: hover) and (pointer: fine) {
@@ -1037,6 +1037,31 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 @media (orientation: landscape) and (max-height: 500px) {
   .switch__hint { padding: 0 0 0 10px; margin-right: -4px; gap: 4px; color: rgba(235,232,226,.7); }
 }
+
+/* v39: the category tabs are always visible on one line (All · Fashion · Beauty …), no flyout; Grid / Index sit at the far right */
+.top .filters { display: flex !important; flex-wrap: nowrap !important; align-items: center; gap: 6px; flex: none; }
+.top:not(.in-sel) .topcats { flex-wrap: nowrap !important; width: 100%; }
+.top:not(.in-sel) .top__selgrp { order: 1; margin-left: auto !important; }
+.top:not(.in-sel) .topviews { order: 2; margin-left: 12px !important; }
+.top:not(.in-sel) .topviews, .top:not(.in-sel) .top__nav { opacity: 1 !important; pointer-events: auto !important; }
+
+/* phone / narrow: tabs scroll sideways inside their own lane so Grid / Index stay pinned at the far right */
+@media (max-width: 900px) {
+  .top:not(.in-sel) .topcats { gap: 8px; }
+  .top .filters { flex: 1 1 0 !important; min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .top .filters::-webkit-scrollbar { display: none; }
+  .top .filters .chip { flex: none; white-space: nowrap; }
+  .top .filters .chip sup { display: none; }
+  .top:not(.in-sel) .topviews { margin-left: 0 !important; flex: none; }
+}
+
+/* v39: "Like & create a Selection" hint breathes so newcomers notice it */
+@keyframes hintPulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+@keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.22); } }
+.switch__hint, .switchwrap .top__selpre { animation: hintPulse 2.2s ease-in-out infinite; }
+.switch__hint .top__heart, .switchwrap .top__selpre .top__heart { transform-origin: center; animation: heartPulse 2.2s ease-in-out infinite; }
+.top.in-sel .switch__hint { animation: none; }
+@media (prefers-reduced-motion: reduce) { .switch__hint, .switchwrap .top__selpre, .switch__hint .top__heart, .switchwrap .top__selpre .top__heart { animation: none; } }
 
 /* v38: phone in landscape — the header film is exactly one screen tall (no 560px floor), so the "Seb Trân · role · Now playing" row sits inside the picture instead of below the fold */
 @media (orientation: landscape) and (max-height: 500px) {
