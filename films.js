@@ -364,7 +364,7 @@ window.FILMS = {
       "title": "Coup de Blues",
       "category": "Music Video",
       "director": "Maxime Lacombe",
-      "production": "les Films de l'Instant",
+      "production": "Instant Films",
       "year": null,
       "duration": 252,
       "thumb": "https://i.vimeocdn.com/video/1678965528-c9392440c60be79da1891785474478bd42b8d5f0e6d082533cef9a8b2dca6fe0-d"
@@ -449,7 +449,7 @@ window.FILMS = {
       "title": "Short film — Nowness Picks",
       "category": "Narrative",
       "director": "Julien Vallon",
-      "production": "Les Films de l'Instant",
+      "production": "Instant Films",
       "year": null,
       "duration": 296,
       "badge": "nowness",
@@ -678,7 +678,7 @@ window.FILMS = {
       "title": "Never W/U",
       "category": "Music Video",
       "director": "Léo Chadoutaud",
-      "production": "Les Films de l'Instant",
+      "production": "Instant Films",
       "year": null,
       "duration": 207,
       "thumb": "https://i.vimeocdn.com/video/2225896542-696b44896244fc7133f58f8b1aac5300cebae129ee0d045613f1de0acd8176b1-d"
