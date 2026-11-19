@@ -911,7 +911,11 @@
     syncHeroMode();
     const goingUp = scrollY < lastY; lastY = scrollY;
     if (scrollY <= 2) { if (goingUp && !atTop) bounceTop(); atTop = true; }
-    else { atTop = false; if (pastHero()) document.body.classList.remove("top-idle"); } /* scrolling over the header film does not show the band: only a touch does */
+    else {
+      atTop = false;
+      if (pastHero()) document.body.classList.remove("top-idle");
+      else if (goingUp) showTop(); /* over the header film: scrolling up brings the band back (until the page hits the very top) */
+    }
   }, { passive: true });
   /* already at the very top: another scroll-up (wheel / pull) is a bounce too */
   addEventListener("wheel", e => { if (scrollY <= 2 && e.deltaY < 0) bounceTop(); }, { passive: true });
