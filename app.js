@@ -396,7 +396,14 @@
     stopAllPreviews();
     const all = FILMS[state.mode];
     state.list = state.filter === "All" ? all : all.filter(f => f.category === state.filter);
-    $("[data-count]").textContent = pad(state.list.length);
+    /* the header film also sits in the feed, 6th among the videos below (director / cinematographer pages) */
+    let dup = -1;
+    if (state.mode !== "selection" && state.list.length > 1) {
+      const rest = state.list.slice(1); dup = Math.min(6, state.list.length);
+      rest.splice(dup - 1, 0, state.list[0]); state.list = [state.list[0], ...rest];
+    }
+    const numOf = i => dup < 0 ? i + 1 : i === dup ? 1 : i > dup ? i : i + 1;
+    $("[data-count]").textContent = pad(dup < 0 ? state.list.length : state.list.length - 1);
     $("[data-sel-empty]").hidden = !(state.mode === "selection" && !state.list.length);
     // the header film follows the category; it is not repeated below (but stays in the numbering / counts)
     const heroF = state.list[0];
@@ -412,7 +419,7 @@
         <div class="card__frame">
           <img src="${thumb(f, span >= 7 ? "1280x720" : "960x540")}" alt="" loading="lazy">
           <div class="cover"></div>
-          <span class="card__num mono">${pad(i + 1)}</span>
+          <span class="card__num mono">${pad(numOf(i))}</span>
           <span class="card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection" title="Add to my selection">${HEART}</span>
           <span class="card__dur mono">${fmtDur(f.duration)}</span>
           ${badgeHtml(f)}
@@ -430,7 +437,7 @@
 
     index.innerHTML = state.list.map((f, i) => i < skipHero ? "" : `
       <li class="row" data-i="${i}" data-cursor="play" tabindex="0">
-        <span class="row__num">${pad(i + 1)}</span>
+        <span class="row__num">${pad(numOf(i))}</span>
         <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
         <span class="row__client">${esc(f.client)}</span>
         <span class="row__title">${esc(f.title)}</span>
@@ -875,7 +882,7 @@
       /* desktop: title right under the band, block ends right under the title row (the rest of the film is cut) */
       const visBottom = boxBottom + 8;
       pin = topH + 2 + (visBottom - titleTop); heroTop = topH + 2 - titleTop; clipB = Math.max(0, H - visBottom);
-    } else { pin = topH + (H - titleTop) + 10; heroTop = pin - H; }
+    } else { pin = topH; heroTop = topH - H; } /* phone / tablet: the header film scrolls away completely, nothing stays pinned */
     r.setProperty("--catH", ($("[data-catbar]").offsetHeight || 0) + "px");
     r.setProperty("--pin", pin + "px"); r.setProperty("--heroTop", heroTop + "px"); r.setProperty("--clipB", clipB + "px");
     r.setProperty("--pinStart", (-heroTop) + "px");

@@ -1045,6 +1045,9 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 .top:not(.in-sel) .topviews { order: 2; margin-left: 12px !important; }
 .top:not(.in-sel) .topviews, .top:not(.in-sel) .top__nav { opacity: 1 !important; pointer-events: auto !important; }
 
+/* v40: phone / tablet — the header film and "Seb Trân" leave with the scroll (no pinned strip) */
+@media (max-width: 899px) { .hero { position: relative !important; top: auto !important; } }
+
 /* phone / narrow: tabs scroll sideways inside their own lane so Grid / Index stay pinned at the far right */
 @media (max-width: 900px) {
   .top:not(.in-sel) .topcats { gap: 8px; }
