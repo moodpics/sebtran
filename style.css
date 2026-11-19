@@ -921,7 +921,7 @@ body .top .switch__btn[data-mode="selection"].is-active { color: #fff !important
 /* band fades in in 0.3 s */
 .top { transition: opacity .3s ease, background-color .5s ease; }
 body.at-hero .top { transition: opacity .3s ease, background-color 1.5s ease; }
-body.top-idle .top, body.at-hero.top-idle .top { transition: opacity 2s ease, background-color 1.5s ease; }
+body.top-idle .top, body.at-hero.top-idle .top { transition: opacity 1s ease, background-color .75s ease; }
 
 /* v24: desktop (mouse) — the band is always there, no fade in/out; only its black layer changes (35% over the header film, 100% below) */
 @media (hover: hover) and (pointer: fine) {
