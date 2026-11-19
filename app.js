@@ -915,23 +915,31 @@
   };
   /* once shown, the band stays; it only goes away when the visitor scrolls up and reaches the very top */
   let lastY = scrollY, atTop = scrollY <= 2, bounceAt = 0;
-  /* each time the page bounces against the top, the band toggles: hidden, then shown on the next bounce */
+  /* the page bounces against the top (scrolling up reaches the very top): the band goes away; a touch on the image brings it back */
   const bounceTop = () => {
     const t = performance.now(); if (t - bounceAt < 700) return; bounceAt = t;
-    arriveUntil = t + 400; document.body.classList.toggle("top-idle");
+    arriveUntil = t + 400; document.body.classList.add("top-idle");
   };
   addEventListener("scroll", () => {
     lastAct = performance.now();
     syncHeroMode();
     const goingUp = scrollY < lastY; lastY = scrollY;
     if (scrollY <= 2) { if (goingUp && !atTop) bounceTop(); atTop = true; }
-    else { atTop = false; pastHero() ? document.body.classList.remove("top-idle") : showTop(); }
+    else { atTop = false; if (pastHero()) document.body.classList.remove("top-idle"); } /* scrolling over the header film does not show the band: only a touch does */
   }, { passive: true });
   /* already at the very top: another scroll-up (wheel / pull) is a bounce too */
   addEventListener("wheel", e => { if (scrollY <= 2 && e.deltaY < 0) bounceTop(); }, { passive: true });
   let ty0 = 0;
   addEventListener("touchstart", e => { ty0 = e.touches[0].clientY; }, { passive: true });
   addEventListener("touchmove", e => { if (scrollY <= 2 && e.touches[0].clientY - ty0 > 40) { ty0 = e.touches[0].clientY; bounceTop(); } }, { passive: true });
+  /* a simple touch (a tap, not a swipe) on the header film brings the band back */
+  let tap = null;
+  addEventListener("touchstart", e => { tap = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY, t: performance.now(), sy: scrollY } : null; }, { passive: true });
+  addEventListener("touchend", e => {
+    const p = tap; tap = null; if (!p || !e.changedTouches.length || scrollY > 2 || p.sy > 2) return;
+    const c = e.changedTouches[0];
+    if (Math.hypot(c.clientX - p.x, c.clientY - p.y) < 10 && performance.now() - p.t < 600) showTop();
+  }, { passive: true });
   addEventListener("resize", syncHeroMode);
   setInterval(() => {
     if (document.body.classList.contains("is-loading")) return;
