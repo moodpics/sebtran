@@ -1038,6 +1038,11 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
   .switch__hint { padding: 0 0 0 10px; margin-right: -4px; gap: 4px; color: rgba(235,232,226,.7); }
 }
 
+/* v38: phone in landscape — the header film is exactly one screen tall (no 560px floor), so the "Seb Trân · role · Now playing" row sits inside the picture instead of below the fold */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero { min-height: 0; height: 100svh; }
+}
+
 /* v36: close button in the player window — a true circle, same height as the other round buttons */
 .lightbox__nav .lb-x { min-width: 46px; width: 46px; height: 46px; padding: 0; flex: none; border-radius: 50%; }
 

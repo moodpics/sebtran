@@ -905,7 +905,7 @@
     !!$(".selpick.is-open") || !$("[data-share-pop]").hidden || !likePop.hidden || !$("[data-sel-dlg]").hidden;
   let arriveUntil = 0;
   const showTop = () => { if (performance.now() < arriveUntil) return; lastAct = performance.now(); document.body.classList.remove("top-idle"); };
-  ["pointermove", "pointerdown", "keydown"].forEach(ev => addEventListener(ev, e => { if (e.pointerType === "touch" && scrollY <= 2) return; showTop(); }, { passive: true }));
+  ["pointermove", "pointerdown", "keydown"].forEach(ev => addEventListener(ev, e => { if (e.pointerType === "touch" && !pastHero()) return; showTop(); }, { passive: true }));
   let autoHide = false; // set when the visitor comes back up from the videos to the header film
   const syncHeroMode = () => {
     const was = document.body.classList.contains("at-hero"), now = !pastHero();
@@ -932,13 +932,16 @@
   let ty0 = 0;
   addEventListener("touchstart", e => { ty0 = e.touches[0].clientY; }, { passive: true });
   addEventListener("touchmove", e => { if (scrollY <= 2 && e.touches[0].clientY - ty0 > 40) { ty0 = e.touches[0].clientY; bounceTop(); } }, { passive: true });
-  /* a simple touch (a tap, not a swipe) on the header film brings the band back */
+  /* a simple touch (a tap, not a swipe) on the header film toggles the band: shown, then hidden, then shown… */
   let tap = null;
-  addEventListener("touchstart", e => { tap = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY, t: performance.now(), sy: scrollY } : null; }, { passive: true });
+  addEventListener("touchstart", e => { tap = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY, t: performance.now(), el: e.target } : null; }, { passive: true });
   addEventListener("touchend", e => {
-    const p = tap; tap = null; if (!p || !e.changedTouches.length || scrollY > 2 || p.sy > 2) return;
+    const p = tap; tap = null; if (!p || !e.changedTouches.length || pastHero() || !lb.hidden) return;
+    if (p.el.closest && p.el.closest("button, a, .top, .catbar, [data-catbar]")) return; /* buttons and links keep their own job */
     const c = e.changedTouches[0];
-    if (Math.hypot(c.clientX - p.x, c.clientY - p.y) < 10 && performance.now() - p.t < 600) showTop();
+    if (Math.hypot(c.clientX - p.x, c.clientY - p.y) >= 10 || performance.now() - p.t >= 600) return;
+    if (document.body.classList.contains("top-idle")) showTop();
+    else { document.body.classList.add("top-idle"); autoHide = false; arriveUntil = performance.now() + 400; }
   }, { passive: true });
   addEventListener("resize", syncHeroMode);
   setInterval(() => {
