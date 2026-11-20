@@ -3,7 +3,7 @@
   "short_name": "Seb Trân",
   "start_url": "./",
   "scope": "./",
-  "display": "browser",
+  "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#0a0a0a",
   "icons": [
