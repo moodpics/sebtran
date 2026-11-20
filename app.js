@@ -6,9 +6,11 @@
 
   /* a reload always lands on the clean header film (no restored scroll position) */
   try { history.scrollRestoration = "manual"; } catch (e) {}
-  scrollTo(0, 0);
-  addEventListener("pageshow", () => { scrollTo(0, 0); });
-  addEventListener("load", () => { scrollTo(0, 0); setTimeout(() => scrollTo(0, 0), 60); });
+  /* on touch screens we land 1px down: mobile Safari tends to keep its bars hidden when the page is not at scrollY 0 */
+  const landY = matchMedia("(pointer: coarse)").matches ? 1 : 0;
+  scrollTo(0, landY);
+  addEventListener("pageshow", () => { scrollTo(0, landY); });
+  addEventListener("load", () => { scrollTo(0, landY); setTimeout(() => scrollTo(0, landY), 60); });
 
   /* ---------- Config: edit these ---------- */
   const CONFIG = {
