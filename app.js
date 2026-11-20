@@ -4,6 +4,12 @@
 (() => {
   "use strict";
 
+  /* a reload always lands on the clean header film (no restored scroll position) */
+  try { history.scrollRestoration = "manual"; } catch (e) {}
+  scrollTo(0, 0);
+  addEventListener("pageshow", () => { scrollTo(0, 0); });
+  addEventListener("load", () => { scrollTo(0, 0); setTimeout(() => scrollTo(0, 0), 60); });
+
   /* ---------- Config: edit these ---------- */
   const CONFIG = {
     email: "sebastientrandop@gmail.com",
