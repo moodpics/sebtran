@@ -445,6 +445,7 @@
       <li class="row" data-i="${i}" data-cursor="play" tabindex="0">
         <span class="row__num">${pad(numOf(i))}</span>
         <span class="row__fav card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection">${HEART}</span>
+        <img class="row__thumb" src="${thumb(f, "320x180")}" alt="" loading="lazy" width="96" height="54">
         <span class="row__client">${esc(f.client)}</span>
         <span class="row__title">${esc(f.title)}</span>
         <span class="row__dir">${esc(f.director ? "Dir. " + f.director : "—")}</span>

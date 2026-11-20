@@ -1095,3 +1095,8 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 .lightbox__sp .badges { justify-content: flex-start; gap: 18px; flex-wrap: wrap; }
 .lightbox__sp .badge--laurel img { height: 72px; }
 @media (max-width: 899px) { .card .badges { top: 32px; right: 12px; gap: 6px; } .card.card .card__frame .badge img { height: 24px; } .card.card .card__frame .badge--laurel img { height: 32px; } .lightbox__sp .badges { gap: 10px; } .lightbox__sp .badge--laurel img { height: 58px; } }
+
+/* v41: Index view — a small thumbnail on every row */
+.row { grid-template-columns: 56px 26px 96px 1.3fr 1.6fr 1fr 1fr 60px; align-items: center; padding: 10px 0; }
+.row__thumb { width: 96px; height: 54px; object-fit: cover; border-radius: 2px; background: #141414; display: block; }
+@media (max-width: 899px) { .row { grid-template-columns: 30px 24px 64px 1fr auto; gap: 12px; } .row__thumb { width: 64px; height: 36px; } .row__yr { display: none; } }
