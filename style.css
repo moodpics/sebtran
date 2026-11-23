@@ -1116,8 +1116,8 @@ header.top .top__name { font-size: clamp(22px, 1.9vw, 30px) !important; }
 @media (max-width: 430px) { header.top .top__name { font-size: 17px !important; } }
 @media (max-width: 380px) { header.top .top__name { font-size: 15.5px !important; } }
 
-/* v45: bigger page names in the band (Cinematographer · Director / DP · Selection) */
-header.top .switch .switch__btn { font-size: clamp(13px, 1.05vw, 15px) !important; padding: 11px clamp(18px, 1.6vw, 26px) !important; letter-spacing: .08em !important; }
-@media (max-width: 899px) { header.top .switch .switch__btn { font-size: 9.6px !important; padding: 7px 9px !important; letter-spacing: .03em !important; } }
-@media (max-width: 430px) { header.top .switch .switch__btn { font-size: 8.3px !important; padding: 7px 3.5px !important; letter-spacing: .005em !important; } }
-@media (max-width: 380px) { header.top .switch .switch__btn { font-size: 7.7px !important; padding: 7px 3px !important; letter-spacing: 0 !important; } }
+/* v45: only the CURRENT page name (Cinematographer / Director · DP / Selection) is set larger, so it is obvious where you are */
+header.top .switch .switch__btn.is-active { font-size: clamp(13px, 1.05vw, 15px) !important; font-weight: 600; }
+@media (max-width: 899px) { header.top .switch .switch__btn.is-active { font-size: 10px !important; } }
+@media (max-width: 430px) { header.top .switch .switch__btn.is-active { font-size: 9.4px !important; } }
+@media (max-width: 380px) { header.top .switch .switch__btn.is-active { font-size: 8.6px !important; } }
