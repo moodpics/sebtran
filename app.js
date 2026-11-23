@@ -887,11 +887,7 @@
     /* measured as if the letterbox were fully open (--lb = 0): that is the state once the film is pinned */
     const titleTop = pinBox.offsetTop + pinTitle.offsetTop + lb, boxBottom = pinBox.offsetTop + pinBox.offsetHeight + lb;
     let pin, heroTop, clipB = 0;
-    if (matchMedia("(min-width: 900px)").matches) {
-      /* desktop: title right under the band, block ends right under the title row (the rest of the film is cut) */
-      const visBottom = boxBottom + 8;
-      pin = topH + 2 + (visBottom - titleTop); heroTop = topH + 2 - titleTop; clipB = Math.max(0, H - visBottom);
-    } else { pin = topH; heroTop = topH - H; } /* phone / tablet: the header film scrolls away completely, nothing stays pinned */
+    pin = topH; heroTop = topH - H; /* every screen: the header film scrolls away completely, nothing stays pinned */
     r.setProperty("--catH", ($("[data-catbar]").offsetHeight || 0) + "px");
     r.setProperty("--pin", pin + "px"); r.setProperty("--heroTop", heroTop + "px"); r.setProperty("--clipB", clipB + "px");
     r.setProperty("--pinStart", (-heroTop) + "px");

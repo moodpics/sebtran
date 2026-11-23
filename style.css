@@ -1046,7 +1046,7 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 .top:not(.in-sel) .topviews, .top:not(.in-sel) .top__nav { opacity: 1 !important; pointer-events: auto !important; }
 
 /* v40: phone / tablet — the header film and "Seb Trân" leave with the scroll (no pinned strip) */
-@media (max-width: 899px) { .hero { position: relative !important; top: auto !important; } }
+.hero { position: relative !important; top: auto !important; }
 
 /* phone / narrow: tabs scroll sideways inside their own lane so Grid / Index stay pinned at the far right */
 @media (max-width: 900px) {
@@ -1109,3 +1109,9 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
   body .bars i { height: 0 !important; }
   .hero__content { bottom: calc(52px + clamp(18px, 3.5vh, 44px)); }
 }
+
+/* v44: bigger "Seb Trân" in the top band (the big pinned title is gone, the band carries the name) */
+header.top .top__name { font-size: clamp(22px, 1.9vw, 30px) !important; }
+@media (max-width: 899px) { header.top .top__name { font-size: 19px !important; } }
+@media (max-width: 430px) { header.top .top__name { font-size: 17px !important; } }
+@media (max-width: 380px) { header.top .top__name { font-size: 15.5px !important; } }
