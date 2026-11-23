@@ -883,7 +883,7 @@
   const pinEl = $(".hero"), pinTitle = $(".hero__title"), pinBox = $(".hero__content");
   const setPin = () => {
     setTopH();
-    const r = document.documentElement.style, topH = topEl.offsetHeight, H = pinEl.offsetHeight, lb = parseFloat(r.getPropertyValue("--lb")) || 0;
+    const r = document.documentElement.style, topH = topEl.offsetHeight, H = pinEl.offsetHeight, lb = matchMedia("(min-width: 900px)").matches ? 0 : (parseFloat(r.getPropertyValue("--lb")) || 0); /* desktop: no letterbox bars any more */
     /* measured as if the letterbox were fully open (--lb = 0): that is the state once the film is pinned */
     const titleTop = pinBox.offsetTop + pinTitle.offsetTop + lb, boxBottom = pinBox.offsetTop + pinBox.offsetHeight + lb;
     let pin, heroTop, clipB = 0;

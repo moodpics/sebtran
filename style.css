@@ -1103,3 +1103,9 @@ body:not(.at-hero) .switchwrap .top__selpre { visibility: visible; }
 
 /* v42: phone — the header film follows the dynamic viewport, so it fills the screen once Safari's bars collapse on the first swipe */
 @supports (height: 100dvh) { @media (max-width: 899px) { .hero, .hero { height: 100dvh !important; } } }
+
+/* v43: desktop — no letterbox bars: the header film fills the whole height of the browser window (title row lifted above the timecode line) */
+@media (min-width: 900px) {
+  body .bars i { height: 0 !important; }
+  .hero__content { bottom: calc(52px + clamp(18px, 3.5vh, 44px)); }
+}
