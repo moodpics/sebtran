@@ -368,10 +368,8 @@
   filtersEl.addEventListener("click", e => {
     const b = e.target.closest("[data-filter]"); if (!b) return;
     state.filter = b.dataset.filter; renderFilters(); renderWork();
-    /* new category: back to the top of the video list */
-    const wk = $("#work"), cs = getComputedStyle(document.documentElement);
-    const top = wk.offsetTop - (parseFloat(cs.getPropertyValue("--pin")) || 0) - (parseFloat(cs.getPropertyValue("--catH")) || 0);
-    if (Math.abs(scrollY - top) > 2) scrollTo({ top: Math.max(0, top), behavior: reduced ? "auto" : "smooth" });
+    /* new category: go back up to the header film first */
+    if (scrollY > 2) scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
     armCatTimer();
   });
   /* opened by a click and left alone for 3 s -> the categories fold away again */
