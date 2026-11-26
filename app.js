@@ -429,10 +429,10 @@
       if (i < skipHero) return;
       const j = i - skipHero, vertical = f.ratio && f.ratio < 1;
       let span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
-      if (vertical) span = 3; else if (f.ratio && span === 12) span = 8; // a film that is not 16:9 never takes the full width
+      if (vertical) span = 3; else if (f.ratio) span = 5; // 5 columns for a 4:3-ish film, whose 16:9 neighbour then gets 7: same height, no hole
       if (span > 12 - col) span = 12 - col; // never leave a hole: a card that does not fit shrinks to the rest of the row
       const rest = 12 - col - span; let used = span;
-      if (rest > 0 && rest < 4) { if (vertical && prev >= 0 && col > 0) { spans[prev] += rest; used += rest; } else { span += rest; used = span; } }
+      if (rest > 0 && rest < 4) { if (f.ratio && prev >= 0 && col > 0 && !state.list[prev].ratio) { spans[prev] += rest; used += rest; } else { span += rest; used = span; } }
       spans[i] = span; col = (col + used) % 12; prev = i;
     });
     grid.innerHTML = state.list.map((f, i) => {
