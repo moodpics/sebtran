@@ -1,7 +1,16 @@
 {
  "v": 1,
- "updated": "2026-11-26T17:00:00.000Z",
+ "updated": "2026-11-26T17:15:00.000Z",
  "log": [
+  {
+   "at": "2026-11-26T17:15:00.000Z",
+   "src": "Liste caméra V1 (Lucas Bidard)",
+   "d": [
+    "cam"
+   ],
+   "kind": "ajout",
+   "text": "Liste caméra ajoutée : Venice, optiques, filtres, accessoires, monitoring, batteries, machinerie, data. Écart à confirmer : 3 m de rail dans la liste, 4 m annoncés"
+  },
   {
    "at": "2026-11-26T17:00:00.000Z",
    "src": "Précision de Seb",
@@ -427,8 +436,108 @@
   {
    "id": "cam",
    "name": "Caméra",
-   "known": [],
-   "todo": [],
+   "known": [
+    {
+     "t": "Liste caméra V1 fournie par Lucas Bidard (1er assistant caméra)",
+     "sub": "Essais caméra prévus lundi 7 décembre, tournage les 8 et 9",
+     "w": 0,
+     "g": "conf"
+    }
+   ],
+   "todo": [
+    {
+     "t": "Caméra",
+     "done": 0,
+     "lines": [
+      "Package Venice Sony ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Optiques",
+     "done": 0,
+     "lines": [
+      "Optimo Ultra 12 FF 36-435 mm ×1",
+      "Valise Probe T8 ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Filtres",
+     "done": 0,
+     "lines": [
+      "Polaframe 6x6 ×1",
+      "Clear 6x6 ×1",
+      "Hollywood Black Magic 6x6 ×1",
+      "Série de dioptries 152 ×1",
+      "Série ND 6x6 ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Accessoires caméra",
+     "done": 0,
+     "lines": [
+      "Mattebox 6x6 ×1",
+      "Kit Teradek Bolt 6K ×1",
+      "Arri ZMU-4 ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Monitoring",
+     "done": 0,
+     "lines": [
+      "SmallHD Ultra 5 ×1",
+      "Ciné 7 Bolt ×1",
+      "Moniteur SmallHD 4K OLED 27\" ×1",
+      "Moniteur SmallHD 4K OLED 22\" ×1",
+      "Pied à roulettes noir ×5",
+      "Touret BNC 25 m ×3"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Batteries",
+     "done": 0,
+     "lines": [
+      "Batterie Cube 1200 ×1",
+      "V200 ×6",
+      "200 (27\") ×6",
+      "Bebop V98 ×9",
+      "Chargeur V-Lock 4 voies ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Machinerie (dans la liste caméra)",
+     "done": 0,
+     "lines": [
+      "O'Connor 2575 (GP / PB / base) 300 ×1",
+      "Slider 1 m KGS ×1",
+      "Bazooka en 300 + griffe 300 droite ×1",
+      "Rail 3 m ×1",
+      "Magliner Senior ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Data",
+     "done": 0,
+     "lines": [
+      "MacBook Pro M2 ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    }
+   ],
    "refs": [],
    "notes": "",
    "open": []
@@ -455,7 +564,7 @@
     },
     {
      "t": "Matériel machinerie : un bazooka et 4 m de rail",
-     "sub": "",
+     "sub": "La liste caméra V1 de Lucas indique 3 m de rail (et non 4 m) : à confirmer",
      "w": 0,
      "g": "mvt"
     }
