@@ -1,16 +1,7 @@
 {
  "v": 1,
- "updated": "2026-11-26T18:30:00.000Z",
+ "updated": "2026-11-26T18:35:00.000Z",
  "log": [
-  {
-   "at": "2026-11-26T18:25:00.000Z",
-   "src": "Précision de Seb",
-   "d": [
-    "lum"
-   ],
-   "kind": "modifié",
-   "text": "Gaffer : Côme Naulleau. Lumière : liste du gaffer = à louer, matériel Nolo séparé (codes couleur)"
-  },
   {
    "at": "2026-11-26T18:10:00.000Z",
    "src": "Liste lumière (Maison Montcalm)",
@@ -18,7 +9,7 @@
     "lum"
    ],
    "kind": "ajout",
-   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel Nolo"
+   "text": "Liste lumière ajoutée"
   },
   {
    "at": "2026-11-26T17:15:00.000Z",
@@ -27,37 +18,7 @@
     "cam"
    ],
    "kind": "ajout",
-   "text": "Liste caméra ajoutée : Venice, optiques, filtres, accessoires, monitoring, batteries, machinerie, data. Écart à confirmer : 3 m de rail dans la liste, 4 m annoncés"
-  },
-  {
-   "at": "2026-11-26T17:00:00.000Z",
-   "src": "Précision de Seb",
-   "d": [
-    "mach"
-   ],
-   "kind": "ajout",
-   "text": "Pas de chef machiniste : le 1er AC, Lucas Bidard, gère la machinerie, soit un bazooka et 4 m de rail"
-  },
-  {
-   "at": "2026-11-26T15:33:00.000Z",
-   "src": "Équipe",
-   "d": [],
-   "kind": "modifié",
-   "text": "Directrice de production : Mélanie Beyl"
-  },
-  {
-   "at": "2026-11-26T15:25:00.000Z",
-   "src": "Précision du lieu",
-   "d": [],
-   "kind": "modifié",
-   "text": "Les vidéos se tournent uniquement dans le bout arrondi du cyclo (environ 4,50 m × 2,5 m), surligné sur le plan du studio"
-  },
-  {
-   "at": "2026-11-26T15:18:00.000Z",
-   "src": "Deck Content Factory",
-   "d": [],
-   "kind": "ajout",
-   "text": "Brief des 7 vidéos (Eye Tint ×2, Blur ×2, Bronzer ×3) avec storyboards"
+   "text": "Liste caméra ajoutée"
   }
  ],
  "shootDate": "2026-12-08",
