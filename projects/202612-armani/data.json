@@ -1,7 +1,16 @@
 {
  "v": 1,
- "updated": "2026-11-26T17:15:00.000Z",
+ "updated": "2026-11-26T18:10:00.000Z",
  "log": [
+  {
+   "at": "2026-11-26T18:10:00.000Z",
+   "src": "Liste lumière (Maison Montcalm)",
+   "d": [
+    "lum"
+   ],
+   "kind": "ajout",
+   "text": "Liste lumière ajoutée : sources, pieds et grip, cadre et toiles, distribution, plus le matériel du devis de location. Nom du gaffer à vérifier (Nolo / Naulleau)"
+  },
   {
    "at": "2026-11-26T17:15:00.000Z",
    "src": "Liste caméra V1 (Lucas Bidard)",
@@ -545,8 +554,113 @@
   {
    "id": "lum",
    "name": "Lumière",
-   "known": [],
-   "todo": [],
+   "known": [
+    {
+     "t": "Liste lumière Maison Montcalm fournie, avec le matériel du devis de location des 8 et 9 décembre",
+     "sub": "Gaffer indiqué sur la liste : « Côme Nolo » (à vérifier avec « Côme Naulleau »). Les deux parties de la liste ne se recoupent pas : à clarifier avec le gaffer",
+     "w": 0,
+     "g": "conf"
+    }
+   ],
+   "todo": [
+    {
+     "t": "Sources",
+     "done": 0,
+     "lines": [
+      "COB 600C ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Pieds & grip",
+     "done": 0,
+     "lines": [
+      "Rallonge de U ×2",
+      "U126 à roulettes ×2",
+      "Windup ×4",
+      "Long John ×1",
+      "C-stand ×6",
+      "Low C-stand ×3",
+      "Pied de 1000 ×4",
+      "Baby 1000 ×3",
+      "Baby 5k à roulettes ×2",
+      "Baby 2k ×2",
+      "Gonzales ×1",
+      "Base 28 à roulettes ×2",
+      "Déport F100 ×2",
+      "Gueuses ×15",
+      "Pinces machino ×20"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Cadre & toiles",
+     "done": 0,
+     "lines": [
+      "Cadre 2,40 × 2,40 m ×1",
+      "Toile ½ grid cloth 2,4 × 2,4 m ×1",
+      "Toile ¼ grid cloth 2,4 × 2,4 m ×1",
+      "Borniol 4 × 4 m ×2"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Distribution & énergie",
+     "done": 0,
+     "lines": [
+      "Prolongs 10 m ×20",
+      "Multis ×8",
+      "10 m 63 tri ×1",
+      "Tonneau 63 A Maréchal ×1",
+      "10 m 32 A mono Maréchal ×1",
+      "20 m 32 A mono Maréchal ×1",
+      "Boîte M6 Maréchal ×1"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Matériel du devis : bijoute, contrôle, textiles",
+     "done": 0,
+     "lines": [
+      "Bijoute électro : cadres, roulantes, grip, drapeaux, floppys et mamas",
+      "Kit DMX : 2 iPad Pro, Cerise 4U et 1U, hub, 4 récepteurs",
+      "Intercoms Hollyland Solidcom S1",
+      "Kit de toiles : 12 slip-on 12 × 12 pi, jeu de gridcloth 4 × 4 m, jeu de toiles silk"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Matériel du devis : sources et accessoires",
+     "done": 0,
+     "lines": [
+      "ARRI SkyPanel X21 ×4, HyperOptics ×2, dômes ×4",
+      "Chimeras SkyPanel ×4 et louvres pour Chimera ×4",
+      "Nanlux Evoke 2400B et dôme Nanlux 150",
+      "Kit complet de réflecteurs CRLS Godox",
+      "Kit de tubes Titan et 8 louvres pour tubes Titan",
+      "DMG Dash et DOT",
+      "COB Godox M1000R et nez optique M1000R",
+      "COB Aputure 400X et dôme"
+     ],
+     "fix": [],
+     "ctl": []
+    },
+    {
+     "t": "Matériel du devis : consommables et transport",
+     "done": 0,
+     "lines": [
+      "Forfait consommables",
+      "Van Mercedes Vito et forfait diesel"
+     ],
+     "fix": [],
+     "ctl": []
+    }
+   ],
    "refs": [],
    "notes": "",
    "open": [],
