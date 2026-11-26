@@ -84,9 +84,9 @@ async function run(){
  document.getElementById("list").innerHTML=res.map(card).join("");
 }
 /* Barrière d'accès : simple mot de passe côté navigateur (empreinte PBKDF2). Dissuade les curieux, ce n'est pas un chiffrement des projets. */
-const SALT="moodpics-projects-v1",HASH="ed59a3833b9c759740abbb7c3ec8c6ee4ad4841595025e6ea488ac1ece623260",KEY="pj-ok-v1";
+const SALT="moodpics-projects-v1",HASH="cea2c810a6d47ef3b8c97696af15c3e944394ff2b0b38b0f429eac6da71ef1de",KEY="pj-ok-v2";
 const hx=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
-async function hp(pw){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);return hx(await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:new TextEncoder().encode(SALT),iterations:150000},k,256))}
+async function hp(pw){pw=pw.normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);return hx(await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:new TextEncoder().encode(SALT),iterations:150000},k,256))}
 function open_(){document.body.classList.remove("locked");document.getElementById("gate").remove();run()}
 (async()=>{
  try{if(localStorage.getItem(KEY)===HASH)return open_()}catch(e){}
