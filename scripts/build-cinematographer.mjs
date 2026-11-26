@@ -23,7 +23,7 @@ const sub = (s, from, to, name) => {
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 
-// 1. fichiers copiés tels quels (pas de CNAME : le domaine est sur moodpics/sebtran ; pas de projets/ : pages d'équipe, sur le site officiel)
+// 1. fichiers copiés tels quels (pas de CNAME : le domaine est sur moodpics/sebtran ; pas de projects/ : pages d'équipe, sur le site officiel)
 for (const f of ["style.css", "apple-touch-icon.png", "favicon-32.png", "favicon.ico", "favicon.svg", "icon-512.png", "icon-192.png", "site.webmanifest", "operandi-logo.png", "nowness-picks.svg", "award-frejus.svg", "award-nikon.svg", "award-prix.svg", "award-sens.svg"]) {
   fs.copyFileSync(f, path.join(OUT, f));
 }

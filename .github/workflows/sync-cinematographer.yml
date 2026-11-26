@@ -6,7 +6,7 @@ name: Sync sebastien-tran.com
 on:
   push:
     branches: [main]
-    paths-ignore: ["projets/**"]
+    paths-ignore: ["projects/**"]
   workflow_dispatch: {}
 
 concurrency:
