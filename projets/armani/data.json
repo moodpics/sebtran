@@ -1,7 +1,15 @@
 {
  "v": 1,
- "updated": "2026-11-26T15:12:00.000Z",
- "log": [],
+ "updated": "2026-11-26T15:18:00.000Z",
+ "log": [
+  {
+   "at": "2026-11-26T15:18:00.000Z",
+   "src": "Deck Content Factory",
+   "d": [],
+   "kind": "ajout",
+   "text": "Brief des 7 vidéos (Eye Tint ×2, Blur ×2, Bronzer ×3) avec storyboards"
+  }
+ ],
  "shootDate": "2026-12-08",
  "root": {
   "title": "Armani",
@@ -39,11 +47,72 @@
   }
  },
  "brief": {
-  "items": [],
-  "source": "",
+  "items": [
+   {
+    "t": "7 vidéos sur les 2 jours, en 3 thèmes : Eye Tint ×2, Luminous Silk Blur ×2, Dolci Bronzer ×3 (Light, Medium, Deep)",
+    "b": 0,
+    "sub": [],
+    "img": "",
+    "imgNote": "",
+    "id": "av01",
+    "to": []
+   },
+   {
+    "t": "4 modèles par jour, plus 9 arm swatches sur ces jours (3 gammes Eye Tint sur 3 carnations, mêmes longueurs de bras)",
+    "b": 0,
+    "sub": [],
+    "img": "",
+    "imgNote": "",
+    "id": "av02",
+    "to": []
+   },
+   {
+    "t": "Raja (maquillage global) sur le plateau",
+    "b": 0,
+    "sub": [],
+    "img": "",
+    "imgNote": "",
+    "id": "av03",
+    "to": []
+   },
+   {
+    "t": "Eye Tint : vidéos éducatives et sensorielles",
+    "b": 1,
+    "sub": [
+     "Extraire des stills de l'application pour le « how to apply » : self-application, build the look",
+     "Texture play : le marketing doit commander une grosse quantité de best-sellers (note du deck)"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "av04",
+    "to": []
+   },
+   {
+    "t": "Plans « déjà tournés » dans les storyboards Eye Tint à raccorder aux nouveaux plans ; Eye Tint 2, plan 1 : still life existant à animer en IA",
+    "b": 1,
+    "sub": [],
+    "img": "",
+    "imgNote": "",
+    "id": "av05",
+    "to": []
+   },
+   {
+    "t": "À confirmer avec la prod : carnations et nombre de modèles par vidéo (le deck se contredit d'une page à l'autre) ; stylisme : TBC pour toutes les vidéos",
+    "b": 1,
+    "sub": [],
+    "img": "",
+    "imgNote": "",
+    "id": "av06",
+    "to": []
+   }
+  ],
+  "source": "Source : deck « Content Factory N°1 – 2027 » (Maison Montcalm), pages vidéo",
   "sum": {
-   "t": "",
-   "sub": []
+   "t": "Armani Content Factory N°1 : 7 vidéos les 8 et 9 décembre",
+   "sub": [
+    "Eye Tint ×2 · Luminous Silk Blur ×2 · Dolci Bronzer ×3",
+    "4 modèles par jour + 9 arm swatches"
+   ]
   }
  },
  "mood": {
@@ -51,9 +120,253 @@
   "p": "",
   "moods": []
  },
- "camps": [],
+ "camps": [
+  {
+   "id": "eye1",
+   "name": "Eye Tint 1",
+   "txt": "GET THE LOOK. 1 modèle, 2 yeux maquillés, 3 produits en build-up : Eye Tint 22M (base), Eye Tint Intenso 140I (paupière et smoke), Eye Sketcher 1M (ligne d'eau). Vidéo éducative et sensorielle : on extrait des stills de l'application pour le « how to apply ».",
+   "pist": "Storyboard en 12 plans, du packshot des 3 produits au regard caméra final",
+   "imgs": [
+    {
+     "src": "refs/eye1-01.jpg",
+     "alt": "eye1 plan 1 : Show the 3 products, final look",
+     "cap": "Plan 1 · Montrer les 3 produits, look final"
+    },
+    {
+     "src": "refs/eye1-02.jpg",
+     "alt": "eye1 plan 2 : 1st product in hand",
+     "cap": "Plan 2 · 1er produit en main : Eye Tint 22M"
+    },
+    {
+     "src": "refs/eye1-03.jpg",
+     "alt": "eye1 plan 3 : Application base",
+     "cap": "Plan 3 · Application de la base, swipe d'Eye Tint 22M"
+    },
+    {
+     "src": "refs/eye1-04.jpg",
+     "alt": "eye1 plan 4 : Blend",
+     "cap": "Plan 4 · Blend au pinceau"
+    },
+    {
+     "src": "refs/eye1-05.jpg",
+     "alt": "eye1 plan 5 : Solo eye result",
+     "cap": "Plan 5 · Résultat sur un œil seul"
+    },
+    {
+     "src": "refs/eye1-06.jpg",
+     "alt": "eye1 plan 6 : 2nd product",
+     "cap": "Plan 6 · 2e produit en main : Eye Tint 140I"
+    },
+    {
+     "src": "refs/eye1-07.jpg",
+     "alt": "eye1 plan 7 : Dripping formula",
+     "cap": "Plan 7 · Formule qui coule · déjà tourné"
+    },
+    {
+     "src": "refs/eye1-08.jpg",
+     "alt": "eye1 plan 8 : Application of 140I",
+     "cap": "Plan 8 · Application de l'Eye Tint 140I"
+    },
+    {
+     "src": "refs/eye1-09.jpg",
+     "alt": "eye1 plan 9 : 3rd product",
+     "cap": "Plan 9 · 3e produit en main : Sketcher 1M"
+    },
+    {
+     "src": "refs/eye1-10.jpg",
+     "alt": "eye1 plan 10 : Application",
+     "cap": "Plan 10 · Application (ligne d'eau)"
+    },
+    {
+     "src": "refs/eye1-11.jpg",
+     "alt": "eye1 plan 11 : Close up",
+     "cap": "Plan 11 · Gros plan, d'un œil à l'autre, résultat final"
+    },
+    {
+     "src": "refs/eye1-12.jpg",
+     "alt": "eye1 plan 12 : Opening eyes",
+     "cap": "Plan 12 · Ouverture des yeux à la caméra, zoom, look final"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Carnation : « fair skin tone » dans la liste d'assets, « medium » dans le storyboard : à confirmer.\nPlan 7 (dripping formula) : déjà tourné.\nLes images du storyboard sont les références du deck, pas des plans tournés (sauf mention « déjà tourné »).\nBesoins en modèles dans le deck (page « Model needs ») : 3 modèles pour l'Eye Tint (Latina medium, Deep, mature light) alors que les 2 storyboards n'en prévoient que 2 : à confirmer."
+  },
+  {
+   "id": "eye2",
+   "name": "Eye Tint 2",
+   "txt": "APPLICATION SIMPLE. 1 modèle medium / deep, 1 teinte : Eye Tint 67S (Sparkle, Cool champagne), 2 yeux maquillés. Même approche éducative et sensorielle que la vidéo 1.",
+   "pist": "Storyboard en 11 plans · plan 1 : still life existant à animer en IA",
+   "imgs": [
+    {
+     "src": "refs/eye2-01.jpg",
+     "alt": "eye2 plan 1 : Shade 67S",
+     "cap": "Plan 1 · Teinte 67S, léger mouvement de la formule · still life existant à animer en IA"
+    },
+    {
+     "src": "refs/eye2-02.jpg",
+     "alt": "eye2 plan 2 : Product in hand",
+     "cap": "Plan 2 · Produit en main"
+    },
+    {
+     "src": "refs/eye2-03.jpg",
+     "alt": "eye2 plan 3 : Solo eye result",
+     "cap": "Plan 3 · Résultat sur un œil seul"
+    },
+    {
+     "src": "refs/eye2-04.jpg",
+     "alt": "eye2 plan 4 : Dripping formula",
+     "cap": "Plan 4 · Formule qui coule · déjà tourné"
+    },
+    {
+     "src": "refs/eye2-05.jpg",
+     "alt": "eye2 plan 5 : Swipe on the lid",
+     "cap": "Plan 5 · Swipe sur la paupière"
+    },
+    {
+     "src": "refs/eye2-06.jpg",
+     "alt": "eye2 plan 6 : Application build up",
+     "cap": "Plan 6 · Application, build up"
+    },
+    {
+     "src": "refs/eye2-07.jpg",
+     "alt": "eye2 plan 7 : Close up",
+     "cap": "Plan 7 · Gros plan, d'un œil à l'autre, résultat"
+    },
+    {
+     "src": "refs/eye2-08.jpg",
+     "alt": "eye2 plan 8 : Product next to the eye",
+     "cap": "Plan 8 · Gros plan avec le produit à côté de l'œil"
+    },
+    {
+     "src": "refs/eye2-09.jpg",
+     "alt": "eye2 plan 9 : Formula yummy moment",
+     "cap": "Plan 9 · Moment « yummy » de la formule · déjà tourné"
+    },
+    {
+     "src": "refs/eye2-10.jpg",
+     "alt": "eye2 plan 10 : Opening eyes",
+     "cap": "Plan 10 · Ouverture des yeux à la caméra, zoom, look final"
+    },
+    {
+     "src": "refs/eye2-11.jpg",
+     "alt": "eye2 plan 11 : Closing frame",
+     "cap": "Plan 11 · Plan de clôture : plusieurs teintes d'Eye Tint en main"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Plans 4 (dripping formula) et 9 (formula yummy moment) : déjà tournés.\nLes images du storyboard sont les références du deck, pas des plans tournés (sauf mention « déjà tourné »)."
+  },
+  {
+   "id": "blur1",
+   "name": "Blur 1",
+   "txt": "LUMINOUS SILK · BLUR RETOUCH, teinte universelle (1 shade), produit en pack avec puff. Vidéo d'application sur une 1re carnation (non précisée dans le deck). Storyboard commun aux 2 vidéos Blur.",
+   "pist": "Storyboard en 12 plans, « application & look capsule Universal »",
+   "imgs": [
+    {
+     "src": "refs/storyboard-blur.jpg",
+     "alt": "Storyboard Blur Retouch, 12 plans",
+     "cap": "Storyboard Blur Retouch · capsule Universal (références visuelles d'autres marques)"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Le deck laisse « 2x skin tones » sans précision.\nPoints d'interrogation du deck sur les plans 7 et 9 (blend au pinceau).\nBesoins en modèles dans le deck (page « Model needs ») : 4 modèles pour le Blur (Latina medium, Deep, homme, mature light caucasian) : répartition entre les 2 vidéos à définir."
+  },
+  {
+   "id": "blur2",
+   "name": "Blur 2",
+   "txt": "LUMINOUS SILK · BLUR RETOUCH, même produit, vidéo d'application sur une 2e carnation (non précisée dans le deck). Même storyboard que Blur 1.",
+   "pist": "Même storyboard que Blur 1",
+   "imgs": [
+    {
+     "src": "refs/storyboard-blur.jpg",
+     "alt": "Storyboard Blur Retouch, 12 plans",
+     "cap": "Storyboard Blur Retouch · capsule Universal"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Voir Blur 1."
+  },
+  {
+   "id": "bronzerL",
+   "name": "Bronzer Light",
+   "txt": "DOLCI BRONZER, peau Light : 2 applications de bronzer. Les zones d'application changent d'une peau à l'autre.",
+   "pist": "Storyboard en 12 plans, « application & look capsule Light »",
+   "imgs": [
+    {
+     "src": "refs/storyboard-bronzer.jpg",
+     "alt": "Storyboard Dolci Bronzer, 12 plans",
+     "cap": "Storyboard Dolci Bronzer · capsule Light (références visuelles d'autres marques)"
+    },
+    {
+     "src": "refs/bronzer-placement.jpg",
+     "alt": "Placement du bronzer sur le visage",
+     "cap": "Référence du deck : placement du bronzer"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Annotations du deck sur le storyboard : « Show full placement », « Blend », « Boîte de chocolat · top shot Light », « Before/After », « Famille DOLCI SL : not to shoot ». Rattachement exact aux plans à confirmer.\nBesoins en modèles dans le deck (page « Model needs ») : 3 modèles « deep » pour le Bronzer, alors que cette vidéo prévoit Light, Medium et Deep : à confirmer."
+  },
+  {
+   "id": "bronzerM",
+   "name": "Bronzer Medium",
+   "txt": "DOLCI BRONZER, peau Medium : 1 application de bronzer. Zones d'application à adapter.",
+   "pist": "Même storyboard que Bronzer Light",
+   "imgs": [
+    {
+     "src": "refs/storyboard-bronzer.jpg",
+     "alt": "Storyboard Dolci Bronzer, 12 plans",
+     "cap": "Storyboard Dolci Bronzer · capsule Light"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Voir Bronzer Light."
+  },
+  {
+   "id": "bronzerD",
+   "name": "Bronzer Deep",
+   "txt": "DOLCI BRONZER, peau Deep : 1 application de bronzer + 1 application de blush. Zones d'application à adapter.",
+   "pist": "Même storyboard que Bronzer Light",
+   "imgs": [
+    {
+     "src": "refs/storyboard-bronzer.jpg",
+     "alt": "Storyboard Dolci Bronzer, 12 plans",
+     "cap": "Storyboard Dolci Bronzer · capsule Light"
+    }
+   ],
+   "lum": [],
+   "cam": [],
+   "mach": [],
+   "alias": [],
+   "fond": "",
+   "notes": "Voir Bronzer Light."
+  }
+ ],
  "plan": {
-  "intro": "",
+  "intro": "Répartition des 7 vidéos entre le 8 et le 9 décembre : à définir.",
   "slots": []
  },
  "loc": {

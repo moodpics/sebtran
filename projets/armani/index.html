@@ -743,7 +743,7 @@ function makeNodes(){
   {id:"root",kind:"Projet",x:420,y:0,w:600},
   {id:"news",kind:"Latest news",x:14,y:0,w:424,cls:"newsn"},
   ...DATA.depts.map(d=>({id:"d_"+d.id,kind:"",x:1070,y:0,w:340,cls:"dept d-"+d.id,did:d.id})),
-  {id:"camps",kind:"Films : voir les briefs",x:420,y:0,w:600},
+  {id:"camps",kind:"Vidéos : voir les briefs",x:420,y:0,w:600},
   {id:"team",kind:"Équipe",x:420,y:0,w:600}];
  const ds=DATA.depts.map(d=>"d_"+d.id);
  EDGES=[["root","news"],...ds.map(d=>["root",d]),["root","camps"],["camps","team"]];
@@ -756,7 +756,7 @@ function body(n){
 
  if(n.id==="shot")return `<figure class="shot"><video src="refs/shot-filorga.mp4" poster="refs/shot-filorga.jpg" autoplay loop muted playsinline preload="auto" aria-label="Plan tourné pour Filorga"></video><figcaption><span class="shb">Shooté</span><small>Extrait du tournage des 19 et 20 novembre</small></figcaption></figure>`;
  if(n.id==="bt")return `<div class="bcl" data-brief><b>Brief général équipe</b><span class="cgo">Ouvrir ›</span></div>`;
- if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${campBg(c,i)}${c.fond==='incrust'?';--cc:#6fb1ff':''}"><small>Campagne 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${thumb(c)?`<img src="${esc(imgSrc(thumb(c).src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
+ if(n.id==="camps"){const S=DATA.brief.sum||{t:"",sub:[]};return `<div class="sum">${ed("brief.sum.t","b","",S.t,"Résumé du projet")}${(S.sub||[]).map((x,j)=>`<div class="ss">${ed(`brief.sum.sub.${j}`,"span","",x)}${del("brief.sum.sub",j)}</div>`).join("")}${add("brief.sum.sub","str","ligne")}</div><div class="ctiles">${DATA.camps.map((c,i)=>`<div class="ct cc${i%4}" data-camp="${i}"><div class="cth" style="background:${campBg(c,i)}${c.fond==='incrust'?';--cc:#6fb1ff':''}"><small>Vidéo 0${i+1}</small><b>${esc(c.name)}</b></div>${c.fond&&FOND[c.fond]?`<div class="cf ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:""}${thumb(c)?`<img src="${esc(imgSrc(thumb(c).src))}" alt="" loading="lazy">`:""}<p>${esc(clip(clean(c.txt),105))}</p><span class="cgo">Ouvrir ›</span></div>`).join("")}</div>`}
  if(n.did){const d=D(n.did),done=d.todo.filter(isDone).length,tot=d.todo.length;
   return `<span class="dic" role="img" aria-label="${esc(d.name)}" title="${esc(d.name)}">${ICON[d.id]||""}</span><span class="dname">${esc(d.name)}</span>`;}
  if(n.id==="team")return `<ul class="team">${DATA.team.map((m,i)=>`<li class="${m.name||EDIT?"":"tbc"}">${ed(`team.${i}.role`,"span","",m.role,"Rôle")}<span class="rt">${EDIT?ed(`team.${i}.name`,"b","",m.name,"à confirmer"):`<b style="font-weight:500">${m.name?esc(m.name):"à confirmer"}</b>`}${del("team",i)}</span></li>`).join("")}</ul>${add("team","team","membre")}
@@ -777,7 +777,7 @@ function build(){
  foldCamps();countdown();
 }
 let CAMPS=!!EDIT;
-function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.innerHTML='Films : <em class="vro">voir les briefs</em>'}
+function foldCamps(){const a=el.camps;if(!a)return;a.classList.toggle("shut",!CAMPS);const s=a.querySelector(".nh span");if(s)s.innerHTML='Vidéos : <em class="vro">voir les briefs</em>'}
 function toggleCamps(){CAMPS=!CAMPS;foldCamps();autoLayout()}
 function renderAll(){
  NODES.forEach(n=>{if(el[n.id]){el[n.id].querySelector(".nb").innerHTML=body(n);}});foldCamps();
@@ -922,7 +922,7 @@ const CT=["linear-gradient(135deg,#000 0%,#4a4a4a 55%,#cfcfcf 100%)","linear-gra
 const cv=$("#cv"),cvp=cv.querySelector(".cvp");let cvCtx=null,cvFrom=null;
 function cvBody(i){
  const c=DATA.camps[i],P="camps."+i,slot=(DATA.plan.slots||[]).find(x=>x.camp===c.name);
- return `<div class="cvh cc${i%4}" style="background:${campBg(c,i)}${c.fond==='incrust'?';--cc:#6fb1ff':''}"><div><span class="cvn">Campagne 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
+ return `<div class="cvh cc${i%4}" style="background:${campBg(c,i)}${c.fond==='incrust'?';--cc:#6fb1ff':''}"><div><span class="cvn">Vidéo 0${i+1}</span>${ed(P+".name","h2","",c.name,"Nom")}</div><div class="cvb"><button data-cprev aria-label="Précédente">‹</button><button data-cnext aria-label="Suivante">›</button><button data-cclose aria-label="Fermer">×</button></div></div>
  <div class="cvbd"><p class="sub">${slot?"Tournage : "+esc(slot.label):"Créneau : à définir (voir Planning provisoire)"}</p>
  ${ed(P+".txt","p","v",c.txt)}
  ${EDIT?`<p class="sub">Fond : <select data-p="${P}.fond"><option value="">—</option><option value="grad"${c.fond==="grad"?" selected":""}>Dégradé N&B (fond commun)</option><option value="incrust"${c.fond==="incrust"?" selected":""}>Incruste (ciel bleu / bleu incruste)</option></select></p>`:(c.fond&&FOND[c.fond]?`<div class="cvfond ${c.fond}"><i></i>${esc(FOND[c.fond].n)}</div>`:"")}
