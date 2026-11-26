@@ -32,6 +32,7 @@ window.FILMS = {
     },
     {
       "id": "1200611767",
+      "ratio": 0.5625,
       "h": "1a45841cfb",
       "client": "L'Oréal Paris",
       "title": "Glycolic Bright — ASMR Routine with Nychaa",
@@ -80,6 +81,7 @@ window.FILMS = {
     },
     {
       "id": "1250308326",
+      "ratio": 1.4286,
       "h": null,
       "client": "L'Oréal Paris",
       "title": "Le défilé 2026 — Mélanie Dos Santos",
@@ -248,6 +250,7 @@ window.FILMS = {
     },
     {
       "id": "1131153071",
+      "ratio": 0.5625,
       "h": "4cd8ef52fc",
       "client": "L'Oréal Paris",
       "title": "Glycolic Bright — Photomaton",
@@ -395,6 +398,7 @@ window.FILMS = {
     },
     {
       "id": "1246448217",
+      "ratio": 1.4556,
       "h": null,
       "client": "Lola",
       "title": "Short film",
@@ -493,6 +497,7 @@ window.FILMS = {
     },
     {
       "id": "1156251700",
+      "ratio": 1.315,
       "h": null,
       "client": "Yves Saint Laurent",
       "title": "Nu 21",

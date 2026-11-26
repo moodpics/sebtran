@@ -53,6 +53,10 @@
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   const thumb = (f, size = "1280x720") => f.thumb ? `${f.thumb}_${size}` : `https://vumbnail.com/${f.id}.jpg`;
+  // Real picture ratio of a film (width / height). Only films that are NOT 16:9 carry a "ratio" in films.js.
+  const ratioOf = f => f.ratio || 16 / 9;
+  // Ratio of its card in the feed: the real one, kept within sensible limits (very tall verticals are cropped a little)
+  const frameRatio = f => clamp(ratioOf(f), 0.75, 2.6);
   // Films without a stored thumbnail get one from Vimeo's oEmbed (fast, cached by the browser)
   const resolveThumbs = () => Promise.all(Object.values(window.FILMS).flat().filter(f => !f.thumb).map(f =>
     fetch(`https://vimeo.com/api/oembed.json?width=1920&url=${encodeURIComponent(`https://vimeo.com/${f.id}${f.h ? "/" + f.h : ""}`)}`)
@@ -419,11 +423,14 @@
     grid.innerHTML = state.list.map((f, i) => {
       if (i < skipHero) return "";
       const j = i - skipHero;
-      const span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
+      let span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
+      // a film that is not 16:9 keeps its own proportions: verticals stay in a narrow card, the others never take the full width
+      if (f.ratio && f.ratio < 1) span = 4; else if (f.ratio && span === 12) span = 8;
+      const tw = span >= 7 ? 1280 : 960;
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
-        <div class="card__frame">
-          <img src="${thumb(f, span >= 7 ? "1280x720" : "960x540")}" alt="" loading="lazy">
+        <div class="card__frame"${f.ratio ? ` style="--r:${f.ratio};aspect-ratio:${frameRatio(f)}"` : ""}>
+          <img src="${thumb(f, `${tw}x${Math.round(tw / frameRatio(f))}`)}" alt="" loading="lazy">
           <div class="cover"></div>
           <span class="card__num mono">${pad(numOf(i))}</span>
           <span class="card__fav${isFav(f.id) ? " is-on" : ""}" data-fav="${f.id}"${heartSrc(f.id)} role="button" tabindex="0" aria-label="Add to selection" title="Add to my selection">${HEART}</span>
@@ -617,6 +624,7 @@
   }
   function loadPlayer(f) {
     lbPlayer.innerHTML = "";
+    lbPlayer.style.setProperty("--r", ratioOf(f)); // the player box takes the film's real proportions (no bars)
     const accent = getComputedStyle(document.body).getPropertyValue("--accent").trim().replace("#", "");
     /* Safari / iPhone never allow sound in an auto-started iframe (Vimeo then shows "restore sound"): there the film starts by itself, muted, and the code below tries to unmute it right away */
     const noSoundAutoplay = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) || /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
@@ -640,7 +648,7 @@
     loadPlayer(f); // created right now, inside the tap/click → browsers allow sound; it stays hidden until the zoom animation ends
     // FLIP ghost from the clicked frame to the player box
     const from = (fromEl || lbPlayer).getBoundingClientRect();
-    Object.assign(ghost.style, { transition: "none", left: from.left + "px", top: from.top + "px", width: from.width + "px", height: from.height + "px", opacity: 1, backgroundImage: `url("${thumb(f)}")` });
+    Object.assign(ghost.style, { transition: "none", left: from.left + "px", top: from.top + "px", width: from.width + "px", height: from.height + "px", opacity: 1, backgroundImage: `url("${thumb(f, `1280x${Math.round(1280 / ratioOf(f))}`)}")` });
     requestAnimationFrame(() => {
       lb.classList.add("is-open");
       const to = lbPlayer.getBoundingClientRect();
