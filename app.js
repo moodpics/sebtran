@@ -420,12 +420,17 @@
     if (heroF && (!heroFilm || heroFilm.id !== heroF.id)) setHero(heroF);
     const skipHero = state.mode !== "selection" ? 1 : 0;
 
+    let col = 0; // columns already used in the current grid row
     grid.innerHTML = state.list.map((f, i) => {
       if (i < skipHero) return "";
       const j = i - skipHero;
       let span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
       // a film that is not 16:9 keeps its own proportions: verticals stay in a narrow card, the others never take the full width
       if (f.ratio && f.ratio < 1) span = 4; else if (f.ratio && span === 12) span = 8;
+      // never leave a hole: a card that does not fit in the rest of the row shrinks to fill it
+      if (span > 12 - col) span = 12 - col;
+      const rest = 12 - col - span; if (rest > 0 && rest < 4) span += rest; // a leftover of 1–3 columns is absorbed too
+      col = (col + span) % 12;
       const tw = span >= 7 ? 1280 : 960;
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
