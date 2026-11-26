@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-26T18:10:00.000Z",
+ "updated": "2026-11-26T18:20:00.000Z",
  "log": [
   {
    "at": "2026-11-26T18:10:00.000Z",
@@ -9,7 +9,7 @@
     "lum"
    ],
    "kind": "ajout",
-   "text": "Liste lumière ajoutée : sources, pieds et grip, cadre et toiles, distribution, plus le matériel du devis de location. Nom du gaffer à vérifier (Nolo / Naulleau)"
+   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel de bijouterie. Nom du gaffer à vérifier (Nolo / Naulleau)"
   },
   {
    "at": "2026-11-26T17:15:00.000Z",
@@ -556,15 +556,15 @@
    "name": "Lumière",
    "known": [
     {
-     "t": "Liste lumière Maison Montcalm fournie, avec le matériel du devis de location des 8 et 9 décembre",
-     "sub": "Gaffer indiqué sur la liste : « Côme Nolo » (à vérifier avec « Côme Naulleau »). Les deux parties de la liste ne se recoupent pas : à clarifier avec le gaffer",
+     "t": "Liste du gaffer = ce qu'il faut louer. Le matériel de bijouterie est listé à part",
+     "sub": "Gaffer indiqué sur la liste : « Côme Nolo » (à vérifier avec « Côme Naulleau »)",
      "w": 0,
      "g": "conf"
     }
    ],
    "todo": [
     {
-     "t": "Sources",
+     "t": "À louer : sources",
      "done": 0,
      "lines": [
       "COB 600C ×1"
@@ -573,7 +573,7 @@
      "ctl": []
     },
     {
-     "t": "Pieds & grip",
+     "t": "À louer : pieds et grip",
      "done": 0,
      "lines": [
       "Rallonge de U ×2",
@@ -596,7 +596,7 @@
      "ctl": []
     },
     {
-     "t": "Cadre & toiles",
+     "t": "À louer : cadre et toiles",
      "done": 0,
      "lines": [
       "Cadre 2,40 × 2,40 m ×1",
@@ -608,7 +608,7 @@
      "ctl": []
     },
     {
-     "t": "Distribution & énergie",
+     "t": "À louer : distribution et énergie",
      "done": 0,
      "lines": [
       "Prolongs 10 m ×20",
@@ -623,7 +623,7 @@
      "ctl": []
     },
     {
-     "t": "Matériel du devis : bijoute, contrôle, textiles",
+     "t": "Matériel de bijouterie : bijoute, contrôle, textiles",
      "done": 0,
      "lines": [
       "Bijoute électro : cadres, roulantes, grip, drapeaux, floppys et mamas",
@@ -635,7 +635,7 @@
      "ctl": []
     },
     {
-     "t": "Matériel du devis : sources et accessoires",
+     "t": "Matériel de bijouterie : sources et accessoires",
      "done": 0,
      "lines": [
       "ARRI SkyPanel X21 ×4, HyperOptics ×2, dômes ×4",
@@ -651,7 +651,7 @@
      "ctl": []
     },
     {
-     "t": "Matériel du devis : consommables et transport",
+     "t": "Matériel de bijouterie : consommables et transport",
      "done": 0,
      "lines": [
       "Forfait consommables",
