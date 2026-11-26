@@ -1,7 +1,14 @@
 {
  "v": 1,
- "updated": "2026-11-26T15:25:00.000Z",
+ "updated": "2026-11-26T15:28:00.000Z",
  "log": [
+  {
+   "at": "2026-11-26T15:28:00.000Z",
+   "src": "Équipe",
+   "d": [],
+   "kind": "ajout",
+   "text": "Directrice de production : Mélanin Beyl"
+  },
   {
    "at": "2026-11-26T15:25:00.000Z",
    "src": "Précision du lieu",
@@ -26,6 +33,10 @@
    [
     "Production",
     "Maison Montcalm"
+   ],
+   [
+    "Directrice de production",
+    "Mélanin Beyl"
    ],
    [
     "Réalisateur",
@@ -437,6 +448,10 @@
   {
    "role": "Prod",
    "name": "Maison Montcalm"
+  },
+  {
+   "role": "Dir prod",
+   "name": "Mélanin Beyl"
   },
   {
    "role": "Réal",
