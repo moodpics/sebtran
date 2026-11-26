@@ -35,9 +35,17 @@ h1{color:#fff;font-weight:300;font-size:clamp(34px,6vw,64px);letter-spacing:-.02
 .go{margin-left:auto;font-weight:500;color:#111}
 footer{color:#fff;opacity:.45;font-size:12px;margin-top:40px}
 .ym{display:block;font-size:12px;font-weight:500;letter-spacing:.08em;opacity:.55;margin-bottom:4px}
+#gate{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(180deg,#000 0%,#2a2a2a 45%,#9a9a9a 100%)}
+#gate form{background:#fff;border-radius:14px;padding:30px 28px;width:min(380px,100%);box-shadow:0 14px 44px rgba(0,0,0,.4)}
+#gate h2{font-weight:600;font-size:22px;margin-bottom:6px}#gate p{color:#555;font-size:14px;margin-bottom:18px}
+#gate input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid #ccc;border-radius:9px}
+#gate button{margin-top:12px;width:100%;font:inherit;font-weight:600;padding:12px;border:0;border-radius:9px;background:#111;color:#fff;cursor:pointer}
+#gate .err{color:#c0262d;font-size:13px;margin-top:10px;min-height:1em}
+body.locked header,body.locked main{display:none}
 </style>
 </head>
-<body>
+<body class="locked">
+<div id="gate"><form id="gf" autocomplete="off"><h2>Projets</h2><p>Accès réservé. Les équipes ouvrent directement le lien de leur projet.</p><input id="pw" type="password" placeholder="Mot de passe" autocomplete="current-password" autofocus><button type="submit">Entrer</button><div class="err" id="err" role="alert"></div></form></div>
 <header><b>Seb Trân</b><small>Projets · lecture seule</small></header>
 <main>
 <h1>Projets</h1>
@@ -69,11 +77,24 @@ function card({p,d}){
  <h2>${ym?`<small class="ym">${ym}</small>`:""}${esc(title)}</h2><div class="sub">${esc(sub)}</div>
  <div class="meta">${meta}<span class="go">Ouvrir ›</span></div></a>`;
 }
-(async()=>{
+async function run(){
  const res=await Promise.all(PROJECTS.map(load));
  const key=({p,d})=>{const s=(d&&d.shootDate)||p.fallback.shoot;const t=new Date(s+"T23:59:59")-new Date();return t>=0?[0,t]:[1,-t]};
  res.sort((a,b)=>{const x=key(a),y=key(b);return x[0]-y[0]||x[1]-y[1]});
  document.getElementById("list").innerHTML=res.map(card).join("");
+}
+/* Barrière d'accès : simple mot de passe côté navigateur (empreinte PBKDF2). Dissuade les curieux, ce n'est pas un chiffrement des projets. */
+const SALT="moodpics-projects-v1",HASH="ed59a3833b9c759740abbb7c3ec8c6ee4ad4841595025e6ea488ac1ece623260",KEY="pj-ok-v1";
+const hx=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+async function hp(pw){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveBits"]);return hx(await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:new TextEncoder().encode(SALT),iterations:150000},k,256))}
+function open_(){document.body.classList.remove("locked");document.getElementById("gate").remove();run()}
+(async()=>{
+ try{if(localStorage.getItem(KEY)===HASH)return open_()}catch(e){}
+ document.getElementById("gf").addEventListener("submit",async e=>{
+  e.preventDefault();const v=document.getElementById("pw").value,err=document.getElementById("err");err.textContent="";
+  try{if(await hp(v)===HASH){try{localStorage.setItem(KEY,HASH)}catch(_){};open_()}else{err.textContent="Mot de passe incorrect.";document.getElementById("pw").select()}}
+  catch(_){err.textContent="Navigateur non compatible (HTTPS requis)."}
+ });
 })();
 </script>
 </body>
