@@ -56,7 +56,7 @@
   // Real picture ratio of a film (width / height). Only films that are NOT 16:9 carry a "ratio" in films.js.
   const ratioOf = f => f.ratio || 16 / 9;
   // Ratio of its card in the feed: the real one, kept within sensible limits (very tall verticals are cropped a little)
-  const frameRatio = f => clamp(ratioOf(f), 0.75, 2.6);
+  const frameRatio = f => clamp(ratioOf(f), 0.5, 2.6);
   // Films without a stored thumbnail get one from Vimeo's oEmbed (fast, cached by the browser)
   const resolveThumbs = () => Promise.all(Object.values(window.FILMS).flat().filter(f => !f.thumb).map(f =>
     fetch(`https://vimeo.com/api/oembed.json?width=1920&url=${encodeURIComponent(`https://vimeo.com/${f.id}${f.h ? "/" + f.h : ""}`)}`)
@@ -434,7 +434,7 @@
       const tw = span >= 7 ? 1280 : 960;
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
-        <div class="card__frame"${f.ratio ? ` style="--r:${f.ratio};aspect-ratio:${frameRatio(f)}"` : ""}>
+        <div class="card__frame"${f.ratio ? ` style="--r:${f.ratio};aspect-ratio:${frameRatio(f)}${f.ratio < 1 ? ";width:70%;margin-inline:auto" : ""}"` : ""}>
           <img src="${thumb(f, `${tw}x${Math.round(tw / frameRatio(f))}`)}" alt="" loading="lazy">
           <div class="cover"></div>
           <span class="card__num mono">${pad(numOf(i))}</span>
