@@ -1,7 +1,16 @@
 {
  "v": 1,
- "updated": "2026-11-26T15:33:00.000Z",
+ "updated": "2026-11-26T17:00:00.000Z",
  "log": [
+  {
+   "at": "2026-11-26T17:00:00.000Z",
+   "src": "Précision de Seb",
+   "d": [
+    "mach"
+   ],
+   "kind": "ajout",
+   "text": "Pas de chef machiniste : le 1er AC, Lucas Bidard, gère la machinerie, soit un bazooka et 4 m de rail"
+  },
   {
    "at": "2026-11-26T15:33:00.000Z",
    "src": "Équipe",
@@ -437,7 +446,20 @@
   {
    "id": "mach",
    "name": "Machinerie",
-   "known": [],
+   "known": [
+    {
+     "t": "Pas de chef machiniste sur ce projet : la machinerie est gérée par le 1er assistant caméra, Lucas Bidard",
+     "sub": "",
+     "w": 0,
+     "g": "mvt"
+    },
+    {
+     "t": "Matériel machinerie : un bazooka et 4 m de rail",
+     "sub": "",
+     "w": 0,
+     "g": "mvt"
+    }
+   ],
    "todo": [],
    "refs": [],
    "notes": "",
@@ -463,7 +485,7 @@
   },
   {
    "role": "1st AC",
-   "name": "Lucas Bidard"
+   "name": "Lucas Bidard (+ machinerie)"
   },
   {
    "role": "Gaffer",
@@ -474,8 +496,8 @@
    "name": "Paul Macé"
   },
   {
-   "role": "Grip",
-   "name": ""
+   "role": "Machinerie",
+   "name": "Lucas Bidard (1st AC, pas de chef machiniste)"
   },
   {
    "role": "2nd AC",
