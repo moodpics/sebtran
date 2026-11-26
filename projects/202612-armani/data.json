@@ -9,7 +9,7 @@
     "lum"
    ],
    "kind": "modifié",
-   "text": "Gaffer : Côme Nolo Naulleau. Lumière : liste du gaffer = à louer, matériel de bijouterie séparé (codes couleur)"
+   "text": "Gaffer : Côme Nolo Naulleau. Lumière : liste du gaffer = à louer, matériel Nolo séparé (codes couleur)"
   },
   {
    "at": "2026-11-26T18:10:00.000Z",
@@ -18,7 +18,7 @@
     "lum"
    ],
    "kind": "ajout",
-   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel de bijouterie"
+   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel Nolo"
   },
   {
    "at": "2026-11-26T17:15:00.000Z",
@@ -565,7 +565,7 @@
    "name": "Lumière",
    "known": [
     {
-     "t": "Liste du gaffer = ce qu'il faut louer. Le matériel de bijouterie est listé à part",
+     "t": "Liste du gaffer = ce qu'il faut louer. Le matériel Nolo est listé à part",
      "sub": "",
      "w": 0,
      "g": "conf"
@@ -646,7 +646,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel de bijouterie"
+     "grp": "Matériel Nolo"
     },
     {
      "t": "Sources et accessoires",
@@ -663,7 +663,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel de bijouterie"
+     "grp": "Matériel Nolo"
     },
     {
      "t": "Consommables et transport",
@@ -674,7 +674,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel de bijouterie"
+     "grp": "Matériel Nolo"
     }
    ],
    "refs": [],
