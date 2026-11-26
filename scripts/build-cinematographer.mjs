@@ -26,6 +26,8 @@ write("CNAME", DOMAIN + "\n");
 // anciennes adresses du site Wix (ex. /beauty) : redirection vers l'accueil + page 404 qui ramène à l'accueil
 write("beauty/index.html", toDomain(read("beauty/index.html")));
 write("404.html", read("404.html"));
+// pages projet (non indexées : noindex dans chaque page, absentes du sitemap) : dossier projets/ copié tel quel
+fs.cpSync("projets", path.join(OUT, "projets"), { recursive: true });
 
 // 2. index.html : URLs au nom du domaine + cache-busting (?v= = empreinte du contenu)
 let html = toDomain(read("index.html"));
