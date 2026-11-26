@@ -434,7 +434,7 @@
       const tw = span >= 7 ? 1280 : 960;
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
-        <div class="card__frame"${f.ratio ? ` style="--r:${f.ratio};aspect-ratio:${frameRatio(f)}${f.ratio < 1 ? ";width:70%;margin-inline:auto" : ""}"` : ""}>
+        <div class="card__frame"${f.ratio ? ` style="--r:${f.ratio};aspect-ratio:${frameRatio(f)}${f.ratio < 1 ? ";width:min(100%,max(17vw,220px));margin-inline:auto" : ""}"` : ""}>
           <img src="${thumb(f, `${tw}x${Math.round(tw / frameRatio(f))}`)}" alt="" loading="lazy">
           <div class="cover"></div>
           <span class="card__num mono">${pad(numOf(i))}</span>
