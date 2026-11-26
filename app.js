@@ -421,6 +421,8 @@
     const skipHero = state.mode !== "selection" ? 1 : 0;
 
     let col = 0; // columns already used in the current grid row
+    // masonry packing only where some film is not 16:9 (all-16:9 grids keep their classic rows)
+    grid.classList.toggle("is-masonry", state.list.some(f => f.ratio));
     grid.innerHTML = state.list.map((f, i) => {
       if (i < skipHero) return "";
       const j = i - skipHero;
@@ -465,8 +467,20 @@
         <span class="row__yr">${esc(f.year || "")}</span>
       </li>`).join("");
 
-    bindCards(); bindRows(); revealCards();
+    bindCards(); bindRows(); revealCards(); layoutMasonry();
   }
+
+  /* ---- Masonry: each card spans as many 4px grid rows as it is tall, and the grid packs them (dense) ---- */
+  function layoutMasonry() {
+    const cards = $$(".card", grid);
+    cards.forEach(c => (c.style.gridRowEnd = ""));
+    if (!grid.classList.contains("is-masonry")) return;
+    const rowH = 4, gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+    const spans = cards.map(c => Math.ceil((c.offsetHeight + gap) / rowH));
+    cards.forEach((c, k) => (c.style.gridRowEnd = `span ${spans[k]}`));
+  }
+  let masonryW = 0;
+  new ResizeObserver(() => { const w = grid.clientWidth; if (w && w !== masonryW) { masonryW = w; layoutMasonry(); } }).observe(grid);
 
   /* ---- Card reveal on scroll ---- */
   let revealIO;

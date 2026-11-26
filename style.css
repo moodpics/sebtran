@@ -186,6 +186,8 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 
 /* Grid */
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(10px, 1.4vw, 22px); align-items: start; }
+/* Masonry (grids that contain a non-16:9 film): 4px rows, each card spans its own height, empty corners get filled */
+.grid.is-masonry { grid-auto-rows: 4px; row-gap: 0; grid-auto-flow: row dense; }
 .card {
   position: relative; grid-column: span 4; text-align: left; display: block; width: 100%;
   opacity: 0; transform: translateY(40px);
