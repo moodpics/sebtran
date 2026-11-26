@@ -1,6 +1,6 @@
 {
  "v": 1,
- "updated": "2026-11-26T18:25:00.000Z",
+ "updated": "2026-11-26T18:30:00.000Z",
  "log": [
   {
    "at": "2026-11-26T18:25:00.000Z",
@@ -9,7 +9,7 @@
     "lum"
    ],
    "kind": "modifié",
-   "text": "Gaffer : Côme Nolo Naulleau. Lumière : liste du gaffer = à louer, matériel Nolo séparé (codes couleur)"
+   "text": "Gaffer : Côme Naulleau. Lumière : liste du gaffer = à louer, matériel Nolo séparé (codes couleur)"
   },
   {
    "at": "2026-11-26T18:10:00.000Z",
@@ -88,7 +88,7 @@
    ],
    [
     "Gaffer",
-    "Côme Nolo Naulleau"
+    "Côme Naulleau"
    ],
    [
     "1er assistant réalisateur",
@@ -565,7 +565,7 @@
    "name": "Lumière",
    "known": [
     {
-     "t": "Liste du gaffer = ce qu'il faut louer. Le matériel Nolo est listé à part",
+     "t": "Liste du gaffer (Côme Naulleau) = ce qu'il faut louer. Le matériel Nolo, la société de Naulleau, est listé à part",
      "sub": "",
      "w": 0,
      "g": "conf"
@@ -646,7 +646,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel Nolo"
+     "grp": "Matériel Nolo · société de Côme Naulleau"
     },
     {
      "t": "Sources et accessoires",
@@ -663,7 +663,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel Nolo"
+     "grp": "Matériel Nolo · société de Côme Naulleau"
     },
     {
      "t": "Consommables et transport",
@@ -674,7 +674,7 @@
      ],
      "fix": [],
      "ctl": [],
-     "grp": "Matériel Nolo"
+     "grp": "Matériel Nolo · société de Côme Naulleau"
     }
    ],
    "refs": [],
@@ -728,7 +728,7 @@
   },
   {
    "role": "Gaffer",
-   "name": "Côme Nolo Naulleau"
+   "name": "Côme Naulleau"
   },
   {
    "role": "1st AD",
