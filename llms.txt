@@ -10,7 +10,7 @@
 - Production company: Moodpics
 
 ## Pages
-- [Portfolio — cinematography](https://moodpics.github.io/sebtran/#cinematography): films shot as director of photography, with brand, director and production company
-- [Portfolio — direction](https://moodpics.github.io/sebtran/#direction): films directed by Seb Trân
+- [Portfolio — cinematography](https://sebastien-tran.com/#cinematography): films shot as director of photography, with brand, director and production company
+- [Portfolio — direction](https://sebastien-tran.com/#direction): films directed by Seb Trân
 - [Showreel and films on Vimeo](https://vimeo.com/user83221295)
 - [Instagram](https://www.instagram.com/_sebtran_/)
