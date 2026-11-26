@@ -79,6 +79,18 @@ window.FILMS = {
       "thumb": "https://i.vimeocdn.com/video/2225889889-37d5f647fa9fec83e7bd4bd3acc1550beb3d0867b867759ef25dd24cec2d29dd-d"
     },
     {
+      "id": "1250308326",
+      "h": null,
+      "client": "L'Oréal Paris",
+      "title": "Le défilé 2026 — Mélanie Dos Santos",
+      "category": "Beauty",
+      "director": null,
+      "production": "Rumeur",
+      "year": 2026,
+      "duration": 30,
+      "thumb": "https://i.vimeocdn.com/video/2230915886-e289fa691237bebbd4b5f7d9eab3771f75568c973bedcb84aae716444b6292b2-d"
+    },
+    {
       "id": "1246431401",
       "h": null,
       "client": "Prada",
