@@ -34,6 +34,7 @@ h1{color:#fff;font-weight:300;font-size:clamp(34px,6vw,64px);letter-spacing:-.02
 .meta b{font-weight:500;color:#111}
 .go{margin-left:auto;font-weight:500;color:#111}
 footer{color:#fff;opacity:.45;font-size:12px;margin-top:40px}
+.ym{display:block;font-size:12px;font-weight:500;letter-spacing:.08em;opacity:.55;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -45,10 +46,10 @@ footer{color:#fff;opacity:.45;font-size:12px;margin-top:40px}
 <footer id="foot"></footer>
 </main>
 <script>
-/* Pour ajouter un projet : une ligne ici, avec le nom du dossier dans projects/ et, en secours, un titre. */
+/* Pour ajouter un projet : une ligne ici, avec le nom du dossier dans projects/ (AAAAMM-nom) et, en secours, un titre. */
 const PROJECTS=[
- {dir:"armani",fallback:{title:"Armani",sub:"Mardi 8 + mercredi 9 décembre 2026",shoot:"2026-12-08"}},
- {dir:"filorga",fallback:{title:"Filorga",sub:"Jeudi 19 + vendredi 20 novembre 2026",shoot:"2026-11-19"}}
+ {dir:"202612-armani",fallback:{title:"Armani",sub:"Mardi 8 + mercredi 9 décembre 2026",shoot:"2026-12-08"}},
+ {dir:"202611-filorga",fallback:{title:"Filorga",sub:"Jeudi 19 + vendredi 20 novembre 2026",shoot:"2026-11-19"}}
 ];
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=iso=>{try{return new Date(iso).toLocaleString("fr-FR",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}).replace(" à "," · ")}catch(e){return""}};
@@ -61,11 +62,11 @@ function card({p,d}){
  const crew=root.crew||[],get=k=>{const x=crew.find(c=>c[0]===k);return x&&x[1]};
  const prod=get("Production"),real=get("Réalisateur")||get("Co-réalisation");
  const days=Math.ceil((new Date(shoot+"T23:59:59")-new Date())/864e5);
- const next=days>=0;
+ const next=days>=0,m=/^(\d{4})(\d{2})-/.exec(p.dir),ym=m?m[1]+"-"+m[2]:"";
  const meta=[prod&&`<span>Production <b>${esc(prod)}</b></span>`,real&&`<span>Réalisation <b>${esc(real)}</b></span>`,
   (d&&d.updated)&&`<span>Mis à jour <b>${esc(fmt(d.updated))}</b></span>`].filter(Boolean).join("");
  return `<a class="card" href="${esc(p.dir)}/"><div class="top"><span class="tag ${next?"next":""}"><i></i>${next?"À venir":"Terminé"}</span><span>${next&&days>0?"J-"+days:next?"Aujourd'hui":""}</span></div>
- <h2>${esc(title)}</h2><div class="sub">${esc(sub)}</div>
+ <h2>${ym?`<small class="ym">${ym}</small>`:""}${esc(title)}</h2><div class="sub">${esc(sub)}</div>
  <div class="meta">${meta}<span class="go">Ouvrir ›</span></div></a>`;
 }
 (async()=>{
