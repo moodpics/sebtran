@@ -196,7 +196,7 @@ body.is-ready .hero__play { opacity: 1; transition-delay: 1.8s; }
 .card.is-in { opacity: 1; transform: none; }
 .card.s-7 { grid-column: span 7; } .card.s-5 { grid-column: span 5; }
 .card.s-6 { grid-column: span 6; } .card.s-8 { grid-column: span 8; }
-.card.s-9 { grid-column: span 9; } .card.s-10 { grid-column: span 10; } .card.s-11 { grid-column: span 11; }
+.card.s-3 { grid-column: span 3; } .card.s-9 { grid-column: span 9; } .card.s-10 { grid-column: span 10; } .card.s-11 { grid-column: span 11; }
 .card.s-12 { grid-column: span 12; }
 .card.s-12 .card__frame { aspect-ratio: 2.39; }
 .card__frame {
