@@ -1,0 +1,148 @@
+{
+ "v": 1,
+ "updated": "2026-11-26T15:12:00.000Z",
+ "log": [],
+ "shootDate": "2026-12-08",
+ "root": {
+  "title": "Armani",
+  "sub": "Mardi 8 + mercredi 9 décembre 2026",
+  "facts": [],
+  "crew": [
+   [
+    "Production",
+    "Maison Montcalm"
+   ],
+   [
+    "Réalisateur",
+    "Jaïr Sfez"
+   ],
+   [
+    "Chef opérateur",
+    "Seb Trân"
+   ],
+   [
+    "1er assistant caméra",
+    "Lucas Bidard"
+   ],
+   [
+    "Gaffer",
+    "Côme Naulleau"
+   ],
+   [
+    "1er assistant réalisateur",
+    "Paul Macé"
+   ]
+  ],
+  "base": {
+   "t": "Base commune : le fond cyclo",
+   "p": "Cyclo de 75 m² (environ 15 m × 5 m) au studio Le Canal. Mur de pavé de verre côté cyclo : daylight faible."
+  }
+ },
+ "brief": {
+  "items": [],
+  "source": "",
+  "sum": {
+   "t": "",
+   "sub": []
+  }
+ },
+ "mood": {
+  "items": [],
+  "p": "",
+  "moods": []
+ },
+ "camps": [],
+ "plan": {
+  "intro": "",
+  "slots": []
+ },
+ "loc": {
+  "name": "Studio Le Canal (La Brique Rouge) · 7 ter rue Duvergier, Paris 19",
+  "link": "https://www.studiolabriquerouge.com",
+  "pdf": "refs/plan-studio-canal.pdf",
+  "imgs": [
+   {
+    "src": "refs/plan-studio-canal.jpg",
+    "alt": "Plan du studio Le Canal, La Brique Rouge"
+   }
+  ]
+ },
+ "depts": [
+  {
+   "id": "cam",
+   "name": "Caméra",
+   "known": [],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": []
+  },
+  {
+   "id": "lum",
+   "name": "Lumière",
+   "known": [],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": [],
+   "plans": []
+  },
+  {
+   "id": "mach",
+   "name": "Machinerie",
+   "known": [],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": []
+  }
+ ],
+ "team": [
+  {
+   "role": "Prod",
+   "name": "Maison Montcalm"
+  },
+  {
+   "role": "Réal",
+   "name": "Jaïr Sfez"
+  },
+  {
+   "role": "DOP",
+   "name": "Seb Trân"
+  },
+  {
+   "role": "1st AC",
+   "name": "Lucas Bidard"
+  },
+  {
+   "role": "Gaffer",
+   "name": "Côme Naulleau"
+  },
+  {
+   "role": "1st AD",
+   "name": "Paul Macé"
+  },
+  {
+   "role": "Grip",
+   "name": ""
+  },
+  {
+   "role": "2nd AC",
+   "name": ""
+  },
+  {
+   "role": "DIT",
+   "name": ""
+  },
+  {
+   "role": "Talent",
+   "name": ""
+  },
+  {
+   "role": "Loueur matos",
+   "name": ""
+  }
+ ],
+ "qs": [],
+ "pos": {}
+}
