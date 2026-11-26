@@ -420,19 +420,24 @@
     if (heroF && (!heroFilm || heroFilm.id !== heroF.id)) setHero(heroF);
     const skipHero = state.mode !== "selection" ? 1 : 0;
 
-    let col = 0; // columns already used in the current grid row
     // masonry packing only where some film is not 16:9 (all-16:9 grids keep their classic rows)
     grid.classList.toggle("is-masonry", state.list.some(f => f.ratio));
+    // Column spans, row by row, so that every row adds up to 12 columns.
+    // A vertical film takes 3 columns; a leftover of 1–3 columns goes to its 16:9 neighbour (9 columns next to a 3-column 9:16 gives almost the same height).
+    const spans = []; let col = 0, prev = -1;
+    state.list.forEach((f, i) => {
+      if (i < skipHero) return;
+      const j = i - skipHero, vertical = f.ratio && f.ratio < 1;
+      let span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
+      if (vertical) span = 3; else if (f.ratio && span === 12) span = 8; // a film that is not 16:9 never takes the full width
+      if (span > 12 - col) span = 12 - col; // never leave a hole: a card that does not fit shrinks to the rest of the row
+      const rest = 12 - col - span; let used = span;
+      if (rest > 0 && rest < 4) { if (vertical && prev >= 0 && col > 0) { spans[prev] += rest; used += rest; } else { span += rest; used = span; } }
+      spans[i] = span; col = (col + used) % 12; prev = i;
+    });
     grid.innerHTML = state.list.map((f, i) => {
       if (i < skipHero) return "";
-      const j = i - skipHero;
-      let span = state.filter === "All" ? (f.size || PATTERN[j % PATTERN.length]) : [6, 6, 4, 4, 4][j % 5];
-      // a film that is not 16:9 keeps its own proportions: verticals stay in a narrow card, the others never take the full width
-      if (f.ratio && f.ratio < 1) span = 4; else if (f.ratio && span === 12) span = 8;
-      // never leave a hole: a card that does not fit in the rest of the row shrinks to fill it
-      if (span > 12 - col) span = 12 - col;
-      const rest = 12 - col - span; if (rest > 0 && rest < 4) span += rest; // a leftover of 1–3 columns is absorbed too
-      col = (col + span) % 12;
+      const span = spans[i];
       const tw = span >= 7 ? 1280 : 960;
       const words = esc(f.client).split(" ").map(w => `<span class="w">${w}</span>`).join(" ");
       return `<button class="card s-${span}" data-i="${i}" data-cursor="play" aria-label="Play ${esc(f.client)} — ${esc(f.title)}">
