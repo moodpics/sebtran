@@ -1,7 +1,16 @@
 {
  "v": 1,
- "updated": "2026-11-26T18:20:00.000Z",
+ "updated": "2026-11-26T18:25:00.000Z",
  "log": [
+  {
+   "at": "2026-11-26T18:25:00.000Z",
+   "src": "Précision de Seb",
+   "d": [
+    "lum"
+   ],
+   "kind": "modifié",
+   "text": "Gaffer : Côme Nolo Naulleau. Lumière : liste du gaffer = à louer, matériel de bijouterie séparé (codes couleur)"
+  },
   {
    "at": "2026-11-26T18:10:00.000Z",
    "src": "Liste lumière (Maison Montcalm)",
@@ -9,7 +18,7 @@
     "lum"
    ],
    "kind": "ajout",
-   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel de bijouterie. Nom du gaffer à vérifier (Nolo / Naulleau)"
+   "text": "Liste lumière ajoutée : ce qu'il faut louer (liste du gaffer : sources, pieds et grip, cadre et toiles, distribution) et le matériel de bijouterie"
   },
   {
    "at": "2026-11-26T17:15:00.000Z",
@@ -79,7 +88,7 @@
    ],
    [
     "Gaffer",
-    "Côme Naulleau"
+    "Côme Nolo Naulleau"
    ],
    [
     "1er assistant réalisateur",
@@ -557,23 +566,24 @@
    "known": [
     {
      "t": "Liste du gaffer = ce qu'il faut louer. Le matériel de bijouterie est listé à part",
-     "sub": "Gaffer indiqué sur la liste : « Côme Nolo » (à vérifier avec « Côme Naulleau »)",
+     "sub": "",
      "w": 0,
      "g": "conf"
     }
    ],
    "todo": [
     {
-     "t": "À louer : sources",
+     "t": "Sources",
      "done": 0,
      "lines": [
       "COB 600C ×1"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "À louer · liste du gaffer"
     },
     {
-     "t": "À louer : pieds et grip",
+     "t": "Pieds et grip",
      "done": 0,
      "lines": [
       "Rallonge de U ×2",
@@ -593,10 +603,11 @@
       "Pinces machino ×20"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "À louer · liste du gaffer"
     },
     {
-     "t": "À louer : cadre et toiles",
+     "t": "Cadre et toiles",
      "done": 0,
      "lines": [
       "Cadre 2,40 × 2,40 m ×1",
@@ -605,10 +616,11 @@
       "Borniol 4 × 4 m ×2"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "À louer · liste du gaffer"
     },
     {
-     "t": "À louer : distribution et énergie",
+     "t": "Distribution et énergie",
      "done": 0,
      "lines": [
       "Prolongs 10 m ×20",
@@ -620,10 +632,11 @@
       "Boîte M6 Maréchal ×1"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "À louer · liste du gaffer"
     },
     {
-     "t": "Matériel de bijouterie : bijoute, contrôle, textiles",
+     "t": "Bijoute, contrôle, textiles",
      "done": 0,
      "lines": [
       "Bijoute électro : cadres, roulantes, grip, drapeaux, floppys et mamas",
@@ -632,10 +645,11 @@
       "Kit de toiles : 12 slip-on 12 × 12 pi, jeu de gridcloth 4 × 4 m, jeu de toiles silk"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "Matériel de bijouterie"
     },
     {
-     "t": "Matériel de bijouterie : sources et accessoires",
+     "t": "Sources et accessoires",
      "done": 0,
      "lines": [
       "ARRI SkyPanel X21 ×4, HyperOptics ×2, dômes ×4",
@@ -648,17 +662,19 @@
       "COB Aputure 400X et dôme"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "Matériel de bijouterie"
     },
     {
-     "t": "Matériel de bijouterie : consommables et transport",
+     "t": "Consommables et transport",
      "done": 0,
      "lines": [
       "Forfait consommables",
       "Van Mercedes Vito et forfait diesel"
      ],
      "fix": [],
-     "ctl": []
+     "ctl": [],
+     "grp": "Matériel de bijouterie"
     }
    ],
    "refs": [],
@@ -712,7 +728,7 @@
   },
   {
    "role": "Gaffer",
-   "name": "Côme Naulleau"
+   "name": "Côme Nolo Naulleau"
   },
   {
    "role": "1st AD",

@@ -148,6 +148,9 @@ textarea:focus,select:focus,input:focus{outline:2px solid #000;outline-offset:-1
 .ds .kn li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;border-radius:50%;background:#000}
 .ds .kn li.w::before{background:transparent;border:1.5px solid #000}
 .ds small{display:block;color:var(--mute)}
+.tgrp{margin-top:14px;padding:2px 0 4px 14px;border-left:4px solid var(--g,#bbb)}
+.tgrp>h4{color:var(--g,inherit)}
+.tg0{--g:#2f6f9f}.tg1{--g:#c7822a}.tg2{--g:#3f8a5a}.tg3{--g:#8a4fa0}
 .ck li{display:flex;gap:11px;align-items:flex-start;padding-left:0}
 .ck .mk-l{cursor:pointer;display:flex;flex:none;margin-top:5px}
 .ck i.mk{flex:none;width:11px;height:11px;border-radius:50%;border:1.5px solid #b5b5b5;margin-top:5px;box-sizing:border-box}
@@ -890,7 +893,7 @@ function openDept(id,keep){
   <div class="ds"><h4>À savoir</h4>${dirHtml}${plansHtml}${knownHtml}</div>
   ${(d.open&&d.open.length||EDIT)?`<div class="ds opn"><h4>À définir</h4>${(d.open||[]).map((o,i)=>{const Q=`${P}.open.${i}`;return `<div class="oi" data-oid="${esc(o.id||"")}"><div class="oh">${EDIT?campTog(Q+".c",o.c):(o.c&&o.c.length?campChips(o.c):"")}<b>${ed(Q+".t","span","",o.t,"Sujet à définir")}</b>${del(P+".open",i)}</div>${(o.pb||EDIT)?`<div class="or"><em>Problème</em>${ed(Q+".pb","span","",o.pb,"Quel est le problème ?")}</div>`:""}${EDIT?`<div class="or"><em>Image</em><select class="kgs" data-p="${Q}.ref">${refOpts().map(([v,l])=>`<option value="${esc(v)}"${(o.ref||"")===v?" selected":""}>${esc(l)}</option>`).join("")}</select></div>`:(o.ref?refImg(o.ref):"")}${(o.ch||EDIT)?`<div class="or"><em>Enjeu</em>${ed(Q+".ch","span","",o.ch,"Quel est le challenge ?")}</div>`:""}${((o.sol&&o.sol.length)||EDIT)?`<div class="or"><em>Pistes à discuter</em>${EDIT?edj(Q+".sol","span","",o.sol,"\n","Une piste par ligne"):`<ul>${o.sol.map(x=>`<li>${rich(x)}</li>`).join("")}</ul>`}</div>`:""}</div>`}).join("")}${add(P+".open","open","point à définir")}</div>`:""}
 
-  <div class="ds"><h4>${d.todo.length||EDIT?"Liste pressentie":""}</h4><ul class="ck">${d.todo.map((t,i)=>`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`).join("")}</ul>${add(P+".todo","todo","sous-catégorie")}</div>
+  <div class="ds">${(G=>(G.length?G:[""]).map((g,gi)=>`<div class="tgrp tg${gi%4}"><h4>${g||(d.todo.length||EDIT?"Liste pressentie":"")}</h4><ul class="ck">${d.todo.map((t,i)=>(t.grp||"")===g?`<li class="${isDone(t)?"":"off"}"><i class="mk${isDone(t)?" on":""}"></i><span>${ed(`${P}.todo.${i}.t`,"b","t",t.t,"Point")}${det(t,`${P}.todo.${i}`)}${routeUI2(`${P}.todo.${i}`,t.to,id)}</span>${del(P+".todo",i)}</li>`:"").join("")}</ul></div>`).join(""))([...new Set(d.todo.map(t=>t.grp||""))])}${add(P+".todo","todo","sous-catégorie")}</div>
   ${(d.notes||EDIT)?`<div class="ds"><h4>Notes</h4><div class="notebox">${ed(P+".notes","div","",d.notes||"","Notes libres…")}</div></div>`:""}
   ${(EDIT?d.refs:[]).map((r,i)=>`<div class="ds"><h4>${ed(`${P}.refs.${i}.title`,"span","",r.title,"Titre")}${del(P+".refs",i)}</h4>${r.src?`<img class="rimg" data-zoom src="${esc(imgSrc(r.src))}" alt="">`:""}${setimg(`${P}.refs.${i}.src`,r.src?"Changer l'image":"+ image")}
    ${(r.cap||EDIT)?`<p class="sub" style="margin:8px 0 0">${ed(`${P}.refs.${i}.cap`,"span","",r.cap,"Légende")}${EDIT?"":(r.link?` <a href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.linkText||"Lien")}</a>`:"")}</p>`:""}
