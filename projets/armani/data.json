@@ -1,13 +1,13 @@
 {
  "v": 1,
- "updated": "2026-11-26T15:28:00.000Z",
+ "updated": "2026-11-26T15:33:00.000Z",
  "log": [
   {
-   "at": "2026-11-26T15:28:00.000Z",
+   "at": "2026-11-26T15:33:00.000Z",
    "src": "Équipe",
    "d": [],
-   "kind": "ajout",
-   "text": "Directrice de production : Mélanin Beyl"
+   "kind": "modifié",
+   "text": "Directrice de production : Mélanie Beyl"
   },
   {
    "at": "2026-11-26T15:25:00.000Z",
@@ -36,7 +36,7 @@
    ],
    [
     "Directrice de production",
-    "Mélanin Beyl"
+    "Mélanie Beyl"
    ],
    [
     "Réalisateur",
@@ -451,7 +451,7 @@
   },
   {
    "role": "Dir prod",
-   "name": "Mélanin Beyl"
+   "name": "Mélanie Beyl"
   },
   {
    "role": "Réal",
