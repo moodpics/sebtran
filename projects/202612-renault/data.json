@@ -1,7 +1,18 @@
 {
  "v": 1,
- "updated": "2026-11-27T15:28:31.000Z",
+ "updated": "2026-11-27T15:52:52.000Z",
  "log": [
+  {
+   "at": "2026-11-27T15:52:52.000Z",
+   "src": "Script et storyboard Spoa × Renault, Concept 2 « Not just a detail » (captures des diapos 4, 6 à 11)",
+   "d": [
+    "cam",
+    "lum",
+    "mach"
+   ],
+   "kind": "ajout",
+   "text": "Déroulé minuté du film (2 min 10), 10 séquences rattachées aux voitures, storyboard, vignettes ajoutées aux voitures, nouvelles questions caméra, lumière et machinerie"
+  },
   {
    "at": "2026-11-27T15:28:31.000Z",
    "src": "Note de cadrage production Spoa (v3, novembre 2026)",
@@ -177,12 +188,66 @@
     ]
    },
    {
+    "t": "Film vidéo activation : Concept 2 « Not just a detail », 2 min 10 (script et storyboard Spoa × Renault)",
+    "b": 1,
+    "sub": [
+     "Un seul incarnant, face caméra, dans le décor Renault : il présente les easter eggs comme un guide un peu décalé",
+     "Mécanique répétée pour chaque détail, en trois temps : 1. la situation (une posture ou une scène inattendue), 2. le reveal (un cadrage ou un mouvement de caméra qui dévoile le détail), 3. l'anecdote (une histoire racontée face caméra, avec humour et complicité)",
+     "Chaque tableau a sa propre identité visuelle, avec des transitions graphiques qui rendent l'ensemble fluide et rythmé",
+     "Durée : 2 min 10, dans la fourchette du brief (2 à 3 min), plus la version 9:16 de 15 s"
+    ],
+    "img": "refs/storyboard-concept2.jpg",
+    "imgNote": "Storyboard du Concept 2 : 8 vignettes pour 10 séquences. Twingo, Trafic et rivet R4 ne sont pas dessinés",
+    "id": "rn20",
+    "to": []
+   },
+   {
+    "t": "Déroulé minuté du film (script du Concept 2)",
+    "b": 0,
+    "sub": [
+     "0:00–0:20 · L'accroche : plan frontal devant un fond blanc avec le logo Renault, ton de prise de parole corporate. Le fond tombe d'un coup et révèle le Technocentre et plusieurs véhicules, la caméra recule vite",
+     "0:20–0:30 · Le porte-baguette (R5) : très gros plan sur une baguette, la caméra recule et dévoile l'incarnant qui la manipule comme un objet de collection, puis l'installe dans son support",
+     "0:30–0:45 · Accroche-toi ! (R5 Turbo 3E, voiture non nommée dans le script) : au volant, très concentré, avec un sound design de course. Cut brutal sur un plan large : la voiture est immobile. La caméra révèle l'inscription côté passager",
+     "0:45–0:55 · L'avion (Rafale) : assis dans la voiture, il scrute le ciel aux jumelles. Il les baisse : la caméra révèle le petit avion Caudron-Renault sur le toit panoramique",
+     "0:55–1:05 · 4L + R4 (R4) : derrière une vitre, le visage légèrement flou, il désigne quelque chose. La mise au point bascule sur l'inscription « 4L + R4 »",
+     "1:05–1:15 · Le rivet historique (R4) : penché sur un minuscule rivet avec une loupe et une petite lampe, comme un objet archéologique. Macro sur l'inscription « Allez-y, vous êtes en Renault 4 »",
+     "1:15–1:25 · Trafic / carte à puce : debout devant le Trafic, un ordinateur portable à la main, il pianote comme s'il piratait un système. Cut sur un gros plan du feu avant, qui révèle le motif de carte à puce",
+     "1:25–1:35 · Jantes chrono (R5) : debout à côté de la R5, il regarde sa montre. Mouvement circulaire de la caméra autour de la roue, qui s'arrête sur le chiffre 5 placé à la position de cinq heures",
+     "1:35–1:45 · Twingo / message caché : look années 90 (veste colorée, jean taille haute, lunettes rétro), ambiance pub d'époque avec léger effet VHS, pose publicitaire. Gros plan sur l'inscription de la tirette du siège arrière, puis autres plans macro de détails Renault",
+     "1:45–2:10 · Conclusion : montage rapide de plusieurs easter eggs, en alternant plans macro et réactions de l'incarnant, puis retour face caméra entouré des véhicules"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn21",
+    "to": []
+   },
+   {
+    "t": "Ce que le script change pour le tournage",
+    "b": 1,
+    "sub": [
+     "Ouverture (0:00–0:20) et conclusion (1:45–2:10) : plans larges avec plusieurs voitures dans le champ. Le plan de rotation (30 min par voiture et par poste) ne prévoit aucun créneau pour les réunir",
+     "Chute du fond blanc avec logo : rideau réel ou effet en post ? Le script ne le dit pas (le storyboard dessine un grand rideau blanc)",
+     "Reculs de caméra : depuis un très gros plan (baguette) et rapide sur révélation (accroche). La même prise doit aller du détail au plan large",
+     "Mouvement circulaire autour de la roue de la R5, avec arrêt précis sur le 5 à cinq heures",
+     "Mise au point qui bascule à travers une vitre (4L + R4) : reflets de la baie vitrée à contrôler",
+     "Accessoires et costume : baguette, ordinateur portable, jumelles, montre, loupe, petite lampe, look années 90 pour la Twingo. Qui les apporte ? À confirmer avec la prod",
+     "Effets qui semblent relever de la post : sound design de course (Turbo), effet VHS (Twingo), transitions graphiques entre tableaux. À confirmer avec le réal",
+     "R8 Gordini et Niagara n'ont aucune séquence dans le script, alors que chacune a un créneau vidéo activation dans le plan de rotation. Leurs détails serviraient peut-être au montage de conclusion",
+     "Le storyboard et le script ne suivent pas le même ordre (le storyboard met 4L + R4 avant la jante et l'avion en dernier). À clarifier avec le réal"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn22",
+    "to": []
+   },
+   {
     "t": "À confirmer avec la prod",
     "b": 1,
     "sub": [
      "Date : le brief dit « dispo le 7 ». Décembre est déduit des livraisons du 11.12 et du 18.12",
      "Quel poste pour le chef op : vidéo activation ou B-roll ?",
-     "Créateur de contenu qui incarne la vidéo : qui ? Script ou storyboard de la vidéo activation ? (le brief demande le script Word en livrable)"
+     "Le document est titré « Concept 2 » : est-ce le concept retenu ? Qui est l'incarnant (le script ne le nomme pas) ?",
+     "Le Technocentre cité dans le script est-il le lieu du tournage (salle CPV), ou un décor ajouté en post ?"
     ],
     "img": "",
     "imgNote": "",
@@ -195,6 +260,7 @@
    "t": "Renault, easter eggs : 8 voitures, une vingtaine de détails cachés, 2 productions vidéo",
    "sub": [
     "Bobinots + vidéo activation (salle CPV) · la photo tourne en parallèle, hors périmètre",
+    "Film activation : Concept 2 « Not just a detail », 2 min 10, un incarnant face caméra, 10 séquences",
     "Livraison des vidéos le 18.12"
    ]
   }
@@ -241,15 +307,22 @@
      "src": "refs/twingo-tirette.jpg",
      "alt": "« À vous d'inventer la vie qui va avec », tirette de siège arrière",
      "cap": "« À vous d'inventer la vie qui va avec » · tirette du siège arrière · réf. pub de la première Twingo, années 90 · bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/sb-2-face-camera.jpg",
+     "alt": "Storyboard, incarnant face caméra",
+     "cap": "Storyboard Concept 2 · l'incarnant interpelle le spectateur (valable pour toutes les séquences face caméra)"
     }
    ],
    "lum": [
     "Reflets sur la lunette arrière : à maîtriser pour lire le dessin",
-    "Lumière rasante pour le relief de l'alphabet du pavillon"
+    "Lumière rasante pour le relief de l'alphabet du pavillon",
+    "Créneau vidéo activation de 15h30 à 16h30 : le jour baisse vers 16h50, raccord avec le reste du film à anticiper"
    ],
    "cam": [
     "Gros plans (alphabet, tirette, hayon) + plan contextuel (lunette arrière)",
-    "Texte à lire à l'image : « Ouvert d'esprit », « À vous d'inventer la vie qui va avec »"
+    "Texte à lire à l'image : « Ouvert d'esprit », « À vous d'inventer la vie qui va avec »",
+    "Scène du film (1:35–1:45) : l'incarnant en look années 90, pose pub à côté de la voiture, gros plan sur la tirette, retour sur lui, puis autres plans macro. Effet VHS prévu en post (à confirmer)"
    ],
    "mach": [],
    "fond": "",
@@ -287,18 +360,29 @@
      "src": "refs/r4-coffre-canage.jpg",
      "alt": "Rangement de coffre effet canage",
      "cap": "Rangement de coffre effet canage · réf. 4L La Parisienne · bobinot"
+    },
+    {
+     "src": "refs/sb-5-vitre.jpg",
+     "alt": "Storyboard, vitre 4L + R4",
+     "cap": "Storyboard Concept 2 · à travers la vitre, changement de focus qui dévoile l'inscription 4L + R4"
     }
    ],
    "lum": [
     "Lumière rasante sur le rivet pour lire l'inscription et la couture",
-    "Silhouettes de la custode : contraste à garder lisible"
+    "Silhouettes de la custode : contraste à garder lisible",
+    "Scène 4L + R4 : reflets de la baie vitrée sur le verre à maîtriser, avec un visage lisible derrière",
+    "Scène rivet : la petite lampe tenue par l'incarnant est dans le plan, à intégrer à la lumière"
    ],
    "cam": [
-    "Rivet et inscription : gros plan serré (macro ?)"
+    "Rivet et inscription : gros plan serré (macro ?)",
+    "Scène du film (0:55–1:05) : visage légèrement flou derrière la vitre, la mise au point bascule sur « 4L + R4 »",
+    "Scène du film (1:05–1:15) : l'incarnant penché sur le rivet avec une loupe et une petite lampe, puis macro sur l'inscription"
    ],
-   "mach": [],
+   "mach": [
+    "Accessoires de la scène rivet : loupe et petite lampe"
+   ],
    "fond": "",
-   "notes": "Le texte du slogan diffère dans le brief : « Allez-y vous roulez en Renault 4 » (page « histoire des easter eggs ») et « Allez-y vous êtes en Renault 4 » (pages des clins d'œil et vidéo). À faire confirmer par Renault avant de cadrer sur l'inscription."
+   "notes": "Le texte du slogan diffère dans le brief : « Allez-y vous roulez en Renault 4 » (page « histoire des easter eggs ») et « Allez-y vous êtes en Renault 4 » (pages des clins d'œil et vidéo). À faire confirmer par Renault avant de cadrer sur l'inscription.\nScript : la scène 4L + R4 se joue derrière une vitre, alors que le brief place le dessin sur la custode arrière. Quelle vitre exactement, et de quel côté de la voiture ? À confirmer."
   },
   {
    "id": "r5",
@@ -337,6 +421,16 @@
      "src": "refs/r5-induction.jpg",
      "alt": "Recharge à induction",
      "cap": "R5 recharge à induction · réf. design iconique · bobinot"
+    },
+    {
+     "src": "refs/sb-3-baguette.jpg",
+     "alt": "Storyboard, porte-baguette",
+     "cap": "Storyboard Concept 2 · la baguette présentée comme un objet précieux, installée dans le porte-baguette"
+    },
+    {
+     "src": "refs/sb-6-jante.jpg",
+     "alt": "Storyboard, jante Chrono",
+     "cap": "Storyboard Concept 2 · accroupi devant la roue, il compare sa montre au cadran de la jante"
     }
    ],
    "lum": [
@@ -345,13 +439,17 @@
    ],
    "cam": [
     "Porte-baguette : plan contextuel (intérieur) + gros plan",
-    "Jante : plan serré sur la 5e aiguille"
+    "Jante : plan serré sur la 5e aiguille",
+    "Scène du film (0:20–0:30) : départ en très gros plan sur la baguette, recul jusqu'à l'incarnant qui l'installe dans le porte-baguette",
+    "Scène du film (1:25–1:35) : l'incarnant regarde sa montre, mouvement circulaire autour de la roue, arrêt sur le 5 placé à cinq heures"
    ],
    "mach": [
-    "Jante : voiture ou roue en mouvement ? à discuter"
+    "Jante : voiture ou roue en mouvement ? à discuter",
+    "Recul depuis le très gros plan de la baguette : support à prévoir (slider ou dolly arrière)",
+    "Mouvement circulaire autour de la roue : support à définir"
    ],
    "fond": "",
-   "notes": "Les trois emplacements du coq (pare-brise, vitre, coffre) ne sont pas détaillés dans le brief : à demander à Renault."
+   "notes": "Les trois emplacements du coq (pare-brise, vitre, coffre) ne sont pas détaillés dans le brief : à demander à Renault.\nJante : le script dit « debout à côté de la R5 », le storyboard montre l'incarnant accroupi devant la roue. Le 5 doit finir à la position de cinq heures à l'image."
   },
   {
    "id": "rafale",
@@ -385,15 +483,22 @@
      "src": "refs/rafale-alpine.jpg",
      "alt": "« A » Alpine brodé sur le siège",
      "cap": "« A » lumineux · sur les sièges avant · se transforme en battement de cœur à l'ouverture des portes · bobinot"
+    },
+    {
+     "src": "refs/sb-7-rafale.jpg",
+     "alt": "Storyboard, Rafale, jumelles et avion",
+     "cap": "Storyboard Concept 2 · assis dans la Rafale, il scrute le ciel aux jumelles, puis découvre l'avion sur le toit"
     }
    ],
    "lum": [
     "Toit Solarbay : la silhouette n'existe que contre le ciel ou une source derrière : à anticiper",
-    "« A » lumineux : le battement de cœur se déclenche à l'ouverture des portes, donc pas d'éclairage fort dans l'habitacle"
+    "« A » lumineux : le battement de cœur se déclenche à l'ouverture des portes, donc pas d'éclairage fort dans l'habitacle",
+    "Scène du film : plan vers le toit, avec ciel ou source lumineuse derrière la silhouette d'avion, et un visage lisible à l'intérieur"
    ],
    "cam": [
     "Battement de cœur : plan à tourner en continu pour attraper l'animation",
-    "Prévoir une prise à l'ouverture de la porte"
+    "Prévoir une prise à l'ouverture de la porte",
+    "Scène du film (0:45–0:55) : l'incarnant assis dans la voiture scrute le ciel aux jumelles, puis la caméra révèle l'avion sur le toit panoramique"
    ],
    "mach": [],
    "fond": "",
@@ -444,7 +549,7 @@
    ],
    "mach": [],
    "fond": "",
-   "notes": "Pas d'image dans le brief pour le décor central (lettrage en perforation 8 + 1.134, numéro du pilote 8 et cylindrée de la R8, 1 134 cm³).\nPanneau droit : « 1.934 » alors que la référence citée est 1964 / 95 ch : à faire confirmer.\nPlus longue présence côté vidéo : 1 h en B-roll, 30 min en vidéo activation."
+   "notes": "Pas d'image dans le brief pour le décor central (lettrage en perforation 8 + 1.134, numéro du pilote 8 et cylindrée de la R8, 1 134 cm³).\nPanneau droit : « 1.934 » alors que la référence citée est 1964 / 95 ch : à faire confirmer.\nPlus longue présence côté vidéo : 1 h en B-roll, 30 min en vidéo activation.\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux bobinots et peut-être au montage de conclusion (1:45–2:10). À confirmer."
   },
   {
    "id": "turbo",
@@ -469,19 +574,25 @@
      "src": "refs/r5turbo-repose-pieds.jpg",
      "alt": "« Accroche-toi ! » sur le repose-pieds passager",
      "cap": "« Accroche-toi ! » · repose-pieds passager · référence à la sportivité du modèle · bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/sb-4-volant.jpg",
+     "alt": "Storyboard, au volant",
+     "cap": "Storyboard Concept 2 · au volant, il joue le pilote, renforcé par du sound design, alors qu'il est à l'arrêt"
     }
    ],
    "lum": [
     "Inscription gravée sur le repose-pieds : lumière rasante, en espace très étroit"
    ],
    "cam": [
-    "Gros plan à faible hauteur : l'accès caméra dans le plancher est à vérifier"
+    "Gros plan à faible hauteur : l'accès caméra dans le plancher est à vérifier",
+    "Scène du film (0:30–0:45) : l'incarnant au volant, très concentré, puis cut brutal sur un plan large de la voiture immobile, et la caméra révèle « Accroche-toi ! » côté passager"
    ],
    "mach": [
     "Tête déportée ou petit support bas à discuter"
    ],
    "fond": "",
-   "notes": "De 11h00 à 11h30, la Turbo est demandée en B-roll (CPV) et en photo (salle Paulin, hors périmètre vidéo) : la voiture ne peut pas être aux deux endroits."
+   "notes": "De 11h00 à 11h30, la Turbo est demandée en B-roll (CPV) et en photo (salle Paulin, hors périmètre vidéo) : la voiture ne peut pas être aux deux endroits.\nLe script ne nomme pas la voiture de la scène « Accroche-toi ! ». C'est la Turbo d'après le brief (inscription sur le repose-pieds passager). À confirmer.\nLa voiture reste immobile : l'effet de course vient du jeu de l'incarnant et du sound design."
   },
   {
    "id": "niagara",
@@ -515,7 +626,7 @@
     "Barre de toit : accès en hauteur à prévoir"
    ],
    "fond": "",
-   "notes": "Logo RNLT sur la barre de toit : le brief ne montre pas d'image (bloc gris)."
+   "notes": "Logo RNLT sur la barre de toit : le brief ne montre pas d'image (bloc gris).\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux bobinots et peut-être au montage de conclusion (1:45–2:10). À confirmer."
   },
   {
    "id": "trafic",
@@ -543,10 +654,12 @@
    ],
    "lum": [
     "Pictogramme gravé dans le verre ou l'optique : reflets, fond sombre derrière",
-    "Quatre emplacements, donc quatre réglages différents"
+    "Quatre emplacements, donc quatre réglages différents",
+    "Feu avant en gros plan : la carte à puce doit ressortir du phare, reflets à maîtriser"
    ],
    "cam": [
-    "Quatre plans par voiture : liste de plans à fixer avec le réal"
+    "Quatre plans par voiture : liste de plans à fixer avec le réal",
+    "Scène du film (1:15–1:25) : l'incarnant debout devant le Trafic, un ordinateur portable à la main, puis cut sur un gros plan du feu avant avec la carte à puce"
    ],
    "mach": [],
    "fond": "",
@@ -554,38 +667,38 @@
   }
  ],
  "plan": {
-  "intro": "Plan de rotation du brief, par voiture, pour les deux postes vidéo (vidéo activation et B-roll) : de 10h00 à 17h30, pause de 12h30 à 13h30. Installation vidéo dès 7h30, démontage de 17h30 à 18h30, départ à 18h30. La photo tourne en parallèle dans une autre salle (hors périmètre). Plan complet dans la section « Où ».",
+  "intro": "Plan de rotation du brief, par voiture, pour les deux postes vidéo (vidéo activation et B-roll) : de 10h00 à 17h30, pause de 12h30 à 13h30. Installation vidéo dès 7h30, démontage de 17h30 à 18h30, départ à 18h30. La photo tourne en parallèle dans une autre salle (hors périmètre). Plan complet dans la section « Où ». Le script du Concept 2 est rattaché à chaque voiture (scènes entre parenthèses) : l'ordre du tournage n'est pas celui du film.",
   "slots": [
    {
-    "label": "Vidéo activation 15h30–16h30 · B-roll 16h30–17h30",
+    "label": "Vidéo activation 15h30–16h30 (scène 1:35–1:45) · B-roll 16h30–17h30",
     "camp": "Twingo"
    },
    {
-    "label": "Vidéo activation 14h30–15h30 · B-roll 13h30–14h30",
+    "label": "Vidéo activation 14h30–15h30 (scènes 0:55–1:05 et 1:05–1:15) · B-roll 13h30–14h30",
     "camp": "R4"
    },
    {
-    "label": "Vidéo activation 13h30–14h30 · B-roll 14h30–15h30",
+    "label": "Vidéo activation 13h30–14h30 (scènes 0:20–0:30 et 1:25–1:35) · B-roll 14h30–15h30",
     "camp": "R5"
    },
    {
-    "label": "Vidéo activation 12h00–12h30 · B-roll 11h30–12h00",
+    "label": "Vidéo activation 12h00–12h30 (scène 0:45–0:55) · B-roll 11h30–12h00",
     "camp": "Rafale"
    },
    {
-    "label": "Vidéo activation 11h00–11h30 · B-roll 10h00–11h00",
+    "label": "Vidéo activation 11h00–11h30 (aucune scène au script) · B-roll 10h00–11h00",
     "camp": "R8 Gordini"
    },
    {
-    "label": "Vidéo activation 10h30–11h00 · B-roll 11h00–11h30 (la Turbo est aussi demandée en photo à cette heure)",
+    "label": "Vidéo activation 10h30–11h00 (scène 0:30–0:45) · B-roll 11h00–11h30 (la Turbo est aussi demandée en photo à cette heure)",
     "camp": "R5 Turbo 3E"
    },
    {
-    "label": "Vidéo activation 16h30–17h30 · B-roll 15h30–16h30",
+    "label": "Vidéo activation 16h30–17h30 (aucune scène au script) · B-roll 15h30–16h30",
     "camp": "Niagara"
    },
    {
-    "label": "Vidéo activation 11h30–12h00 · B-roll 12h00–12h30",
+    "label": "Vidéo activation 11h30–12h00 (scène 1:15–1:25) · B-roll 12h00–12h30",
     "camp": "Trafic"
    }
   ]
@@ -652,6 +765,22 @@
      "sub": "",
      "w": 1,
      "g": "conf"
+    },
+    {
+     "t": "Film activation : un seul incarnant face caméra, 10 séquences de 10 à 25 s, plans moyens et très gros plans alternés. Chaque séquence : situation, reveal, anecdote",
+     "sub": "",
+     "w": 0,
+     "g": "spec"
+    },
+    {
+     "t": "Mouvements de caméra écrits dans le script : recul depuis un très gros plan (baguette), recul rapide sur le fond qui tombe, mouvement circulaire autour de la roue (R5), mise au point qui bascule à travers une vitre (4L + R4)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "r5",
+      "r4"
+     ]
     }
    ],
    "todo": [],
@@ -676,6 +805,46 @@
       "r8",
       "r4",
       "trafic"
+     ]
+    },
+    {
+     "id": "q-cam3",
+     "t": "Reculs depuis le détail jusqu'au plan large (baguette R5, fond qui tombe)",
+     "pb": "La caméra part d'un très gros plan ou recule vite pour révéler l'incarnant et le lieu. Optique, mise au point et support sont à choisir selon que la prise est unique ou raccordée.",
+     "ch": "Un recul propre, sans coupe visible, dans 30 minutes de créneau",
+     "sol": [
+      "Slider ou petit dolly pour le recul sur la baguette",
+      "Zoom plutôt qu'une optique fixe si le recul est trop court (à tester)",
+      "Deux plans raccordés dans le geste de l'incarnant, si le réal accepte un cut caché"
+     ],
+     "c": [
+      "r5"
+     ]
+    },
+    {
+     "id": "q-cam4",
+     "t": "Jante R5 : mouvement circulaire autour de la roue, arrêt sur le 5 à cinq heures",
+     "pb": "Le script dit « mouvement circulaire autour de la roue ». Est-ce une orbite autour de la voiture, ou une rotation de l'image dans l'axe de la roue ? Dans les deux cas, le 5 doit s'arrêter à cinq heures à l'image.",
+     "ch": "Arrêt précis, avec le chiffre lisible dans les reflets de la jante",
+     "sol": [
+      "Rotation de la caméra sur son axe (roll), si c'est l'image qui doit tourner",
+      "Dolly circulaire court ou gimbal, si c'est une orbite"
+     ],
+     "c": [
+      "r5"
+     ]
+    },
+    {
+     "id": "q-cam5",
+     "t": "4L + R4 : mise au point qui bascule du visage à l'inscription, à travers la vitre",
+     "pb": "Faible profondeur de champ, visage flou puis inscription nette à quelques dizaines de centimètres, avec des reflets sur le verre.",
+     "ch": "Un point précis, répétable, sur une inscription fine",
+     "sol": [
+      "Suiveur de point sans fil pour Antoine, avec repères sur l'inscription",
+      "Polarisant et drapeaux noirs pour les reflets de la baie vitrée"
+     ],
+     "c": [
+      "r4"
      ]
     }
    ]
@@ -717,6 +886,30 @@
       "r4",
       "niagara"
      ]
+    },
+    {
+     "t": "Plans larges d'ouverture et de conclusion : plusieurs voitures, le logo Renault et l'incarnant dans une même image",
+     "sub": "",
+     "w": 0,
+     "g": "spec"
+    },
+    {
+     "t": "Rafale : plan vers le toit panoramique, avec ciel ou source lumineuse derrière la silhouette d'avion",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "rafale"
+     ]
+    },
+    {
+     "t": "Rivet R4 : petite lampe tenue par l'incarnant, dans le plan",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "r4"
+     ]
     }
    ],
    "todo": [],
@@ -731,6 +924,17 @@
      "sol": [
       "Apporter de la lumière en CPV pour ne pas dépendre de la baie vitrée",
       "Ordre des voitures à revoir pour mettre les plus délicates à la lumière du jour"
+     ],
+     "c": []
+    },
+    {
+     "id": "q-lum2",
+     "t": "Plans larges avec plusieurs voitures : lumière de toute la salle",
+     "pb": "L'ouverture et la conclusion montrent le lieu et plusieurs véhicules, alors que la salle n'a aucune lumière dédiée et que le jour change de 9h à 17h30.",
+     "ch": "Une lumière cohérente sur un grand plan large, à l'heure où les voitures seront réunies",
+     "sol": [
+      "Tourner ces plans larges à l'heure où la lumière du jour est la plus stable (à confirmer sur place)",
+      "Compléter avec des sources sur pied haut ou en hauteur, si la hauteur sous plafond le permet (à vérifier)"
      ],
      "c": []
     }
@@ -751,6 +955,25 @@
      "sub": "",
      "w": 1,
      "g": "rig"
+    },
+    {
+     "t": "Chute du fond blanc avec logo Renault au début du film (0:00–0:20) : gag à réaliser",
+     "sub": "",
+     "w": 0,
+     "g": "rig"
+    },
+    {
+     "t": "Accessoires de jeu : baguette, ordinateur portable, jumelles, montre, loupe, petite lampe. Costume années 90 pour la Twingo",
+     "sub": "",
+     "w": 0,
+     "g": "rig",
+     "c": [
+      "r5",
+      "trafic",
+      "rafale",
+      "r4",
+      "twingo"
+     ]
     }
    ],
    "todo": [],
@@ -772,6 +995,36 @@
      "t": "Les deux cercles du plan d'implantation CPV : zones de tournage ou plateaux tournants ?",
      "pb": "Le brief ne l'explique pas.",
      "ch": "",
+     "sol": [],
+     "c": []
+    },
+    {
+     "id": "q-mach3",
+     "t": "Réunir plusieurs voitures pour l'ouverture et la conclusion",
+     "pb": "Le plan de rotation ne prévoit que des créneaux de 30 min par voiture et par poste. Les deux plans larges demandent plusieurs voitures ensemble, avec l'incarnant au milieu.",
+     "ch": "Un créneau dédié, voitures regroupées, sans bloquer l'autre poste ni la photo",
+     "sol": [
+      "Utiliser la mise en place de 9h00, avant le premier créneau, si la prod l'accepte",
+      "Utiliser la fin de journée, quand toutes les voitures sont en salle CPV, mais la lumière du jour a disparu"
+     ],
+     "c": []
+    },
+    {
+     "id": "q-mach4",
+     "t": "Fond blanc qui tombe : rideau réel ou effet en post ?",
+     "pb": "Le script donne un fond blanc avec logo qui tombe d'un coup et révèle le lieu. Le storyboard dessine un grand rideau blanc. Rien ne dit comment le réaliser.",
+     "ch": "Une chute fiable, en une prise, sans risque pour les voitures",
+     "sol": [
+      "Grande toile blanche retenue en hauteur, avec déclenchement à distance (à chiffrer avec la prod)",
+      "Effet en post à partir de deux plans (fond blanc, puis salle), moins risqué avec les voitures en place"
+     ],
+     "c": []
+    },
+    {
+     "id": "q-mach5",
+     "t": "Accessoires et costume : qui les apporte ?",
+     "pb": "Baguette, ordinateur portable, jumelles, montre, loupe, petite lampe, tenue années 90. Rien n'est précisé dans le brief ni dans le script.",
+     "ch": "Tout en salle CPV à 9h00, sans aller-retour",
      "sol": [],
      "c": []
     }
