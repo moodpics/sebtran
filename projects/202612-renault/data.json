@@ -197,9 +197,10 @@
      "Durée : 2 min 10, dans la fourchette du brief (2 à 3 min), plus la version 9:16 de 15 s"
     ],
     "img": "refs/storyboard-concept2.jpg",
-    "imgNote": "Storyboard du Concept 2 : 8 vignettes pour 10 séquences. Twingo, Trafic et rivet R4 ne sont pas dessinés",
+    "imgNote": "Storyboard du Concept 2 (clique pour agrandir). 8 vignettes pour 10 séquences : Twingo, Trafic et rivet R4 ne sont pas dessinés",
     "id": "rn20",
-    "to": []
+    "to": [],
+    "big": true
    },
    {
     "t": "Déroulé minuté du film (script du Concept 2)",
