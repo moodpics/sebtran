@@ -1,0 +1,885 @@
+{
+ "v": 1,
+ "updated": "2026-11-27T15:21:30.000Z",
+ "log": [
+  {
+   "at": "2026-11-27T15:21:30.000Z",
+   "src": "Note de cadrage production Spoa (v3, novembre 2026)",
+   "d": [
+    "cam",
+    "lum",
+    "mach"
+   ],
+   "kind": "ajout",
+   "text": "Brief Renault ajouté : contexte, intention, 8 voitures et leurs clins d'œil, salles, plan de rotation"
+  }
+ ],
+ "shootDate": "2026-12-07",
+ "root": {
+  "title": "Renault",
+  "sub": "Easter eggs · tournage le 7 décembre 2026 (à confirmer)",
+  "facts": [],
+  "crew": [
+   [
+    "Production",
+    "Spoa"
+   ],
+   [
+    "Directeur de production",
+    "Thomas Mennec"
+   ],
+   [
+    "Réalisateur",
+    "Benoît Pétré"
+   ],
+   [
+    "Chef opérateur",
+    "Seb Trân"
+   ],
+   [
+    "Assistant caméra",
+    "Antoine Vié"
+   ],
+   [
+    "Gaffer",
+    "Côme Naulleau"
+   ],
+   [
+    "Client Renault",
+    "Corinne Dutoit, Matthieu Richer"
+   ],
+   [
+    "Lumière salle Paulin (Renault)",
+    "Olivier Rouxel"
+   ]
+  ],
+  "base": {
+   "t": "Base commune : deux salles Renault, huit voitures",
+   "p": "Salle Paulin (photos) : studio avec écran LED, néon et spots pilotables. Salle CPV (bobinots + vidéo activation) : grand volume sans lumière dédiée, avec une baie vitrée sur l'extérieur. Les huit voitures sont mises en place en CPV à 9h00 puis tournent entre les trois postes, par tranches de 30 min."
+  }
+ },
+ "brief": {
+  "items": [
+   {
+    "t": "Intention : une vidéo enthousiaste, fun, décalée, très fraîche, façon backstage, qui fait découvrir des détails méconnus des autos",
+    "b": 1,
+    "sub": [
+     "Sortir des prises de parole automobiles classiques, à la veille de Noël (cadeau de fin d'année)",
+     "Marqueur de marque : « Design to beloved ». Renault met de l'amour dans ses produits, jusqu'à y cacher des détails croustillants",
+     "Incarnée par un créateur de contenu hors secteur auto traditionnel : le brief ne dit pas qui"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn01",
+    "to": []
+   },
+   {
+    "t": "Contexte : troisième rendez-vous de Noël de Renault",
+    "b": 0,
+    "sub": [
+     "2024 : version de série de la R5 Turbo 3E",
+     "2025 : Filante Record",
+     "2026 : les easter eggs (aussi appelés « trésors cachés » ou « détails cachés »), imaginés par les designers : lettrage, dessin, date, smiley…"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn02",
+    "to": []
+   },
+   {
+    "t": "Messages",
+    "b": 0,
+    "sub": [
+     "Nos modèles cachent des détails insoupçonnés qui rendent nos voitures uniques et contribuent à leur storytelling",
+     "Expliquer comment naissent les easter eggs, comment ils se déclinent et à quoi ils servent"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn03",
+    "to": []
+   },
+   {
+    "t": "Audience et diffusion",
+    "b": 0,
+    "sub": [
+     "Externe : presse lifestyle, influenceurs, presse auto à la marge",
+     "Interne : collaborateurs Renault. Clients et prospects",
+     "Supports : site média Renault, réseaux sociaux, YouTube, intranet collaborateur Declic"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn04",
+    "to": []
+   },
+   {
+    "t": "Trois productions le même jour, dans deux salles",
+    "b": 1,
+    "sub": [
+     "Photos, salle Paulin : 1 à 2 photos HD par easter egg (1 close-up, 1 contextuel quand nécessaire), en 1:1, 16:9 et 4:5",
+     "Bobinots, salle CPV : 1 plan vidéo de 5 à 10 s par easter egg",
+     "Vidéo activation, salle CPV : 1 film 16:9 de 2 à 3 min + 1 version 9:16 de 15 s, en anglais, avec 3 versions : ST FR, ST GB, sans ST"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn05",
+    "to": []
+   },
+   {
+    "t": "Livrables et dates",
+    "b": 0,
+    "sub": [
+     "Photos : 11.12.2026 · 2400 × 2400 (1:1), 2400 × 1350 (16:9), 1920 × 2400 (4:5)",
+     "Vidéos : 18.12.2026 · H264 ou HEVC, 25 Mbps, audio 128 kbps (sur les formats 9:16)",
+     "Fichiers sources à transmettre pour adaptation : ProRes, fichier AEP, script Word, son, police, SRT"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn06",
+    "to": []
+   },
+   {
+    "t": "Salle CPV : aucune lumière dédiée ni commandable, mais une baie vitrée sur l'extérieur",
+    "b": 1,
+    "sub": [
+     "La lumière naturelle va varier de 9h à 17h30. En décembre à Paris, le soleil se couche vers 16h50 (à vérifier) : les derniers créneaux se tourneront de nuit",
+     "Raccord de lumière entre les 8 voitures et les deux postes vidéo à anticiper : lumière à apporter ?"
+    ],
+    "img": "refs/plan-implantation-cpv.jpg",
+    "imgNote": "Plan d'implantation CPV, mise en place à 9h00",
+    "id": "rn07",
+    "to": [
+     "lum"
+    ]
+   },
+   {
+    "t": "Planning serré : 30 min par voiture et par poste (R8 : 1 h en photo et 1 h en B-roll)",
+    "b": 1,
+    "sub": [
+     "Trois postes en parallèle : photo (salle Paulin), vidéo activation et B-roll (salle CPV)",
+     "Les voitures changent de salle dans la journée : qui les déplace ? Le plan de rotation parle d'une « équipe TCR – avancée », sans plus de précision",
+     "Conflit dans le plan : la Turbo est en photo (Paulin) et en B-roll (CPV) de 11h00 à 11h30"
+    ],
+    "img": "refs/plan-rotation.jpg",
+    "imgNote": "Plan de rotation voiture (brief Spoa v3)",
+    "id": "rn08",
+    "to": [
+     "mach"
+    ]
+   },
+   {
+    "t": "Des détails minuscules à rendre lisibles : lettrage perforé, relief du pavillon, rivet, silhouettes sur vitre, reflets",
+    "b": 1,
+    "sub": [
+     "Gros plans à penser avec Antoine Vié (assistant caméra) : optique, distance mini",
+     "Reflets sur les vitres (lunette arrière de la Twingo, pictogramme du Trafic) et lumière rasante sur les reliefs : à voir avec Côme Naulleau (gaffer)"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn09",
+    "to": [
+     "cam",
+     "lum"
+    ]
+   },
+   {
+    "t": "Salle Paulin : une zone « fonctionnelle » (lumières et écrans pilotables) et une zone « semi-fonctionnelle »",
+    "b": 0,
+    "sub": [
+     "Néon éteignable, écran LED éteignable, spot de lumière blanche (froid à chaud), couleur de diffusion au choix ou blanc neutre",
+     "Démonstration d'Olivier Rouxel vers 8h/8h30, puis autonomie. Le plan de rotation place son intervention à 9h00 : à clarifier"
+    ],
+    "img": "refs/salle-paulin-1.jpg",
+    "imgNote": "Salle Paulin : zones semi-fonctionnelle (rouge) et fonctionnelle (vert)",
+    "id": "rn10",
+    "to": [
+     "lum"
+    ]
+   },
+   {
+    "t": "À confirmer avec la prod",
+    "b": 1,
+    "sub": [
+     "Date : le brief dit « dispo le 7 ». Décembre est déduit des livraisons du 11.12 et du 18.12",
+     "Qui tourne quoi : photo, vidéo activation, B-roll ?",
+     "Créateur de contenu qui incarne la vidéo : qui ? Script ou storyboard de la vidéo activation ? (le brief demande le script Word en livrable)"
+    ],
+    "img": "",
+    "imgNote": "",
+    "id": "rn11",
+    "to": []
+   }
+  ],
+  "source": "Source : note de cadrage production Spoa, v3, novembre 2026 (Renault : contexte, objectifs, liste des clins d'œil, livrables, lieux, plan de rotation).",
+  "sum": {
+   "t": "Renault, easter eggs : 8 voitures, une vingtaine de détails cachés, 3 productions en une journée",
+   "sub": [
+    "Photos (salle Paulin) · bobinots + vidéo activation (salle CPV)",
+    "Livraisons : photos le 11.12, vidéos le 18.12"
+   ]
+  }
+ },
+ "mood": {
+  "items": [],
+  "p": "Esprit backstage, fun, très frais, un peu décalé : on révèle des détails cachés plus qu'on ne présente des voitures. Chaque voiture garde sa couleur du brief (« les bonnes couleurs »).",
+  "moods": []
+ },
+ "camps": [
+  {
+   "id": "twingo",
+   "name": "Twingo",
+   "alias": [
+    "Twingo E-Tech",
+    "Renault Twingo"
+   ],
+   "col": "#1f7a45",
+   "bg": "linear-gradient(135deg,#0f3d22 0%,#1f7a45 55%,#8fd1a4 100%)",
+   "txt": "Renault Twingo E-Tech, verte. Quatre clins d'œil, surtout des mots et des dessins : un alphabet dans le pavillon, une petite Twingo cachée dans la lunette arrière, deux punchlines (hayon et tirette de siège arrière). Un univers joueur, pensé pour les jeunes passagers.",
+   "pist": "4 détails · photos + bobinot · vidéo activation : lunette arrière et tirette",
+   "imgs": [
+    {
+     "src": "refs/car-twingo.png",
+     "alt": "Renault Twingo E-Tech",
+     "cap": "Renault Twingo E-Tech · couleur du brief"
+    },
+    {
+     "src": "refs/twingo-alphabet.jpg",
+     "alt": "Alphabet Twingo, ciel de toit",
+     "cap": "Un alphabet à décoder · pavillon de toit · invitation à jouer et à observer la voiture autrement, pensée pour les jeunes passagers · photos + bobinot"
+    },
+    {
+     "src": "refs/twingo-lunette.jpg",
+     "alt": "Dessin de Twingo, lunette arrière",
+     "cap": "Un dessin de Twingo · vitre arrière · bouille ronde et joviale, clin d'œil à la première Twingo des années 90 · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/twingo-ouvert-esprit.jpg",
+     "alt": "« Ouvert d'esprit », intérieur du hayon",
+     "cap": "« Ouvert d'esprit » · intérieur du hayon · photos + bobinot"
+    },
+    {
+     "src": "refs/twingo-tirette.jpg",
+     "alt": "« À vous d'inventer la vie qui va avec », tirette de siège arrière",
+     "cap": "« À vous d'inventer la vie qui va avec » · tirette du siège arrière · réf. pub de la première Twingo, années 90 · photos + bobinot, vidéo activation"
+    }
+   ],
+   "lum": [
+    "Reflets sur la lunette arrière : à maîtriser pour lire le dessin",
+    "Lumière rasante pour le relief de l'alphabet du pavillon"
+   ],
+   "cam": [
+    "Gros plans (alphabet, tirette, hayon) + plan contextuel (lunette arrière)",
+    "Texte à lire à l'image : « Ouvert d'esprit », « À vous d'inventer la vie qui va avec »"
+   ],
+   "mach": [],
+   "fond": "",
+   "notes": "Créneaux du plan de rotation : voir la section « Planning provisoire ».\nLe brief mentionne aussi la punchline « prendre de la hauteur » pour la Twingo (page contexte), mais elle n'apparaît pas dans la liste des détails à tourner : à confirmer."
+  },
+  {
+   "id": "r4",
+   "name": "R4",
+   "alias": [
+    "Renault 4",
+    "R4 E-Tech",
+    "Renault 4 E-Tech"
+   ],
+   "col": "#9b2c3d",
+   "bg": "linear-gradient(135deg,#4a0f1b 0%,#9b2c3d 55%,#e59aa6 100%)",
+   "txt": "Renault 4 E-Tech, rouge bordeaux. Trois clins d'œil à la 4L : un rivet sur les sièges, une course 4L contre Renault 4 dans la custode, un rangement de coffre effet canage (réf. 4L La Parisienne).",
+   "pist": "3 détails · photos + bobinot · vidéo activation : rivet et custode",
+   "imgs": [
+    {
+     "src": "refs/car-r4.png",
+     "alt": "Renault 4 E-Tech",
+     "cap": "Renault 4 E-Tech · couleur du brief"
+    },
+    {
+     "src": "refs/r4-rivet.jpg",
+     "alt": "Rivet des sièges",
+     "cap": "Un rivet avec l'inscription « Allez-y vous roulez en Renault 4 » · flanc des sièges, version Techno (sellerie Jean) · écho au slogan publicitaire de la 4L en 1964 (réf. Pierre Dreyfus) · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/r4-custode.jpg",
+     "alt": "Course 4L et Renault 4, custode arrière",
+     "cap": "Dessin d'une course entre la 4L et la Renault 4 · custode arrière · référence à la 4L d'origine · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/r4-coffre-canage.jpg",
+     "alt": "Rangement de coffre effet canage",
+     "cap": "Rangement de coffre effet canage · réf. 4L La Parisienne · photos + bobinot"
+    }
+   ],
+   "lum": [
+    "Lumière rasante sur le rivet pour lire l'inscription et la couture",
+    "Silhouettes de la custode : contraste à garder lisible"
+   ],
+   "cam": [
+    "Rivet et inscription : gros plan serré (macro ?)"
+   ],
+   "mach": [],
+   "fond": "",
+   "notes": "Le texte du slogan diffère dans le brief : « Allez-y vous roulez en Renault 4 » (page « histoire des easter eggs ») et « Allez-y vous êtes en Renault 4 » (pages photos et vidéo). À faire confirmer par Renault avant de cadrer sur l'inscription."
+  },
+  {
+   "id": "r5",
+   "name": "R5",
+   "alias": [
+    "Renault 5",
+    "R5 E-Tech",
+    "Renault 5 E-Tech"
+   ],
+   "col": "#2fae4a",
+   "bg": "linear-gradient(135deg,#0d4a1c 0%,#2fae4a 55%,#b6efc0 100%)",
+   "txt": "Renault 5 E-Tech, verte. Un coq (×3 : pare-brise, vitre, coffre, réf. Made in France), un porte-baguette (french touch), les jantes Chrono avec le chiffre 5 sur la 5e aiguille, la recharge à induction (réf. design iconique).",
+   "pist": "4 détails · photos + bobinot · vidéo activation : porte-baguette et jantes Chrono",
+   "imgs": [
+    {
+     "src": "refs/car-r5.png",
+     "alt": "Renault 5 E-Tech",
+     "cap": "Renault 5 E-Tech · couleur du brief"
+    },
+    {
+     "src": "refs/r5-coq.jpg",
+     "alt": "Coq (feu arrière)",
+     "cap": "Coq, ×3 : pare-brise, vitre, coffre · réf. Made in France · photos + bobinot"
+    },
+    {
+     "src": "refs/r5-baguette.jpg",
+     "alt": "Porte-baguette",
+     "cap": "Porte-baguette · réf. french touch · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/r5-jante.jpg",
+     "alt": "Jante Chrono, le 5 sur la barre des 5 h",
+     "cap": "Jantes Chrono : le chiffre 5 sur la 5e aiguille · lien entre le nom de la voiture et la jante taillée comme une horloge · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/r5-induction.jpg",
+     "alt": "Recharge à induction",
+     "cap": "R5 recharge à induction · réf. design iconique · photos + bobinot"
+    }
+   ],
+   "lum": [
+    "Jante : reflets sur les aiguilles, à travailler pour que le 5 ressorte",
+    "Coq ×3 : trois emplacements différents, trois lumières à prévoir"
+   ],
+   "cam": [
+    "Porte-baguette : plan contextuel (intérieur) + gros plan",
+    "Jante : plan serré sur la 5e aiguille"
+   ],
+   "mach": [
+    "Jante : voiture ou roue en mouvement ? à discuter"
+   ],
+   "fond": "",
+   "notes": "Les trois emplacements du coq (pare-brise, vitre, coffre) ne sont pas détaillés dans le brief : à demander à Renault."
+  },
+  {
+   "id": "rafale",
+   "name": "Rafale",
+   "alias": [
+    "Renault Rafale",
+    "Rafale E-Tech",
+    "Renault Rafale E-Tech"
+   ],
+   "col": "#2563d9",
+   "bg": "linear-gradient(135deg,#0b2a78 0%,#2563d9 55%,#9cc2ff 100%)",
+   "txt": "Renault Rafale E-Tech, bleue. Une silhouette d'avion Caudron dans le toit panoramique Solarbay (clin d'œil à l'avion Renault Caudron Rafale C.460 des années 1930 et à l'origine du nom), et un « A » Alpine brodé sur les sièges avant qui se transforme en battement de cœur à l'ouverture des portes.",
+   "pist": "2 détails · photos + bobinot · vidéo activation : avion du toit",
+   "imgs": [
+    {
+     "src": "refs/car-rafale.png",
+     "alt": "Renault Rafale E-Tech",
+     "cap": "Renault Rafale E-Tech · couleur du brief"
+    },
+    {
+     "src": "refs/rafale-avion-photo.jpg",
+     "alt": "Avion sur le Solarbay (photos)",
+     "cap": "Dessin d'un avion Caudron · toit panoramique Solarbay · héritage de l'avion Caudron Rafale des années 1930 · photos + bobinot"
+    },
+    {
+     "src": "refs/rafale-avion-ciel.jpg",
+     "alt": "Silhouette d'avion sur le Solarbay (vidéo activation)",
+     "cap": "Silhouette d'avion, vue ciel · vidéo activation"
+    },
+    {
+     "src": "refs/rafale-alpine.jpg",
+     "alt": "« A » Alpine brodé sur le siège",
+     "cap": "« A » lumineux · sur les sièges avant · se transforme en battement de cœur à l'ouverture des portes · photos + bobinot"
+    }
+   ],
+   "lum": [
+    "Toit Solarbay : la silhouette n'existe que contre le ciel ou une source derrière : à anticiper",
+    "« A » lumineux : le battement de cœur se déclenche à l'ouverture des portes, donc pas d'éclairage fort dans l'habitacle"
+   ],
+   "cam": [
+    "Battement de cœur : plan à tourner en continu pour attraper l'animation",
+    "Prévoir une prise à l'ouverture de la porte"
+   ],
+   "mach": [],
+   "fond": "",
+   "notes": "Rafale : seulement 30 min en photo et 30 min en vidéo activation dans le plan de rotation, pour deux détails dont un animé.\nLes cercles du plan d'implantation CPV ne sont pas expliqués dans le brief."
+  },
+  {
+   "id": "r8",
+   "name": "R8 Gordini",
+   "alias": [
+    "Renault 8 Gordini Concept",
+    "R8 Gordini Concept",
+    "R8",
+    "Gordini"
+   ],
+   "col": "#2a45e0",
+   "bg": "linear-gradient(135deg,#0d1a6b 0%,#2a45e0 55%,#a9b8ff 100%)",
+   "txt": "Renault 8 Gordini Concept, bleue. Des lettrages en perforation : le numéro du pilote et la cylindrée (8 + 1.134), deux dates d'Amédée Gordini (naissance 23.06.1899, décès 25.05.1979), un panneau n° 95 + 1.934, et le logo « La Gorde » dans le ciel de toit.",
+   "pist": "4 détails · photos + bobinot · vidéo activation : panneau gauche",
+   "imgs": [
+    {
+     "src": "refs/car-r8.png",
+     "alt": "Renault 8 Gordini Concept",
+     "cap": "Renault 8 Gordini Concept · couleur du brief"
+    },
+    {
+     "src": "refs/r8-panneau-droite.jpg",
+     "alt": "Panneau droit, lettrage perforé",
+     "cap": "Panneau droit · lettrage perforé n° 95 + 1.934 · réf. lancée en 1964, moteur 95 ch · photos + bobinot"
+    },
+    {
+     "src": "refs/r8-panneau-gauche.jpg",
+     "alt": "Panneau gauche, lettrage perforé",
+     "cap": "Panneau gauche · lettrage perforé « Pilote 23 + 0.699 » (naissance d'Amédée Gordini le 23.06.1899) et « Pilote 79 » (décès le 25.05.1979) · photos + bobinot, vidéo activation"
+    },
+    {
+     "src": "refs/r8-gorde.jpg",
+     "alt": "Logo La Gorde, ciel de toit",
+     "cap": "Logo « La Gorde » · ciel de toit · surnom de la voiture à l'époque · photos + bobinot"
+    }
+   ],
+   "lum": [
+    "Lettrage perforé sur velours : lumière rasante ou rétroéclairage pour faire apparaître les perforations",
+    "Logo « La Gorde » dans le ciel de toit : peu de contraste, à révéler"
+   ],
+   "cam": [
+    "Gros plans serrés sur les perforations (macro ?)",
+    "Décor central « 8 + 1.134 » : pas d'image dans le brief"
+   ],
+   "mach": [],
+   "fond": "",
+   "notes": "Pas d'image dans le brief pour le décor central (lettrage en perforation 8 + 1.134, numéro du pilote 8 et cylindrée de la R8, 1 134 cm³).\nPanneau droit : « 1.934 » alors que la référence citée est 1964 / 95 ch : à faire confirmer.\nPlus longue présence de la journée : 1 h en photo, 1 h en B-roll, 30 min en vidéo activation."
+  },
+  {
+   "id": "turbo",
+   "name": "R5 Turbo 3E",
+   "alias": [
+    "R5 Turbo",
+    "Turbo",
+    "Renault 5 Turbo 3E",
+    "R5T3E"
+   ],
+   "col": "#d62a2f",
+   "bg": "linear-gradient(135deg,#5e0c10 0%,#d62a2f 55%,#ffb0b3 100%)",
+   "txt": "Renault 5 Turbo 3E, rouge. Un seul clin d'œil : « Accroche-toi ! » gravé sur le repose-pieds passager (tapis de sol côté passager), référence à la sportivité du modèle.",
+   "pist": "1 détail · photos + bobinot · vidéo activation",
+   "imgs": [
+    {
+     "src": "refs/car-r5turbo.png",
+     "alt": "Renault 5 Turbo 3E",
+     "cap": "Renault 5 Turbo 3E · couleur du brief"
+    },
+    {
+     "src": "refs/r5turbo-repose-pieds.jpg",
+     "alt": "« Accroche-toi ! » sur le repose-pieds passager",
+     "cap": "« Accroche-toi ! » · repose-pieds passager · référence à la sportivité du modèle · photos + bobinot, vidéo activation"
+    }
+   ],
+   "lum": [
+    "Inscription gravée sur le repose-pieds : lumière rasante, en espace très étroit"
+   ],
+   "cam": [
+    "Gros plan à faible hauteur : l'accès caméra dans le plancher est à vérifier"
+   ],
+   "mach": [
+    "Tête déportée ou petit support bas à discuter"
+   ],
+   "fond": "",
+   "notes": "Conflit dans le plan de rotation : la Turbo est à la fois en photo (Paulin) et en B-roll (CPV) de 11h00 à 11h30."
+  },
+  {
+   "id": "niagara",
+   "name": "Niagara",
+   "alias": [
+    "Renault Niagara"
+   ],
+   "col": "#5f7a69",
+   "bg": "linear-gradient(135deg,#27382d 0%,#5f7a69 55%,#c4d6ca 100%)",
+   "txt": "Renault Niagara, vert kaki, le pick-up. « Loading with adventure » sur la barre qui court le long de la partie haute de la benne (positionnement aventure du véhicule), et le logo RNLT sur la barre de toit.",
+   "pist": "2 détails · photos + bobinot · vidéo activation : « Loading with adventure »",
+   "imgs": [
+    {
+     "src": "refs/car-niagara.png",
+     "alt": "Renault Niagara",
+     "cap": "Renault Niagara · couleur du brief"
+    },
+    {
+     "src": "refs/niagara-load.jpg",
+     "alt": "« Loading with adventure », barre de benne",
+     "cap": "« Loading with adventure » · barre en haut de la benne · réf. positionnement aventure du véhicule · photos + bobinot, vidéo activation"
+    }
+   ],
+   "lum": [
+    "Lettrage en relief sur barre métallique : lumière rasante, reflets à contrôler"
+   ],
+   "cam": [
+    "Logo RNLT (barre de toit) : pas d'image dans le brief"
+   ],
+   "mach": [
+    "Barre de toit : accès en hauteur à prévoir"
+   ],
+   "fond": "",
+   "notes": "Logo RNLT sur la barre de toit : le brief ne montre pas d'image (bloc gris)."
+  },
+  {
+   "id": "trafic",
+   "name": "Trafic",
+   "alias": [
+    "Renault Trafic",
+    "Trafic Van",
+    "Trafic Van E-Tech"
+   ],
+   "col": "#646a72",
+   "bg": "linear-gradient(135deg,#23262b 0%,#646a72 55%,#c6cbd1 100%)",
+   "txt": "Renault Trafic Van E-Tech, gris. Un pictogramme de Trafic intégrant une carte à puce, présent à quatre endroits (feu avant, feu arrière, antibrouillard, vitre). Trafic est le premier modèle Renault à offrir la technologie Software Defined Vehicle (SDV).",
+   "pist": "1 détail ×4 · photos + bobinot · vidéo activation : feux avant",
+   "imgs": [
+    {
+     "src": "refs/car-trafic.png",
+     "alt": "Renault Trafic Van E-Tech",
+     "cap": "Renault Trafic Van E-Tech · couleur du brief"
+    },
+    {
+     "src": "refs/trafic-carte-puce.jpg",
+     "alt": "Pictogramme carte à puce, vitre",
+     "cap": "Carte à puce et silhouette ×4 (feu avant, feu arrière, antibrouillard, pare-brise) · réf. 1er SDV Renault · photos + bobinot · vidéo activation : feux avant"
+    }
+   ],
+   "lum": [
+    "Pictogramme gravé dans le verre ou l'optique : reflets, fond sombre derrière",
+    "Quatre emplacements, donc quatre réglages différents"
+   ],
+   "cam": [
+    "Quatre plans par voiture : liste de plans à fixer avec le réal"
+   ],
+   "mach": [],
+   "fond": "",
+   "notes": "Le brief cite « vitre latérale » (page histoire des easter eggs) et « pare-brise » (page photos) pour le quatrième emplacement : à confirmer.\nVidéo activation : seulement la carte à puce des feux avant."
+  }
+ ],
+ "plan": {
+  "intro": "Plan de rotation du brief, par voiture : trois postes en parallèle de 10h00 à 17h30, pause de 12h30 à 13h30. Installation vidéo dès 7h30, installation photo à partir de 8h30, démontage de 17h30 à 18h30, départ à 18h30. Le plan complet est dans la section « Où ».",
+  "slots": [
+   {
+    "label": "Photo 13h30–14h30 · Vidéo activation 15h30–16h30 · B-roll 16h30–17h30",
+    "camp": "Twingo"
+   },
+   {
+    "label": "Photo 16h30–17h30 · Vidéo activation 14h30–15h30 · B-roll 13h30–14h30",
+    "camp": "R4"
+   },
+   {
+    "label": "Photo 15h30–16h30 · Vidéo activation 13h30–14h30 · B-roll 14h30–15h30",
+    "camp": "R5"
+   },
+   {
+    "label": "Photo 10h30–11h00 · Vidéo activation 12h00–12h30 · B-roll 11h30–12h00",
+    "camp": "Rafale"
+   },
+   {
+    "label": "Photo 11h30–12h30 · Vidéo activation 11h00–11h30 · B-roll 10h00–11h00",
+    "camp": "R8 Gordini"
+   },
+   {
+    "label": "Photo 11h00–11h30 · Vidéo activation 10h30–11h00 · B-roll 11h00–11h30 (attention : photo et B-roll en même temps)",
+    "camp": "R5 Turbo 3E"
+   },
+   {
+    "label": "Photo 10h00–10h30 · Vidéo activation 16h30–17h30 · B-roll 15h30–16h30",
+    "camp": "Niagara"
+   },
+   {
+    "label": "Photo 14h30–15h30 · Vidéo activation 11h30–12h00 · B-roll 12h00–12h30",
+    "camp": "Trafic"
+   }
+  ]
+ },
+ "loc": {
+  "name": "Renault · salle Paulin (photos) et salle CPV (bobinots + vidéo activation)",
+  "link": "",
+  "pdf": "",
+  "imgs": [
+   {
+    "src": "refs/plan-rotation.jpg",
+    "alt": "Plan de rotation voiture",
+    "cap": "Plan de rotation voiture : salle Paulin (photo), salle CPV (vidéo), salle CPV (B-roll)"
+   },
+   {
+    "src": "refs/salle-paulin-1.jpg",
+    "alt": "Salle Paulin",
+    "cap": "Salle Paulin : semi-fonctionnel (rouge), fonctionnel (vert)"
+   },
+   {
+    "src": "refs/salle-paulin-2.jpg",
+    "alt": "Salle Paulin, néon et écran LED",
+    "cap": "Salle Paulin : néon éteignable, couleur de diffusion au choix, spot blanc, écran LED éteignable"
+   },
+   {
+    "src": "refs/plan-salle-paulin.jpg",
+    "alt": "Plan de la salle Paulin",
+    "cap": "Plan de la salle Paulin : entrée véhicule, zone fonctionnelle"
+   },
+   {
+    "src": "refs/salle-cpv-1.jpg",
+    "alt": "Salle CPV",
+    "cap": "Salle CPV : pas de dispositif lumière spécifique ni commandable"
+   },
+   {
+    "src": "refs/salle-cpv-2.jpg",
+    "alt": "Salle CPV, baie vitrée",
+    "cap": "Salle CPV : baie vitrée sur l'extérieur, lumière naturelle"
+   },
+   {
+    "src": "refs/plan-implantation-cpv.jpg",
+    "alt": "Plan d'implantation CPV",
+    "cap": "Salle CPV : plan d'implantation, mise en place à 9h00"
+   }
+  ]
+ },
+ "depts": [
+  {
+   "id": "cam",
+   "name": "Caméra",
+   "known": [
+    {
+     "t": "Antoine Vié, assistant caméra",
+     "sub": "",
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Trois livrables vidéo : bobinots (1 plan de 5 à 10 s par easter egg), film activation 16:9 de 2 à 3 min, version 9:16 de 15 s",
+     "sub": "",
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Détails à rendre lisibles en gros plan : lettrage perforé (R8), alphabet du pavillon (Twingo), rivet (R4), silhouette d'avion (Rafale), pictogramme (Trafic)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "r8",
+      "twingo",
+      "r4",
+      "rafale",
+      "trafic"
+     ]
+    },
+    {
+     "t": "Cadrage compatible 16:9 et 9:16 pour les deux versions du film ?",
+     "sub": "",
+     "w": 1,
+     "g": "conf"
+    }
+   ],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": [
+    {
+     "id": "q-cam1",
+     "t": "Qui tourne quoi : photo, vidéo activation, B-roll ?",
+     "pb": "Le plan de rotation prévoit trois postes en parallèle, et le brief ne dit pas quelle équipe caméra est sur quel poste.",
+     "ch": "",
+     "sol": [],
+     "c": []
+    },
+    {
+     "id": "q-cam2",
+     "t": "Optique et distance mini pour les gros plans de détails",
+     "pb": "Lettrage perforé, rivet, pictogramme gravé : des détails de quelques millimètres à quelques centimètres.",
+     "ch": "",
+     "sol": [],
+     "c": [
+      "r8",
+      "r4",
+      "trafic"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lum",
+   "name": "Lumière",
+   "known": [
+    {
+     "t": "Côme Naulleau, gaffer",
+     "sub": "",
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Salle CPV : aucune lumière dédiée ni commandable. Baie vitrée sur l'extérieur, qui laisse entrer la lumière naturelle",
+     "sub": "",
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Salle Paulin : néon éteignable, écran LED éteignable, spot blanc (froid à chaud), couleur de diffusion au choix ou blanc neutre. Zone fonctionnelle et zone semi-fonctionnelle",
+     "sub": "",
+     "w": 0,
+     "g": "conf"
+    },
+    {
+     "t": "Démonstration d'Olivier Rouxel (Renault) vers 8h/8h30, puis autonomie. Dans le plan de rotation : « Installation équipe photo + Olivier Rouxel lumière » à 9h00",
+     "sub": "",
+     "w": 1,
+     "g": "conf"
+    },
+    {
+     "t": "Reflets sur le verre à maîtriser : lunette arrière de la Twingo, pictogramme du Trafic (4 emplacements)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "twingo",
+      "trafic"
+     ]
+    },
+    {
+     "t": "Lumière rasante pour les reliefs : alphabet du pavillon (Twingo), lettrage perforé (R8), rivet (R4), lettrage de benne (Niagara)",
+     "sub": "",
+     "w": 0,
+     "g": "spec",
+     "c": [
+      "twingo",
+      "r8",
+      "r4",
+      "niagara"
+     ]
+    }
+   ],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": [
+    {
+     "id": "q-lum1",
+     "t": "Salle CPV : lumière naturelle de 9h à 17h30",
+     "pb": "En décembre à Paris, le soleil se couche vers 16h50 (à vérifier). Les derniers créneaux (Niagara, Twingo, R4, R5) tombent à la nuit.",
+     "ch": "Raccord de lumière entre les 8 voitures, du matin à la nuit",
+     "sol": [
+      "Apporter de la lumière en CPV pour ne pas dépendre de la baie vitrée",
+      "Ordre des voitures à revoir pour mettre les plus délicates à la lumière du jour"
+     ],
+     "c": []
+    }
+   ]
+  },
+  {
+   "id": "mach",
+   "name": "Machinerie",
+   "known": [
+    {
+     "t": "Huit voitures à déplacer entre la salle Paulin (photo) et la salle CPV (vidéo activation et B-roll), par tranches de 30 min",
+     "sub": "",
+     "w": 0,
+     "g": "rig"
+    },
+    {
+     "t": "Plan d'implantation CPV à mettre en place à 9h00 : deux zones circulaires autour des voitures",
+     "sub": "",
+     "w": 1,
+     "g": "rig"
+    },
+    {
+     "t": "Salle Paulin : entrée véhicule, voiture sur plateau circulaire en zone fonctionnelle",
+     "sub": "",
+     "w": 0,
+     "g": "rig"
+    }
+   ],
+   "todo": [],
+   "refs": [],
+   "notes": "",
+   "open": [
+    {
+     "id": "q-mach1",
+     "t": "Plan de rotation : la R5 Turbo 3E est à deux endroits à la fois, de 11h00 à 11h30",
+     "pb": "Photo en salle Paulin et B-roll en salle CPV sur le même créneau.",
+     "ch": "",
+     "sol": [],
+     "c": [
+      "turbo"
+     ]
+    },
+    {
+     "id": "q-mach2",
+     "t": "Les deux cercles du plan d'implantation CPV : zones de tournage ou plateaux tournants ?",
+     "pb": "Le brief ne l'explique pas.",
+     "ch": "",
+     "sol": [],
+     "c": []
+    }
+   ]
+  }
+ ],
+ "team": [
+  {
+   "role": "Prod",
+   "name": "Spoa"
+  },
+  {
+   "role": "Dir prod",
+   "name": "Thomas Mennec"
+  },
+  {
+   "role": "Réal",
+   "name": "Benoît Pétré"
+  },
+  {
+   "role": "DOP",
+   "name": "Seb Trân"
+  },
+  {
+   "role": "1st AC",
+   "name": "Antoine Vié"
+  },
+  {
+   "role": "Gaffer",
+   "name": "Côme Naulleau"
+  },
+  {
+   "role": "Client Renault",
+   "name": "Corinne Dutoit, Matthieu Richer"
+  },
+  {
+   "role": "Lumière Paulin",
+   "name": "Olivier Rouxel (Renault)"
+  },
+  {
+   "role": "Machinerie",
+   "name": ""
+  },
+  {
+   "role": "DIT",
+   "name": ""
+  },
+  {
+   "role": "Créateur de contenu",
+   "name": ""
+  },
+  {
+   "role": "Loueur matos",
+   "name": ""
+  }
+ ],
+ "qs": [],
+ "pos": {}
+}
