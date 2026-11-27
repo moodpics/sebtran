@@ -62,7 +62,7 @@
   ],
   "base": {
    "t": "Base commune : salle CPV, huit voitures",
-   "p": "Salle CPV (bobinots + vidéo activation) : grand volume sans lumière dédiée, avec une baie vitrée sur l'extérieur. Les huit voitures sont mises en place à 9h00 puis tournent entre les deux postes vidéo par tranches de 30 min. La photo se tourne en parallèle dans une autre salle, avec les mêmes voitures."
+   "p": "Salle CPV (B-rolls + vidéo activation) : grand volume sans lumière dédiée, avec une baie vitrée sur l'extérieur. Les huit voitures sont mises en place à 9h00 puis tournent entre les deux postes vidéo par tranches de 30 min. La photo se tourne en parallèle dans une autre salle, avec les mêmes voitures."
   }
  },
  "brief": {
@@ -123,7 +123,7 @@
     "b": 1,
     "sub": [
      "Photo : en parallèle, en salle Paulin, avec une autre équipe. Hors périmètre de cette page",
-     "Bobinots, salle CPV : 1 plan vidéo de 5 à 10 s par easter egg",
+     "B-rolls, salle CPV : 1 plan vidéo de 5 à 10 s par easter egg",
      "Vidéo activation, salle CPV : 1 film 16:9 de 2 à 3 min + 1 version 9:16 de 15 s, en anglais, avec 3 versions : ST FR, ST GB, sans ST"
     ],
     "img": "",
@@ -259,7 +259,7 @@
   "sum": {
    "t": "Renault, easter eggs : 8 voitures, une vingtaine de détails cachés, 2 productions vidéo",
    "sub": [
-    "Bobinots + vidéo activation (salle CPV) · la photo tourne en parallèle, hors périmètre",
+    "B-rolls + vidéo activation (salle CPV) · la photo tourne en parallèle, hors périmètre",
     "Film activation : Concept 2 « Not just a detail », 2 min 10, un incarnant face caméra, 10 séquences",
     "Livraison des vidéos le 18.12"
    ]
@@ -281,7 +281,7 @@
    "col": "#1f7a45",
    "bg": "linear-gradient(135deg,#0f3d22 0%,#1f7a45 55%,#8fd1a4 100%)",
    "txt": "Renault Twingo E-Tech, verte. Quatre clins d'œil, surtout des mots et des dessins : un alphabet dans le pavillon, une petite Twingo cachée dans la lunette arrière, deux punchlines (hayon et tirette de siège arrière). Un univers joueur, pensé pour les jeunes passagers.",
-   "pist": "4 détails · bobinot · vidéo activation : lunette arrière et tirette",
+   "pist": "4 détails · B-roll · vidéo activation : lunette arrière et tirette",
    "imgs": [
     {
      "src": "refs/car-twingo.png",
@@ -291,22 +291,22 @@
     {
      "src": "refs/twingo-alphabet.jpg",
      "alt": "Alphabet Twingo, ciel de toit",
-     "cap": "Un alphabet à décoder · pavillon de toit · invitation à jouer et à observer la voiture autrement, pensée pour les jeunes passagers · bobinot"
+     "cap": "Un alphabet à décoder · pavillon de toit · invitation à jouer et à observer la voiture autrement, pensée pour les jeunes passagers · B-roll"
     },
     {
      "src": "refs/twingo-lunette.jpg",
      "alt": "Dessin de Twingo, lunette arrière",
-     "cap": "Un dessin de Twingo · vitre arrière · bouille ronde et joviale, clin d'œil à la première Twingo des années 90 · bobinot, vidéo activation"
+     "cap": "Un dessin de Twingo · vitre arrière · bouille ronde et joviale, clin d'œil à la première Twingo des années 90 · B-roll, vidéo activation"
     },
     {
      "src": "refs/twingo-ouvert-esprit.jpg",
      "alt": "« Ouvert d'esprit », intérieur du hayon",
-     "cap": "« Ouvert d'esprit » · intérieur du hayon · bobinot"
+     "cap": "« Ouvert d'esprit » · intérieur du hayon · B-roll"
     },
     {
      "src": "refs/twingo-tirette.jpg",
      "alt": "« À vous d'inventer la vie qui va avec », tirette de siège arrière",
-     "cap": "« À vous d'inventer la vie qui va avec » · tirette du siège arrière · réf. pub de la première Twingo, années 90 · bobinot, vidéo activation"
+     "cap": "« À vous d'inventer la vie qui va avec » · tirette du siège arrière · réf. pub de la première Twingo, années 90 · B-roll, vidéo activation"
     },
     {
      "src": "refs/sb-2-face-camera.jpg",
@@ -339,7 +339,7 @@
    "col": "#9b2c3d",
    "bg": "linear-gradient(135deg,#4a0f1b 0%,#9b2c3d 55%,#e59aa6 100%)",
    "txt": "Renault 4 E-Tech, rouge bordeaux. Trois clins d'œil à la 4L : un rivet sur les sièges, une course 4L contre Renault 4 dans la custode, un rangement de coffre effet canage (réf. 4L La Parisienne).",
-   "pist": "3 détails · bobinot · vidéo activation : rivet et custode",
+   "pist": "3 détails · B-roll · vidéo activation : rivet et custode",
    "imgs": [
     {
      "src": "refs/car-r4.png",
@@ -349,17 +349,17 @@
     {
      "src": "refs/r4-rivet.jpg",
      "alt": "Rivet des sièges",
-     "cap": "Un rivet avec l'inscription « Allez-y vous roulez en Renault 4 » · flanc des sièges, version Techno (sellerie Jean) · écho au slogan publicitaire de la 4L en 1964 (réf. Pierre Dreyfus) · bobinot, vidéo activation"
+     "cap": "Un rivet avec l'inscription « Allez-y vous roulez en Renault 4 » · flanc des sièges, version Techno (sellerie Jean) · écho au slogan publicitaire de la 4L en 1964 (réf. Pierre Dreyfus) · B-roll, vidéo activation"
     },
     {
      "src": "refs/r4-custode.jpg",
      "alt": "Course 4L et Renault 4, custode arrière",
-     "cap": "Dessin d'une course entre la 4L et la Renault 4 · custode arrière · référence à la 4L d'origine · bobinot, vidéo activation"
+     "cap": "Dessin d'une course entre la 4L et la Renault 4 · custode arrière · référence à la 4L d'origine · B-roll, vidéo activation"
     },
     {
      "src": "refs/r4-coffre-canage.jpg",
      "alt": "Rangement de coffre effet canage",
-     "cap": "Rangement de coffre effet canage · réf. 4L La Parisienne · bobinot"
+     "cap": "Rangement de coffre effet canage · réf. 4L La Parisienne · B-roll"
     },
     {
      "src": "refs/sb-5-vitre.jpg",
@@ -395,7 +395,7 @@
    "col": "#2fae4a",
    "bg": "linear-gradient(135deg,#0d4a1c 0%,#2fae4a 55%,#b6efc0 100%)",
    "txt": "Renault 5 E-Tech, verte. Un coq (×3 : pare-brise, vitre, coffre, réf. Made in France), un porte-baguette (french touch), les jantes Chrono avec le chiffre 5 sur la 5e aiguille, la recharge à induction (réf. design iconique).",
-   "pist": "4 détails · bobinot · vidéo activation : porte-baguette et jantes Chrono",
+   "pist": "4 détails · B-roll · vidéo activation : porte-baguette et jantes Chrono",
    "imgs": [
     {
      "src": "refs/car-r5.png",
@@ -405,22 +405,22 @@
     {
      "src": "refs/r5-coq.jpg",
      "alt": "Coq (feu arrière)",
-     "cap": "Coq, ×3 : pare-brise, vitre, coffre · réf. Made in France · bobinot"
+     "cap": "Coq, ×3 : pare-brise, vitre, coffre · réf. Made in France · B-roll"
     },
     {
      "src": "refs/r5-baguette.jpg",
      "alt": "Porte-baguette",
-     "cap": "Porte-baguette · réf. french touch · bobinot, vidéo activation"
+     "cap": "Porte-baguette · réf. french touch · B-roll, vidéo activation"
     },
     {
      "src": "refs/r5-jante.jpg",
      "alt": "Jante Chrono, le 5 sur la barre des 5 h",
-     "cap": "Jantes Chrono : le chiffre 5 sur la 5e aiguille · lien entre le nom de la voiture et la jante taillée comme une horloge · bobinot, vidéo activation"
+     "cap": "Jantes Chrono : le chiffre 5 sur la 5e aiguille · lien entre le nom de la voiture et la jante taillée comme une horloge · B-roll, vidéo activation"
     },
     {
      "src": "refs/r5-induction.jpg",
      "alt": "Recharge à induction",
-     "cap": "R5 recharge à induction · réf. design iconique · bobinot"
+     "cap": "R5 recharge à induction · réf. design iconique · B-roll"
     },
     {
      "src": "refs/sb-3-baguette.jpg",
@@ -462,7 +462,7 @@
    "col": "#2563d9",
    "bg": "linear-gradient(135deg,#0b2a78 0%,#2563d9 55%,#9cc2ff 100%)",
    "txt": "Renault Rafale E-Tech, bleue. Une silhouette d'avion Caudron dans le toit panoramique Solarbay (clin d'œil à l'avion Renault Caudron Rafale C.460 des années 1930 et à l'origine du nom), et un « A » Alpine brodé sur les sièges avant qui se transforme en battement de cœur à l'ouverture des portes.",
-   "pist": "2 détails · bobinot · vidéo activation : avion du toit",
+   "pist": "2 détails · B-roll · vidéo activation : avion du toit",
    "imgs": [
     {
      "src": "refs/car-rafale.png",
@@ -471,8 +471,8 @@
     },
     {
      "src": "refs/rafale-avion-photo.jpg",
-     "alt": "Avion sur le Solarbay (bobinot)",
-     "cap": "Dessin d'un avion Caudron · toit panoramique Solarbay · héritage de l'avion Caudron Rafale des années 1930 · bobinot"
+     "alt": "Avion sur le Solarbay (B-roll)",
+     "cap": "Dessin d'un avion Caudron · toit panoramique Solarbay · héritage de l'avion Caudron Rafale des années 1930 · B-roll"
     },
     {
      "src": "refs/rafale-avion-ciel.jpg",
@@ -482,7 +482,7 @@
     {
      "src": "refs/rafale-alpine.jpg",
      "alt": "« A » Alpine brodé sur le siège",
-     "cap": "« A » lumineux · sur les sièges avant · se transforme en battement de cœur à l'ouverture des portes · bobinot"
+     "cap": "« A » lumineux · sur les sièges avant · se transforme en battement de cœur à l'ouverture des portes · B-roll"
     },
     {
      "src": "refs/sb-7-rafale.jpg",
@@ -516,7 +516,7 @@
    "col": "#2a45e0",
    "bg": "linear-gradient(135deg,#0d1a6b 0%,#2a45e0 55%,#a9b8ff 100%)",
    "txt": "Renault 8 Gordini Concept, bleue. Des lettrages en perforation : le numéro du pilote et la cylindrée (8 + 1.134), deux dates d'Amédée Gordini (naissance 23.06.1899, décès 25.05.1979), un panneau n° 95 + 1.934, et le logo « La Gorde » dans le ciel de toit.",
-   "pist": "4 détails · bobinot · vidéo activation : panneau gauche",
+   "pist": "4 détails · B-roll · vidéo activation : panneau gauche",
    "imgs": [
     {
      "src": "refs/car-r8.png",
@@ -526,17 +526,17 @@
     {
      "src": "refs/r8-panneau-droite.jpg",
      "alt": "Panneau droit, lettrage perforé",
-     "cap": "Panneau droit · lettrage perforé n° 95 + 1.934 · réf. lancée en 1964, moteur 95 ch · bobinot"
+     "cap": "Panneau droit · lettrage perforé n° 95 + 1.934 · réf. lancée en 1964, moteur 95 ch · B-roll"
     },
     {
      "src": "refs/r8-panneau-gauche.jpg",
      "alt": "Panneau gauche, lettrage perforé",
-     "cap": "Panneau gauche · lettrage perforé « Pilote 23 + 0.699 » (naissance d'Amédée Gordini le 23.06.1899) et « Pilote 79 » (décès le 25.05.1979) · bobinot, vidéo activation"
+     "cap": "Panneau gauche · lettrage perforé « Pilote 23 + 0.699 » (naissance d'Amédée Gordini le 23.06.1899) et « Pilote 79 » (décès le 25.05.1979) · B-roll, vidéo activation"
     },
     {
      "src": "refs/r8-gorde.jpg",
      "alt": "Logo La Gorde, ciel de toit",
-     "cap": "Logo « La Gorde » · ciel de toit · surnom de la voiture à l'époque · bobinot"
+     "cap": "Logo « La Gorde » · ciel de toit · surnom de la voiture à l'époque · B-roll"
     }
    ],
    "lum": [
@@ -549,7 +549,7 @@
    ],
    "mach": [],
    "fond": "",
-   "notes": "Pas d'image dans le brief pour le décor central (lettrage en perforation 8 + 1.134, numéro du pilote 8 et cylindrée de la R8, 1 134 cm³).\nPanneau droit : « 1.934 » alors que la référence citée est 1964 / 95 ch : à faire confirmer.\nPlus longue présence côté vidéo : 1 h en B-roll, 30 min en vidéo activation.\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux bobinots et peut-être au montage de conclusion (1:45–2:10). À confirmer."
+   "notes": "Pas d'image dans le brief pour le décor central (lettrage en perforation 8 + 1.134, numéro du pilote 8 et cylindrée de la R8, 1 134 cm³).\nPanneau droit : « 1.934 » alors que la référence citée est 1964 / 95 ch : à faire confirmer.\nPlus longue présence côté vidéo : 1 h en B-roll, 30 min en vidéo activation.\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux B-rolls et peut-être au montage de conclusion (1:45–2:10). À confirmer."
   },
   {
    "id": "turbo",
@@ -563,7 +563,7 @@
    "col": "#d62a2f",
    "bg": "linear-gradient(135deg,#5e0c10 0%,#d62a2f 55%,#ffb0b3 100%)",
    "txt": "Renault 5 Turbo 3E, rouge. Un seul clin d'œil : « Accroche-toi ! » gravé sur le repose-pieds passager (tapis de sol côté passager), référence à la sportivité du modèle.",
-   "pist": "1 détail · bobinot · vidéo activation",
+   "pist": "1 détail · B-roll · vidéo activation",
    "imgs": [
     {
      "src": "refs/car-r5turbo.png",
@@ -573,7 +573,7 @@
     {
      "src": "refs/r5turbo-repose-pieds.jpg",
      "alt": "« Accroche-toi ! » sur le repose-pieds passager",
-     "cap": "« Accroche-toi ! » · repose-pieds passager · référence à la sportivité du modèle · bobinot, vidéo activation"
+     "cap": "« Accroche-toi ! » · repose-pieds passager · référence à la sportivité du modèle · B-roll, vidéo activation"
     },
     {
      "src": "refs/sb-4-volant.jpg",
@@ -603,7 +603,7 @@
    "col": "#5f7a69",
    "bg": "linear-gradient(135deg,#27382d 0%,#5f7a69 55%,#c4d6ca 100%)",
    "txt": "Renault Niagara, vert kaki, le pick-up. « Loading with adventure » sur la barre qui court le long de la partie haute de la benne (positionnement aventure du véhicule), et le logo RNLT sur la barre de toit.",
-   "pist": "2 détails · bobinot · vidéo activation : « Loading with adventure »",
+   "pist": "2 détails · B-roll · vidéo activation : « Loading with adventure »",
    "imgs": [
     {
      "src": "refs/car-niagara.png",
@@ -613,7 +613,7 @@
     {
      "src": "refs/niagara-load.jpg",
      "alt": "« Loading with adventure », barre de benne",
-     "cap": "« Loading with adventure » · barre en haut de la benne · réf. positionnement aventure du véhicule · bobinot, vidéo activation"
+     "cap": "« Loading with adventure » · barre en haut de la benne · réf. positionnement aventure du véhicule · B-roll, vidéo activation"
     }
    ],
    "lum": [
@@ -626,7 +626,7 @@
     "Barre de toit : accès en hauteur à prévoir"
    ],
    "fond": "",
-   "notes": "Logo RNLT sur la barre de toit : le brief ne montre pas d'image (bloc gris).\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux bobinots et peut-être au montage de conclusion (1:45–2:10). À confirmer."
+   "notes": "Logo RNLT sur la barre de toit : le brief ne montre pas d'image (bloc gris).\nAucune séquence dans le script du Concept 2 : ses détails serviraient aux B-rolls et peut-être au montage de conclusion (1:45–2:10). À confirmer."
   },
   {
    "id": "trafic",
@@ -639,7 +639,7 @@
    "col": "#646a72",
    "bg": "linear-gradient(135deg,#23262b 0%,#646a72 55%,#c6cbd1 100%)",
    "txt": "Renault Trafic Van E-Tech, gris. Un pictogramme de Trafic intégrant une carte à puce, présent à quatre endroits (feu avant, feu arrière, antibrouillard, vitre). Trafic est le premier modèle Renault à offrir la technologie Software Defined Vehicle (SDV).",
-   "pist": "1 détail ×4 · bobinot · vidéo activation : feux avant",
+   "pist": "1 détail ×4 · B-roll · vidéo activation : feux avant",
    "imgs": [
     {
      "src": "refs/car-trafic.png",
@@ -649,7 +649,7 @@
     {
      "src": "refs/trafic-carte-puce.jpg",
      "alt": "Pictogramme carte à puce, vitre",
-     "cap": "Carte à puce et silhouette ×4 (feu avant, feu arrière, antibrouillard, pare-brise) · réf. 1er SDV Renault · bobinot · vidéo activation : feux avant"
+     "cap": "Carte à puce et silhouette ×4 (feu avant, feu arrière, antibrouillard, pare-brise) · réf. 1er SDV Renault · B-roll · vidéo activation : feux avant"
     }
    ],
    "lum": [
@@ -704,7 +704,7 @@
   ]
  },
  "loc": {
-  "name": "Renault · salle CPV (bobinots + vidéo activation)",
+  "name": "Renault · salle CPV (B-rolls + vidéo activation)",
   "link": "",
   "pdf": "",
   "imgs": [
@@ -742,7 +742,7 @@
      "g": "conf"
     },
     {
-     "t": "Trois livrables vidéo : bobinots (1 plan de 5 à 10 s par easter egg), film activation 16:9 de 2 à 3 min, version 9:16 de 15 s",
+     "t": "Trois livrables vidéo : B-rolls (1 plan de 5 à 10 s par easter egg), film activation 16:9 de 2 à 3 min, version 9:16 de 15 s",
      "sub": "",
      "w": 0,
      "g": "conf"
